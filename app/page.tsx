@@ -1,5 +1,6 @@
 "use client";
 
+import {DSBox} from "@/components/Box";
 import globalSlice from "@/stores/globalSlice";
 
 export default function Home() {
@@ -19,6 +20,56 @@ export default function Home() {
     calculateBearAndFish, // SharedState
   } = globalStore;
 
+  return (
+    <div className="flex flex-col gap-4 p-4">
+      <DSBox
+        color="#f00"
+        bgColor="#F5F6F7"
+        border="all" // all | top | bottom
+        borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+        borderWidth={1} // 0 | 1 | 2
+        boxShadow="top" // none | top | bottom
+        textAlign="right" // left | center | right
+        // alignItems="start" // start | center | end | baseline
+        // justifyContent="space-between" // start | center | end | space-between | space-around
+        direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+        hover={true}
+        gap={50}
+        px={24}
+        py={24}
+        fullWidth
+      >
+        <div>
+          L1
+          <span>span1</span>
+          <div>div1</div>
+          <div>
+            div2 <div>div2.1</div>
+          </div>
+          <div>
+            div3 <span>span3</span>{" "}
+            <div>
+              div3.1 <span>span3.1</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          L2
+          <span>span1</span>
+          <div>div1</div>
+          <div>
+            div2 <div>div2.1</div>
+          </div>
+          <div>
+            div3 <span>span3</span>{" "}
+            <div>
+              div3.1 <span>span3.1</span>
+            </div>
+          </div>
+        </div>
+      </DSBox>
+    </div>
+  );
   return (
     <>
       <div className="flex flex-col gap-4 p-4">

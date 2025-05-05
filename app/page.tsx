@@ -1,6 +1,7 @@
 "use client";
 
 import {DSBox} from "@/components/Box";
+import {DSIcon} from "@/components/Icon";
 import globalSlice from "@/stores/globalSlice";
 
 export default function Home() {
@@ -19,6 +20,16 @@ export default function Home() {
     addBearAndFish, // SharedState
     calculateBearAndFish, // SharedState
   } = globalStore;
+
+  return (
+    <div className="flex flex-col gap-4 p-4">
+      <div>----</div>
+      <DSIcon icon="alert_circle"  color="#0f0"/>
+      {/* <div>----</div> */}
+      {/* <DSIcon icon="AlertCircle"  color="#0f0"/> */}
+      <div>----</div>
+    </div>
+  );
 
   return (
     <div className="flex flex-col gap-4 p-4">

@@ -1,7 +1,3 @@
-export enum deviceModel {
-  IPHONE_6 = "iPhone 6",
-}
-
 export interface BoxProps
   extends React.HTMLAttributes<
     HTMLButtonElement | HTMLBaseElement | HTMLElement | undefined
@@ -69,5 +65,4 @@ export interface BoxProps
   gapColumn?: number;
   limit?: number;
   maxWidth?: number;
-  oldDevice?: boolean;
 }

@@ -30,8 +30,7 @@ export const Icon = styled.i<IconProps>`
         path {
           fill: currentColor;
           stroke: currentColor;
-        }
-        
+        }  
       `;
     }
   }}

@@ -4,15 +4,26 @@ import { IconProps } from "./Icon.types";
 import { iconList } from "./IconList";
 
 export const DSIcon = ({
-  className,
-  icon,
-  size,
-  variant,
-  color,
-  width,
-  height,
+  // className,
+  // icon,
+  // size,
+  // variant,
+  // color,
+  // width,
+  // height,
   ...rest
 }: IconProps) => {
+  const {
+    className,
+    icon = "next_js",
+    size = "medium",
+    variant = "outline",
+    color = "#002D63",
+    width,
+    height,
+  } = rest;
+  console.log("🚀 ~ rest:", rest)
+  console.log("🚀 ~ icon:", icon)
   const checkVariant = (variant: String) => {
     return variant === "warning" || variant === "success";
   };
@@ -24,9 +35,6 @@ export const DSIcon = ({
   );
 
   const Icon = iconList[icon as keyof typeof iconList];
-
-  console.log(`---- ~ icon:`, icon);
-  console.log(`---- ~ Icon:`, Icon);
 
   return (
     Icon && (

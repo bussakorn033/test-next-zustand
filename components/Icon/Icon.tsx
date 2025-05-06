@@ -1,7 +1,7 @@
 import * as S from "./Icon.styled";
 import classNames from "classnames";
-import { IconProps } from "./Icon.types";
-import { iconList } from "./IconList";
+import {IconProps} from "./Icon.types";
+import {iconList} from "./IconList";
 
 export const DSIcon = ({
   // className,
@@ -22,42 +22,42 @@ export const DSIcon = ({
     width,
     height,
   } = rest;
-  console.log("🚀 ~ rest:", rest)
-  console.log("🚀 ~ icon:", icon)
+  console.log("🚀 ~ rest:", rest);
   const checkVariant = (variant: String) => {
     return variant === "warning" || variant === "success";
   };
 
-  const classnames = classNames(
-    className,
-    "ds-icon",
-    "icon",
-  );
+  const classnames = classNames(className, "ds-icon", "icon");
 
-  const Icon = iconList[icon as keyof typeof iconList];
+  const Icon = iconList[icon];
+  console.log(`🚀 => icon:`, icon);
+  console.log(`🚀 => Icon:`, Icon);
 
+  console.log(`🚀 => iconList[icon]:`, typeof iconList[icon]);
   return (
     Icon && (
-    <S.Icon
-      className={classnames}
-      title={icon}
-      style={{ width: width, height: height }}
-      width={width}
-      height={height}
-      icon={icon}
-      size={size}
-      variant={variant}
-      {...rest}
-    >
-      <Icon style={{color: color}} />
-      <img
+      <S.Icon
+        className={classnames}
+        title={icon}
+        style={{width: width, height: height}}
+        width={width}
+        height={height}
+        // icon={icon}
+        // size={size}
+        // variant={variant}
+        {...rest}
+      >
+        {/* <Icon style={{color: color}} /> */}
+        {/* {icon} */}
+        <img
           src={Icon.src}
           alt={icon}
           width={width || Icon.width}
           height={height || Icon.height}
-          style={{ color }}
+          style={{color}}
         />
-    </S.Icon>
+        {/* {iconList[icon]} */}
+      </S.Icon>
     )
   );
 };

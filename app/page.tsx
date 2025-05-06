@@ -22,12 +22,64 @@ export default function Home() {
   } = globalStore;
 
   return (
+    // <div className="flex flex-row flex-wrap text-center gap-4 p-4">
     <div className="flex flex-col gap-4 p-4">
-      <div>----</div>
-      <DSIcon icon="alert_circle"  color="#0f0"/>
-      {/* <div>----</div> */}
-      {/* <DSIcon icon="AlertCircle"  color="#0f0"/> */}
-      <div>----</div>
+      <DSBox
+        color="#f00"
+        bgColor="#a4caf0"
+        border="all" // all | top | bottom
+        borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+        borderWidth={1} // 0 | 1 | 2
+        boxShadow="top" // none | top | bottom
+        textAlign="right" // left | center | right
+        // alignItems="start" // start | center | end | baseline
+        // justifyContent="space-between" // start | center | end | space-between | space-around
+        direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
+        hover={true}
+        gap={50}
+        px={24}
+        py={24}
+        fullWidth
+      >
+        <DSIcon icon="alert_circle" color="#0f0" width={50} height={50} />
+        <DSIcon icon="alert_circle_bold" color="#0f0" width={50} height={50} />
+        <DSIcon icon="arrow_down" color="#0f0" width={50} height={50} />
+        <DSIcon icon="arrow_left" color="#0f0" width={50} height={50} />
+        <DSIcon icon="arrow_right" color="#0f0" width={50} height={50} />
+        <DSIcon icon="arrow_up" color="#0f0" width={50} height={50} />
+        <DSIcon icon="arrow_down_bold" color="#0f0" width={50} height={50} />
+        <DSIcon icon="arrow_up_bold" color="#0f0" width={50} height={50} />
+        <DSIcon icon="calendar" color="#0f0" width={50} height={50} />
+        <DSIcon icon="cancel_circle_fill" color="#0f0" width={50} height={50} />
+        <DSIcon icon="check" color="#0f0" width={50} height={50} />
+        <DSIcon icon="check_circle" color="#0f0" width={50} height={50} />
+        <DSIcon icon="close" color="#0f0" width={50} height={50} />
+        <DSIcon icon="download" color="#0f0" width={50} height={50} />
+        <DSIcon icon="edit" color="#0f0" width={50} height={50} />
+        <DSIcon icon="help_circle_fill" color="#0f0" width={50} height={50} />
+        <DSIcon icon="history" color="#0f0" width={50} height={50} />
+        <DSIcon icon="home" color="#0f0" width={50} height={50} />
+        <DSIcon icon="img_empty_png" color="#0f0" width={50} height={50} />
+        <DSIcon icon="img_empty_svg" color="#0f0" width={50} height={50} />
+        <DSIcon icon="img_nodata_png" color="#0f0" width={50} height={50} />
+        <DSIcon icon="img_nodata_svg" color="#0f0" width={50} height={50} />
+        <DSIcon icon="img_profile_circle" color="#0f0" width={50} height={50} />
+        <DSIcon icon="info_circle" color="#0f0" width={50} height={50} />
+        <DSIcon icon="logout" color="#0f0" width={50} height={50} />
+        <DSIcon icon="minus" color="#0f0" width={50} height={50} />
+        <DSIcon icon="plus" color="#0f0" width={50} height={50} />
+        <DSIcon icon="printer" color="#0f0" width={50} height={50} />
+        <DSIcon icon="refresh" color="#0f0" width={50} height={50} />
+        <DSIcon icon="save" color="#0f0" width={50} height={50} />
+        <DSIcon icon="search" color="#0f0" width={50} height={50} />
+        <DSIcon icon="share" color="#0f0" width={50} height={50} />
+        <DSIcon icon="sort_ascending" color="#0f0" width={50} height={50} />
+        <DSIcon icon="sort_descending" color="#0f0" width={50} height={50} />
+        <DSIcon icon="sorting" color="#0f0" width={50} height={50} />
+        <DSIcon icon="trash" color="#0f0" width={50} height={50} />
+        <DSIcon icon="user_circle" color="#0f0" width={50} height={50} />
+        <DSIcon icon="view_document" color="#0f0" width={50} height={50} />
+      </DSBox>
     </div>
   );
 

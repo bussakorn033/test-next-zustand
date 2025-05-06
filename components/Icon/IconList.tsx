@@ -5,6 +5,8 @@ import ArrowDown from "./svg/Arrow-Down.svg";
 import ArrowLeft from "./svg/Arrow-Left.svg";
 import ArrowRight from "./svg/Arrow-Right.svg";
 import ArrowUp from "./svg/Arrow-Up.svg";
+import ArrowDownBold from "./svg/Arrow-Down-Bold.svg";
+import ArrowUpBold from "./svg/Arrow-Up-Bold.svg";
 import Calendar from "./svg/Calendar.svg";
 import CancelCircleFill from "./svg/Cancel-Circle-Fill.svg";
 import CheckCircle from "./svg/Check-Circle.svg";
@@ -40,13 +42,16 @@ import ImgNodataSvg from "./image/Img-Nodata.svg";
 import ImgProfileCircle from "./image/Img-Profile-Circle.svg";
 /* Image */
 
-export const iconList = {
+export const iconList: Record<string, any> = {
+  /* SVG */
   alert_circle: AlertCircle,
   alert_circle_bold: AlertCircleBold,
   arrow_down: ArrowDown,
   arrow_left: ArrowLeft,
   arrow_right: ArrowRight,
   arrow_up: ArrowUp,
+  arrow_down_bold: ArrowDownBold,
+  arrow_up_bold: ArrowUpBold,
   calendar: Calendar,
   cancel_circle_fill: CancelCircleFill,
   check: Check,
@@ -57,11 +62,6 @@ export const iconList = {
   help_circle_fill: HelpCircleFill,
   history: History,
   home: Home,
-  img_empty_png: ImgEmptyPng,
-  img_empty_svg: ImgEmptySvg,
-  img_nodata_png: ImgNodataPng,
-  img_nodata_svg: ImgNodataSvg,
-  img_profile_circle: ImgProfileCircle,
   info_circle: InfoCircle,
   logout: Logout,
   minus: Minus,
@@ -77,4 +77,13 @@ export const iconList = {
   trash: Trash,
   user_circle: UserCircle,
   view_document: ViewDocument,
+  /* SVG */
+
+  /* Image */
+  img_empty_png: ImgEmptyPng,
+  img_empty_svg: ImgEmptySvg,
+  img_nodata_png: ImgNodataPng,
+  img_nodata_svg: ImgNodataSvg,
+  img_profile_circle: ImgProfileCircle,
+  /* Image */
 };

@@ -44,6 +44,7 @@ export const DSIcon = ({
         height={height}
         // icon={icon}
         // size={size}
+        color={color}
         // variant={variant}
         {...rest}
       >

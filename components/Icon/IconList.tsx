@@ -1,12 +1,12 @@
 /* SVG */
 import AlertCircleBold from "./svg/Alert-Circle-Bold.svg";
 import AlertCircle from "./svg/Alert-Circle.svg";
+import ArrowDownBold from "./svg/Arrow-Down-Bold.svg";
 import ArrowDown from "./svg/Arrow-Down.svg";
 import ArrowLeft from "./svg/Arrow-Left.svg";
 import ArrowRight from "./svg/Arrow-Right.svg";
-import ArrowUp from "./svg/Arrow-Up.svg";
-import ArrowDownBold from "./svg/Arrow-Down-Bold.svg";
 import ArrowUpBold from "./svg/Arrow-Up-Bold.svg";
+import ArrowUp from "./svg/Arrow-Up.svg";
 import Calendar from "./svg/Calendar.svg";
 import CancelCircleFill from "./svg/Cancel-Circle-Fill.svg";
 import CheckCircle from "./svg/Check-Circle.svg";
@@ -42,20 +42,28 @@ import ImgNodataSvg from "./image/Img-Nodata.svg";
 import ImgProfileCircle from "./image/Img-Profile-Circle.svg";
 /* Image */
 
+/* SVG/FILE */
+import AlertCircleBoldSVG from "./svg/file/AlertCircleBoldSVG";
+import AlertCircleSVG from "./svg/file/AlertCircleSVG";
+import ArrowDownBoldSVG from "./svg/file/ArrowDownBoldSVG";
+import ArrowDownSVG from "./svg/file/ArrowDownSVG";
+
+/* SVG/FILE */
+
 export const iconList: Record<string, any> = {
   /* SVG */
-  alert_circle: AlertCircle,
   alert_circle_bold: AlertCircleBold,
+  alert_circle: AlertCircle,
+  arrow_down_bold: ArrowDownBold,
   arrow_down: ArrowDown,
   arrow_left: ArrowLeft,
   arrow_right: ArrowRight,
-  arrow_up: ArrowUp,
-  arrow_down_bold: ArrowDownBold,
   arrow_up_bold: ArrowUpBold,
+  arrow_up: ArrowUp,
   calendar: Calendar,
   cancel_circle_fill: CancelCircleFill,
-  check: Check,
   check_circle: CheckCircle,
+  check: Check,
   close: Close,
   download: Download,
   edit: Edit,
@@ -87,3 +95,24 @@ export const iconList: Record<string, any> = {
   img_profile_circle: ImgProfileCircle,
   /* Image */
 };
+
+export const IconComponent = ({icon, ...rest}: any) => {
+  switch (icon) {
+    case "alert_circle_bold":
+      return <AlertCircleBoldSVG {...rest} />;
+    case "alert_circle":
+      return <AlertCircleSVG {...rest} />;
+    case "arrow_down_bold":
+      return <ArrowDownBoldSVG {...rest} />;
+    case "arrow_down":
+      return <ArrowDownSVG {...rest} />;
+    default:
+      return null;
+  }
+};
+// export const iconListFile: Record<string, any> = {
+//   alert_circle_bold_svg: AlertCircleBoldSVG,
+//   alert_circle_svg: AlertCircleSVG,
+//   arrow_down_bold_svg: ArrowDownBoldSVG,
+//   arrow_down_svg: ArrowDownSVG,
+// };

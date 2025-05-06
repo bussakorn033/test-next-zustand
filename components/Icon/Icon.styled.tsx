@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { IconProps } from "./Icon.types";
+import styled, {css} from "styled-components";
+import {IconProps} from "./Icon.types";
 
 export const Icon = styled.i<IconProps>`
   ${(props) => {
@@ -12,14 +12,14 @@ export const Icon = styled.i<IconProps>`
   ${(props) => {
     if (props.width) {
       return css`
-        width: ${props.width};
+        width: ${props.width}px;
       `;
     }
   }}
   ${(props) => {
     if (props.height) {
       return css`
-        height: ${props.height};
+        height: ${props.height}px;
       `;
     }
   }}
@@ -30,7 +30,7 @@ export const Icon = styled.i<IconProps>`
         path {
           fill: currentColor;
           stroke: currentColor;
-        }  
+        }
       `;
     }
   }}

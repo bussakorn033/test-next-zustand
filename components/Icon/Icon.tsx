@@ -1,7 +1,7 @@
-import * as S from "./Icon.styled";
 import classNames from "classnames";
+import * as S from "./Icon.styled";
 import {IconProps} from "./Icon.types";
-import {iconList} from "./IconList";
+import {galleryList} from "./IconList";
 
 export const DSIcon = ({
   // className,
@@ -29,11 +29,11 @@ export const DSIcon = ({
 
   const classnames = classNames(className, "ds-icon", "icon");
 
-  const Icon = iconList[icon];
+  const Icon = galleryList[icon];
   console.log(`🚀 => icon:`, icon);
   console.log(`🚀 => Icon:`, Icon);
 
-  console.log(`🚀 => iconList[icon]:`, typeof iconList[icon]);
+  console.log(`🚀 => galleryList[icon]:`, typeof galleryList[icon]);
   return (
     Icon && (
       <S.Icon

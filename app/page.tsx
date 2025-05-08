@@ -25,128 +25,157 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-4 p-4">
-      <DSTextStyle variant="specialH1">
-        สวัสดีครับ คุณชานนท์{" "}
-        <DSTextStyle variant="span">
-          ยินดีต้อนรับเข้าสู่ ttb e-contract portal
-        </DSTextStyle>
-      </DSTextStyle>
+      {/* Common DSTextStyle */}
+      <DSTextStyle variant="specialH1">DSTextStyle</DSTextStyle>
+      <>
+        <DSBox
+          // color="#f00"
+          bgColor="#a4caf0"
+          border="all" // all | top | bottom
+          borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+          borderWidth={1} // 0 | 1 | 2
+          boxShadow="top" // none | top | bottom
+          // textAlign="right" // left | center | right
+          // alignItems="center" // start | center | end | baseline
+          // justifyContent="center" // start | center | end | space-between | space-around
+          direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+          hover={true}
+          gap={10}
+          px={24}
+          py={24}
+          fullWidth
+        >
+          <>
+            <DSTextStyle variant="specialH1">
+              สวัสดีครับ คุณชานนท์{" "}
+              <DSTextStyle variant="span">
+                ยินดีต้อนรับเข้าสู่ ttb e-contract portal
+              </DSTextStyle>
+            </DSTextStyle>
 
-      <DSTextStyle variant="specialH1">Ekachon - specialH1</DSTextStyle>
-      <DSTextStyle variant="specialH2">Ekachon - specialH2</DSTextStyle>
-      <DSTextStyle variant="pageTitle">Ekachon - pageTitle</DSTextStyle>
-      <DSTextStyle variant="h1">Ekachon - h1</DSTextStyle>
-      <DSTextStyle variant="h2">Ekachon - h2</DSTextStyle>
-      <DSTextStyle variant="h3">Ekachon - h3</DSTextStyle>
-      <DSTextStyle variant="h4">Ekachon - h4</DSTextStyle>
+            <DSTextStyle variant="specialH1">Ekachon - specialH1</DSTextStyle>
+            <DSTextStyle variant="specialH2">Ekachon - specialH2</DSTextStyle>
+            <DSTextStyle variant="pageTitle">Ekachon - pageTitle</DSTextStyle>
+            <DSTextStyle variant="h1">Ekachon - h1</DSTextStyle>
+            <DSTextStyle variant="h2">Ekachon - h2</DSTextStyle>
+            <DSTextStyle variant="h3">Ekachon - h3</DSTextStyle>
+            <DSTextStyle variant="h4">Ekachon - h4</DSTextStyle>
 
-      {/* Color examples */}
-      <DSTextStyle color="color-primary">Primary Color Text</DSTextStyle>
-      <DSTextStyle color="color-danger">Error Message</DSTextStyle>
+            {/* Color examples */}
+            <DSTextStyle color="color-primary">Primary Color Text</DSTextStyle>
+            <DSTextStyle color="color-danger">Error Message</DSTextStyle>
 
-      {/* Line limit examples */}
-      <DSTextStyle limitLine={2} style={{width: "200px"}}>
-        This is a very long text that will be limited to 2 lines with ellipsis
-        at the end when it overflows
-      </DSTextStyle>
+            {/* Line limit examples */}
+            <DSTextStyle limitLine={2} style={{width: "200px"}}>
+              This is a very long text that will be limited to 2 lines with
+              ellipsis at the end when it overflows
+            </DSTextStyle>
 
-      {/* White space examples */}
-      <DSTextStyle whiteSpace="nowrap">
-        This text won't wrap to new line
-      </DSTextStyle>
+            {/* White space examples */}
+            <DSTextStyle whiteSpace="nowrap">
+              This text won't wrap to new line
+            </DSTextStyle>
 
-      {/* Word break examples */}
-      <DSTextStyle wordBreak="break-all" style={{width: "150px"}}>
-        ThisIsAVeryLongWordThatWillBreak
-      </DSTextStyle>
+            {/* Word break examples */}
+            <DSTextStyle wordBreak="break-all" style={{width: "150px"}}>
+              ThisIsAVeryLongWordThatWillBreak
+            </DSTextStyle>
 
-      {/* Combined examples */}
-      <DSTextStyle
-        variant="h1"
-        color="color-primary"
-        limitLine={3}
-        whiteSpace="pre-line"
-        wordBreak="break-word"
-        style={{maxWidth: "300px"}}
-      >
-        This is a heading with multiple lines and custom styling
-      </DSTextStyle>
+            {/* Combined examples */}
+            <DSTextStyle
+              variant="h1"
+              color="color-primary"
+              limitLine={3}
+              whiteSpace="pre-line"
+              wordBreak="break-word"
+              style={{maxWidth: "300px"}}
+            >
+              This is a heading with multiple lines and custom styling
+            </DSTextStyle>
+          </>
+        </DSBox>
+      </>
+      {/* Common DSTextStyle */}
 
-      {/* <DSBox
-        // color="#f00"
-        bgColor="#a4caf0"
-        border="all" // all | top | bottom
-        borderRadius="xl" // none | xs | sm | md | lg | xl | circle
-        borderWidth={1} // 0 | 1 | 2
-        boxShadow="top" // none | top | bottom
-        textAlign="right" // left | center | right
-        // alignItems="center" // start | center | end | baseline
-        // justifyContent="center" // start | center | end | space-between | space-around
-        direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
-        hover={true}
-        gap={10}
-        px={24}
-        py={24}
-        fullWidth
-      >
-        <DSTextStyle variant="specialH1">Ekachon - specialH1</DSTextStyle>
-      </DSBox> */}
+      {/* Common IconComponent */}
+      <DSTextStyle variant="specialH1">IconComponent</DSTextStyle>
+      <>
+        <DSBox
+          color="#f00"
+          bgColor="#a4caf0"
+          border="all" // all | top | bottom
+          borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+          borderWidth={1} // 0 | 1 | 2
+          boxShadow="top" // none | top | bottom
+          textAlign="right" // left | center | right
+          // alignItems="center" // start | center | end | baseline
+          // justifyContent="center" // start | center | end | space-between | space-around
+          direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
+          hover={true}
+          gap={10}
+          px={24}
+          py={24}
+          fullWidth
+        >
+          <>
+            {[...Object.keys(iconList)].map((iconName) => (
+              <DSBox
+                key={iconName}
+                direction="column"
+                gap={4}
+                alignItems="center"
+              >
+                <IconComponent
+                  icon={iconName}
+                  color="#0f0"
+                  size={50}
+                  // width={50}
+                  // height={50}
+                />
+                <span style={{fontSize: "12px"}}>{iconName}</span>
+              </DSBox>
+            ))}
+          </>
+        </DSBox>
+      </>
+      {/* Common IconComponent */}
 
-      <DSBox
-        color="#f00"
-        bgColor="#a4caf0"
-        border="all" // all | top | bottom
-        borderRadius="xl" // none | xs | sm | md | lg | xl | circle
-        borderWidth={1} // 0 | 1 | 2
-        boxShadow="top" // none | top | bottom
-        textAlign="right" // left | center | right
-        // alignItems="center" // start | center | end | baseline
-        // justifyContent="center" // start | center | end | space-between | space-around
-        direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
-        hover={true}
-        gap={10}
-        px={24}
-        py={24}
-        fullWidth
-      >
-        {[...Object.keys(iconList)].map((iconName) => (
-          <DSBox key={iconName} direction="column" gap={4} alignItems="center">
-            <IconComponent
-              icon={iconName}
-              color="#0f0"
-              size={50}
-              // width={50}
-              // height={50}
-            />
-            <span style={{fontSize: "12px"}}>{iconName}</span>
-          </DSBox>
-        ))}
-      </DSBox>
-
-      <DSBox
-        color="#f00"
-        bgColor="#a4caf0"
-        border="all" // all | top | bottom
-        borderRadius="xl" // none | xs | sm | md | lg | xl | circle
-        borderWidth={1} // 0 | 1 | 2
-        boxShadow="top" // none | top | bottom
-        textAlign="right" // left | center | right
-        // alignItems="center" // start | center | end | baseline
-        // justifyContent="center" // start | center | end | space-between | space-around
-        direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
-        hover={true}
-        gap={10}
-        px={24}
-        py={24}
-        fullWidth
-      >
-        {[...Object.keys(galleryList)].map((iconName) => (
-          <DSBox key={iconName} direction="column" gap={4} alignItems="center">
-            <DSIcon icon={iconName} color="#0f0" width={50} height={50} />
-            <span style={{fontSize: "12px"}}>{iconName}</span>
-          </DSBox>
-        ))}
-      </DSBox>
+      {/* Common  DSIcon */}
+      <DSTextStyle variant="specialH1">DSIcon</DSTextStyle>
+      <>
+        <DSBox
+          color="#f00"
+          bgColor="#a4caf0"
+          border="all" // all | top | bottom
+          borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+          borderWidth={1} // 0 | 1 | 2
+          boxShadow="top" // none | top | bottom
+          textAlign="right" // left | center | right
+          // alignItems="center" // start | center | end | baseline
+          // justifyContent="center" // start | center | end | space-between | space-around
+          direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
+          hover={true}
+          gap={10}
+          px={24}
+          py={24}
+          fullWidth
+        >
+          <>
+            {[...Object.keys(galleryList)].map((iconName) => (
+              <DSBox
+                key={iconName}
+                direction="column"
+                gap={4}
+                alignItems="center"
+              >
+                <DSIcon icon={iconName} color="#0f0" width={50} height={50} />
+                <span style={{fontSize: "12px"}}>{iconName}</span>
+              </DSBox>
+            ))}
+          </>
+        </DSBox>
+      </>
+      {/* Common  DSIcon */}
     </div>
   );
   <DSBox

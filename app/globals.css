@@ -1,6 +1,44 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Ekachon';
+  src: url('/fonts/Ekachon/Ekachon-Regular.woff2') format('woff2'),
+       url('/fonts/Ekachon/Ekachon-Regular.woff') format('woff'),
+       url('/fonts/Ekachon/Ekachon-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ekachon';
+  src: url('/fonts/Ekachon/Ekachon-Medium.woff2') format('woff2'),
+       url('/fonts/Ekachon/Ekachon-Medium.woff') format('woff'),
+       url('/fonts/Ekachon/Ekachon-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ekachon';
+  src: url('/fonts/Ekachon/Ekachon-Bold.woff2') format('woff2'),
+       url('/fonts/Ekachon/Ekachon-Bold.woff') format('woff'),
+       url('/fonts/Ekachon/Ekachon-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
+  /* Colors */
+  --color-primary: #002D63;
+  --color-secondary: #5B6A83;
+  --color-success: #28A745;
+  --color-danger: #DC3545;
+  --color-warning: #FFC107;
+  --color-info: #17A2B8;
+  
   /* Font Sizes */
   --font-size-heading-1-large: 32px;
   --font-size-heading-1: 24px;
@@ -27,5 +65,10 @@
   --letter-spacing-normal: normal;
 
   /* Font Family */
-  --font-family-primary: var(--font-geist-sans);
+  --font-family-primary: 'Ekachon', system-ui, sans-serif;
+}
+
+/* Apply font family globally */
+body {
+  font-family: var(--font-family-primary);
 }

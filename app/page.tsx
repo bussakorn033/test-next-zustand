@@ -3,6 +3,7 @@
 import {DSBox} from "@/components/Box";
 import {DSIcon} from "@/components/Icon";
 import {galleryList, IconComponent, iconList} from "@/components/Icon/IconList";
+import {DSTextStyle} from "@/components/TextStyle";
 import globalSlice from "@/stores/globalSlice";
 
 export default function Home() {
@@ -23,18 +24,68 @@ export default function Home() {
   } = globalStore;
 
   return (
-    // <div className="flex flex-row flex-wrap text-center gap-4 p-4">
     <div className="flex flex-col gap-4 p-4">
+      <DSTextStyle variant="specialH1">
+        สวัสดีครับ คุณชานนท์{" "}
+        <DSTextStyle variant="span">
+          ยินดีต้อนรับเข้าสู่ ttb e-contract portal
+        </DSTextStyle>
+      </DSTextStyle>
+
+      <DSTextStyle variant="specialH1">Ekachon - specialH1</DSTextStyle>
+      <DSTextStyle variant="specialH2">Ekachon - specialH2</DSTextStyle>
+      <DSTextStyle variant="pageTitle">Ekachon - pageTitle</DSTextStyle>
+      <DSTextStyle variant="h1">Ekachon - h1</DSTextStyle>
+      <DSTextStyle variant="h2">Ekachon - h2</DSTextStyle>
+      <DSTextStyle variant="h3">Ekachon - h3</DSTextStyle>
+      <DSTextStyle variant="h4">Ekachon - h4</DSTextStyle>
+
+      {/* Basic variant examples */}
+      <DSTextStyle variant="specialH1">Special Heading 1</DSTextStyle>
+      <DSTextStyle variant="h2">Heading 2</DSTextStyle>
+
+      {/* Color examples */}
+      <DSTextStyle color="color-primary">Primary Color Text</DSTextStyle>
+      <DSTextStyle color="color-danger">Error Message</DSTextStyle>
+
+      {/* Line limit examples */}
+      <DSTextStyle limitLine={2} style={{width: "200px"}}>
+        This is a very long text that will be limited to 2 lines with ellipsis
+        at the end when it overflows
+      </DSTextStyle>
+
+      {/* White space examples */}
+      <DSTextStyle whiteSpace="nowrap">
+        This text won't wrap to new line
+      </DSTextStyle>
+
+      {/* Word break examples */}
+      <DSTextStyle wordBreak="break-all" style={{width: "150px"}}>
+        ThisIsAVeryLongWordThatWillBreak
+      </DSTextStyle>
+
+      {/* Combined examples */}
+      <DSTextStyle
+        variant="h1"
+        color="color-primary"
+        limitLine={3}
+        whiteSpace="pre-line"
+        wordBreak="break-word"
+        style={{maxWidth: "300px"}}
+      >
+        This is a heading with multiple lines and custom styling
+      </DSTextStyle>
+
       {/* <DSBox
-        color="#f00"
+        // color="#f00"
         bgColor="#a4caf0"
         border="all" // all | top | bottom
         borderRadius="xl" // none | xs | sm | md | lg | xl | circle
         borderWidth={1} // 0 | 1 | 2
         boxShadow="top" // none | top | bottom
         textAlign="right" // left | center | right
-        // alignItems="start" // start | center | end | baseline
-        // justifyContent="space-between" // start | center | end | space-between | space-around
+        // alignItems="center" // start | center | end | baseline
+        // justifyContent="center" // start | center | end | space-between | space-around
         direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
         hover={true}
         gap={10}
@@ -42,30 +93,7 @@ export default function Home() {
         py={24}
         fullWidth
       >
-        <IconComponent
-          icon="alert_circle_bold"
-          color="#0f0"
-          width={50}
-          height={50}
-        />
-        <IconComponent
-          icon="alert_circle"
-          color="#0f0"
-          width={50}
-          height={50}
-        />
-        <IconComponent
-          icon="arrow_down_bold"
-          color="#0f0"
-          width={50}
-          height={50}
-        />
-        <IconComponent
-          icon="arrow_down"
-          color="#0f0"
-          width={50}
-          height={50}
-        />
+        <DSTextStyle variant="specialH1">Ekachon - specialH1</DSTextStyle>
       </DSBox> */}
 
       <DSBox

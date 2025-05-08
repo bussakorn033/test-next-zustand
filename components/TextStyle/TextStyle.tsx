@@ -4,7 +4,8 @@ import React, {forwardRef} from "react";
 
 import {DSBox} from "../Box";
 import {DSTextStyleProps} from "./TextStyle.types";
-import {StyledText} from "./TextStyle.styled";
+// import {TextStyle} from "./TextStyle.styled";
+import * as S from "./TextStyle.styled";
 
 export const DSTextStyle = forwardRef<
   HTMLElement | undefined,
@@ -25,14 +26,7 @@ export const DSTextStyle = forwardRef<
     }: DSTextStyleProps,
     ref
   ) => {
-    const classnames = classNames(
-      "ds-text-style",
-      // styles[variant || ""],
-      // {
-      //   [styles["text-style"]]: limitLine,
-      // },
-      className
-    );
+    const classnames = classNames("ds-text-style", className);
 
     let customTag = "p";
     switch (variant) {
@@ -68,30 +62,24 @@ export const DSTextStyle = forwardRef<
     }
 
     return (
-      <DSBox
-        tag={tag ? tag : customTag}
+      <S.TextStyle
+        as={tag ? tag : customTag}
+        variant={variant}
         className={classnames}
-        ref={ref}
-        {...rest}
+        limitLine={limitLine}
+        whiteSpace={whiteSpace}
+        wordBreak={wordBreak}
+        style={
+          {
+            "--text-color": color && `var(--${color})`,
+            "--ds-text-style-limit-line": limitLine,
+            whiteSpace: whiteSpace,
+            wordBreak: wordBreak,
+          } as React.CSSProperties
+        }
       >
-        <StyledText
-          variant={variant}
-          className={classnames}
-          limitLine={limitLine}
-          whiteSpace={whiteSpace}
-          wordBreak={wordBreak}
-          style={
-            {
-              "--text-color": color && `var(--${color})`,
-              "--ds-text-style-limit-line": limitLine,
-              whiteSpace: whiteSpace,
-              wordBreak: wordBreak,
-            } as React.CSSProperties
-          }
-        >
-          {children}
-        </StyledText>
-      </DSBox>
+        {children}
+      </S.TextStyle>
     );
   }
 );

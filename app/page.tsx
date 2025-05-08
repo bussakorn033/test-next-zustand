@@ -40,10 +40,6 @@ export default function Home() {
       <DSTextStyle variant="h3">Ekachon - h3</DSTextStyle>
       <DSTextStyle variant="h4">Ekachon - h4</DSTextStyle>
 
-      {/* Basic variant examples */}
-      <DSTextStyle variant="specialH1">Special Heading 1</DSTextStyle>
-      <DSTextStyle variant="h2">Heading 2</DSTextStyle>
-
       {/* Color examples */}
       <DSTextStyle color="color-primary">Primary Color Text</DSTextStyle>
       <DSTextStyle color="color-danger">Error Message</DSTextStyle>

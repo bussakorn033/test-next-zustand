@@ -1,8 +1,6 @@
 import styled, {css} from "styled-components";
 import {DSTextStyleProps} from "./TextStyle.types";
 
-const toRem = (px: number) => `${px / 16}rem`;
-
 interface TextStyleProps extends DSTextStyleProps {
   limitLine?: number;
 }
@@ -21,7 +19,7 @@ const textStyleMixin = (
   color: var(--text-color, currentColor);
 `;
 
-export const StyledText = styled.p<TextStyleProps>`
+export const TextStyle = styled.p<TextStyleProps>`
   ${({variant}) => {
     switch (variant) {
       case "specialH1":

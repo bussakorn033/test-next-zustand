@@ -22,7 +22,7 @@ export const DSIcon = ({
     width,
     height,
   } = rest;
-  console.log("🚀 ~ rest:", rest);
+  // console.log("🚀 ~ rest:", rest);
   const checkVariant = (variant: String) => {
     return variant === "warning" || variant === "success";
   };
@@ -30,10 +30,7 @@ export const DSIcon = ({
   const classnames = classNames(className, "ds-icon", "icon");
 
   const Icon = galleryList[icon];
-  console.log(`🚀 => icon:`, icon);
-  console.log(`🚀 => Icon:`, Icon);
 
-  console.log(`🚀 => galleryList[icon]:`, typeof galleryList[icon]);
   return (
     Icon && (
       <S.Icon

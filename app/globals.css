@@ -1,1 +1,31 @@
 @import "tailwindcss";
+
+:root {
+  /* Font Sizes */
+  --font-size-heading-1-large: 32px;
+  --font-size-heading-1: 24px;
+  --font-size-heading-2: 20px;
+  --font-size-heading-2-small: 18px;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-xsmall: 12px;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-36: 36px;
+  --line-height-26: 26px;
+  --line-height-24: 24px;
+  --line-height-20: 20px;
+  --line-height-16: 16px;
+
+  /* Letter Spacing */
+  --letter-spacing-wide: 0.4px;
+  --letter-spacing-normal: normal;
+
+  /* Font Family */
+  --font-family-primary: var(--font-geist-sans);
+}

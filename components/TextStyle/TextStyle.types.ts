@@ -71,4 +71,9 @@ export interface DSTextStyleProps extends React.HTMLAttributes<HTMLHeadingElemen
    * Text color from CSS variables
    */
   color?: string;
+
+  /**
+   * Text decoration
+   */
+  textDecoration?: 'none' | 'underline' | 'line-through'  | 'overline';
 }

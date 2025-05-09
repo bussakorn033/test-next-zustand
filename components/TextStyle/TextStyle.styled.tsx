@@ -214,4 +214,10 @@ export const TextStyle = styled.p<TextStyleProps>`
     css`
       text-align: ${textAlign};
     `}
+
+  ${({textDecoration}) =>
+    textDecoration &&
+    css`
+      text-decoration: ${textDecoration};
+    `}
 `;

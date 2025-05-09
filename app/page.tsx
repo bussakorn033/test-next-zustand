@@ -131,35 +131,57 @@ export default function Home() {
             {/* Text Formatting */}
             <DSBox direction="column" gap={16}>
               <DSTextStyle variant="h2">Text Formatting</DSTextStyle>
-              {/* <DSBox direction="column" gap={8}> */}
-              {/* Line Limiting */}
-              <DSTextStyle limitLine={2} style={{width: "300px"}}>
-                This is a very long text that will be limited to 2 lines. It
-                demonstrates text truncation with ellipsis when content
-                overflows the specified number of lines.
-              </DSTextStyle>
-
-              {/* White Space Handling */}
-              <DSBox direction="column" gap={16}>
-                {/* <DSTextStyle whiteSpace="nowrap" style={{width: "300px"}}>
-                  This text won't wrap to a new line even if it's very long
-                </DSTextStyle> */}
-              </DSBox>
-
-              {/* Word Breaking */}
-              <DSTextStyle wordBreak="break-all" style={{width: "300px"}}>
-                This is a very long word that will break at any point
-              </DSTextStyle>
-
-              {/* Text Alignment */}
-              <DSBox direction="column" gap={4}>
-                <DSTextStyle textAlign="left">Left aligned text</DSTextStyle>
-                <DSTextStyle textAlign="center">
-                  Center aligned text
+              <DSBox direction="column" gap={8}>
+                {/* Line Limiting */}
+                <DSTextStyle limitLine={2} style={{width: "300px"}}>
+                  This is a very long text that will be limited to 2 lines. It
+                  demonstrates text truncation with ellipsis when content
+                  overflows the specified number of lines.
                 </DSTextStyle>
-                <DSTextStyle textAlign="right">Right aligned text</DSTextStyle>
+
+                {/* Word Breaking */}
+                <DSTextStyle wordBreak="break-all" style={{width: "300px"}}>
+                  This is a very long word that will break at any point
+                </DSTextStyle>
+
+                {/* Text Alignment */}
+                <DSBox direction="column" gap={4}>
+                  <DSTextStyle textAlign="left">Left aligned text</DSTextStyle>
+                  <DSTextStyle textAlign="center">
+                    Center aligned text
+                  </DSTextStyle>
+                  <DSTextStyle textAlign="right">
+                    Right aligned text
+                  </DSTextStyle>
+                </DSBox>
+
+                {/* Regular text */}
+                <DSTextStyle variant="paragraphMedium">Normal text</DSTextStyle>
+
+                {/* Underlined text */}
+                <DSTextStyle
+                  variant="paragraphMedium"
+                  textDecoration="underline"
+                >
+                  Underlined text
+                </DSTextStyle>
+
+                {/* Overline text */}
+                <DSTextStyle
+                  variant="paragraphMedium"
+                  textDecoration="overline"
+                >
+                  Overline text
+                </DSTextStyle>
               </DSBox>
-              {/* </DSBox> */}
+
+              {/* Line through text */}
+              <DSTextStyle
+                variant="paragraphMedium"
+                textDecoration="line-through"
+              >
+                {/* Struck through text */}
+              </DSTextStyle>
             </DSBox>
 
             {/* Nested Text */}
@@ -176,6 +198,7 @@ export default function Home() {
           </>
         </DSBox>
 
+        {/* White Space Handling */}
         <DSBox
           // color="#f00"
           bgColor="#a4caf0"

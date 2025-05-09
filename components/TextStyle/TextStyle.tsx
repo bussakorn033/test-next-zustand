@@ -22,6 +22,8 @@ export const DSTextStyle = forwardRef<
       whiteSpace,
       wordBreak,
       textAlign,
+      textDecoration,
+      ...rest
     }: DSTextStyleProps,
     ref
   ) => {
@@ -103,12 +105,14 @@ export const DSTextStyle = forwardRef<
         whiteSpace={whiteSpace}
         wordBreak={wordBreak}
         textAlign={textAlign}
+        textDecoration={textDecoration}
         style={
           {
             "--text-color": color && `var(--${color})`,
             "--ds-text-style-limit-line": limitLine,
           } as React.CSSProperties
         }
+        {...rest}
       >
         {children}
       </S.TextStyle>
@@ -119,7 +123,13 @@ export const DSTextStyle = forwardRef<
 DSTextStyle.defaultProps = {
   variant: "paragraphMedium",
   whiteSpace: "pre-line",
+  textDecoration: "none",
+  wordBreak: "normal",
+  textAlign: "left",
   limitLine: 0,
+  color: null,
+  tag: "p",
+  className: "",
 };
 
 DSTextStyle.displayName = "DSTextStyle";

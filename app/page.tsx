@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-4 p-4">
       {/* Common DSTextStyle */}
-      <DSTextStyle variant="specialH1">DSTextStyle</DSTextStyle>
+      <DSTextStyle variant="h2">DSTextStyle</DSTextStyle>
       <>
         <DSBox
           // color="#f00"
@@ -50,7 +50,7 @@ export default function Home() {
             <DSBox direction="column" gap={16}>
               <DSTextStyle variant="h2">Heading Styles</DSTextStyle>
               <DSBox direction="column" gap={8}>
-                <DSTextStyle variant="specialH1">Special Heading 1</DSTextStyle>
+                <DSTextStyle variant="h2">Special Heading 1</DSTextStyle>
                 <DSTextStyle variant="specialH2">Special Heading 2</DSTextStyle>
                 <DSTextStyle variant="pageTitle">Page Title</DSTextStyle>
                 <DSTextStyle variant="h1">Heading 1</DSTextStyle>
@@ -106,12 +106,6 @@ export default function Home() {
                 <DSTextStyle variant="buttonMedium">
                   Medium Button Text
                 </DSTextStyle>
-                <DSTextStyle variant="buttonSmall">
-                  Small Button Text
-                </DSTextStyle>
-                <DSTextStyle variant="clickableLabel">
-                  Clickable Label
-                </DSTextStyle>
               </DSBox>
             </DSBox>
 
@@ -137,35 +131,35 @@ export default function Home() {
             {/* Text Formatting */}
             <DSBox direction="column" gap={16}>
               <DSTextStyle variant="h2">Text Formatting</DSTextStyle>
-              <DSBox direction="column" gap={8}>
-                {/* Line Limiting */}
-                <DSTextStyle limitLine={2} style={{width: "300px"}}>
-                  This is a very long text that will be limited to 2 lines. It
-                  demonstrates text truncation with ellipsis when content
-                  overflows the specified number of lines.
-                </DSTextStyle>
+              {/* <DSBox direction="column" gap={8}> */}
+              {/* Line Limiting */}
+              <DSTextStyle limitLine={2} style={{width: "300px"}}>
+                This is a very long text that will be limited to 2 lines. It
+                demonstrates text truncation with ellipsis when content
+                overflows the specified number of lines.
+              </DSTextStyle>
 
-                {/* White Space Handling */}
-                <DSTextStyle whiteSpace="nowrap" style={{width: "300px"}}>
+              {/* White Space Handling */}
+              <DSBox direction="column" gap={16}>
+                {/* <DSTextStyle whiteSpace="nowrap" style={{width: "300px"}}>
                   This text won't wrap to a new line even if it's very long
-                </DSTextStyle>
-
-                {/* Word Breaking */}
-                <DSTextStyle wordBreak="break-all" style={{width: "300px"}}>
-                  This is a very long word that will break at any point
-                </DSTextStyle>
-
-                {/* Text Alignment */}
-                <DSBox direction="column" gap={4}>
-                  <DSTextStyle textAlign="left">Left aligned text</DSTextStyle>
-                  <DSTextStyle textAlign="center">
-                    Center aligned text
-                  </DSTextStyle>
-                  <DSTextStyle textAlign="right">
-                    Right aligned text
-                  </DSTextStyle>
-                </DSBox>
+                </DSTextStyle> */}
               </DSBox>
+
+              {/* Word Breaking */}
+              <DSTextStyle wordBreak="break-all" style={{width: "300px"}}>
+                This is a very long word that will break at any point
+              </DSTextStyle>
+
+              {/* Text Alignment */}
+              <DSBox direction="column" gap={4}>
+                <DSTextStyle textAlign="left">Left aligned text</DSTextStyle>
+                <DSTextStyle textAlign="center">
+                  Center aligned text
+                </DSTextStyle>
+                <DSTextStyle textAlign="right">Right aligned text</DSTextStyle>
+              </DSBox>
+              {/* </DSBox> */}
             </DSBox>
 
             {/* Nested Text */}
@@ -181,11 +175,36 @@ export default function Home() {
             </DSBox>
           </>
         </DSBox>
+
+        <DSBox
+          // color="#f00"
+          bgColor="#a4caf0"
+          border="all" // all | top | bottom
+          borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+          borderWidth={1} // 0 | 1 | 2
+          boxShadow="top" // none | top | bottom
+          // textAlign="right" // left | center | right
+          // alignItems="center" // start | center | end | baseline
+          // justifyContent="center" // start | center | end | space-between | space-around
+          direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+          hover={true}
+          gap={10}
+          px={24}
+          py={24}
+          fullWidth
+        >
+          <>
+            <DSTextStyle variant="h2">Text Formatting</DSTextStyle>
+            <DSTextStyle whiteSpace="nowrap" style={{width: "300px"}}>
+              This text won't wrap to a new line even if it's very long
+            </DSTextStyle>
+          </>
+        </DSBox>
       </>
       {/* Common DSTextStyle */}
 
       {/* Common IconComponent */}
-      <DSTextStyle variant="specialH1">IconComponent</DSTextStyle>
+      <DSTextStyle variant="h2">IconComponent</DSTextStyle>
       <>
         <DSBox
           color="#f00"
@@ -228,7 +247,7 @@ export default function Home() {
       {/* Common IconComponent */}
 
       {/* Common  DSIcon */}
-      <DSTextStyle variant="specialH1">DSIcon</DSTextStyle>
+      <DSTextStyle variant="h2">DSIcon</DSTextStyle>
       <>
         <DSBox
           color="#f00"

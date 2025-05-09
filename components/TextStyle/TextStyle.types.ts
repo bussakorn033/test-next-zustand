@@ -35,8 +35,9 @@ export interface DSTextStyleProps extends React.HTMLAttributes<HTMLHeadingElemen
     
     // Mobile Specific
     | 'mobileH4'        // 14px bold, 20px
-    | 'mobileLabelSmallBold'; // 14px bold, 24px
-
+    | 'mobileLabelSmallBold' // 14px bold, 24px
+    
+    | 'span'; // 14px bold, 24px
   /**
    * Custom styles
    */

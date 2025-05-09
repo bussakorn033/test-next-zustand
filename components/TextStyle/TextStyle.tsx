@@ -29,35 +29,69 @@ export const DSTextStyle = forwardRef<
 
     let customTag = "p";
     switch (variant) {
-      case "specialH1":
-      case "pageTitle":
-      case "h1":
-        customTag = "h1";
-        break;
-      case "h2":
-      case "specialH2":
+      // Desktop Headings
+      case "h2": // 32px bold, 44px
         customTag = "h2";
         break;
-      case "h3":
-        customTag = "h3";
-        break;
-      case "h4":
+      case "h4": // 24px bold, 34px
         customTag = "h4";
         break;
-      case "buttonBig":
-      case "buttonMedium":
-      case "buttonSmall":
-      case "clickableLabel":
-      case "linkBig":
-      case "linkMedium":
-      case "linkSmall":
-        customTag = "a";
+      case "h6": // 16px bold, 24px
+        customTag = "h6";
         break;
+
+      // Paragraphs - all use p tag
+      case "paragraphMedium": // 16px regular, 24px
+      case "paragraphSmall": // 14px regular, 20px
+      case "paragraphXSmall": // 12px regular, 16px
+        customTag = "p";
+        break;
+
+      // Labels
+      case "labelMedium": // 16px regular, 24px
+      case "labelSmall": // 14px regular, 20px
+      case "labelSmallBold": // 14px bold, 20px
+      case "labelXSmall": // 12px regular, 16px
+      case "labelXSmallBold": // 12px bold, 16px
+        customTag = "label";
+        break;
+
+      // Values - all use p tag
+      case "valueSmall": // 14px regular, 20px
+        customTag = "p";
+        break;
+
+      // Buttons & Interactive Elements
+      case "buttonMedium": // 16px bold, 24px
+      case "buttonBig": // 20px bold, 32px
+        customTag = "button";
+        break;
+
+      // Special Cases
+      case "pageTitle": // 20px bold, 24px
+        customTag = "h1";
+        break;
+      case "allCapSmall": // 12px regular, 16px, uppercase
+        customTag = "span";
+        break;
+
+      // Mobile Specific
+      case "mobileH4": // 14px bold, 20px
+        customTag = "h4";
+        break;
+      case "mobileLabelSmallBold": // 14px bold, 24px
+        customTag = "label";
+        break;
+
+      // Inline Elements
       case "span":
         customTag = "span";
         break;
+
+      // Default case
       default:
         customTag = "p";
+        break;
     }
 
     return (

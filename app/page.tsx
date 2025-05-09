@@ -50,13 +50,10 @@ export default function Home() {
             <DSBox direction="column" gap={16}>
               <DSTextStyle variant="h2">Heading Styles</DSTextStyle>
               <DSBox direction="column" gap={8}>
-                <DSTextStyle variant="h2">Special Heading 1</DSTextStyle>
-                <DSTextStyle variant="specialH2">Special Heading 2</DSTextStyle>
-                <DSTextStyle variant="pageTitle">Page Title</DSTextStyle>
-                <DSTextStyle variant="h1">Heading 1</DSTextStyle>
                 <DSTextStyle variant="h2">Heading 2</DSTextStyle>
-                <DSTextStyle variant="h3">Heading 3</DSTextStyle>
                 <DSTextStyle variant="h4">Heading 4</DSTextStyle>
+                <DSTextStyle variant="h6">Heading 6</DSTextStyle>
+                <DSTextStyle variant="pageTitle">Page Title</DSTextStyle>
               </DSBox>
             </DSBox>
 
@@ -64,10 +61,6 @@ export default function Home() {
             <DSBox direction="column" gap={16}>
               <DSTextStyle variant="h2">Paragraph Styles</DSTextStyle>
               <DSBox direction="column" gap={8}>
-                <DSTextStyle variant="paragraphBig">
-                  Large paragraph text with longer content to demonstrate the
-                  style
-                </DSTextStyle>
                 <DSTextStyle variant="paragraphMedium">
                   Medium paragraph text for regular content
                 </DSTextStyle>
@@ -133,14 +126,14 @@ export default function Home() {
               <DSTextStyle variant="h2">Text Formatting</DSTextStyle>
               <DSBox direction="column" gap={8}>
                 {/* Line Limiting */}
-                <DSTextStyle limitLine={2} style={{width: "300px"}}>
+                <DSTextStyle limitLine={2}>
                   This is a very long text that will be limited to 2 lines. It
                   demonstrates text truncation with ellipsis when content
                   overflows the specified number of lines.
                 </DSTextStyle>
 
                 {/* Word Breaking */}
-                <DSTextStyle wordBreak="break-all" style={{width: "300px"}}>
+                <DSTextStyle wordBreak="break-all">
                   This is a very long word that will break at any point
                 </DSTextStyle>
 
@@ -218,7 +211,7 @@ export default function Home() {
         >
           <>
             <DSTextStyle variant="h2">Text Formatting</DSTextStyle>
-            <DSTextStyle whiteSpace="nowrap" style={{width: "300px"}}>
+            <DSTextStyle whiteSpace="nowrap">
               This text won't wrap to a new line even if it's very long
             </DSTextStyle>
           </>

@@ -16,7 +16,6 @@ export const DSBox = forwardRef<HTMLElement | undefined, BoxProps>(
         bgColor={bgColor}
         boxShadow={boxShadow}
         className={classnames}
-        // data-fullwidth={fullWidth}
         fullWidth={fullWidth}
         hover={hover}
         ref={ref}

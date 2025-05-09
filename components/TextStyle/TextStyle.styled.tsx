@@ -9,96 +9,181 @@ const textStyleMixin = (
   fontSize: string,
   fontWeight: string,
   lineHeight: string,
-  letterSpacing: string
+  letterSpacing: string,
+  textTransform?: string,
+  fontFamily?: string
 ) => css`
-  font-family: var(--font-family-primary);
-  font-size: ${fontSize};
-  font-weight: ${fontWeight};
-  line-height: ${lineHeight};
-  letter-spacing: ${letterSpacing};
+  font-family: ${fontFamily ? fontFamily : "var(--font-family-primary)"};
+  font-size: var(${fontSize});
+  font-weight: var(${fontWeight});
+  line-height: var(${lineHeight});
+  letter-spacing: var(${letterSpacing});
   color: var(--text-color, currentColor);
+  text-transform: ${textTransform};
 `;
 
 export const TextStyle = styled.p<TextStyleProps>`
   ${({variant}) => {
     switch (variant) {
-      case "specialH1":
-        return textStyleMixin(
-          `var(--font-size-heading-1-large)`,
-          `var(--font-weight-bold)`,
-          "38px",
-          `var(--letter-spacing-wide)`
-        );
-
-      case "specialH2":
-        return textStyleMixin(
-          `var(--font-size-heading-2-small)`,
-          `var(--font-weight-bold)`,
-          `var(--line-height-26)`,
-          `var(--letter-spacing-wide)`
-        );
-
-      case "pageTitle":
-        return textStyleMixin(
-          `var(--font-size-heading-2)`,
-          `var(--font-weight-bold)`,
-          `var(--line-height-24)`,
-          `var(--letter-spacing-wide)`
-        );
-
-      case "h1":
-        return textStyleMixin(
-          `var(--font-size-heading-1)`,
-          `var(--font-weight-bold)`,
-          `var(--line-height-36)`,
-          `var(--letter-spacing-wide)`
-        );
-
+      // Desktop Headings
       case "h2":
         return textStyleMixin(
-          `var(--font-size-heading-2)`,
-          `var(--font-weight-bold)`,
-          `var(--line-height-26)`,
-          `var(--letter-spacing-wide)`
-        );
-
-      case "h3":
-        return textStyleMixin(
-          `var(--font-size-base)`,
-          `var(--font-weight-bold)`,
-          `var(--line-height-24)`,
-          `var(--letter-spacing-wide)`
+          "--font-size-32",
+          "--font-weight-bold",
+          "--line-height-44",
+          "--letter-spacing-wide"
         );
 
       case "h4":
         return textStyleMixin(
-          `var(--font-size-small)`,
-          `var(--font-weight-bold)`,
-          `var(--line-height-20)`,
-          `var(--letter-spacing-wide)`
+          "--font-size-24",
+          "--font-weight-bold",
+          "--line-height-34",
+          "--letter-spacing-wide"
         );
 
-      case "paragraphBig":
+      case "h6":
         return textStyleMixin(
-          `var(--font-size-heading-2-small)`,
-          `var(--font-weight-regular)`,
-          `var(--line-height-24)`,
-          `var(--letter-spacing-normal)`
+          "--font-size-16",
+          "--font-weight-bold",
+          "--line-height-24",
+          "--letter-spacing-wide"
         );
 
+      // Paragraphs
       case "paragraphMedium":
         return textStyleMixin(
-          `var(--font-size-base)`,
-          `var(--font-weight-regular)`,
-          `var(--line-height-24)`,
-          `var(--letter-spacing-normal)`
+          "--font-size-16",
+          "--font-weight-regular",
+          "--line-height-24",
+          "--letter-spacing-normal"
         );
+
+      case "paragraphSmall":
+        return textStyleMixin(
+          "--font-size-14",
+          "--font-weight-regular",
+          "--line-height-20",
+          "--letter-spacing-normal"
+        );
+
+      case "paragraphXSmall":
+        return textStyleMixin(
+          "--font-size-12",
+          "--font-weight-regular",
+          "--line-height-16",
+          "--letter-spacing-normal"
+        );
+
+      // Labels
+      case "labelMedium":
+        return textStyleMixin(
+          "--font-size-16",
+          "--font-weight-regular",
+          "--line-height-24",
+          "--letter-spacing-wide"
+        );
+
+      case "labelSmall":
+        return textStyleMixin(
+          "--font-size-14",
+          "--font-weight-regular",
+          "--line-height-20",
+          "--letter-spacing-wide"
+        );
+
+      case "labelSmallBold":
+        return textStyleMixin(
+          "--font-size-14",
+          "--font-weight-bold",
+          "--line-height-20",
+          "--letter-spacing-wide"
+        );
+
+      case "labelXSmall":
+        return textStyleMixin(
+          "--font-size-12",
+          "--font-weight-regular",
+          "--line-height-16",
+          "--letter-spacing-wide"
+        );
+
+      case "labelXSmallBold":
+        return textStyleMixin(
+          "--font-size-12",
+          "--font-weight-bold",
+          "--line-height-16",
+          "--letter-spacing-wide"
+        );
+
+      // Values
+      case "valueSmall":
+        return textStyleMixin(
+          "--font-size-14",
+          "--font-weight-regular",
+          "--line-height-20",
+          "--letter-spacing-normal"
+        );
+
+      // Buttons
+      case "buttonMedium":
+        return textStyleMixin(
+          "--font-size-16",
+          "--font-weight-bold",
+          "--line-height-24",
+          "--letter-spacing-wide"
+        );
+
+      case "buttonBig":
+        return textStyleMixin(
+          "--font-size-20",
+          "--font-weight-bold",
+          "--line-height-32",
+          "--letter-spacing-wide"
+        );
+
+      // Special Cases
+      case "pageTitle":
+        return textStyleMixin(
+          "--font-size-20",
+          "--font-weight-bold",
+          "--line-height-24",
+          "--letter-spacing-wide"
+        );
+
+      case "allCapSmall":
+        return textStyleMixin(
+          "--font-size-12",
+          "--font-weight-regular",
+          "--line-height-16",
+          "--letter-spacing-wide",
+          "uppercase"
+        );
+
+      // Mobile Specific
+      case "mobileH4":
+        return textStyleMixin(
+          "--font-size-14",
+          "--font-weight-bold",
+          "--line-height-20",
+          "--letter-spacing-wide"
+        );
+
+      case "mobileLabelSmallBold":
+        return textStyleMixin(
+          "--font-size-14",
+          "--font-weight-bold",
+          "--line-height-24",
+          "--letter-spacing-wide"
+        );
+
+      // Default style
       default:
         return textStyleMixin(
-          `var(--font-size-base)`,
-          `var(--font-weight-regular)`,
-          `var(--line-height-24)`,
-          `var(--letter-spacing-normal)`
+          "--font-size-16",
+          "--font-weight-regular",
+          "--line-height-24",
+          "--letter-spacing-normal"
         );
     }
   }}

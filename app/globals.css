@@ -2,10 +2,10 @@
 
 /* Regular */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-Regular.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-Regular.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-Regular.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-Regular.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-Regular.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -13,10 +13,10 @@
 
 /* Regular Italic */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-Italic.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-Italic.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-Italic.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-Italic.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-Italic.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -24,10 +24,10 @@
 
 /* Extra Light */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-ExtraLight.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-ExtraLight.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-ExtraLight.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-ExtraLight.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-ExtraLight.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-ExtraLight.ttf") format("truetype");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -35,10 +35,10 @@
 
 /* Extra Light Italic */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-ExtraLightItalic.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-ExtraLightItalic.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-ExtraLightItalic.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-ExtraLightItalic.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-ExtraLightItalic.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-ExtraLightItalic.ttf") format("truetype");
   font-weight: 200;
   font-style: italic;
   font-display: swap;
@@ -46,10 +46,10 @@
 
 /* Light */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-Light.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-Light.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-Light.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-Light.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-Light.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -57,10 +57,10 @@
 
 /* Light Italic */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-LightItalic.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-LightItalic.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-LightItalic.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-LightItalic.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-LightItalic.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-LightItalic.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -68,10 +68,10 @@
 
 /* Medium */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-Medium.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-Medium.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-Medium.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-Medium.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-Medium.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -79,10 +79,10 @@
 
 /* Bold */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-Bold.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-Bold.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-Bold.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-Bold.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-Bold.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -90,55 +90,146 @@
 
 /* Bold Italic */
 @font-face {
-  font-family: 'Ekachon';
-  src: url('/fonts/Ekachon/Ekachon-BoldItalic.woff2') format('woff2'),
-       url('/fonts/Ekachon/Ekachon-BoldItalic.woff') format('woff'),
-       url('/fonts/Ekachon/Ekachon-BoldItalic.ttf') format('truetype');
+  font-family: "Ekachon";
+  src: url("/fonts/Ekachon/Ekachon-BoldItalic.woff2") format("woff2"),
+    url("/fonts/Ekachon/Ekachon-BoldItalic.woff") format("woff"),
+    url("/fonts/Ekachon/Ekachon-BoldItalic.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
 
 :root {
-  /* Colors */
-  --color-primary: #002D63;
-  --color-secondary: #5B6A83;
-  --color-success: #28A745;
-  --color-danger: #DC3545;
-  --color-warning: #FFC107;
-  --color-info: #17A2B8;
-  
-  /* Font Sizes */
-  --font-size-heading-1-large: 32px;
-  --font-size-heading-1: 24px;
-  --font-size-heading-2: 20px;
-  --font-size-heading-2-small: 18px;
-  --font-size-base: 16px;
-  --font-size-small: 14px;
-  --font-size-xsmall: 12px;
+  /* Base Colors */
+  --color-neutral-dark: #002d63; /* Primary dark blue */
+  --color-neutral-light: #ffffff; /* Primary white */
+  --color-neutral-grey: #5b6a83; /* Secondary text */
+  --color-neutral-grey-light: #7d8999; /* Tertiary text */
+  --color-neutral-grey-lighter: #b0bccb; /* Quaternary text */
+
+  /* Brand Colors */
+  --color-primary: #002d63; /* Primary brand color */
+  --color-secondary: #5b6a83; /* Secondary brand color */
+  --color-accent: #0050f0; /* Accent color */
+
+  /* Status Colors */
+  --color-success: #28a745; /* Success green */
+  --color-danger: #dc3545; /* Error red */
+  --color-warning: #ffc107; /* Warning yellow */
+  --color-info: #17a2b8; /* Info blue */
+
+  /* Text Colors */
+  --text-primary-dark: var(--color-neutral-dark);
+  --text-primary-light: var(--color-neutral-light);
+  --text-secondary: var(--color-neutral-grey);
+  --text-tertiary: var(--color-neutral-grey-light);
+  --text-quaternary: var(--color-neutral-grey-lighter);
+  --text-accent: var(--color-accent);
+  --text-error: #da2110;
+
+  /* Component Colors */
+  --component-light: var(--color-neutral-dark);
+  --component-primary: var(--color-neutral-light);
+  --component-ghost: #f68b1f;
+
+  /* Additional Status Colors */
+  --green-700: #388e3c;
+  --red-700: #d32f2f;
+  --warning-strong: #feae00;
+
+  /* Legacy Colors - Consider deprecating */
+  /* --Colors-DataDisplay-Text-Text-Primary-Dark: var(--color-neutral-dark);
+  --Colors-DataEntry-Text-Text-Primary-Dark: var(--color-neutral-dark);
+  --Colors-DataEntry-Text-Text-Secondary: var(--text-secondary);
+  --Colors-DataEntry-Text-Text-Quaternary: var(--text-quaternary);
+  --Colors-Accent-Icon-Icon-Strong: var(--color-accent);
+  --Colors-Accent-Text-Text-Strong: var(--color-accent);
+  --PageLight-TextDefault: var(--color-neutral-dark);
+  --PageLight-Desc: var(--color-neutral-grey-light); */
 
   /* Font Weights */
   --font-weight-extralight: 200;
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Font Sizes */
+  --font-size-60: 60px;
+  --font-size-58: 58px;
+  --font-size-56: 56px;
+  --font-size-54: 54px;
+  --font-size-52: 52px;
+  --font-size-50: 50px;
+  --font-size-48: 48px;
+  --font-size-46: 46px;
+  --font-size-44: 44px;
+  --font-size-42: 42px;
+  --font-size-40: 40px;
+  --font-size-38: 38px;
+  --font-size-36: 36px;
+  --font-size-34: 34px;
+  --font-size-32: 32px;
+  --font-size-30: 30px;
+  --font-size-28: 28px;
+  --font-size-26: 26px;
+  --font-size-24: 24px;
+  --font-size-22: 22px;
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+  --font-size-10: 10px;
+  --font-size-8: 8px;
+  --font-size-6: 6px;
+  --font-size-4: 4px;
+  --font-size-2: 2px;
+  --font-size-0: 0px;
+  --font-size-base: 16px;
 
   /* Line Heights */
+  --line-height-60: 60px;
+  --line-height-58: 58px;
+  --line-height-56: 56px;
+  --line-height-54: 54px;
+  --line-height-52: 52px;
+  --line-height-50: 50px;
+  --line-height-48: 48px;
+  --line-height-46: 46px;
+  --line-height-44: 44px;
+  --line-height-42: 42px;
+  --line-height-40: 40px;
+  --line-height-38: 38px;
   --line-height-36: 36px;
+  --line-height-34: 34px;
   --line-height-32: 32px;
+  --line-height-30: 30px;
+  --line-height-28: 28px;
   --line-height-26: 26px;
   --line-height-24: 24px;
+  --line-height-22: 22px;
   --line-height-20: 20px;
   --line-height-18: 18px;
   --line-height-16: 16px;
+  --line-height-14: 14px;
+  --line-height-12: 12px;
+  --line-height-10: 10px;
+  --line-height-8: 8px;
+  --line-height-6: 6px;
+  --line-height-4: 4px;
+  --line-height-2: 2px;
+  --line-height-0: 0px;
+  --line-height-base: normal;
 
   /* Letter Spacing */
   --letter-spacing-wide: 0.4px;
   --letter-spacing-normal: normal;
 
   /* Font Family */
-  --font-family-primary: 'Ekachon', system-ui, sans-serif;
+  --font-family-primary: "Ekachon", system-ui, sans-serif;
 }
 
 /* Apply font family globally */

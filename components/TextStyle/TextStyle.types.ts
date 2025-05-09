@@ -1,71 +1,73 @@
-export interface DSTextStyleProps extends React.HTMLAttributes<HTMLHeadingElement>{
-  id?: string
+export interface DSTextStyleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  id?: string;
   /**
-   * Text variation
+   * Text variation following design system
+   * @default paragraphMedium
    */
   variant?:
-    | 'specialH1'
-    | 'specialH2'
-    | 'pageTitle'
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'paragraphBig'
-    | 'paragraphMedium'
-    | 'paragraphSmall'
-    | 'paragraphXSmall'
-    | 'subtitle'
-    | 'labelSelection'
-    | 'labelSelectionSmall'
-    | 'labelSelectionXSmall'
-    | 'labelList'
-    | 'labelListMedium'
-    | 'valueList'
-    | 'valueListMedium'
-    | 'valueMedium'
-    | 'valueSmall'
-    | 'valueBig'
-    | 'placeholder'
-    | 'labelInput'
-    | 'buttonBig'
-    | 'buttonMedium'
-    | 'buttonSmall'
-    | 'clickableLabel'
-    | 'linkBig'
-    | 'linkMedium'
-    | 'linkSmall'
-    | 'allCap'
-    | 'labelXSmall'
-    | 'valueListMediumBold'
-    | 'span'
+    // Desktop Headings
+    | 'h2'              // 32px bold, 44px
+    | 'h4'              // 24px bold, 34px
+    | 'h6'              // 16px bold, 24px
+    
+    // Paragraphs
+    | 'paragraphMedium' // 16px regular, 24px
+    | 'paragraphSmall'  // 14px regular, 20px
+    | 'paragraphXSmall' // 12px regular, 16px
+    
+    // Labels
+    | 'labelMedium'     // 16px regular, 24px
+    | 'labelSmall'      // 14px regular, 20px
+    | 'labelSmallBold'  // 14px bold, 20px
+    | 'labelXSmall'     // 12px regular, 16px
+    | 'labelXSmallBold' // 12px bold, 16px
+    
+    // Values
+    | 'valueSmall'      // 14px regular, 20px
+    
+    // Buttons
+    | 'buttonMedium'    // 16px bold, 24px
+    | 'buttonBig'       // 20px bold, 32px
+    
+    // Special Cases
+    | 'pageTitle'       // 20px bold, 24px
+    | 'allCapSmall'     // 12px regular, 16px, uppercase
+    
+    // Mobile Specific
+    | 'mobileH4'        // 14px bold, 20px
+    | 'mobileLabelSmallBold'; // 14px bold, 24px
+
   /**
-   * Text Color <a href="/?path=/story/colors--page" target="_blank">Color name</a>
+   * Custom styles
    */
-  color?: 
-    | 'color-primary'
-    | 'color-secondary'
-    | 'color-success'
-    | 'color-danger'
-    | 'color-warning'
-    | 'color-info'
-  className?: string
+  className?: string;
+  tag?: string;
+  children?: React.ReactNode;
+  
   /**
-   * Custom DOM tag
+   * Text truncation
+   * @default 0 (no truncation)
    */
-  tag?: string
-  children?: React.ReactNode
-  limitLine?: number
-  whiteSpace?: 
-    | 'normal'
-    | 'nowrap'
-    | 'pre'
-    | 'pre-line'
-    | 'pre-wrap'
-  wordBreak?: 
-    | 'normal'
-    | 'break-all'
-    | 'keep-all'
-    | 'break-word'
-  textAlign?: 'left' | 'center' | 'right' 
+  limitLine?: number;
+
+  /**
+   * White space handling
+   * @default "pre-line"
+   */
+  whiteSpace?: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap';
+
+  /**
+   * Word break behavior
+   */
+  wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word';
+
+  /**
+   * Text alignment
+   */
+  textAlign?: 'left' | 'center' | 'right';
+
+  /**
+   * Text color from CSS variables
+   */
+  color?: string;
 }

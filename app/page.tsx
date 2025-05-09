@@ -46,52 +46,139 @@ export default function Home() {
           fullWidth
         >
           <>
-            <DSTextStyle variant="specialH1">
-              สวัสดีครับ คุณชานนท์{" "}
-              <DSTextStyle variant="span">
-                ยินดีต้อนรับเข้าสู่ ttb e-contract portal
+            {/* Headings */}
+            <DSBox direction="column" gap={16}>
+              <DSTextStyle variant="h2">Heading Styles</DSTextStyle>
+              <DSBox direction="column" gap={8}>
+                <DSTextStyle variant="specialH1">Special Heading 1</DSTextStyle>
+                <DSTextStyle variant="specialH2">Special Heading 2</DSTextStyle>
+                <DSTextStyle variant="pageTitle">Page Title</DSTextStyle>
+                <DSTextStyle variant="h1">Heading 1</DSTextStyle>
+                <DSTextStyle variant="h2">Heading 2</DSTextStyle>
+                <DSTextStyle variant="h3">Heading 3</DSTextStyle>
+                <DSTextStyle variant="h4">Heading 4</DSTextStyle>
+              </DSBox>
+            </DSBox>
+
+            {/* Paragraphs */}
+            <DSBox direction="column" gap={16}>
+              <DSTextStyle variant="h2">Paragraph Styles</DSTextStyle>
+              <DSBox direction="column" gap={8}>
+                <DSTextStyle variant="paragraphBig">
+                  Large paragraph text with longer content to demonstrate the
+                  style
+                </DSTextStyle>
+                <DSTextStyle variant="paragraphMedium">
+                  Medium paragraph text for regular content
+                </DSTextStyle>
+                <DSTextStyle variant="paragraphSmall">
+                  Small paragraph text for secondary content
+                </DSTextStyle>
+                <DSTextStyle variant="paragraphXSmall">
+                  Extra small paragraph text for captions
+                </DSTextStyle>
+              </DSBox>
+            </DSBox>
+
+            {/* Labels */}
+            <DSBox direction="column" gap={16}>
+              <DSTextStyle variant="h2">Label Styles</DSTextStyle>
+              <DSBox direction="column" gap={8}>
+                <DSTextStyle variant="labelMedium">Medium Label</DSTextStyle>
+                <DSTextStyle variant="labelSmall">Small Label</DSTextStyle>
+                <DSTextStyle variant="labelSmallBold">
+                  Small Bold Label
+                </DSTextStyle>
+                <DSTextStyle variant="labelXSmall">
+                  Extra Small Label
+                </DSTextStyle>
+                <DSTextStyle variant="labelXSmallBold">
+                  Extra Small Bold Label
+                </DSTextStyle>
+              </DSBox>
+            </DSBox>
+
+            {/* Interactive Elements */}
+            <DSBox direction="column" gap={16}>
+              <DSTextStyle variant="h2">Interactive Styles</DSTextStyle>
+              <DSBox direction="column" gap={8}>
+                <DSTextStyle variant="buttonBig">Large Button Text</DSTextStyle>
+                <DSTextStyle variant="buttonMedium">
+                  Medium Button Text
+                </DSTextStyle>
+                <DSTextStyle variant="buttonSmall">
+                  Small Button Text
+                </DSTextStyle>
+                <DSTextStyle variant="clickableLabel">
+                  Clickable Label
+                </DSTextStyle>
+              </DSBox>
+            </DSBox>
+
+            {/* Text Colors */}
+            <DSBox direction="column" gap={16}>
+              <DSTextStyle variant="h2">Text Colors</DSTextStyle>
+              <DSBox direction="column" gap={8}>
+                <DSTextStyle color="text-primary-dark">
+                  Primary Dark Text
+                </DSTextStyle>
+                <DSTextStyle color="color-primary">
+                  Primary Brand Color
+                </DSTextStyle>
+                <DSTextStyle color="color-secondary">
+                  Secondary Text
+                </DSTextStyle>
+                <DSTextStyle color="color-success">Success Message</DSTextStyle>
+                <DSTextStyle color="color-danger">Error Message</DSTextStyle>
+                <DSTextStyle color="color-warning">Warning Message</DSTextStyle>
+              </DSBox>
+            </DSBox>
+
+            {/* Text Formatting */}
+            <DSBox direction="column" gap={16}>
+              <DSTextStyle variant="h2">Text Formatting</DSTextStyle>
+              <DSBox direction="column" gap={8}>
+                {/* Line Limiting */}
+                <DSTextStyle limitLine={2} style={{width: "300px"}}>
+                  This is a very long text that will be limited to 2 lines. It
+                  demonstrates text truncation with ellipsis when content
+                  overflows the specified number of lines.
+                </DSTextStyle>
+
+                {/* White Space Handling */}
+                <DSTextStyle whiteSpace="nowrap" style={{width: "300px"}}>
+                  This text won't wrap to a new line even if it's very long
+                </DSTextStyle>
+
+                {/* Word Breaking */}
+                <DSTextStyle wordBreak="break-all" style={{width: "300px"}}>
+                  This is a very long word that will break at any point
+                </DSTextStyle>
+
+                {/* Text Alignment */}
+                <DSBox direction="column" gap={4}>
+                  <DSTextStyle textAlign="left">Left aligned text</DSTextStyle>
+                  <DSTextStyle textAlign="center">
+                    Center aligned text
+                  </DSTextStyle>
+                  <DSTextStyle textAlign="right">
+                    Right aligned text
+                  </DSTextStyle>
+                </DSBox>
+              </DSBox>
+            </DSBox>
+
+            {/* Nested Text */}
+            <DSBox direction="column" gap={16}>
+              <DSTextStyle variant="h2">Nested Text Example</DSTextStyle>
+              <DSTextStyle variant="h2">
+                Main Heading with{" "}
+                <DSTextStyle color="color-accent">
+                  inline accent text
+                </DSTextStyle>{" "}
+                and continuation
               </DSTextStyle>
-            </DSTextStyle>
-
-            <DSTextStyle variant="specialH1">Ekachon - specialH1</DSTextStyle>
-            <DSTextStyle variant="specialH2">Ekachon - specialH2</DSTextStyle>
-            <DSTextStyle variant="pageTitle">Ekachon - pageTitle</DSTextStyle>
-            <DSTextStyle variant="h1">Ekachon - h1</DSTextStyle>
-            <DSTextStyle variant="h2">Ekachon - h2</DSTextStyle>
-            <DSTextStyle variant="h3">Ekachon - h3</DSTextStyle>
-            <DSTextStyle variant="h4">Ekachon - h4</DSTextStyle>
-
-            {/* Color examples */}
-            <DSTextStyle color="color-primary">Primary Color Text</DSTextStyle>
-            <DSTextStyle color="color-danger">Error Message</DSTextStyle>
-
-            {/* Line limit examples */}
-            <DSTextStyle limitLine={2} style={{width: "200px"}}>
-              This is a very long text that will be limited to 2 lines with
-              ellipsis at the end when it overflows
-            </DSTextStyle>
-
-            {/* White space examples */}
-            <DSTextStyle whiteSpace="nowrap">
-              This text won't wrap to new line
-            </DSTextStyle>
-
-            {/* Word break examples */}
-            <DSTextStyle wordBreak="break-all" style={{width: "150px"}}>
-              ThisIsAVeryLongWordThatWillBreak
-            </DSTextStyle>
-
-            {/* Combined examples */}
-            <DSTextStyle
-              variant="h1"
-              color="color-primary"
-              limitLine={3}
-              whiteSpace="pre-line"
-              wordBreak="break-word"
-              style={{maxWidth: "300px"}}
-            >
-              This is a heading with multiple lines and custom styling
-            </DSTextStyle>
+            </DSBox>
           </>
         </DSBox>
       </>

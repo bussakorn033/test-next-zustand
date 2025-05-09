@@ -21,8 +21,7 @@ export const DSTextStyle = forwardRef<
       limitLine,
       whiteSpace,
       wordBreak,
-      style,
-      ...rest
+      textAlign,
     }: DSTextStyleProps,
     ref
   ) => {
@@ -69,12 +68,11 @@ export const DSTextStyle = forwardRef<
         limitLine={limitLine}
         whiteSpace={whiteSpace}
         wordBreak={wordBreak}
+        textAlign={textAlign}
         style={
           {
             "--text-color": color && `var(--${color})`,
             "--ds-text-style-limit-line": limitLine,
-            whiteSpace: whiteSpace,
-            wordBreak: wordBreak,
           } as React.CSSProperties
         }
       >

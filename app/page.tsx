@@ -6,6 +6,7 @@ import {DSIcon} from "@/components/Icon";
 import {galleryList, IconComponent, iconList} from "@/components/Icon/IconList";
 import {DSTextStyle} from "@/components/TextStyle";
 import globalSlice from "@/stores/globalSlice";
+import {DSTextField} from "@/components/TextField";
 
 export default function Home() {
   // Access Zustand store
@@ -26,6 +27,113 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-4 p-4">
+      {/* Common DSTextField */}
+      <DSTextStyle variant="h2">DSTextField</DSTextStyle>
+      <DSBox
+        bgColor="#a4caf0"
+        border="all"
+        borderRadius="xl"
+        borderWidth={1}
+        boxShadow="top"
+        direction="none"
+        hover={true}
+        gap={10}
+        px={24}
+        py={24}
+        fullWidth
+      >
+        <DSBox direction="column" gap={16}>
+          {/* Normal Text Fields */}
+          <DSBox direction="column" gap={8}>
+            <DSTextStyle variant="h4">Normal Text Fields</DSTextStyle>
+            <DSTextField
+              label="Default TextField"
+              placeholder="Enter text here"
+            />
+            <DSTextField
+              label="With Helper Text"
+              placeholder="Enter text"
+              helpingText="This is a helping text"
+            />
+            <DSTextField
+              label="With Error"
+              placeholder="Enter text"
+              error={true}
+              errorMessage="This is an error message"
+            />
+            <DSTextField
+              label="Disabled TextField"
+              placeholder="Cannot edit this"
+              disabled={true}
+            />
+          </DSBox>
+
+          {/* Special Types */}
+          <DSBox direction="column" gap={8}>
+            <DSTextStyle variant="h4">Special Types</DSTextStyle>
+            <DSTextField
+              label="Email Field"
+              type="email"
+              placeholder="Enter email"
+            />
+            <DSTextField
+              label="Password Field"
+              type="password"
+              placeholder="Enter password"
+            />
+            <DSTextField
+              label="Number Field"
+              type="number"
+              placeholder="Enter number"
+            />
+            <DSTextField
+              label="Tel Field"
+              type="tel"
+              placeholder="Enter phone number"
+            />
+          </DSBox>
+
+          {/* With Icons */}
+          <DSBox direction="column" gap={8}>
+            <DSTextStyle variant="h4">With Icons</DSTextStyle>
+            <DSTextField
+              label="Left Icon"
+              placeholder="Search..."
+              iconLeft={<DSIcon icon="search" />}
+            />
+            <DSTextField
+              label="Right Icon"
+              placeholder="Select date"
+              iconRight={<DSIcon icon="calendar" />}
+            />
+            <DSTextField
+              label="Both Icons"
+              placeholder="Enter amount"
+              iconLeft={<DSIcon icon="plus" />}
+              iconRight={<DSIcon icon="minus" />}
+            />
+          </DSBox>
+
+          {/* Variants */}
+          <DSBox direction="column" gap={8}>
+            <DSTextStyle variant="h4">Variants</DSTextStyle>
+            <DSTextField label="Amount" variant="amount" placeholder="0.00" />
+            <DSTextField
+              label="Search"
+              variant="search"
+              placeholder="Search..."
+              iconLeft={<DSIcon icon="search" />}
+            />
+            <DSTextField
+              label="Amount Transaction"
+              variant="amount-transaction"
+              placeholder="Enter amount"
+            />
+          </DSBox>
+        </DSBox>
+      </DSBox>
+      {/* Common DSTextField */}
+
       {/* Common DSButton  */}
       <DSTextStyle variant="h2">DSButton</DSTextStyle>
       <DSBox
@@ -143,6 +251,7 @@ export default function Home() {
         </>
       </DSBox>
       {/* Common DSButton  */}
+
       {/* Common DSTextStyle */}
       <DSTextStyle variant="h2">DSTextStyle</DSTextStyle>
       <>

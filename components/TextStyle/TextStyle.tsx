@@ -64,10 +64,10 @@ export const DSTextStyle = forwardRef<
         break;
 
       // Buttons & Interactive Elements
-      case "buttonMedium": // 16px bold, 24px
-      case "buttonBig": // 20px bold, 32px
-        customTag = "button";
-        break;
+      // case "buttonMedium": // 16px bold, 24px
+      // case "buttonBig": // 20px bold, 32px
+      //   customTag = "button";
+      //   break;
 
       // Special Cases
       case "pageTitle": // 20px bold, 24px

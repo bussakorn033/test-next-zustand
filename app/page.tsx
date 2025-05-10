@@ -1,6 +1,7 @@
 "use client";
 
 import {DSBox} from "@/components/Box";
+import {DSButton} from "@/components/Button";
 import {DSIcon} from "@/components/Icon";
 import {galleryList, IconComponent, iconList} from "@/components/Icon/IconList";
 import {DSTextStyle} from "@/components/TextStyle";
@@ -25,19 +26,132 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-4 p-4">
+      {/* Common DSButton  */}
+      <DSTextStyle variant="h2">DSButton</DSTextStyle>
+      <DSBox
+        bgColor="#a4caf0"
+        border="all" // all | top | bottom
+        borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+        borderWidth={1} // 0 | 1 | 2
+        boxShadow="top" // none | top | bottom
+        direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+        hover={true}
+        gap={10}
+        px={24}
+        py={24}
+        fullWidth
+      >
+        <>
+          {(
+            [
+              "primary",
+              "negative",
+              "secondary",
+              "secondary-negative",
+              "ghost-primary",
+              "ghost-secondary",
+              "ghost-negative",
+              "ghost-primary-no-padding",
+              "ghost-secondary-no-padding",
+              "ghost-negative-no-padding",
+              "ghost-icon-primary",
+              "ghost-icon-secondary",
+              "ghost-icon-negative",
+              "ghost-icon-primary-no-padding",
+              "ghost-icon-secondary-no-padding",
+              "ghost-icon-negative-no-padding",
+            ] as const
+          ).map((variant) => (
+            <DSBox key={variant} direction="none" gap={16}>
+              <DSTextStyle variant="h4">Variant: {variant}</DSTextStyle>
+              {!variant.includes("icon") && (
+                <>
+                  <DSButton variant={variant}>Default</DSButton>
+                  <DSButton variant={variant} size={"large"}>
+                    Default Large
+                  </DSButton>
+                  <DSButton variant={variant} disabled>
+                    Disabled
+                  </DSButton>
+                  <DSButton variant={variant} disabled size={"large"}>
+                    Disabled Large
+                  </DSButton>
+                  <DSButton variant={variant} width="full" borderRadius="none">
+                    Full Width Border radius none
+                  </DSButton>
+                  <DSButton variant={variant} width="full">
+                    Full Width Border radius normal
+                  </DSButton>
+                  <DSButton variant={variant} width="full" borderRadius="round">
+                    Full Width Border radius round
+                  </DSButton>
+                  <DSButton variant={variant} iconLeft="plus">
+                    Left Icon
+                  </DSButton>
+                  <DSButton variant={variant} iconRight="calendar">
+                    Right Icon
+                  </DSButton>
+                  <DSButton
+                    variant={variant}
+                    iconLeft="arrow_left"
+                    iconRight="arrow_right"
+                  >
+                    Both Icons
+                  </DSButton>
+                  <DSButton
+                    variant={variant}
+                    iconLeft="arrow_left"
+                    iconRight="arrow_right"
+                    disabled
+                  >
+                    Both Icons
+                  </DSButton>
+                  <DSButton
+                    variant={variant}
+                    iconLeft="arrow_left"
+                    iconRight="arrow_right"
+                    size={"large"}
+                  >
+                    Both Icons Large
+                  </DSButton>
+                </>
+              )}
+              <>
+                <DSButton
+                  variant={variant}
+                  iconLeft="printer"
+                  borderRadius="round"
+                />
+                <DSButton variant={variant} iconLeft="edit" />
+                <DSButton variant={variant} iconLeft="share" size="large" />
+                <DSButton
+                  variant={variant}
+                  iconLeft="user_circle"
+                  borderRadius="round"
+                  disabled
+                />
+                <DSButton variant={variant} iconLeft="trash" disabled />
+                <DSButton
+                  variant={variant}
+                  iconLeft="history"
+                  size="large"
+                  disabled
+                />
+              </>
+            </DSBox>
+          ))}
+        </>
+      </DSBox>
+      {/* Common DSButton  */}
       {/* Common DSTextStyle */}
       <DSTextStyle variant="h2">DSTextStyle</DSTextStyle>
       <>
         <DSBox
-          // color="#f00"
           bgColor="#a4caf0"
           border="all" // all | top | bottom
           borderRadius="xl" // none | xs | sm | md | lg | xl | circle
           borderWidth={1} // 0 | 1 | 2
           boxShadow="top" // none | top | bottom
-          // textAlign="right" // left | center | right
-          // alignItems="center" // start | center | end | baseline
-          // justifyContent="center" // start | center | end | space-between | space-around
           direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
           hover={true}
           gap={10}
@@ -193,15 +307,11 @@ export default function Home() {
 
         {/* White Space Handling */}
         <DSBox
-          // color="#f00"
           bgColor="#a4caf0"
           border="all" // all | top | bottom
           borderRadius="xl" // none | xs | sm | md | lg | xl | circle
           borderWidth={1} // 0 | 1 | 2
           boxShadow="top" // none | top | bottom
-          // textAlign="right" // left | center | right
-          // alignItems="center" // start | center | end | baseline
-          // justifyContent="center" // start | center | end | space-between | space-around
           direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
           hover={true}
           gap={10}
@@ -218,7 +328,6 @@ export default function Home() {
         </DSBox>
       </>
       {/* Common DSTextStyle */}
-
       {/* Common IconComponent */}
       <DSTextStyle variant="h2">IconComponent</DSTextStyle>
       <>
@@ -230,8 +339,6 @@ export default function Home() {
           borderWidth={1} // 0 | 1 | 2
           boxShadow="top" // none | top | bottom
           textAlign="right" // left | center | right
-          // alignItems="center" // start | center | end | baseline
-          // justifyContent="center" // start | center | end | space-between | space-around
           direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
           hover={true}
           gap={10}
@@ -261,7 +368,6 @@ export default function Home() {
         </DSBox>
       </>
       {/* Common IconComponent */}
-
       {/* Common  DSIcon */}
       <DSTextStyle variant="h2">DSIcon</DSTextStyle>
       <>
@@ -273,8 +379,6 @@ export default function Home() {
           borderWidth={1} // 0 | 1 | 2
           boxShadow="top" // none | top | bottom
           textAlign="right" // left | center | right
-          // alignItems="center" // start | center | end | baseline
-          // justifyContent="center" // start | center | end | space-between | space-around
           direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
           hover={true}
           gap={10}
@@ -294,6 +398,79 @@ export default function Home() {
                 <span style={{fontSize: "12px"}}>{iconName}</span>
               </DSBox>
             ))}
+          </>
+        </DSBox>
+      </>
+      {/* Common  DSIcon */}
+      {/* Common  DSBox */}
+      <DSTextStyle variant="h2">DSBox</DSTextStyle>
+      <>
+        <DSBox
+          color="#f00"
+          bgColor="#a4caf0"
+          border="all" // all | top | bottom
+          borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+          borderWidth={1} // 0 | 1 | 2
+          boxShadow="top" // none | top | bottom
+          textAlign="left" // left | center | right
+          alignItems="center" // start | center | end | baseline
+          justifyContent="center" // start | center | end | space-between | space-around
+          direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+          hover={true}
+          gap={0}
+          px={0}
+          py={0}
+          fullWidth
+        >
+          <>
+            <DSTextStyle variant="paragraphMedium">box1</DSTextStyle>
+            <DSTextStyle variant="paragraphMedium">box2</DSTextStyle>
+          </>
+        </DSBox>
+
+        <DSBox
+          color="#f00"
+          bgColor="#a4caf0"
+          border="all" // all | top | bottom
+          borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+          borderWidth={1} // 0 | 1 | 2
+          boxShadow="top" // none | top | bottom
+          textAlign="center" // left | center | right
+          alignItems="center" // start | center | end | baseline
+          justifyContent="center" // start | center | end | space-between | space-around
+          direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
+          hover={true}
+          gap={50}
+          px={10}
+          py={10}
+          fullWidth
+        >
+          <>
+            <DSTextStyle variant="paragraphMedium">box1</DSTextStyle>
+            <DSTextStyle variant="paragraphMedium">box2</DSTextStyle>
+          </>
+        </DSBox>
+
+        <DSBox
+          color="#f00"
+          bgColor="#a4caf0"
+          border="all" // all | top | bottom
+          borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+          borderWidth={1} // 0 | 1 | 2
+          boxShadow="top" // none | top | bottom
+          textAlign="right" // left | center | right
+          alignItems="center" // start | center | end | baseline
+          justifyContent="center" // start | center | end | space-between | space-around
+          direction="column" // none | row | row-reverse | row-wrap | column | column-reverse
+          hover={true}
+          gap={50}
+          px={10}
+          py={50}
+          fullWidth
+        >
+          <>
+            <DSTextStyle variant="paragraphMedium">box1</DSTextStyle>
+            <DSTextStyle variant="paragraphMedium">box2</DSTextStyle>
           </>
         </DSBox>
       </>

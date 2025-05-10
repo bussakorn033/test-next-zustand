@@ -111,6 +111,8 @@
   --color-primary: #002d63; /* Primary brand color */
   --color-secondary: #5b6a83; /* Secondary brand color */
   --color-accent: #0050f0; /* Accent color */
+  --color-disable: #f5f6f7; /* Accent color */
+  --color-error: #da2110; /* Accent color */
 
   /* Status Colors */
   --color-success: #28a745; /* Success green */
@@ -125,7 +127,74 @@
   --text-tertiary: var(--color-neutral-grey-light);
   --text-quaternary: var(--color-neutral-grey-lighter);
   --text-accent: var(--color-accent);
-  --text-error: #da2110;
+  --text-error: var(--color-error);
+
+  /* Button Colors */
+  --button-padding-none: 0px;
+  --button-padding-icon: 8px;
+  --button-padding-large: 8px 24px;
+  --button-padding-base: 8px 24px;
+
+  /* primary */
+  --button-primary: var(--color-accent);
+  --button-hover-primary: #3272f3;
+  --button-active-primary: #0040c0;
+  --button-disabled-primary: var(--color-disable);
+  --button-color-disabled-primary: var(--color-neutral-grey-lighter);
+
+  /* negative */
+  --button-negative: var(--color-error);
+  --button-hover-negative: #e14d3f;
+  --button-active-negative: #e56357;
+  --button-disabled-negative: var(--color-disable);
+  --button-color-disabled-negative: var(--color-neutral-grey-lighter);
+
+  /* secondary */
+  --button-secondary: var(--color-neutral-light);
+  --button-color-secondary: var(--color-neutral-grey);
+  --button-border-secondary: var(--color-neutral-grey-lighter);
+  --button-hover-secondary: #ccd5e0;
+  --button-active-secondary: #99abc1;
+  --button-focus-secondary: #ccdcfc;
+  --button-disabled-secondary: var(--color-disable);
+  --button-color-disabled-secondary: var(--color-neutral-grey-lighter);
+
+  /* secondary-negative */
+  --button-secondary-negative: var(--color-neutral-light);
+  --button-color-secondary-negative: var(--color-error);
+  --button-border-secondary-negative: var(--color-error);
+  --button-hover-secondary-negative: #fbe8e7;
+  --button-active-secondary-negative: #f7d2cf;
+  --button-focus-secondary-negative: #f7d2cf;
+  --button-disabled-secondary-negative: var(--color-disable);
+  --button-color-disabled-secondary-negative: var(--color-neutral-grey-lighter);
+
+  /* ghost-primary */
+  --button-ghost-primary: transparent;
+  --button-color-ghost-primary: var(--color-accent);
+  --button-hover-ghost-primary: #ccdcfc;
+  --button-active-ghost-primary: #99b9f9;
+  --button-disabled-ghost-primary: transparent;
+  --button-color-disabled-ghost-primary: var(--color-neutral-grey-lighter);
+
+  /* ghost-secondary */
+  --button-ghost-secondary: transparent;
+  --button-color-ghost-secondary: var(--color-neutral-grey);
+  --button-hover-ghost-secondary: #ccd5e0;
+  --button-active-ghost-secondary: #99abc1;
+  --button-disabled-ghost-secondary: transparent;
+  --button-color-disabled-ghost-secondary: var(--color-neutral-grey-lighter);
+
+  /* ghost-negative */
+  --button-ghost-negative: transparent;
+  --button-color-ghost-negative: var(--color-error);
+  --button-hover-ghost-negative: #fbe8e7;
+  --button-active-ghost-negative: #f7d2cf;
+  --button-disabled-ghost-negative: transparent;
+  --button-color-disabled-ghost-negative: var(--color-neutral-grey-lighter);
+
+  /* ghost-icon */
+  --button-color-disabled-ghost-icon: #dfe6ec;
 
   /* Component Colors */
   --component-light: var(--color-neutral-dark);
@@ -222,11 +291,17 @@
   --line-height-4: 4px;
   --line-height-2: 2px;
   --line-height-0: 0px;
-  --line-height-base: normal;
+  --line-height-normal: normal;
 
   /* Letter Spacing */
   --letter-spacing-wide: 0.4px;
   --letter-spacing-normal: normal;
+
+  /* Border Radius */
+  --radius-none: 0px;
+  --radius-normal: 10px;
+  --radius-round: 999999px;
+  --radius-circle: 100%;
 
   /* Font Family */
   --font-family-primary: "Ekachon", system-ui, sans-serif;

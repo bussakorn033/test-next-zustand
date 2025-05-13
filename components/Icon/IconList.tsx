@@ -35,11 +35,10 @@ import ViewDocument from "./svg/View-Document.svg";
 /* SVG */
 
 /* Image */
-import ImgEmptyPng from "./image/Img-Empty.png";
-import ImgEmptySvg from "./image/Img-Empty.svg";
-import ImgNodataPng from "./image/Img-Nodata.png";
-import ImgNodataSvg from "./image/Img-Nodata.svg";
-import ImgProfileCircle from "./image/Img-Profile-Circle.svg";
+import ImgEmptySVG from "./image/Img-Empty.svg";
+import ImgNodataSVG from "./image/Img-Nodata.svg";
+import ImgProfileCircleSVG from "./image/Img-Profile-Circle.svg";
+import ImgTTBLogoSVG from "./image/Img-TTB-Logo.svg";
 /* Image */
 
 /* SVG/FILE */
@@ -79,11 +78,10 @@ import ViewDocumentSVG from "./file/ViewDocumentSVG";
 /* SVG/FILE */
 
 /* Image SVG Components */
-// import ImgEmptyPngSVG from "./file/ImgEmptyPngSVG";
-// import ImgEmptySvgSVG from "./file/ImgEmptySvgSVG";
-// import ImgNodataPngSVG from "./file/ImgNodataPngSVG";
-// import ImgNodataSvgSVG from "./file/ImgNodataSvgSVG";
-// import ImgProfileCircleSVG from "./file/ImgProfileCircleSVG";
+import ImageEmptySVG from "./file/ImageEmptySVG";
+import ImageNodataSVG from "./file/ImageNodataSVG";
+import ImageProfileCircleSVG from "./file/ImageProfileCircleSVG";
+import ImageTTBLogoSVG from "./file/ImageTTBLogoSVG";
 /* Image SVG Components */
 
 export const iconList: Record<string, any> = {
@@ -126,11 +124,10 @@ export const iconList: Record<string, any> = {
 
 export const imgList: Record<string, any> = {
   /* Image */
-  img_empty_png: ImgEmptyPng,
-  img_empty_svg: ImgEmptySvg,
-  img_nodata_png: ImgNodataPng,
-  img_nodata_svg: ImgNodataSvg,
-  img_profile_circle: ImgProfileCircle,
+  img_empty_svg: ImgEmptySVG,
+  img_nodata_svg: ImgNodataSVG,
+  img_profile_circle: ImgProfileCircleSVG,
+  img_ttb_logo: ImgTTBLogoSVG,
   /* Image */
 };
 
@@ -139,8 +136,10 @@ export const galleryList = {
   ...imgList,
 };
 
-export const IconComponent = ({icon, ...rest}: any) => {
+export const IconComponent = ({...rest}: any) => {
+  const {icon} = rest;
   switch (icon) {
+    /* Svg */
     case "alert_circle_bold":
       return <AlertCircleBoldSVG {...rest} />;
     case "alert_circle":
@@ -207,16 +206,18 @@ export const IconComponent = ({icon, ...rest}: any) => {
       return <UserCircleSVG {...rest} />;
     case "view_document":
       return <ViewDocumentSVG {...rest} />;
-    // case "img_empty_png":
-    //   return <ImgEmptyPngSVG {...rest} />;
-    // case "img_empty_svg":
-    //   return <ImgEmptySvgSVG {...rest} />;
-    // case "img_nodata_png":
-    //   return <ImgNodataPngSVG {...rest} />;
-    // case "img_nodata_svg":
-    //   return <ImgNodataSvgSVG {...rest} />;
-    // case "img_profile_circle":
-    //   return <ImgProfileCircleSVG {...rest} />;
+    /* Svg */
+
+    /* Img */
+    case "img_empty_svg":
+      return <ImageEmptySVG {...rest} />;
+    case "img_nodata_svg":
+      return <ImageNodataSVG {...rest} />;
+    case "img_profile_circle":
+      return <ImageProfileCircleSVG {...rest} />;
+    case "img_ttb_logo":
+      return <ImageTTBLogoSVG {...rest} />;
+    /* Img */
     default:
       return null;
   }

@@ -4,7 +4,7 @@ import {IconProps} from "./SVG.types";
 
 export const HistorySVG: React.FC<IconProps> = ({
   color = "#002D63",
-  size = "24px",
+
   width,
   height,
   ...rest
@@ -12,10 +12,10 @@ export const HistorySVG: React.FC<IconProps> = ({
   <StyledSvg
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    size={size}
     color={color}
     width={width}
     height={height}
+    {...rest}
     {...rest}
   >
     <path
@@ -26,5 +26,13 @@ export const HistorySVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
+
+HistorySVG.defaultProps = {
+  color: "#002D63",
+  width: "24px",
+  height: "24px",
+};
+
+HistorySVG.displayName = "HistorySVG";
 
 export default HistorySVG;

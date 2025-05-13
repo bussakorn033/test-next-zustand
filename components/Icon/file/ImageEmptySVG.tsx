@@ -2,29 +2,14 @@ import React from "react";
 import {StyledSvg} from "./SVG.styled";
 import {IconProps} from "./SVG.types";
 
-export const ImgNodataSvgSVG: React.FC<IconProps> = ({
-  color = "#002D63",
-  size = "24px",
-  width,
-  height,
+export const ImageEmptySVG: React.FC<IconProps> = ({
+  color = "",
+
   ...rest
 }) => (
   <StyledSvg
-    // viewBox="0 0 56 56"
-    // xmlns="http://www.w3.org/2000/svg"
-    // size={size}
-    // color={color}
-    // width={width}
-    // height={height}
-    // {...rest}
-
-    // width="56"
-    // height="56"
-    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 56 56"
-    size={size}
-    width={width}
-    height={height}
+    xmlns="http://www.w3.org/2000/svg"
     fill="none"
     {...rest}
   >
@@ -119,4 +104,12 @@ export const ImgNodataSvgSVG: React.FC<IconProps> = ({
   </StyledSvg>
 );
 
-export default ImgNodataSvgSVG;
+ImageEmptySVG.defaultProps = {
+  color: "",
+  width: "24px",
+  height: "24px",
+};
+
+ImageEmptySVG.displayName = "ImageEmptySVG";
+
+export default ImageEmptySVG;

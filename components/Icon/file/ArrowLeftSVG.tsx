@@ -7,14 +7,15 @@ export const ArrowLeftSVG: React.FC<IconProps> = ({
   size,
   width,
   height,
+  ...rest
 }) => (
   <StyledSvg
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    size={size}
     color={color}
     width={width}
     height={height}
+    {...rest}
   >
     <path
       fillRule="evenodd"
@@ -27,7 +28,6 @@ export const ArrowLeftSVG: React.FC<IconProps> = ({
 
 ArrowLeftSVG.defaultProps = {
   color: "#002D63",
-  size: "24px",
   width: "24px",
   height: "24px",
 };

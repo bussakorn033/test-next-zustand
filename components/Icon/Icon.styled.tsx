@@ -2,6 +2,7 @@ import styled, {css} from "styled-components";
 import {IconProps} from "./Icon.types";
 
 export const Icon = styled.i<IconProps>`
+  display: flex;
   ${(props) => {
     if (props.variant) {
       return css`

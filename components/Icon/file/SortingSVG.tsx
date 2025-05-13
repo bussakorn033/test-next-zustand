@@ -4,7 +4,7 @@ import {IconProps} from "./SVG.types";
 
 export const SortingSVG: React.FC<IconProps> = ({
   color = "#002D63",
-  size = "24px",
+
   width,
   height,
   ...rest
@@ -12,10 +12,10 @@ export const SortingSVG: React.FC<IconProps> = ({
   <StyledSvg
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
-    size={size}
     color={color}
     width={width}
     height={height}
+    {...rest}
     {...rest}
   >
     <path
@@ -26,5 +26,13 @@ export const SortingSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
+
+SortingSVG.defaultProp = {
+  color: "#002D63",
+  width: "24px",
+  height: "24px",
+};
+
+SortingSVG.displayName = "SortingSVG";
 
 export default SortingSVG;

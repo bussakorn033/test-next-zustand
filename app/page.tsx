@@ -29,227 +29,327 @@ export default function Home() {
     <div className="flex flex-col gap-4 p-4">
       {/* Common DSTextField */}
       <DSTextStyle variant="h2">DSTextField</DSTextStyle>
-      <DSBox
-        bgColor="#a4caf0"
-        border="all"
-        borderRadius="xl"
-        borderWidth={1}
-        boxShadow="top"
-        direction="none"
-        hover={true}
-        gap={10}
-        px={24}
-        py={24}
-        fullWidth
-      >
-        <DSBox direction="column" gap={16}>
-          {/* Normal Text Fields */}
-          <DSBox direction="column" gap={8}>
-            <DSTextStyle variant="h4">Normal Text Fields</DSTextStyle>
-            <DSTextField
-              label="Default TextField"
-              placeholder="Enter text here"
-            />
-            <DSTextField
-              label="With Helper Text"
-              placeholder="Enter text"
-              helpingText="This is a helping text"
-            />
-            <DSTextField
-              label="With Error"
-              placeholder="Enter text"
-              error={true}
-              errorMessage="This is an error message"
-            />
-            <DSTextField
-              label="Disabled TextField"
-              placeholder="Cannot edit this"
-              disabled={true}
-            />
-          </DSBox>
+      <>
+        <DSBox
+          bgColor="#a4caf0"
+          border="all"
+          borderRadius="xl"
+          borderWidth={1}
+          boxShadow="top"
+          direction="none"
+          hover={true}
+          gap={10}
+          px={24}
+          py={24}
+          fullWidth
+        >
+          <DSBox direction="column" gap={16}>
+            {/* Normal Text Fields */}
+            <DSBox direction="column" gap={8}>
+              <DSTextStyle variant="h4">Normal Text Fields</DSTextStyle>
+              <DSTextField
+                label="Default TextField"
+                placeholder="Enter text here"
+              />
+              <DSTextField
+                label="With Helper Text"
+                placeholder="Enter text"
+                helpingText="This is a helping text"
+              />
+              <DSTextField
+                label="With Error"
+                placeholder="Enter text"
+                error={true}
+                errorMessage="This is an error message"
+              />
+              <DSTextField
+                label="Disabled TextField"
+                placeholder="Cannot edit this"
+                disabled={true}
+              />
+            </DSBox>
 
-          {/* Special Types */}
-          <DSBox direction="column" gap={8}>
-            <DSTextStyle variant="h4">Special Types</DSTextStyle>
-            <DSTextField
-              label="Email Field"
-              type="email"
-              placeholder="Enter email"
-            />
-            <DSTextField
-              label="Password Field"
-              type="password"
-              placeholder="Enter password"
-            />
-            <DSTextField
-              label="Number Field"
-              type="number"
-              placeholder="Enter number"
-            />
-            <DSTextField
-              label="Tel Field"
-              type="tel"
-              placeholder="Enter phone number"
-            />
-          </DSBox>
+            {/* Special Types */}
+            <DSBox direction="column" gap={8}>
+              <DSTextStyle variant="h4">Special Types</DSTextStyle>
+              <DSTextField
+                label="Email Field"
+                type="email"
+                placeholder="Enter email"
+              />
+              <DSTextField
+                label="Password Field"
+                type="password"
+                placeholder="Enter password"
+              />
+              <DSTextField
+                label="Number Field"
+                type="number"
+                placeholder="Enter number"
+              />
+              <DSTextField
+                label="Tel Field"
+                type="tel"
+                placeholder="Enter phone number"
+              />
+            </DSBox>
 
-          {/* With Icons */}
-          <DSBox direction="column" gap={8}>
-            <DSTextStyle variant="h4">With Icons</DSTextStyle>
-            <DSTextField
-              label="Left Icon"
-              placeholder="Search..."
-              iconLeft={<DSIcon icon="search" />}
-            />
-            <DSTextField
-              label="Right Icon"
-              placeholder="Select date"
-              iconRight={<DSIcon icon="calendar" />}
-            />
-            <DSTextField
-              label="Both Icons"
-              placeholder="Enter amount"
-              iconLeft={<DSIcon icon="plus" />}
-              iconRight={<DSIcon icon="minus" />}
-            />
-          </DSBox>
+            {/* With Icons */}
+            <DSBox direction="column" gap={8}>
+              <DSTextStyle variant="h4">With Icons</DSTextStyle>
+              <DSTextField
+                label="Left Icon"
+                placeholder="Search..."
+                iconLeft={<DSIcon icon="search" />}
+              />
+              <DSTextField
+                label="Right Icon"
+                placeholder="Select date"
+                iconRight={<DSIcon icon="calendar" />}
+              />
+              <DSTextField
+                label="Both Icons"
+                placeholder="Enter amount"
+                iconLeft={<DSIcon icon="plus" />}
+                iconRight={<DSIcon icon="minus" />}
+              />
+            </DSBox>
 
-          {/* Variants */}
-          <DSBox direction="column" gap={8}>
-            <DSTextStyle variant="h4">Variants</DSTextStyle>
-            <DSTextField label="Amount" variant="amount" placeholder="0.00" />
-            <DSTextField
-              label="Search"
-              variant="search"
-              placeholder="Search..."
-              iconLeft={<DSIcon icon="search" />}
-            />
-            <DSTextField
-              label="Amount Transaction"
-              variant="amount-transaction"
-              placeholder="Enter amount"
-            />
+            {/* Variants */}
+            <DSBox direction="column" gap={8}>
+              <DSTextStyle variant="h4">Variants</DSTextStyle>
+              <DSTextField label="Amount" variant="amount" placeholder="0.00" />
+              <DSTextField
+                label="Search"
+                variant="search"
+                placeholder="Search..."
+                iconLeft={<DSIcon icon="search" />}
+              />
+              <DSTextField
+                label="Amount Transaction"
+                variant="amount-transaction"
+                placeholder="Enter amount"
+              />
+            </DSBox>
           </DSBox>
         </DSBox>
-      </DSBox>
+      </>
       {/* Common DSTextField */}
 
       {/* Common DSButton  */}
       <DSTextStyle variant="h2">DSButton</DSTextStyle>
-      <DSBox
-        bgColor="#a4caf0"
-        border="all" // all | top | bottom
-        borderRadius="xl" // none | xs | sm | md | lg | xl | circle
-        borderWidth={1} // 0 | 1 | 2
-        boxShadow="top" // none | top | bottom
-        direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
-        hover={true}
-        gap={10}
-        px={24}
-        py={24}
-        fullWidth
-      >
-        <>
-          {(
-            [
-              "primary",
-              "negative",
-              "secondary",
-              "secondary-negative",
-              "ghost-primary",
-              "ghost-secondary",
-              "ghost-negative",
-              "ghost-primary-no-padding",
-              "ghost-secondary-no-padding",
-              "ghost-negative-no-padding",
-              "ghost-icon-primary",
-              "ghost-icon-secondary",
-              "ghost-icon-negative",
-              "ghost-icon-primary-no-padding",
-              "ghost-icon-secondary-no-padding",
-              "ghost-icon-negative-no-padding",
-            ] as const
-          ).map((variant) => (
-            <DSBox key={variant} direction="none" gap={16}>
-              <DSTextStyle variant="h4">Variant: {variant}</DSTextStyle>
-              {!variant.includes("icon") && (
+      <>
+        <DSBox
+          bgColor="#a4caf0"
+          border="all" // all | top | bottom
+          borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+          borderWidth={1} // 0 | 1 | 2
+          boxShadow="top" // none | top | bottom
+          direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+          hover={true}
+          gap={10}
+          px={24}
+          py={24}
+          fullWidth
+        >
+          <>
+            {(
+              [
+                "primary",
+                "negative",
+                "secondary",
+                "secondary-negative",
+                "ghost-primary",
+                "ghost-secondary",
+                "ghost-negative",
+                "ghost-primary-no-padding",
+                "ghost-secondary-no-padding",
+                "ghost-negative-no-padding",
+                "ghost-icon-primary",
+                "ghost-icon-secondary",
+                "ghost-icon-negative",
+                "ghost-icon-primary-no-padding",
+                "ghost-icon-secondary-no-padding",
+                "ghost-icon-negative-no-padding",
+              ] as const
+            ).map((variant) => (
+              <DSBox key={variant} direction="none" gap={16}>
+                <DSTextStyle variant="h4">Variant: {variant}</DSTextStyle>
+                {!variant.includes("icon") && (
+                  <>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                    >
+                      Default
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      size={"large"}
+                    >
+                      Default Large
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      disabled
+                    >
+                      Disabled
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      disabled
+                      size={"large"}
+                    >
+                      Disabled Large
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      width="full"
+                      borderRadius="none"
+                    >
+                      Full Width Border radius none
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      width="full"
+                    >
+                      Full Width Border radius normal
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      width="full"
+                      borderRadius="round"
+                    >
+                      Full Width Border radius round
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      iconLeft="plus"
+                    >
+                      Left Icon
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      iconRight="calendar"
+                    >
+                      Right Icon
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      iconLeft="arrow_left"
+                      iconRight="arrow_right"
+                    >
+                      Both Icons
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      iconLeft="arrow_left"
+                      iconRight="arrow_right"
+                      disabled
+                    >
+                      Both Icons
+                    </DSButton>
+                    <DSButton
+                      onClick={() => {
+                        console.log("onClick: " + variant);
+                      }}
+                      variant={variant}
+                      iconLeft="arrow_left"
+                      iconRight="arrow_right"
+                      size={"large"}
+                    >
+                      Both Icons Large
+                    </DSButton>
+                  </>
+                )}
                 <>
-                  <DSButton variant={variant}>Default</DSButton>
-                  <DSButton variant={variant} size={"large"}>
-                    Default Large
-                  </DSButton>
-                  <DSButton variant={variant} disabled>
-                    Disabled
-                  </DSButton>
-                  <DSButton variant={variant} disabled size={"large"}>
-                    Disabled Large
-                  </DSButton>
-                  <DSButton variant={variant} width="full" borderRadius="none">
-                    Full Width Border radius none
-                  </DSButton>
-                  <DSButton variant={variant} width="full">
-                    Full Width Border radius normal
-                  </DSButton>
-                  <DSButton variant={variant} width="full" borderRadius="round">
-                    Full Width Border radius round
-                  </DSButton>
-                  <DSButton variant={variant} iconLeft="plus">
-                    Left Icon
-                  </DSButton>
-                  <DSButton variant={variant} iconRight="calendar">
-                    Right Icon
-                  </DSButton>
                   <DSButton
+                    onClick={() => {
+                      console.log("onClick: " + variant);
+                    }}
                     variant={variant}
-                    iconLeft="arrow_left"
-                    iconRight="arrow_right"
-                  >
-                    Both Icons
-                  </DSButton>
+                    iconLeft="printer"
+                    borderRadius="round"
+                  />
                   <DSButton
+                    onClick={() => {
+                      console.log("onClick: " + variant);
+                    }}
                     variant={variant}
-                    iconLeft="arrow_left"
-                    iconRight="arrow_right"
+                    iconLeft="edit"
+                  />
+                  <DSButton
+                    onClick={() => {
+                      console.log("onClick: " + variant);
+                    }}
+                    variant={variant}
+                    iconLeft="share"
+                    size="large"
+                  />
+                  <DSButton
+                    onClick={() => {
+                      console.log("onClick: " + variant);
+                    }}
+                    variant={variant}
+                    iconLeft="user_circle"
+                    borderRadius="round"
                     disabled
-                  >
-                    Both Icons
-                  </DSButton>
+                  />
                   <DSButton
+                    onClick={() => {
+                      console.log("onClick: " + variant);
+                    }}
                     variant={variant}
-                    iconLeft="arrow_left"
-                    iconRight="arrow_right"
-                    size={"large"}
-                  >
-                    Both Icons Large
-                  </DSButton>
+                    iconLeft="trash"
+                    disabled
+                  />
+                  <DSButton
+                    onClick={() => {
+                      console.log("onClick: " + variant);
+                    }}
+                    variant={variant}
+                    iconLeft="history"
+                    size="large"
+                    disabled
+                  />
                 </>
-              )}
-              <>
-                <DSButton
-                  variant={variant}
-                  iconLeft="printer"
-                  borderRadius="round"
-                />
-                <DSButton variant={variant} iconLeft="edit" />
-                <DSButton variant={variant} iconLeft="share" size="large" />
-                <DSButton
-                  variant={variant}
-                  iconLeft="user_circle"
-                  borderRadius="round"
-                  disabled
-                />
-                <DSButton variant={variant} iconLeft="trash" disabled />
-                <DSButton
-                  variant={variant}
-                  iconLeft="history"
-                  size="large"
-                  disabled
-                />
-              </>
-            </DSBox>
-          ))}
-        </>
-      </DSBox>
+              </DSBox>
+            ))}
+          </>
+        </DSBox>
+      </>
       {/* Common DSButton  */}
 
       {/* Common DSTextStyle */}
@@ -437,6 +537,7 @@ export default function Home() {
         </DSBox>
       </>
       {/* Common DSTextStyle */}
+
       {/* Common IconComponent */}
       <DSTextStyle variant="h2">IconComponent</DSTextStyle>
       <>
@@ -456,7 +557,7 @@ export default function Home() {
           fullWidth
         >
           <>
-            {[...Object.keys(iconList)].map((iconName) => (
+            {[...Object.keys(galleryList)].map((iconName) => (
               <DSBox
                 key={iconName}
                 direction="column"
@@ -465,10 +566,9 @@ export default function Home() {
               >
                 <IconComponent
                   icon={iconName}
-                  color="#0f0"
-                  size={50}
-                  // width={50}
-                  // height={50}
+                  color={iconName.includes("img_") ? "" : "#0f0"}
+                  width={50}
+                  height={50}
                 />
                 <span style={{fontSize: "12px"}}>{iconName}</span>
               </DSBox>
@@ -477,6 +577,7 @@ export default function Home() {
         </DSBox>
       </>
       {/* Common IconComponent */}
+
       {/* Common  DSIcon */}
       <DSTextStyle variant="h2">DSIcon</DSTextStyle>
       <>
@@ -511,6 +612,7 @@ export default function Home() {
         </DSBox>
       </>
       {/* Common  DSIcon */}
+
       {/* Common  DSBox */}
       <DSTextStyle variant="h2">DSBox</DSTextStyle>
       <>
@@ -583,7 +685,7 @@ export default function Home() {
           </>
         </DSBox>
       </>
-      {/* Common  DSIcon */}
+      {/* Common  DSBox */}
     </div>
   );
   <DSBox

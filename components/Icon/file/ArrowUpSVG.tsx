@@ -4,7 +4,6 @@ import {IconProps} from "./SVG.types";
 
 export const ArrowUpSVG: React.FC<IconProps> = ({
   color,
-  size,
   width,
   height,
   ...rest

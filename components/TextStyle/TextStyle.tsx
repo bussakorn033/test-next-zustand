@@ -25,7 +25,7 @@ export const DSTextStyle = forwardRef<
       textDecoration,
       ...rest
     }: DSTextStyleProps,
-    ref
+    ref,
   ) => {
     const classnames = classNames("ds-text-style", className);
 
@@ -109,7 +109,6 @@ export const DSTextStyle = forwardRef<
         style={
           {
             "--text-color": color && `var(--${color})`,
-            "--ds-text-style-limit-line": limitLine,
           } as React.CSSProperties
         }
         {...rest}
@@ -117,7 +116,7 @@ export const DSTextStyle = forwardRef<
         {children}
       </S.TextStyle>
     );
-  }
+  },
 );
 
 DSTextStyle.defaultProps = {

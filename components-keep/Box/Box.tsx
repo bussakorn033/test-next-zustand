@@ -3,7 +3,7 @@ import {forwardRef} from "react";
 import * as S from "./Box.styled";
 import {BoxProps} from "./Box.types";
 
-export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
+export const DSBox = forwardRef<HTMLElement | undefined, BoxProps>(
   (
     {
       className,
@@ -17,7 +17,7 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
     }: BoxProps,
     ref,
   ) => {
-    const classnames = classNames(className, "ds-ui-box");
+    const classnames = classNames(className, "ds-box");
 
     return (
       <S.Box
@@ -37,7 +37,7 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
   },
 );
 
-Box.defaultProps = {
+DSBox.defaultProps = {
   bgColor: "transparent",
   borderWidth: 0,
   boxShadow: "none",
@@ -47,6 +47,6 @@ Box.defaultProps = {
   direction: "none",
 };
 
-Box.displayName = "Box";
+DSBox.displayName = "DSBox";
 
-export default Box;
+export default DSBox;

@@ -1,9 +1,16 @@
 import classNames from "classnames";
 import React, {forwardRef} from "react";
-import {TextStyleProps} from "./TextStyle.types";
+// import styles from "./TextStyle.module.scss";
+
+import {DSBox} from "../Box";
+import {DSTextStyleProps} from "./TextStyle.types";
+// import {TextStyle} from "./TextStyle.styled";
 import * as S from "./TextStyle.styled";
 
-export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
+export const DSTextStyle = forwardRef<
+  HTMLElement | undefined,
+  DSTextStyleProps
+>(
   (
     {
       variant,
@@ -17,10 +24,10 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
       textAlign,
       textDecoration,
       ...rest
-    }: TextStyleProps,
+    }: DSTextStyleProps,
     ref,
   ) => {
-    const classnames = classNames(className, "ds-ui-text-style");
+    const classnames = classNames("ds-text-style", className);
 
     let customTag = "p";
     switch (variant) {
@@ -55,6 +62,12 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
       case "valueSmall": // 14px regular, 20px
         customTag = "p";
         break;
+
+      // Buttons & Interactive Elements
+      // case "buttonMedium": // 16px bold, 24px
+      // case "buttonBig": // 20px bold, 32px
+      //   customTag = "button";
+      //   break;
 
       // Special Cases
       case "pageTitle": // 20px bold, 24px
@@ -106,7 +119,7 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
   },
 );
 
-TextStyle.defaultProps = {
+DSTextStyle.defaultProps = {
   variant: "paragraphMedium",
   whiteSpace: "pre-line",
   textDecoration: "none",
@@ -118,6 +131,6 @@ TextStyle.defaultProps = {
   className: "",
 };
 
-TextStyle.displayName = "TextStyle";
+DSTextStyle.displayName = "DSTextStyle";
 
-export default TextStyle;
+export default DSTextStyle;

@@ -66,5 +66,4 @@ export interface BoxProps
   gapColumn?: number;
   limit?: number;
   maxWidth?: number;
-  maxHeight?: number;
 }

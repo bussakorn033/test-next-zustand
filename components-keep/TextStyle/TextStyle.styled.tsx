@@ -1,5 +1,9 @@
 import styled, {css} from "styled-components";
-import {TextStyleProps} from "./TextStyle.types";
+import {DSTextStyleProps} from "./TextStyle.types";
+
+interface TextStyleProps extends DSTextStyleProps {
+  limitLine?: number;
+}
 
 const textStyleMixin = (
   fontSize: string,
@@ -7,7 +11,7 @@ const textStyleMixin = (
   lineHeight: string,
   letterSpacing: string,
   textTransform?: string,
-  fontFamily?: string,
+  fontFamily?: string
 ) => css`
   font-family: ${fontFamily ? fontFamily : "var(--font-family-primary)"};
   font-size: var(${fontSize});
@@ -19,8 +23,6 @@ const textStyleMixin = (
 `;
 
 export const TextStyle = styled.p<TextStyleProps>`
-  margin: 0;
-
   ${({variant}) => {
     switch (variant) {
       // Desktop Headings
@@ -29,7 +31,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-32",
           "--font-weight-bold",
           "--line-height-44",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "h4":
@@ -37,7 +39,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-24",
           "--font-weight-bold",
           "--line-height-34",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "h6":
@@ -45,7 +47,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-16",
           "--font-weight-bold",
           "--line-height-24",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       // Paragraphs
@@ -54,7 +56,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-16",
           "--font-weight-regular",
           "--line-height-24",
-          "--letter-spacing-normal",
+          "--letter-spacing-normal"
         );
 
       case "paragraphSmall":
@@ -62,7 +64,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-14",
           "--font-weight-regular",
           "--line-height-20",
-          "--letter-spacing-normal",
+          "--letter-spacing-normal"
         );
 
       case "paragraphXSmall":
@@ -70,7 +72,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-12",
           "--font-weight-regular",
           "--line-height-16",
-          "--letter-spacing-normal",
+          "--letter-spacing-normal"
         );
 
       // Labels
@@ -79,7 +81,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-16",
           "--font-weight-regular",
           "--line-height-24",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "labelSmall":
@@ -87,7 +89,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-14",
           "--font-weight-regular",
           "--line-height-20",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "labelSmallBold":
@@ -95,7 +97,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-14",
           "--font-weight-bold",
           "--line-height-20",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "labelXSmall":
@@ -103,7 +105,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-12",
           "--font-weight-regular",
           "--line-height-16",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "labelXSmallBold":
@@ -111,7 +113,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-12",
           "--font-weight-bold",
           "--line-height-16",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       // Values
@@ -120,7 +122,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-14",
           "--font-weight-regular",
           "--line-height-20",
-          "--letter-spacing-normal",
+          "--letter-spacing-normal"
         );
 
       // Buttons
@@ -129,7 +131,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-16",
           "--font-weight-bold",
           "--line-height-24",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "buttonBig":
@@ -137,7 +139,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-20",
           "--font-weight-bold",
           "--line-height-32",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       // Special Cases
@@ -146,7 +148,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-20",
           "--font-weight-bold",
           "--line-height-24",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "allCapSmall":
@@ -155,7 +157,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-weight-regular",
           "--line-height-16",
           "--letter-spacing-wide",
-          "uppercase",
+          "uppercase"
         );
 
       // Mobile Specific
@@ -164,7 +166,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-14",
           "--font-weight-bold",
           "--line-height-20",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       case "mobileLabelSmallBold":
@@ -172,7 +174,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-14",
           "--font-weight-bold",
           "--line-height-24",
-          "--letter-spacing-wide",
+          "--letter-spacing-wide"
         );
 
       // Default style
@@ -181,7 +183,7 @@ export const TextStyle = styled.p<TextStyleProps>`
           "--font-size-16",
           "--font-weight-regular",
           "--line-height-24",
-          "--letter-spacing-normal",
+          "--letter-spacing-normal"
         );
     }
   }}

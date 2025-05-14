@@ -27,8 +27,6 @@ function transformFlexProperties(
 }
 
 export const Box = styled.div`
-  overflow: hidden;
-
   ${(props: Omit<BoxProps, "as">) => {
     if (props.direction !== "none") {
       return css`
@@ -63,13 +61,6 @@ export const Box = styled.div`
     if (props.maxWidth) {
       return css`
         max-width: ${props.maxWidth}px;
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.maxHeight) {
-      return css`
-        max-height: ${props.maxHeight}px;
       `;
     }
   }}

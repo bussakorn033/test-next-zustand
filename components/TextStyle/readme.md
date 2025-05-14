@@ -1,0 +1,57 @@
+## Usage
+
+```js
+import {Icon} from "@/shared-components/Icon";
+
+<TextStyle
+  variant="h2"
+  color="color-error"
+>
+  text
+</TextStyle>;
+
+color?: string; // color-error || #f00
+
+limitLine?: number;
+
+variant?: // Desktop Headings
+  | "h2" // 32px bold, 44px
+  | "h4" // 24px bold, 34px
+  | "h6" // 16px bold, 24px
+
+  // Paragraphs
+  | "paragraphMedium" // 16px regular, 24px
+  | "paragraphSmall" // 14px regular, 20px
+  | "paragraphXSmall" // 12px regular, 16px
+
+  // Labels
+  | "labelMedium" // 16px regular, 24px
+  | "labelSmall" // 14px regular, 20px
+  | "labelSmallBold" // 14px bold, 20px
+  | "labelXSmall" // 12px regular, 16px
+  | "labelXSmallBold" // 12px bold, 16px
+
+  // Values
+  | "valueSmall" // 14px regular, 20px
+
+  // Buttons
+  | "buttonMedium" // 16px bold, 24px
+  | "buttonBig" // 20px bold, 32px
+
+  // Special Cases
+  | "pageTitle" // 20px bold, 24px
+  | "allCapSmall" // 12px regular, 16px, uppercase
+
+  // Mobile Specific
+  | "mobileH4" // 14px bold, 20px
+  | "mobileLabelSmallBold" // 14px bold, 24px
+  | "span"; // 14px bold, 24px
+
+whiteSpace?: "normal" | "nowrap" | "pre" | "pre-line" | "pre-wrap";
+
+wordBreak?: "normal" | "break-all" | "keep-all" | "break-word";
+
+textAlign?: "left" | "center" | "right";
+
+textDecoration?: "none" | "underline" | "line-through" | "overline";
+```

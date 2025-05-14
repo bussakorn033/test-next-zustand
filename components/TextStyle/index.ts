@@ -1,2 +1,2 @@
-export { default as DSTextStyle } from './TextStyle'
-export type { DSTextStyleProps } from './TextStyle.types'
+export {default as TextStyle} from "./TextStyle";
+export type {TextStyleProps} from "./TextStyle.types";

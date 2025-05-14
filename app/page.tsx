@@ -31,25 +31,25 @@ export default function Home() {
             <Box direction="column" gap={48}>
               <Box direction="column" gap={0}>
                 <TextStyle variant="h2" color="color-primary">
-                  dashboard_title
+                  title
                 </TextStyle>
                 <TextStyle
                   variant="paragraphMedium"
                   color="color-neutral-grey-light"
                 >
-                  dashboard_sub_title
+                  sub_title
                 </TextStyle>
               </Box>
               <Box direction="row" justifyContent="space-between" gap={24}>
                 <TextStyle variant="h4" color="color-primary">
-                  dashboard_title_table
+                  title_table
                 </TextStyle>
                 <Box direction="row" gap={8}>
                   <Button variant="ghost-primary" iconLeft="refresh">
-                    dashboard_btn_refresh
+                    btn_refresh
                   </Button>
                   <Button variant="primary" iconLeft="plus">
-                    dashboard_btn_create_contract
+                    btn_create_contract
                   </Button>
                 </Box>
               </Box>
@@ -59,7 +59,7 @@ export default function Home() {
               <Box direction="column" justifyContent="center" gap={8}>
                 <Box direction="row" gap={8}>
                   <TextStyle variant="labelXSmall" color="color-secondary">
-                    dashboard_filter_by_user
+                    filter_by_user
                   </TextStyle>
                   <Icon icon="arrow_down" width={16} color="color-primary" />
                 </Box>
@@ -67,13 +67,13 @@ export default function Home() {
               <Box direction="row" gap={8}>
                 <Box direction="row" gap={8}>
                   <TextStyle variant="labelSmallBold" color="color-primary">
-                    dashboard_filter_by_type_doc
+                    filter_by_type_doc
                   </TextStyle>
                   <Icon icon="arrow_down" width={16} />
                 </Box>
                 <Box direction="row" gap={8}>
                   <TextStyle variant="labelSmallBold" color="color-primary">
-                    dashboard_filter_by_status
+                    filter_by_status
                   </TextStyle>
                   <Icon icon="arrow_down" width={16} />
                 </Box>
@@ -100,7 +100,7 @@ export default function Home() {
               >
                 <Box direction="row" gap={8}>
                   <TextStyle variant="labelSmallBold" color="color-primary">
-                    dashboard_contract_table_header_row1
+                    contract_table_header_row1
                   </TextStyle>
                   <Icon icon="sorting" width={16} />
                 </Box>
@@ -114,7 +114,7 @@ export default function Home() {
                 py={10}
               >
                 <TextStyle variant="labelSmallBold" color="color-primary">
-                  dashboard_contract_table_header_row1
+                  contract_table_header_row1
                 </TextStyle>
               </Box>
             </Box>

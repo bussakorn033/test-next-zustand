@@ -1,7 +1,7 @@
 "use client";
 
 import {Box} from "@/components/Box";
-import {Button} from "@/components/ButtonCommon";
+import {Button} from "@/components/Button";
 import Icon from "@/components/Icon/Icon";
 import {TextStyle} from "@/components/TextStyle";
 import globalSlice from "@/stores/globalSlice";

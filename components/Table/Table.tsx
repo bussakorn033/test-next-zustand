@@ -24,7 +24,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
     const getSortIcon = (sortBy?: "asc" | "desc") => {
       if (sortBy === "asc") return "sort_ascending";
       if (sortBy === "desc") return "sort_descending";
-      return "sorting"; // default icon
+      return "sorting";
     };
 
     return (
@@ -38,15 +38,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           borderRadius="md"
           overflow="hidden"
         >
-          <Box
-            direction="column"
-            // bgColor="var(--color-neutral-light)"
-            // color="var(--color-table-border-dark)"
-            // border="all"
-            // borderWidth={1}
-            // borderRadius="md"
-            // overflow="hidden"
-          >
+          <Box direction="column">
             <Box
               direction="column"
               bgColor="var(--color-neutral-light)"

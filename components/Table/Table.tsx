@@ -5,6 +5,7 @@ import Icon from "../Icon/Icon";
 import {TextStyle} from "../TextStyle";
 import * as S from "./Table.styled";
 import {TableProps} from "./Table.types";
+import {Button} from "../Button";
 
 export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   (
@@ -48,11 +49,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               {/* Header */}
               <Box
                 direction="row"
-                gap={8}
                 color="var(--color-table-border-dark)"
                 bgColor="var(--color-table-header-dark)"
                 borderWidth={1}
                 border="bottom"
+                gap={16}
                 px={8}
                 py={10}
                 style={{width: "100%"}}
@@ -73,9 +74,19 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       {col.value}
                     </TextStyle>
                     {col.isSort && (
-                      <>
-                        <Icon icon={getSortIcon(col.sortBy)} width={16} />
-                      </>
+                      <Button
+                        onClick={() => {
+                          console.log("onClick");
+                        }}
+                        variant={"ghost-icon-secondary-no-padding"}
+                        borderRadius="round"
+                      >
+                        <Icon
+                          icon={getSortIcon(col.sortBy)}
+                          width={16}
+                          height={16}
+                        />
+                      </Button>
                     )}
                   </Box>
                 ))}
@@ -91,9 +102,14 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 style={{width: "100%"}}
               >
                 {rows.map((item, rowIndex) => (
-                  <Box key={rowIndex} direction="row" gap={8}>
+                  <Box key={rowIndex} direction="row" gap={16}>
                     {item.map((cell, colIndex) => (
-                      <Box key={colIndex} style={{flex: 1}}>
+                      <Box
+                        key={colIndex}
+                        style={{
+                          flex: 1,
+                        }}
+                      >
                         <TextStyle
                           variant="paragraphSmall"
                           color="color-primary"

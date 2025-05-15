@@ -40,14 +40,15 @@ export default function Home() {
 
   // Initialize header and data arrays
   const headers = Array.apply(null, Array(col)).map((_, i) => ({
-    value:
-      i < 3 ? (
-        <TextStyle variant="h2" color="color-primary">
-          {`header${i + 1}`}
-        </TextStyle>
-      ) : (
-        `header${i + 1}`
-      ),
+    value: `header${i + 1}`,
+    // value:
+    //   i < 3 ? (
+    //     <TextStyle variant="h2" color="color-primary">
+    //       {`header${i + 1}`}
+    //     </TextStyle>
+    //   ) : (
+    //     `header${i + 1}`
+    //   ),
     isSort: i < 3,
     sortBy: i == 0 ? "asc" : i == 1 ? "desc" : undefined,
     onClick: ({index}: any) => onClickHeader(index),
@@ -56,14 +57,15 @@ export default function Home() {
   // console.log(`---- headers:`, headers);
   const rows: TableColumn[][] = Array.from({length: row}, (_, rowIndex) =>
     Array.from({length: col}, (_, colIndex) => ({
-      value:
-        colIndex < 3 ? (
-          <TextStyle variant="h2" color="color-primary">
-            {`Value${rowIndex + 1}-${colIndex + 1}`}
-          </TextStyle>
-        ) : (
-          `Value${rowIndex + 1}-${colIndex + 1}`
-        ),
+      value: `Value${rowIndex + 1}-${colIndex + 1}`,
+      // value:
+      //   colIndex < 3 ? (
+      //     <TextStyle variant="h2" color="color-primary">
+      //       {`Value${rowIndex + 1}-${colIndex + 1}`}
+      //     </TextStyle>
+      //   ) : (
+      //     `Value${rowIndex + 1}-${colIndex + 1}`
+      //   ),
       onClick: ({index}: any) => onClickValue(index),
     })),
   );
@@ -109,7 +111,20 @@ export default function Home() {
                     <TextStyle variant="labelXSmall" color="color-secondary">
                       filter_by_user
                     </TextStyle>
-                    <Icon icon="arrow_down" width={16} color="color-primary" />
+                    <Button
+                      onClick={() => {
+                        console.log("onClick");
+                      }}
+                      variant={"ghost-icon-secondary-no-padding"}
+                      borderRadius="round"
+                    >
+                      <Icon
+                        icon="arrow_down"
+                        width={16}
+                        height={16}
+                        color="color-primary"
+                      />
+                    </Button>
                   </Box>
                 </Box>
                 <Box direction="row" alignItems="center" gap={8}>
@@ -117,13 +132,29 @@ export default function Home() {
                     <TextStyle variant="labelSmallBold" color="color-primary">
                       filter_by_type_doc
                     </TextStyle>
-                    <Icon icon="arrow_down" width={16} />
+                    <Button
+                      onClick={() => {
+                        console.log("onClick");
+                      }}
+                      variant={"ghost-icon-secondary-no-padding"}
+                      borderRadius="round"
+                    >
+                      <Icon icon="arrow_down" width={16} height={16} />
+                    </Button>
                   </Box>
                   <Box direction="row" alignItems="center" gap={8}>
                     <TextStyle variant="labelSmallBold" color="color-primary">
                       filter_by_status
                     </TextStyle>
-                    <Icon icon="arrow_down" width={16} />
+                    <Button
+                      onClick={() => {
+                        console.log("onClick");
+                      }}
+                      variant={"ghost-icon-secondary-no-padding"}
+                      borderRadius="round"
+                    >
+                      <Icon icon="arrow_down" width={16} height={16} />
+                    </Button>
                   </Box>
                 </Box>
               </Box>

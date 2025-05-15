@@ -2,11 +2,7 @@ import React from "react";
 import {StyledSvg} from "./SVG.styled";
 import {IconProps} from "./SVG.types";
 
-export const ImageNodataSVG: React.FC<IconProps> = ({
-  color = "",
-
-  ...rest
-}) => (
+export const ImageNodataSVG: React.FC<IconProps> = ({color = "", ...rest}) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 56 56"
@@ -188,12 +184,6 @@ export const ImageNodataSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-ImageNodataSVG.defaultProps = {
-  color: "",
-  width: "24px",
-  height: "24px",
-};
 
 ImageNodataSVG.displayName = "ImageNodataSVG";
 

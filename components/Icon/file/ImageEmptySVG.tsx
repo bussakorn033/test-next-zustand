@@ -2,11 +2,7 @@ import React from "react";
 import {StyledSvg} from "./SVG.styled";
 import {IconProps} from "./SVG.types";
 
-export const ImageEmptySVG: React.FC<IconProps> = ({
-  color = "",
-
-  ...rest
-}) => (
+export const ImageEmptySVG: React.FC<IconProps> = ({color = "", ...rest}) => (
   <StyledSvg
     viewBox="0 0 56 56"
     xmlns="http://www.w3.org/2000/svg"
@@ -103,12 +99,6 @@ export const ImageEmptySVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-ImageEmptySVG.defaultProps = {
-  color: "",
-  width: "24px",
-  height: "24px",
-};
 
 ImageEmptySVG.displayName = "ImageEmptySVG";
 

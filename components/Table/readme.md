@@ -1,9 +1,9 @@
 ## Usage
 
 ```js
-import {Box} from "@/shared-components/Box";
+import {Table} from "@/shared-components/Table";
 
-<Box
+<Table
   direction="column"
   gap={8}
   color="var(--color-table-border-dark)"
@@ -13,7 +13,7 @@ import {Box} from "@/shared-components/Box";
   borderWidth={1}
 >
   text
-</Box>;
+</Table>;
 
 direction?: "none"| "row"| "row-reverse"| "row-wrap"| "column"| "column-reverse";
 
@@ -21,7 +21,7 @@ border?: "all" | "top" | "bottom";
 
 borderRadius?: string; // none: '0' | xs: '4px' | sm: '8px'| md: '12px'| lg: '16px'| xl: '24px'| circle: '50%'
 
-boxShadow?: "none" | "top" | "bottom";
+TableShadow?: "none" | "top" | "bottom";
 
 width?: "normal" | "full";
 

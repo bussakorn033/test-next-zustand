@@ -3,7 +3,7 @@ import {forwardRef, useEffect} from "react";
 import classNames from "classnames";
 import * as S from "./TextField.styled";
 
-export const DSTextField = forwardRef<undefined | any, TextFieldProps>(
+export const TextField = forwardRef<undefined | any, TextFieldProps>(
   (
     {
       id,
@@ -27,7 +27,7 @@ export const DSTextField = forwardRef<undefined | any, TextFieldProps>(
       maxLength,
       ...rest
     }: TextFieldProps,
-    ref
+    ref,
   ) => {
     const isNormalInput =
       type === "text" ||
@@ -66,13 +66,13 @@ export const DSTextField = forwardRef<undefined | any, TextFieldProps>(
         )}
       </S.TextFieldWrapper>
     );
-  }
+  },
 );
 
-DSTextField.defaultProps = {
+TextField.defaultProps = {
   type: "text",
   iconTyping: false,
   keyboard: "text",
 };
 
-export default DSTextField;
+export default TextField;

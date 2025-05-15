@@ -4,9 +4,8 @@ import {IconProps} from "./SVG.types";
 
 export const PrinterSVG: React.FC<IconProps> = ({
   color = "#002D63",
-
-  width,
-  height,
+  width = "24px",
+  height = "24px",
   ...rest
 }) => (
   <StyledSvg
@@ -26,12 +25,6 @@ export const PrinterSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-PrinterSVG.defaultProp = {
-  color: "#002D63",
-  width: "24px",
-  height: "24px",
-};
 
 PrinterSVG.displayName = "PrinterSVG";
 

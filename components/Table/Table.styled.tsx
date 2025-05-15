@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import {BoxProps} from "./Box.types";
+import {TableProps} from "./Table.types";
 
 function calPadding(padding: number = 0, borderWidth: number = 0) {
   return Number(padding - borderWidth);
@@ -26,14 +26,14 @@ function transformFlexProperties(
   }
 }
 
-export const Box = styled.div`
+export const Table = styled.div`
   overflow: auto;
 
-  ${(props: Omit<BoxProps, "as">) => {
+  ${(props: Omit<TableProps, "as">) => {
     if (props.direction !== "none") {
       return css`
-        display: -webkit-box;
-        display: -ms-flexbox;
+        display: -webkit-Table;
+        display: -ms-flexTable;
         display: flex;
       `;
     } else if (props.gap || props.gapRow || props.gapColumn) {
@@ -45,47 +45,47 @@ export const Box = styled.div`
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.fullWidth) {
       return css`
         width: 100%;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.fullHeight) {
       return css`
         height: 100dvh;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.maxWidth) {
       return css`
         max-width: ${props.maxWidth}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.maxHeight) {
       return css`
         max-height: ${props.maxHeight}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.direction === "row") {
       return css`
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
+        -webkit-table-orient: horizontal;
+        -webkit-table-direction: normal;
         -ms-flex-direction: ${props.direction};
         flex-direction: ${props.direction};
         gap: ${props.gap}px;
       `;
     } else if (props.direction === "row-wrap") {
       return css`
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
+        -webkit-table-orient: horizontal;
+        -webkit-table-direction: normal;
         -ms-flex-direction: row;
         flex-direction: row;
         -ms-flex-flow: wrap;
@@ -94,78 +94,78 @@ export const Box = styled.div`
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.direction === "row-reverse") {
       return css`
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: reverse;
+        -webkit-table-orient: horizontal;
+        -webkit-table-direction: reverse;
         -ms-flex-direction: row-reverse;
         flex-direction: row-reverse;
         gap: ${props.gap}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.direction === "column") {
       return css`
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
+        -webkit-table-orient: vertical;
+        -webkit-table-direction: normal;
         -ms-flex-direction: ${props.direction};
         flex-direction: ${props.direction};
         gap: ${props.gap}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.direction === "column-reverse") {
       return css`
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: reverse;
+        -webkit-table-orient: vertical;
+        -webkit-table-direction: reverse;
         -ms-flex-direction: column-reverse;
         flex-direction: column-reverse;
         gap: ${props.gap}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.direction && props.alignItems) {
       return css`
-        align-items: ${(props: BoxProps) =>
+        align-items: ${(props: TableProps) =>
           transformFlexProperties(props.alignItems)};
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.direction && props.justifyContent) {
       return css`
-        justify-content: ${(props: BoxProps) =>
+        justify-content: ${(props: TableProps) =>
           transformFlexProperties(props.justifyContent)};
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.column && props.justifyContent) {
       return css`
-        justify-items: ${(props: BoxProps) =>
+        justify-items: ${(props: TableProps) =>
           transformFlexProperties(props.justifyContent)};
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.hover) {
       return css`
         cursor: pointer;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.m && props.m >= 0) {
       return css`
         margin: ${props.m}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.mx && props.mx >= 0) {
       return css`
         margin-left: ${props.mx}px;
@@ -173,7 +173,7 @@ export const Box = styled.div`
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.my && props.my >= 0) {
       return css`
         margin-top: ${props.my}px;
@@ -181,42 +181,42 @@ export const Box = styled.div`
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.mt && props.mt >= 0) {
       return css`
         margin-top: ${props.mt}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.mb && props.mb >= 0) {
       return css`
         margin-bottom: ${props.mb}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.mr && props.mr >= 0) {
       return css`
         margin-right: ${props.mr}px;
       `;
     }
   }}
-  ${(props: BoxProps) => {
+  ${(props: TableProps) => {
     if (props.ml && props.ml >= 0) {
       return css`
         margin-left: ${props.ml}px;
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (props.bgColor) {
       return css`
         background-color: ${props.bgColor};
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (
       props.borderWidth &&
       props.borderWidth > 0 &&
@@ -229,7 +229,7 @@ export const Box = styled.div`
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (props.border === "all") {
       return css`
         border-width: ${props.borderWidth}px;
@@ -241,10 +241,10 @@ export const Box = styled.div`
         `;
     }
   }}
-    ${(props: BoxProps) => {
-    if (props.boxShadow !== "none") {
-      const boxShadow = () => {
-        switch (props.boxShadow) {
+    ${(props: TableProps) => {
+    if (props.TableShadow !== "none") {
+      const TableShadow = () => {
+        switch (props.TableShadow) {
           case "top":
             return "0px -2px 0px rgba(0, 0, 0, 0.04), 0px -4px 0px rgba(76, 87, 101, 0.06)";
           case "bottom":
@@ -255,18 +255,18 @@ export const Box = styled.div`
         }
       };
       return css`
-        box-shadow: ${boxShadow()};
+        table-shadow: ${TableShadow()};
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (props.borderColor) {
       return css`
         border-color: ${props.borderColor};
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (props.borderRadius) {
       const radius = () => {
         switch (props.borderRadius) {
@@ -300,14 +300,14 @@ export const Box = styled.div`
       }
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (props.p && props.p >= 0) {
       return css`
         padding: ${calPadding(props.p, props.borderWidth)}px;
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if ((props.px || props.px === 0) && props.px >= 0) {
       return css`
         padding-left: ${calPadding(props.px, props.borderWidth)}px;
@@ -315,7 +315,7 @@ export const Box = styled.div`
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if ((props.py || props.py === 0) && props.py >= 0) {
       return css`
         padding-top: ${calPadding(props.py, props.borderWidth)}px;
@@ -323,35 +323,35 @@ export const Box = styled.div`
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if ((props.pt || props.pt === 0) && props.pt >= 0) {
       return css`
         padding-top: ${calPadding(props.pt, props.borderWidth)}px;
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if ((props.pb || props.pb === 0) && props.pb >= 0) {
       return css`
         padding-bottom: ${calPadding(props.pb, props.borderWidth)}px;
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if ((props.pr || props.pr === 0) && props.pr >= 0) {
       return css`
         padding-right: ${calPadding(props.pr, props.borderWidth)}px;
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if ((props.pl || props.pl === 0) && props.pl >= 0) {
       return css`
         padding-left: ${calPadding(props.pl, props.borderWidth)}px;
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if ((props.column || props.column === 0) && props.column >= 0) {
       return css`
         display: grid;
@@ -362,7 +362,7 @@ export const Box = styled.div`
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (props.limit) {
       return css`
         > *:nth-child(n + ${props.limit + 1}) {
@@ -371,14 +371,14 @@ export const Box = styled.div`
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (props.textAlign) {
       return css`
         text-align: ${props.textAlign};
       `;
     }
   }}
-    ${(props: BoxProps) => {
+    ${(props: TableProps) => {
     if (props.color) {
       return css`
         color: ${props.color};

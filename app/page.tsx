@@ -1,5 +1,7 @@
 "use client";
 
+import {galleryList, iconList} from "@/components-keep/Icon/IconList";
+import {TextField} from "@/components-keep/TextField";
 import {Box} from "@/components/Box";
 import {Button} from "@/components/Button";
 import Icon from "@/components/Icon/Icon";
@@ -25,84 +27,59 @@ export default function Home() {
 
   return (
     <>
-      <Box fullHeight fullWidth bgColor="var(--color-bg-primary)">
-        <Box direction="column" p={32} fullWidth>
-          <Box direction="column" gap={24}>
-            <Box direction="column" gap={48}>
-              <Box direction="column" gap={0}>
-                <TextStyle variant="h2" color="color-primary">
-                  title
-                </TextStyle>
-                <TextStyle
-                  variant="paragraphMedium"
-                  color="color-neutral-grey-light"
-                >
-                  sub_title
-                </TextStyle>
-              </Box>
-              <Box direction="row" justifyContent="space-between" gap={24}>
-                <TextStyle variant="h4" color="color-primary">
-                  title_table
-                </TextStyle>
-                <Box direction="row" gap={8}>
-                  <Button variant="ghost-primary" iconLeft="refresh">
-                    btn_refresh
-                  </Button>
-                  <Button variant="primary" iconLeft="plus">
-                    btn_create_contract
-                  </Button>
+      <Box bgColor="var(--color-bg-primary)" fullHeight>
+        <Box direction="column" p={32}>
+          <Box direction="column" fullWidth>
+            <Box direction="column" gap={24}>
+              <Box direction="column" gap={48}>
+                <Box direction="column" gap={0}>
+                  <TextStyle variant="h2" color="color-primary">
+                    title
+                  </TextStyle>
+                  <TextStyle
+                    variant="paragraphMedium"
+                    color="color-neutral-grey-light"
+                  >
+                    sub_title
+                  </TextStyle>
+                </Box>
+                <Box direction="row" justifyContent="space-between" gap={24}>
+                  <TextStyle variant="h4" color="color-primary">
+                    title_table
+                  </TextStyle>
+                  <Box direction="row" gap={8}>
+                    <Button variant="ghost-primary" iconLeft="refresh">
+                      btn_refresh
+                    </Button>
+                    <Button variant="primary" iconLeft="plus">
+                      btn_create_contract
+                    </Button>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
 
-            <Box direction="row" justifyContent="space-between">
-              <Box direction="column" justifyContent="center" gap={8}>
-                <Box direction="row" gap={8}>
-                  <TextStyle variant="labelXSmall" color="color-secondary">
-                    filter_by_user
-                  </TextStyle>
-                  <Icon icon="arrow_down" width={16} color="color-primary" />
-                </Box>
-              </Box>
-              <Box direction="row" gap={8}>
-                <Box direction="row" gap={8}>
-                  <TextStyle variant="labelSmallBold" color="color-primary">
-                    filter_by_type_doc
-                  </TextStyle>
-                  <Icon icon="arrow_down" width={16} />
+              <Box direction="row" justifyContent="space-between">
+                <Box direction="column" justifyContent="center" gap={8}>
+                  <Box direction="row" gap={8}>
+                    <TextStyle variant="labelXSmall" color="color-secondary">
+                      filter_by_user
+                    </TextStyle>
+                    <Icon icon="arrow_down" width={16} color="color-primary" />
+                  </Box>
                 </Box>
                 <Box direction="row" gap={8}>
-                  <TextStyle variant="labelSmallBold" color="color-primary">
-                    filter_by_status
-                  </TextStyle>
-                  <Icon icon="arrow_down" width={16} />
-                </Box>
-              </Box>
-            </Box>
-            <Box
-              direction="column"
-              gap={8}
-              color="var(--color-table-border-dark)"
-              bgColor="var(--color-neutral-light)"
-              border="all"
-              borderRadius="md"
-              borderWidth={1}
-            >
-              <Box
-                direction="column"
-                gap={8}
-                color="var(--color-table-border-dark)"
-                bgColor="var(--color-table-header-dark)"
-                borderWidth={1}
-                border="bottom"
-                px={8}
-                py={10}
-              >
-                <Box direction="row" gap={8}>
-                  <TextStyle variant="labelSmallBold" color="color-primary">
-                    contract_table_header_row1
-                  </TextStyle>
-                  <Icon icon="sorting" width={16} />
+                  <Box direction="row" gap={8}>
+                    <TextStyle variant="labelSmallBold" color="color-primary">
+                      filter_by_type_doc
+                    </TextStyle>
+                    <Icon icon="arrow_down" width={16} />
+                  </Box>
+                  <Box direction="row" gap={8}>
+                    <TextStyle variant="labelSmallBold" color="color-primary">
+                      filter_by_status
+                    </TextStyle>
+                    <Icon icon="arrow_down" width={16} />
+                  </Box>
                 </Box>
               </Box>
               <Box
@@ -110,14 +87,599 @@ export default function Home() {
                 gap={8}
                 color="var(--color-table-border-dark)"
                 bgColor="var(--color-neutral-light)"
-                px={8}
-                py={10}
+                border="all"
+                borderRadius="md"
+                borderWidth={1}
               >
-                <TextStyle variant="labelSmallBold" color="color-primary">
-                  contract_table_header_row1
-                </TextStyle>
+                <Box
+                  direction="column"
+                  gap={8}
+                  color="var(--color-table-border-dark)"
+                  bgColor="var(--color-table-header-dark)"
+                  borderWidth={1}
+                  border="bottom"
+                  px={8}
+                  py={10}
+                >
+                  <Box direction="row" gap={8}>
+                    <TextStyle variant="labelSmallBold" color="color-primary">
+                      contract_table_header_row1
+                    </TextStyle>
+                    <Icon icon="sorting" width={16} />
+                  </Box>
+                </Box>
+                <Box
+                  direction="column"
+                  gap={8}
+                  color="var(--color-table-border-dark)"
+                  bgColor="var(--color-neutral-light)"
+                  px={8}
+                  py={10}
+                >
+                  <TextStyle variant="labelSmallBold" color="color-primary">
+                    contract_table_header_row1
+                  </TextStyle>
+                </Box>
               </Box>
             </Box>
+
+            <>
+              {/* Common  Box */}
+              <Box direction="column" gap={50} mt={500}>
+                {/* Common Button  */}
+                <TextStyle variant="h2">Button</TextStyle>
+                <>
+                  <Box
+                    bgColor="#a4caf0"
+                    border="all" // all | top | bottom
+                    borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                    borderWidth={1} // 0 | 1 | 2
+                    boxShadow="top" // none | top | bottom
+                    direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+                    hover={true}
+                    gap={10}
+                    px={24}
+                    py={24}
+                  >
+                    <>
+                      {(
+                        [
+                          "primary",
+                          "negative",
+                          "secondary",
+                          "secondary-negative",
+                          "ghost-primary",
+                          "ghost-secondary",
+                          "ghost-negative",
+                          "ghost-primary-no-padding",
+                          "ghost-secondary-no-padding",
+                          "ghost-negative-no-padding",
+                          "ghost-icon-primary",
+                          "ghost-icon-secondary",
+                          "ghost-icon-negative",
+                          "ghost-icon-primary-no-padding",
+                          "ghost-icon-secondary-no-padding",
+                          "ghost-icon-negative-no-padding",
+                        ] as const
+                      ).map((variant) => (
+                        <Box key={variant} direction="none" gap={16}>
+                          <TextStyle variant="h4">Variant: {variant}</TextStyle>
+                          {!variant.includes("icon") && (
+                            <>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                              >
+                                Default
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                size={"large"}
+                              >
+                                Default Large
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                disabled
+                              >
+                                Disabled
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                disabled
+                                size={"large"}
+                              >
+                                Disabled Large
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                width="full"
+                                borderRadius="none"
+                              >
+                                Full Width Border radius none
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                width="full"
+                              >
+                                Full Width Border radius normal
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                width="full"
+                                borderRadius="round"
+                              >
+                                Full Width Border radius round
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                iconLeft="plus"
+                              >
+                                Left Icon
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                iconRight="calendar"
+                              >
+                                Right Icon
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                iconLeft="arrow_left"
+                                iconRight="arrow_right"
+                              >
+                                Both Icons
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                iconLeft="arrow_left"
+                                iconRight="arrow_right"
+                                disabled
+                              >
+                                Both Icons
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick" + variant);
+                                }}
+                                variant={variant}
+                                iconLeft="arrow_left"
+                                iconRight="arrow_right"
+                                size={"large"}
+                              >
+                                Both Icons Large
+                              </Button>
+                            </>
+                          )}
+                          <>
+                            <Button
+                              onClick={() => {
+                                console.log("onClick" + variant);
+                              }}
+                              variant={variant}
+                              iconLeft="printer"
+                              borderRadius="round"
+                            />
+                            <Button
+                              onClick={() => {
+                                console.log("onClick" + variant);
+                              }}
+                              variant={variant}
+                              iconLeft="edit"
+                            />
+                            <Button
+                              onClick={() => {
+                                console.log("onClick" + variant);
+                              }}
+                              variant={variant}
+                              iconLeft="share"
+                              size="large"
+                            />
+                            <Button
+                              onClick={() => {
+                                console.log("onClick" + variant);
+                              }}
+                              variant={variant}
+                              iconLeft="user_circle"
+                              borderRadius="round"
+                              disabled
+                            />
+                            <Button
+                              onClick={() => {
+                                console.log("onClick" + variant);
+                              }}
+                              variant={variant}
+                              iconLeft="trash"
+                              disabled
+                            />
+                            <Button
+                              onClick={() => {
+                                console.log("onClick" + variant);
+                              }}
+                              variant={variant}
+                              iconLeft="history"
+                              size="large"
+                              disabled
+                            />
+                          </>
+                        </Box>
+                      ))}
+                    </>
+                  </Box>
+                </>
+                {/* Common Button  */}
+
+                {/* Common TextStyle */}
+                <TextStyle variant="h2">TextStyle</TextStyle>
+                <>
+                  <Box
+                    bgColor="#a4caf0"
+                    border="all" // all | top | bottom
+                    borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                    borderWidth={1} // 0 | 1 | 2
+                    boxShadow="top" // none | top | bottom
+                    direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+                    hover={true}
+                    gap={10}
+                    px={24}
+                    py={24}
+                  >
+                    <>
+                      {/* Headings */}
+                      <Box direction="column" gap={16}>
+                        <TextStyle variant="h2">Heading Styles</TextStyle>
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h2">Heading 2</TextStyle>
+                          <TextStyle variant="h4">Heading 4</TextStyle>
+                          <TextStyle variant="h6">Heading 6</TextStyle>
+                          <TextStyle variant="pageTitle">Page Title</TextStyle>
+                        </Box>
+                      </Box>
+                      {/* Paragraphs */}
+                      <Box direction="column" gap={16}>
+                        <TextStyle variant="h2">Paragraph Styles</TextStyle>
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="paragraphMedium">
+                            Medium paragraph text for regular content
+                          </TextStyle>
+                          <TextStyle variant="paragraphSmall">
+                            Small paragraph text for secondary content
+                          </TextStyle>
+                          <TextStyle variant="paragraphXSmall">
+                            Extra small paragraph text for captions
+                          </TextStyle>
+                        </Box>
+                      </Box>
+                      {/* Labels */}
+                      <Box direction="column" gap={16}>
+                        <TextStyle variant="h2">Label Styles</TextStyle>
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="labelMedium">
+                            Medium Label
+                          </TextStyle>
+                          <TextStyle variant="labelSmall">
+                            Small Label
+                          </TextStyle>
+                          <TextStyle variant="labelSmallBold">
+                            Small Bold Label
+                          </TextStyle>
+                          <TextStyle variant="labelXSmall">
+                            Extra Small Label
+                          </TextStyle>
+                          <TextStyle variant="labelXSmallBold">
+                            Extra Small Bold Label
+                          </TextStyle>
+                        </Box>
+                      </Box>
+                      {/* Interactive Elements */}
+                      <Box direction="column" gap={16}>
+                        <TextStyle variant="h2">Interactive Styles</TextStyle>
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="buttonBig">
+                            Large Button Text
+                          </TextStyle>
+                          <TextStyle variant="buttonMedium">
+                            Medium Button Text
+                          </TextStyle>
+                        </Box>
+                      </Box>
+                      {/* Text Colors */}
+                      <Box direction="column" gap={16}>
+                        <TextStyle variant="h2">Text Colors</TextStyle>
+                        <Box direction="column" gap={8}>
+                          <TextStyle color="text-primary-dark">
+                            Primary Dark Text
+                          </TextStyle>
+                          <TextStyle color="color-primary">
+                            Primary Brand Color
+                          </TextStyle>
+                          <TextStyle color="color-secondary">
+                            Secondary Text
+                          </TextStyle>
+                          <TextStyle color="color-success">
+                            Success Message
+                          </TextStyle>
+                          <TextStyle color="color-danger">
+                            Error Message
+                          </TextStyle>
+                          <TextStyle color="color-warning">
+                            Warning Message
+                          </TextStyle>
+                        </Box>
+                      </Box>
+                      {/* Text Formatting */}
+                      <Box direction="column" gap={16}>
+                        <TextStyle variant="h2">Text Formatting</TextStyle>
+                        <Box direction="column" gap={8}>
+                          {/* Line Limiting */}
+                          <TextStyle limitLine={2}>
+                            This is a very long text that will be limited to 2
+                            lines. It demonstrates text truncation with ellipsis
+                            when content overflows the specified number of
+                            lines.
+                          </TextStyle>
+                          {/* Word Breaking */}
+                          <TextStyle wordBreak="break-all">
+                            This is a very long word that will break at any
+                            point
+                          </TextStyle>
+                          {/* Text Alignment */}
+                          <Box direction="column" gap={4}>
+                            <TextStyle textAlign="left">
+                              Left aligned text
+                            </TextStyle>
+                            <TextStyle textAlign="center">
+                              Center aligned text
+                            </TextStyle>
+                            <TextStyle textAlign="right">
+                              Right aligned text
+                            </TextStyle>
+                          </Box>
+                          {/* Regular text */}
+                          <TextStyle variant="paragraphMedium">
+                            Normal text
+                          </TextStyle>
+                          {/* Underlined text */}
+                          <TextStyle
+                            variant="paragraphMedium"
+                            textDecoration="underline"
+                          >
+                            Underlined text
+                          </TextStyle>
+                          {/* Overline text */}
+                          <TextStyle
+                            variant="paragraphMedium"
+                            textDecoration="overline"
+                          >
+                            Overline text
+                          </TextStyle>
+                        </Box>
+                        {/* Line through text */}
+                        <TextStyle
+                          variant="paragraphMedium"
+                          textDecoration="line-through"
+                        >
+                          {/* Struck through text */}
+                        </TextStyle>
+                      </Box>
+                      {/* Nested Text */}
+                      <Box direction="column" gap={16}>
+                        <TextStyle variant="h2">Nested Text Example</TextStyle>
+                        <TextStyle variant="h2">
+                          Main Heading with{" "}
+                          <TextStyle color="color-accent">
+                            inline accent text
+                          </TextStyle>{" "}
+                          and continuation
+                        </TextStyle>
+                      </Box>
+                    </>
+                  </Box>
+                  {/* White Space Handling */}
+                  <Box
+                    bgColor="#a4caf0"
+                    border="all" // all | top | bottom
+                    borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                    borderWidth={1} // 0 | 1 | 2
+                    boxShadow="top" // none | top | bottom
+                    direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+                    hover={true}
+                    gap={10}
+                    px={24}
+                    py={24}
+                  >
+                    <>
+                      <TextStyle variant="h2">Text Formatting</TextStyle>
+                      <TextStyle whiteSpace="nowrap">
+                        This text won't wrap to a new line even if it's very
+                        long
+                      </TextStyle>
+                    </>
+                  </Box>
+                </>
+                {/* Common TextStyle */}
+
+                {/* Common IconComponent */}
+                <TextStyle variant="h2">IconComponent</TextStyle>
+                <>
+                  <Box
+                    color="#f00"
+                    bgColor="#a4caf0"
+                    border="all" // all | top | bottom
+                    borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                    borderWidth={1} // 0 | 1 | 2
+                    boxShadow="top" // none | top | bottom
+                    textAlign="right" // left | center | right
+                    direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
+                    hover={true}
+                    gap={10}
+                    px={24}
+                    py={24}
+                  >
+                    <>
+                      {[
+                        ...[
+                          "alert_circle_bold",
+                          "alert_circle",
+                          "arrow_down_bold",
+                          "arrow_down",
+                          "arrow_left",
+                          "arrow_right",
+                          "arrow_up_bold",
+                          "arrow_up",
+                          "calendar",
+                          "cancel_circle_fill",
+                          "check_circle",
+                          "check",
+                          "close",
+                          "download",
+                          "edit",
+                          "help_circle_fill",
+                          "history",
+                          "home",
+                          "info_circle",
+                          "logout",
+                          "minus",
+                          "plus",
+                          "printer",
+                          "refresh",
+                          "save",
+                          "search",
+                          "share",
+                          "sort_ascending",
+                          "sort_descending",
+                          "sorting",
+                          "trash",
+                          "user_circle",
+                          "view_document",
+                          "img_empty_svg",
+                          "img_nodata_svg",
+                          "img_profile_circle",
+                          "img_ttb_logo",
+                        ],
+                      ].map((iconName) => (
+                        <Box
+                          key={iconName}
+                          direction="column"
+                          gap={4}
+                          alignItems="center"
+                        >
+                          <Icon
+                            icon={iconName}
+                            color="#0f0"
+                            width={50}
+                            height={50}
+                          />
+                          <span style={{fontSize: "12px"}}>{iconName}</span>
+                        </Box>
+                      ))}
+                    </>
+                  </Box>
+                </>
+                {/* Common IconComponent */}
+
+                {/* Common  Box */}
+                <TextStyle variant="h2">Box</TextStyle>
+                <>
+                  <Box
+                    color="#f00"
+                    bgColor="#a4caf0"
+                    border="all" // all | top | bottom
+                    borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                    borderWidth={1} // 0 | 1 | 2
+                    boxShadow="top" // none | top | bottom
+                    textAlign="left" // left | center | right
+                    alignItems="center" // start | center | end | baseline
+                    justifyContent="center" // start | center | end | space-between | space-around
+                    direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+                    hover={true}
+                    gap={0}
+                    px={0}
+                    py={0}
+                  >
+                    <>
+                      <TextStyle variant="paragraphMedium">box1</TextStyle>
+                      <TextStyle variant="paragraphMedium">box2</TextStyle>
+                    </>
+                  </Box>
+                  <Box
+                    color="#f00"
+                    bgColor="#a4caf0"
+                    border="all" // all | top | bottom
+                    borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                    borderWidth={1} // 0 | 1 | 2
+                    boxShadow="top" // none | top | bottom
+                    textAlign="center" // left | center | right
+                    alignItems="center" // start | center | end | baseline
+                    justifyContent="center" // start | center | end | space-between | space-around
+                    direction="row-wrap" // none | row | row-reverse | row-wrap | column | column-reverse
+                    hover={true}
+                    gap={50}
+                    px={10}
+                    py={10}
+                  >
+                    <>
+                      <TextStyle variant="paragraphMedium">box1</TextStyle>
+                      <TextStyle variant="paragraphMedium">box2</TextStyle>
+                    </>
+                  </Box>
+                  <Box
+                    color="#f00"
+                    bgColor="#a4caf0"
+                    border="all" // all | top | bottom
+                    borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                    borderWidth={1} // 0 | 1 | 2
+                    boxShadow="top" // none | top | bottom
+                    textAlign="right" // left | center | right
+                    alignItems="center" // start | center | end | baseline
+                    justifyContent="center" // start | center | end | space-between | space-around
+                    direction="column" // none | row | row-reverse | row-wrap | column | column-reverse
+                    hover={true}
+                    gap={50}
+                    px={10}
+                    py={50}
+                  >
+                    <>
+                      <TextStyle variant="paragraphMedium">box1</TextStyle>
+                      <TextStyle variant="paragraphMedium">box2</TextStyle>
+                    </>
+                  </Box>
+                </>
+              </Box>
+              {/* Common  Box */}
+            </>
           </Box>
         </Box>
       </Box>

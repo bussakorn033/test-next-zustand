@@ -1,7 +1,7 @@
-// write a typescript interface for the Box component
+// write a typescript interface for the Table component
 
 /**
- * Box component props
+ * Table component props
  * @param id - ID of the component
  * @param as - Render element type (e.g., 'div', 'button', etc.)
  * @param htmlFor - Used for labels targeting form inputs
@@ -19,7 +19,7 @@
  * @param textAlign - Horizontal text alignment
  * @param alignItems - Flex alignment on cross axis
  * @param justifyContent - Flex alignment on main axis
- * @param direction - Flexbox direction
+ * @param direction - FlexTable direction
  * @param p - Padding
  * @param px - Horizontal padding (left + right)
  * @param py - Vertical padding (top + bottom)
@@ -44,10 +44,10 @@
  * @param borderWidth - Border thickness
  * @param borderColor - Border color
  * @param borderRadius - Border radius (e.g., '4px', '50%')
- * @param boxShadow - Shadow style
+ * @param TableShadow - Shadow style
  */
 
-export interface BoxProps
+export interface TableProps
   extends React.HTMLAttributes<
     HTMLButtonElement | HTMLBaseElement | HTMLElement | undefined
   > {
@@ -112,5 +112,5 @@ export interface BoxProps
   borderWidth?: 0 | 1 | 2;
   borderColor?: string;
   borderRadius?: string;
-  boxShadow?: "none" | "top" | "bottom";
+  TableShadow?: "none" | "top" | "bottom";
 }

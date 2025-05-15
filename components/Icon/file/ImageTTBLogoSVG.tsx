@@ -2,11 +2,7 @@ import React from "react";
 import {StyledSvg} from "./SVG.styled";
 import {IconProps} from "./SVG.types";
 
-export const ImageTTBLogoSVG: React.FC<IconProps> = ({
-  color = "",
-
-  ...rest
-}) => (
+export const ImageTTBLogoSVG: React.FC<IconProps> = ({color = "", ...rest}) => (
   <StyledSvg
     viewBox="0 0 64 32"
     xmlns="http://www.w3.org/2000/svg"
@@ -48,12 +44,6 @@ export const ImageTTBLogoSVG: React.FC<IconProps> = ({
     </svg>
   </StyledSvg>
 );
-
-ImageTTBLogoSVG.defaultProps = {
-  color: "",
-  width: "64",
-  height: "32",
-};
 
 ImageTTBLogoSVG.displayName = "ImageTTBLogoSVG";
 

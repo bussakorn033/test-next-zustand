@@ -31,7 +31,6 @@ export const Button = ({
 
   return (
     <S.StyledButton
-      {...rest}
       tag="button"
       role="button"
       direction={iconRight ? "row-reverse" : "row"}
@@ -44,6 +43,7 @@ export const Button = ({
       isIconOnly={isIconOnly}
       justifyContent="center"
       className={classnames}
+      {...rest}
     >
       {icon && (
         <Icon

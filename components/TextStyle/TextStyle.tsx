@@ -1,21 +1,21 @@
 import classNames from "classnames";
 import React, {forwardRef} from "react";
-import {TextStyleProps} from "./TextStyle.types";
 import * as S from "./TextStyle.styled";
+import {TextStyleProps} from "./TextStyle.types";
 
 export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
   (
     {
-      variant,
+      variant = "paragraphMedium",
       color,
-      className,
-      tag,
+      className = "",
+      tag = "p",
       children,
-      limitLine,
-      whiteSpace,
-      wordBreak,
-      textAlign,
-      textDecoration,
+      limitLine = 0,
+      whiteSpace = "pre-line",
+      wordBreak = "normal",
+      textAlign = "left",
+      textDecoration = "none",
       ...rest
     }: TextStyleProps,
     ref,
@@ -85,7 +85,7 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
 
     return (
       <S.TextStyle
-        as={tag ? tag : customTag}
+        as={tag || customTag}
         variant={variant}
         className={classnames}
         limitLine={limitLine}
@@ -105,18 +105,6 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
     );
   },
 );
-
-TextStyle.defaultProps = {
-  variant: "paragraphMedium",
-  whiteSpace: "pre-line",
-  textDecoration: "none",
-  wordBreak: "normal",
-  textAlign: "left",
-  limitLine: 0,
-  color: null,
-  tag: "p",
-  className: "",
-};
 
 TextStyle.displayName = "TextStyle";
 

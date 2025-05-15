@@ -1,2 +1,2 @@
-export { default as DSTextField } from './TextField'
-export type { TextFieldProps } from "./TextField.types";
+export {default as TextField} from "./TextField";
+export type {TextFieldProps} from "./TextField.types";

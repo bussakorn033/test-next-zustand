@@ -3,8 +3,13 @@ import {Box} from "../Box";
 import {IconProps} from "./Icon.types";
 import {IconComponent} from "./IconList";
 
-export const Icon = ({...rest}: IconProps) => {
-  const {className, icon = "", color = "", width = null, height = null} = rest;
+export const Icon = ({
+  className,
+  icon = "",
+  color = "#002D63",
+  width = 24,
+  height = 24,
+}: IconProps) => {
   const classnames = classNames(className, "ds-ui-icon");
 
   return (
@@ -17,11 +22,6 @@ export const Icon = ({...rest}: IconProps) => {
       />
     </Box>
   );
-};
-
-Icon.defaultProps = {
-  icon: "",
-  color: "#002D63",
 };
 
 Icon.displayName = "Icon";

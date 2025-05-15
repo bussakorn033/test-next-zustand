@@ -1,14 +1,14 @@
 import classNames from "classnames";
 import {forwardRef} from "react";
-import * as S from "./Box.styled";
-import {BoxProps} from "./Box.types";
+import * as S from "./Table.styled";
+import {TableProps} from "./Table.types";
 
-export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
+export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   (
     {
       className,
       tag = "div",
-      boxShadow = "none",
+      TableShadow = "none",
       bgColor = "transparent",
       hover,
       fullWidth,
@@ -18,16 +18,16 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
       borderWidth = 0,
       direction = "none",
       ...rest
-    }: BoxProps,
+    }: TableProps,
     ref,
   ) => {
-    const classnames = classNames(className, "ds-ui-box");
+    const classnames = classNames(className, "ds-ui-table");
 
     return (
-      <S.Box
+      <S.Table
         as={tag}
         bgColor={bgColor}
-        boxShadow={boxShadow}
+        TableShadow={TableShadow}
         className={classnames}
         fullWidth={fullWidth}
         fullHeight={fullHeight}
@@ -40,11 +40,11 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
         {...rest}
       >
         {rest?.children}
-      </S.Box>
+      </S.Table>
     );
   },
 );
 
-Box.displayName = "Box";
+Table.displayName = "Table";
 
-export default Box;
+export default Table;

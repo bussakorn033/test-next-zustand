@@ -4,9 +4,8 @@ import {IconProps} from "./SVG.types";
 
 export const PlusSVG: React.FC<IconProps> = ({
   color = "#002D63",
-
-  width,
-  height,
+  width = "24px",
+  height = "24px",
   ...rest
 }) => (
   <StyledSvg
@@ -26,12 +25,6 @@ export const PlusSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-PlusSVG.defaultProp = {
-  color: "#002D63",
-  width: "24px",
-  height: "24px",
-};
 
 PlusSVG.displayName = "PlusSVG";
 

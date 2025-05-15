@@ -4,9 +4,8 @@ import {IconProps} from "./SVG.types";
 
 export const CloseSVG: React.FC<IconProps> = ({
   color = "#002D63",
-
-  width,
-  height,
+  width = "24px",
+  height = "24px",
   ...rest
 }) => (
   <StyledSvg
@@ -26,12 +25,6 @@ export const CloseSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-CloseSVG.defaultProps = {
-  color: "#002D63",
-  width: "24px",
-  height: "24px",
-};
 
 CloseSVG.displayName = "CloseSVG";
 

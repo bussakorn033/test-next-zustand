@@ -145,7 +145,7 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
         `;
       default: // primary
         return css`
-          padding: ${variant.includes("-no-padding")
+          padding: ${variant?.includes("-no-padding")
             ? "var(--button-padding-none)"
             : ""} !important;
           box-sizing: border-box;
@@ -190,16 +190,6 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
 
   ${({borderRadius, variant}) => {
     switch (borderRadius) {
-      //   case "ghost-icon-primary":
-      //   case "ghost-icon-secondary":
-      //   case "ghost-icon-negative":
-      //   case "ghost-icon-primary-no-padding":
-      //   case "ghost-icon-secondary-no-padding":
-      //   case "ghost-icon-negative-no-padding":
-      //     return css`
-      //       border-radius: var(--radius-circle);
-      //       background: pink;
-      //     `;
       case "none":
         return css`
           border-radius: var(--radius-none);

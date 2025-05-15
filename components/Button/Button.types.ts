@@ -1,18 +1,24 @@
 import React from "react";
 
+/**
+ * Button component props
+ * @param id - ID of component
+ * @param className - CSS class names that can be appended to the component
+ * @param variant - Button variation
+ * @param label - Button label
+ * @param size - Optional size
+ * @param width - Optional width
+ * @param borderRadius - Optional border radius
+ * @param iconLeft - Optional icon on the left
+ * @param iconRight - Optional icon on the right
+ * @param disabled - Button disabled state
+ * @param children - Button content
+ */
+
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /**
-   * ID of component
-   */
   id?: string;
-  /**
-   * CSS class names that can be appended to the component.
-   */
   className?: string;
-  /**
-   * Button variation.
-   */
   variant?:
     | "primary"
     | "negative"
@@ -29,32 +35,14 @@ export interface ButtonProps
     | "ghost-icon-negative"
     | "ghost-icon-primary-no-padding"
     | "ghost-icon-secondary-no-padding"
-    | "ghost-icon-negative-no-padding";
-
-  /**
-   * Button label
-   */
+    | "ghost-icon-negative-no-padding"
+    | undefined;
   label?: string;
-  /**
-   * Optional size
-   */
   size?: "medium" | "large";
-  /**
-   * Optional width
-   */
   width?: "normal" | "full";
-  /**
-   * Optional size
-   */
   borderRadius?: "normal" | "round" | "none";
-  /**
-   * Optional icon
-   */
   iconLeft?: string;
   iconRight?: string;
-  /**
-   * Button disabled
-   */
   disabled?: boolean;
   children?: React.ReactNode;
 }

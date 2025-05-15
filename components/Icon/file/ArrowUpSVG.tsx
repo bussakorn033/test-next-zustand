@@ -3,9 +3,9 @@ import {StyledSvg} from "./SVG.styled";
 import {IconProps} from "./SVG.types";
 
 export const ArrowUpSVG: React.FC<IconProps> = ({
-  color,
-  width,
-  height,
+  color = "#002D63",
+  width = "24px",
+  height = "24px",
   ...rest
 }) => (
   <StyledSvg
@@ -24,12 +24,6 @@ export const ArrowUpSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-ArrowUpSVG.defaultProps = {
-  color: "#002D63",
-  width: "24px",
-  height: "24px",
-};
 
 ArrowUpSVG.displayName = "ArrowUpSVG";
 

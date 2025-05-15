@@ -1,13 +1,17 @@
+/**
+ * Icon component props
+ * @param id - ID of component
+ * @param className - CSS class names that can be appended to the component
+ * @param icon - Icon name or path (required)
+ * @param color - Color of the icon (see color guide)
+ * @param width - Width of the icon in pixels
+ * @param height - Height of the icon in pixels
+ */
+
 export interface IconProps {
-  /**
-   * ID of component
-   */
   id?: string;
   className?: string;
   icon: string | undefined;
-  /**
-   * Get color name <a href="/?path=/story/colors--page" target="_blank">here</a> 🎨
-   */
   color?: string;
   width?: number;
   height?: number;

@@ -4,9 +4,8 @@ import {IconProps} from "./SVG.types";
 
 export const ArrowUpBoldSVG: React.FC<IconProps> = ({
   color = "#002D63",
-
-  width,
-  height,
+  width = "24px",
+  height = "24px",
   ...rest
 }) => (
   <StyledSvg
@@ -26,12 +25,6 @@ export const ArrowUpBoldSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-ArrowUpBoldSVG.defaultProps = {
-  color: "#002D63",
-  width: "24px",
-  height: "24px",
-};
 
 ArrowUpBoldSVG.displayName = "ArrowUpBoldSVG";
 

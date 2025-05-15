@@ -3,9 +3,9 @@ import {StyledSvg} from "./SVG.styled";
 import {IconProps} from "./SVG.types";
 
 export const ArrowLeftSVG: React.FC<IconProps> = ({
-  color,
-  width,
-  height,
+  color = "#002D63",
+  width = "24px",
+  height = "24px",
   ...rest
 }) => (
   <StyledSvg
@@ -24,11 +24,5 @@ export const ArrowLeftSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-ArrowLeftSVG.defaultProps = {
-  color: "#002D63",
-  width: "24px",
-  height: "24px",
-};
 
 export default ArrowLeftSVG;

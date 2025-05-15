@@ -1,7 +1,7 @@
 ## Usage
 
 ```js
-import {Button} from "@/shared-components/ButtonCommon";
+import {Button} from "@/shared-components/Button";
 
 <Button
     variant="ghost-primary"

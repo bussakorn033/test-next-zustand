@@ -4,7 +4,6 @@ import {IconProps} from "./SVG.types";
 
 export const ImageProfileCircleSVG: React.FC<IconProps> = ({
   color = "",
-
   ...rest
 }) => (
   <StyledSvg
@@ -25,12 +24,6 @@ export const ImageProfileCircleSVG: React.FC<IconProps> = ({
     />
   </StyledSvg>
 );
-
-ImageProfileCircleSVG.defaultProps = {
-  color: "",
-  width: "24px",
-  height: "24px",
-};
 
 ImageProfileCircleSVG.displayName = "ImageProfileCircleSVG";
 

@@ -70,6 +70,9 @@ export interface BoxProps
   maxWidth?: number;
   maxHeight?: number;
   limit?: number;
+  overflow?: "auto" | "scroll" | "hidden" | "visible";
+  overflowX?: "auto" | "scroll" | "hidden" | "visible";
+  overflowY?: "auto" | "scroll" | "hidden" | "visible";
 
   textAlign?: "left" | "center" | "right";
   alignItems?: "start" | "center" | "end" | "baseline";

@@ -27,7 +27,7 @@ function transformFlexProperties(
 }
 
 export const Box = styled.div`
-  overflow: auto;
+  /* overflow: auto; */
 
   ${(props: Omit<BoxProps, "as">) => {
     if (props.direction !== "none") {
@@ -42,6 +42,27 @@ export const Box = styled.div`
         ${props.gap && `gap: ${props.gap}px;`}
         ${props.gapRow && `row-gap: ${props.gapRow}px;`}
         ${props.gapColumn && `column-gap: ${props.gapColumn}px;`}
+      `;
+    }
+  }}
+  ${(props: BoxProps) => {
+    if (props.overflow) {
+      return css`
+        overflow: ${props.overflow};
+      `;
+    }
+  }}
+  ${(props: BoxProps) => {
+    if (props.overflowX) {
+      return css`
+        overflow-x: ${props.overflowX};
+      `;
+    }
+  }}
+  ${(props: BoxProps) => {
+    if (props.overflowY) {
+      return css`
+        overflow-y: ${props.overflowY};
       `;
     }
   }}

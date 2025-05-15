@@ -5,6 +5,8 @@ import {TextField} from "@/components-keep/TextField";
 import {Box} from "@/components/Box";
 import {Button} from "@/components/Button";
 import Icon from "@/components/Icon/Icon";
+import {Table} from "@/components/Table";
+import {TableColumn} from "@/components/Table/Table.types";
 import {TextStyle} from "@/components/TextStyle";
 import globalSlice from "@/stores/globalSlice";
 
@@ -25,11 +27,54 @@ export default function Home() {
     calculateBearAndFish, // SharedState
   } = globalStore;
 
+  const row = 10;
+  const col = 10;
+  // Click handlers
+  const onClickHeader = (index: number) => {
+    // console.log(`Header clicked at index: ${index}`);
+  };
+
+  const onClickValue = (index: number) => {
+    // console.log(`Value clicked at index: ${index}`);
+  };
+
+  // Initialize header and data arrays
+  const headers = Array.apply(null, Array(col)).map((_, i) => ({
+    value:
+      i < 3 ? (
+        <TextStyle variant="h2" color="color-primary">
+          {`header${i + 1}`}
+        </TextStyle>
+      ) : (
+        `header${i + 1}`
+      ),
+    isSort: i < 3,
+    sortBy: i == 0 ? "asc" : i == 1 ? "desc" : undefined,
+    onClick: ({index}: any) => onClickHeader(index),
+  }));
+
+  // console.log(`---- headers:`, headers);
+  const rows: TableColumn[][] = Array.from({length: row}, (_, rowIndex) =>
+    Array.from({length: col}, (_, colIndex) => ({
+      value:
+        colIndex < 3 ? (
+          <TextStyle variant="h2" color="color-primary">
+            {`Value${rowIndex + 1}-${colIndex + 1}`}
+          </TextStyle>
+        ) : (
+          `Value${rowIndex + 1}-${colIndex + 1}`
+        ),
+      onClick: ({index}: any) => onClickValue(index),
+    })),
+  );
+
+  // console.log(`---- rows:`, rows);
+
   return (
     <>
-      <Box bgColor="var(--color-bg-primary)" fullHeight>
+      <Box bgColor="var(--color-bg-primary)" fullHeight fullWidth>
         <Box direction="column" p={32}>
-          <Box direction="column" fullWidth>
+          <Box direction="column">
             <Box direction="column" gap={24}>
               <Box direction="column" gap={48}>
                 <Box direction="column" gap={0}>
@@ -47,7 +92,7 @@ export default function Home() {
                   <TextStyle variant="h4" color="color-primary">
                     title_table
                   </TextStyle>
-                  <Box direction="row" gap={8}>
+                  <Box direction="row" alignItems="center" gap={8}>
                     <Button variant="ghost-primary" iconLeft="refresh">
                       btn_refresh
                     </Button>
@@ -60,21 +105,21 @@ export default function Home() {
 
               <Box direction="row" justifyContent="space-between">
                 <Box direction="column" justifyContent="center" gap={8}>
-                  <Box direction="row" gap={8}>
+                  <Box direction="row" alignItems="center" gap={8}>
                     <TextStyle variant="labelXSmall" color="color-secondary">
                       filter_by_user
                     </TextStyle>
                     <Icon icon="arrow_down" width={16} color="color-primary" />
                   </Box>
                 </Box>
-                <Box direction="row" gap={8}>
-                  <Box direction="row" gap={8}>
+                <Box direction="row" alignItems="center" gap={8}>
+                  <Box direction="row" alignItems="center" gap={8}>
                     <TextStyle variant="labelSmallBold" color="color-primary">
                       filter_by_type_doc
                     </TextStyle>
                     <Icon icon="arrow_down" width={16} />
                   </Box>
-                  <Box direction="row" gap={8}>
+                  <Box direction="row" alignItems="center" gap={8}>
                     <TextStyle variant="labelSmallBold" color="color-primary">
                       filter_by_status
                     </TextStyle>
@@ -82,50 +127,20 @@ export default function Home() {
                   </Box>
                 </Box>
               </Box>
-              <Box
-                direction="column"
-                gap={8}
-                color="var(--color-table-border-dark)"
-                bgColor="var(--color-neutral-light)"
-                border="all"
-                borderRadius="md"
-                borderWidth={1}
-              >
-                <Box
-                  direction="column"
-                  gap={8}
-                  color="var(--color-table-border-dark)"
-                  bgColor="var(--color-table-header-dark)"
-                  borderWidth={1}
-                  border="bottom"
-                  px={8}
-                  py={10}
-                >
-                  <Box direction="row" gap={8}>
-                    <TextStyle variant="labelSmallBold" color="color-primary">
-                      contract_table_header_row1
-                    </TextStyle>
-                    <Icon icon="sorting" width={16} />
-                  </Box>
-                </Box>
-                <Box
-                  direction="column"
-                  gap={8}
-                  color="var(--color-table-border-dark)"
-                  bgColor="var(--color-neutral-light)"
-                  px={8}
-                  py={10}
-                >
-                  <TextStyle variant="labelSmallBold" color="color-primary">
-                    contract_table_header_row1
-                  </TextStyle>
-                </Box>
-              </Box>
+
+              <>
+                <Table headers={headers} rows={rows} />
+              </>
             </Box>
 
             <>
               {/* Common  Box */}
               <Box direction="column" gap={50} mt={500}>
+                {/* Common Table  */}
+                <TextStyle variant="h2">Table</TextStyle>
+                <></>
+                {/* Common Table  */}
+
                 {/* Common Button  */}
                 <TextStyle variant="h2">Button</TextStyle>
                 <>
@@ -168,7 +183,7 @@ export default function Home() {
                             <>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                               >
@@ -176,7 +191,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 size={"large"}
@@ -185,7 +200,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 disabled
@@ -194,7 +209,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 disabled
@@ -204,7 +219,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 width="full"
@@ -214,7 +229,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 width="full"
@@ -223,7 +238,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 width="full"
@@ -233,7 +248,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 iconLeft="plus"
@@ -242,7 +257,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 iconRight="calendar"
@@ -251,7 +266,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 iconLeft="arrow_left"
@@ -261,7 +276,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 iconLeft="arrow_left"
@@ -272,7 +287,7 @@ export default function Home() {
                               </Button>
                               <Button
                                 onClick={() => {
-                                  console.log("onClick" + variant);
+                                  // console.log("onClick" + variant);
                                 }}
                                 variant={variant}
                                 iconLeft="arrow_left"
@@ -286,7 +301,7 @@ export default function Home() {
                           <>
                             <Button
                               onClick={() => {
-                                console.log("onClick" + variant);
+                                // console.log("onClick" + variant);
                               }}
                               variant={variant}
                               iconLeft="printer"
@@ -294,14 +309,14 @@ export default function Home() {
                             />
                             <Button
                               onClick={() => {
-                                console.log("onClick" + variant);
+                                // console.log("onClick" + variant);
                               }}
                               variant={variant}
                               iconLeft="edit"
                             />
                             <Button
                               onClick={() => {
-                                console.log("onClick" + variant);
+                                // console.log("onClick" + variant);
                               }}
                               variant={variant}
                               iconLeft="share"
@@ -309,7 +324,7 @@ export default function Home() {
                             />
                             <Button
                               onClick={() => {
-                                console.log("onClick" + variant);
+                                // console.log("onClick" + variant);
                               }}
                               variant={variant}
                               iconLeft="user_circle"
@@ -318,7 +333,7 @@ export default function Home() {
                             />
                             <Button
                               onClick={() => {
-                                console.log("onClick" + variant);
+                                // console.log("onClick" + variant);
                               }}
                               variant={variant}
                               iconLeft="trash"
@@ -326,7 +341,7 @@ export default function Home() {
                             />
                             <Button
                               onClick={() => {
-                                console.log("onClick" + variant);
+                                // console.log("onClick" + variant);
                               }}
                               variant={variant}
                               iconLeft="history"
@@ -570,7 +585,7 @@ export default function Home() {
                           "history",
                           "home",
                           "info_circle",
-                          "logout",
+                          // "logout",
                           "minus",
                           "plus",
                           "printer",
@@ -587,7 +602,7 @@ export default function Home() {
                           "img_empty_svg",
                           "img_nodata_svg",
                           "img_profile_circle",
-                          "img_ttb_logo",
+                          // "img_ttb_logo",
                         ],
                       ].map((iconName) => (
                         <Box

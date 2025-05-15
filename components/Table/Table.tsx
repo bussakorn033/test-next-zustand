@@ -57,10 +57,10 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               <Box
                 direction="row"
                 gap={8}
-                // color="var(--color-table-border-dark)"
-                // bgColor="var(--color-table-header-dark)"
-                // borderWidth={1}
-                // border="bottom"
+                color="var(--color-table-border-dark)"
+                bgColor="var(--color-table-header-dark)"
+                borderWidth={1}
+                border="bottom"
                 px={8}
                 py={10}
                 style={{width: "100%"}}

@@ -32,44 +32,50 @@ export default function Home() {
 
   const row = 10;
   const col = 10;
-  // Click handlers
-  const onClickHeader = (index: number) => {
-    // console.log(`Header clicked at index: ${index}`);
+
+  const onClickHeader = ({row, col}: Record<string, number>) => {
+    console.log(`Header clicked at index:`);
+    console.log(`---- row:`, row);
+    console.log(`---- col:`, col);
   };
 
-  const onClickValue = (index: number) => {
-    // console.log(`Value clicked at index: ${index}`);
+  const onClickValue = ({row, col}: Record<string, number>) => {
+    console.log(`Value clicked at index:`);
+    console.log(`---- row:`, row);
+    console.log(`---- col:`, col);
   };
 
-  // Initialize header and data arrays
   const headers = Array.apply(null, Array(col)).map((_, i) => ({
-    value: `${i + 1}`,
-    // value:
-    //   i < 3 ? (
-    //     <TextStyle variant="h2" color="color-primary">
-    //       {`header${i + 1}`}
-    //     </TextStyle>
-    //   ) : (
-    //     `header${i + 1}`
-    //   ),
+    // value: `${i + 1}`,
+    value:
+      i < 3 ? (
+        <TextStyle variant="h4" color="color-primary">
+          {`header${i + 1}`}
+        </TextStyle>
+      ) : (
+        `header${i + 1}`
+      ),
     isSort: i < 3,
     sortBy: i == 0 ? "asc" : i == 1 ? "desc" : undefined,
-    onClick: ({index}: any) => onClickHeader(index),
+    onClick: i < 3 ? (e: any) => onClickHeader(e) : () => null,
+    minWidth: "100px",
+    flex: 1,
   }));
 
-  // console.log(`---- headers:`, headers);
-  const rows: TableColumn[][] = Array.from({length: row}, (_, rowIndex) =>
+  const rows = Array.from({length: row}, (_, rowIndex) =>
     Array.from({length: col}, (_, colIndex) => ({
-      value: `${rowIndex + 1}-${colIndex + 1}`,
-      // value:
-      //   colIndex < 3 ? (
-      //     <TextStyle variant="h2" color="color-primary">
-      //       {`Value${rowIndex + 1}-${colIndex + 1}`}
-      //     </TextStyle>
-      //   ) : (
-      //     `Value${rowIndex + 1}-${colIndex + 1}`
-      //   ),
-      onClick: ({index}: any) => onClickValue(index),
+      // value: `${rowIndex + 1}-${colIndex + 1}`,
+      value:
+        colIndex < 3 ? (
+          <TextStyle variant="h4" color="color-primary">
+            {`Value${rowIndex + 1}-${colIndex + 1}`}
+          </TextStyle>
+        ) : (
+          `Value${rowIndex + 1}-${colIndex + 1}`
+        ),
+      onClick: colIndex < 4 ? (e: any) => onClickValue(e) : null,
+      minWidth: "100px",
+      flex: 1,
     })),
   );
 

@@ -39,21 +39,20 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           borderRadius="md"
           overflow="hidden"
         >
+          {/* Scrollable area */}
           <Box direction="column">
-            {/* Scrollable area */}
-            <Box direction="column" overflowX="auto" maxHeight={600}>
+            <Box
+              direction="column"
+              overflowX="auto"
+              // width="100vw"
+              // maxHeight={600}
+            >
               <Box>
                 {/* Header */}
                 <Box
                   direction="row"
-                  // bgColor="var(--color-table-header-dark)"
-                  // borderWidth={1}
-                  // border="bottom"
-                  // gap={16}
-                  // px={8}
-                  // py={10}
+                  bgColor="var(--color-table-header-dark)"
                   style={{
-                    // width: "100%",
                     position: "sticky",
                     top: 0,
                     zIndex: 10,
@@ -67,19 +66,16 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       bgColor="var(--color-table-header-dark)"
                       borderWidth={1}
                       border="bottom"
-                      // gap={4}
-                      px={8}
-                      py={10}
+                      p={8}
+                      gap={4}
                       style={{
-                        flex: 1,
-                        // border: "1px solid pink",
-                        // background: "yellow",
-                        width: "calc(100% / 10)",
-                        minWidth: "50px",
-                        // maxWidth: "300px",
-                        cursor: col.onClick ? "pointer" : "default",
+                        // flex: 1,
+                        flex: col.flex,
+                        // width: "100%",
+                        minWidth: col.minWidth,
+                        maxWidth: "500px",
                       }}
-                      onClick={() => col.onClick?.({index})}
+                      onClick={() => col.onClick?.({row: 1, col: index})}
                     >
                       <TextStyle variant="labelSmallBold" color="color-primary">
                         {col.value}
@@ -105,64 +101,29 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 {/* Header */}
 
                 {/* Body */}
-                <Box
-                  direction="column"
-                  // px={8}
-                  // py={10}
-                >
+                <Box direction="column">
                   {rows.map((item, rowIndex) => (
-                    // <Box
-                    //   direction="row"
-                    //   alignItems="center"
-                    //   // bgColor="var(--color-table-header-dark)"
-                    //   borderWidth={1}
-                    //   border="bottom"
-                    // >
-                    <Box
-                      key={rowIndex}
-                      direction="row"
-                      // bgColor="var(--color-error)"
-                      // borderWidth={1}
-                      // border="bottom"
-                      // gap={16}
-                      // px={8}
-                      // py={10}
-                      style={{
-                        // width: "100%",
-                        position: "sticky",
-                        top: 0,
-                        zIndex: 10,
-                      }}
-                    >
-                      {headers.map((_, colIndex) => {
-                        const cell = item[colIndex] || {value: ""}; // fallback
+                    <Box key={rowIndex} direction="row" height="100%" m={0}>
+                      {item.map((col, colIndex) => {
+                        const cell = col || {value: ""};
                         return (
                           <Box
                             key={colIndex}
-                            px={8}
-                            py={10}
-                            // bgColor="var(--color-error)"
+                            onClick={() =>
+                              col.onClick?.({row: rowIndex, col: colIndex})
+                            }
+                            role={col.onClick !== null ? "button" : "div"}
                             borderWidth={1}
-                            border="top"
+                            border="bottom"
+                            px={8}
+                            py={16}
                             style={{
-                              // border: "1px solid pink",
-                              // background: "yellow",
-                              width: "calc(100% / 10)",
-                              minWidth: "50px",
-                              // maxWidth: "300px",
-                              flex: 1,
+                              // flex: 1,
+                              // width: "100%",
+                              // minWidth: "70px",
+                              maxWidth: "500px",
                             }}
                           >
-                            {/* <Button
-                              variant="ghost-primary-no-padding"
-                              width="full"
-                              color="color-primary"
-                              onClick={() => cell.onClick?.({index: colIndex})}
-                              style={{
-                                cursor: cell.onClick ? "pointer" : "default",
-                                justifyContent: "flex-start",
-                              }}
-                            > */}
                             <TextStyle
                               variant="paragraphSmall"
                               color="color-primary"
@@ -170,7 +131,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                             >
                               {cell.value}
                             </TextStyle>
-                            {/* </Button> */}
                           </Box>
                         );
                       })}
@@ -181,6 +141,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               </Box>
             </Box>
           </Box>
+          {/* Scrollable area */}
 
           {/* Footer */}
           <Box
@@ -189,8 +150,8 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
             justifyContent="end"
             gap={24}
             color="var(--color-table-border-dark)"
-            borderWidth={1}
-            border="top"
+            // borderWidth={1}
+            // border="top"
             p={8}
           >
             {/* Option */}

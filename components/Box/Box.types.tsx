@@ -13,7 +13,11 @@
  * @param fullWidth - If true, sets width to 100%
  * @param fullHeight - If true, sets height to 100vdh
  * @param column - Number of columns (if applicable)
+ * @param width - Width of the component
+ * @param height - Height of the component
+ * @param minWidth - Minimum width of the component
  * @param maxWidth - Maximum width of the component
+ * @param minHeight - Minimum height of the component
  * @param maxHeight - Maximum height of the component
  * @param limit - Limit value (context-specific)
  * @param textAlign - Horizontal text alignment
@@ -67,7 +71,11 @@ export interface BoxProps
   fullWidth?: boolean;
   fullHeight?: boolean;
   column?: number;
+  width?: string;
+  height?: string;
+  minWidth?: number;
   maxWidth?: number;
+  minHeight?: number;
   maxHeight?: number;
   limit?: number;
   overflow?: "auto" | "scroll" | "hidden" | "visible";

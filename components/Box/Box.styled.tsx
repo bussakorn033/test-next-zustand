@@ -27,7 +27,22 @@ function transformFlexProperties(
 }
 
 export const Box = styled.div`
-  /* overflow: auto; */
+  &[role="button"] {
+    cursor: pointer;
+    * {
+      cursor: pointer;
+      /* background: pink; */
+    }
+  }
+
+  &[aria-disabled="true"] {
+    cursor: default;
+    opacity: 0.5;
+    pointer-events: none;
+    * {
+      cursor: default;
+    }
+  }
 
   ${(props: Omit<BoxProps, "as">) => {
     if (props.direction !== "none") {
@@ -77,6 +92,34 @@ export const Box = styled.div`
     if (props.fullHeight) {
       return css`
         height: 100dvh;
+      `;
+    }
+  }}
+  ${(props: BoxProps) => {
+    if (props.width) {
+      return css`
+        width: ${props.width};
+      `;
+    }
+  }}
+  ${(props: BoxProps) => {
+    if (props.height) {
+      return css`
+        height: ${props.height};
+      `;
+    }
+  }}
+  ${(props: BoxProps) => {
+    if (props.minWidth) {
+      return css`
+        min-width: ${props.minWidth}px;
+      `;
+    }
+  }}
+  ${(props: BoxProps) => {
+    if (props.minHeight) {
+      return css`
+        min-height: ${props.minHeight}px;
       `;
     }
   }}

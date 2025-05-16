@@ -46,158 +46,165 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
         >
           {/* Scrollable area */}
           <Box direction="column">
-            <Box direction="column" overflowX="auto" overflowY="hidden">
-              <Box>
-                {/* Header */}
-                <Box
-                  direction="row"
-                  bgColor="var(--color-table-header-dark)"
-                  style={{position: "sticky", top: 0, zIndex: 100}}
-                >
-                  {headers.map((col, index) => (
+            <Box
+              direction="column"
+              // overflowY="hidden"
+              // overflowX="auto"
+              overflow="auto"
+              minHeight={300}
+              maxHeight={500}
+              fullWidth
+            >
+              {/* Header */}
+              <Box
+                direction="row"
+                bgColor="var(--color-table-header-dark)"
+                style={{position: "sticky", top: 0, zIndex: 100}}
+              >
+                {headers.map((col, index) => (
+                  <Box
+                    key={index}
+                    direction="row"
+                    alignItems="center"
+                    bgColor="var(--color-table-header-dark)"
+                    borderWidth={1}
+                    border="bottom"
+                    p={8}
+                    gap={4}
+                    style={{
+                      flex: col.flex ?? 1,
+                      minWidth: col.minWidth ?? "100px",
+                      maxWidth: col.maxWidth ?? undefined,
+                    }}
+                    onClick={() => {
+                      const result = col.onClick?.({row: 1, col: index});
+                      console.log("Header onClick:", {
+                        row: 1,
+                        col: index,
+                        result,
+                      });
+                    }}
+                  >
+                    <TextStyle
+                      variant="labelSmallBold"
+                      color="color-primary"
+                      limitLine={1}
+                      style={{width: col.isSort ? "fit-content" : "100%"}}
+                    >
+                      {col.value}
+                    </TextStyle>
+                    {col.isSort && (
+                      <Button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const result = col.onClick?.({row: 1, col: index});
+                          console.log("Sort icon onClick:", {
+                            row: 1,
+                            col: index,
+                            result,
+                          });
+                        }}
+                        variant="ghost-primary-no-padding"
+                        borderRadius="round"
+                      >
+                        <Icon
+                          icon={getSortIcon(col.sortBy)}
+                          width={16}
+                          height={16}
+                        />
+                      </Button>
+                    )}
+                  </Box>
+                ))}
+              </Box>
+              {/* Header */}
+
+              {/* Body */}
+              <Box
+                direction="column"
+                // justifyContent="center"
+                // alignItems="center"
+                // overflowY="auto"
+                // overflowX="hidden"
+                // minHeight={500}
+                // maxHeight={500}
+                minHeight={300}
+                maxHeight={500}
+                fullWidth
+              >
+                {!!values.length && values.length !== 0 ? (
+                  <>
+                    <Box direction="column" fullWidth>
+                      {values.map((item, rowIndex) => (
+                        <Box key={rowIndex} direction="row" height="100%" m={0}>
+                          {item.map((col, colIndex) => {
+                            const cell = col || {value: ""};
+                            return (
+                              <Box
+                                key={colIndex}
+                                onClick={() => {
+                                  const result = col.onClick?.({
+                                    row: rowIndex,
+                                    col: colIndex,
+                                  });
+                                  console.log("Cell onClick:", {
+                                    row: rowIndex,
+                                    col: colIndex,
+                                    result,
+                                  });
+                                }}
+                                role={col.onClick ? "button" : "div"}
+                                borderWidth={1}
+                                border="top"
+                                px={8}
+                                py={16}
+                                style={{
+                                  flex: headers[colIndex]?.flex ?? 1,
+                                  minWidth:
+                                    headers[colIndex]?.minWidth ?? "100px",
+                                  maxWidth:
+                                    headers[colIndex]?.maxWidth ?? undefined,
+                                }}
+                                fullWidth
+                              >
+                                <TextStyle
+                                  variant="paragraphSmall"
+                                  color="color-primary"
+                                  textAlign="left"
+                                  limitLine={1}
+                                >
+                                  {cell.value}
+                                </TextStyle>
+                              </Box>
+                            );
+                          })}
+                        </Box>
+                      ))}
+                    </Box>
+                  </>
+                ) : (
+                  <>
                     <Box
-                      key={index}
                       direction="row"
+                      justifyContent="center"
                       alignItems="center"
-                      bgColor="var(--color-table-header-dark)"
-                      borderWidth={1}
-                      border="bottom"
-                      p={8}
-                      gap={4}
-                      style={{
-                        flex: col.flex ?? 1,
-                        minWidth: col.minWidth ?? "100px",
-                        maxWidth: col.maxWidth ?? undefined,
-                      }}
-                      onClick={() => {
-                        const result = col.onClick?.({row: 1, col: index});
-                        console.log("Header onClick:", {
-                          row: 1,
-                          col: index,
-                          result,
-                        });
-                      }}
+                      // overflowX="auto"
+                      fullWidth
                     >
                       <TextStyle
-                        variant="labelSmallBold"
+                        variant="paragraphSmall"
                         color="color-primary"
-                        limitLine={1}
-                        style={{width: col.isSort ? "fit-content" : "100%"}}
+                        textAlign="center"
+
+                        // style={{padding:}}
                       >
-                        {col.value}
+                        NotFound
                       </TextStyle>
-                      {col.isSort && (
-                        <Button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            const result = col.onClick?.({row: 1, col: index});
-                            console.log("Sort icon onClick:", {
-                              row: 1,
-                              col: index,
-                              result,
-                            });
-                          }}
-                          variant="ghost-primary-no-padding"
-                          borderRadius="round"
-                        >
-                          <Icon
-                            icon={getSortIcon(col.sortBy)}
-                            width={16}
-                            height={16}
-                          />
-                        </Button>
-                      )}
                     </Box>
-                  ))}
-                </Box>
-                {/* Header */}
-
-                <Box
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center"
-                  overflowY="auto"
-                  minHeight={400}
-                  maxHeight={500}
-                >
-                  {!!values.length && values.length == 0 ? (
-                    <>
-                      {/* Body */}
-                      <Box direction="column">
-                        {values.map((item, rowIndex) => (
-                          <Box
-                            key={rowIndex}
-                            direction="row"
-                            height="100%"
-                            m={0}
-                          >
-                            {item.map((col, colIndex) => {
-                              const cell = col || {value: ""};
-                              return (
-                                <Box
-                                  key={colIndex}
-                                  onClick={() => {
-                                    const result = col.onClick?.({
-                                      row: rowIndex,
-                                      col: colIndex,
-                                    });
-                                    console.log("Cell onClick:", {
-                                      row: rowIndex,
-                                      col: colIndex,
-                                      result,
-                                    });
-                                  }}
-                                  role={col.onClick ? "button" : "div"}
-                                  borderWidth={1}
-                                  border="top"
-                                  px={8}
-                                  py={16}
-                                  style={{
-                                    flex: headers[colIndex]?.flex ?? 1,
-                                    minWidth:
-                                      headers[colIndex]?.minWidth ?? "100px",
-                                    maxWidth:
-                                      headers[colIndex]?.maxWidth ?? undefined,
-                                  }}
-                                >
-                                  <TextStyle
-                                    variant="paragraphSmall"
-                                    color="color-primary"
-                                    textAlign="left"
-                                    limitLine={1}
-                                  >
-                                    {cell.value}
-                                  </TextStyle>
-                                </Box>
-                              );
-                            })}
-                          </Box>
-                        ))}
-                      </Box>
-                      {/* Body */}
-                    </>
-                  ) : (
-                    <>
-                      <Box
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        overflowX="auto"
-                      >
-                        <TextStyle
-                          variant="paragraphSmall"
-                          color="color-primary"
-                          textAlign="center"
-
-                          // style={{padding:}}
-                        >
-                          NotFound
-                        </TextStyle>
-                      </Box>
-                    </>
-                  )}
-                </Box>
+                  </>
+                )}
               </Box>
+              {/* Body */}
             </Box>
           </Box>
           {/* Scrollable area */}

@@ -253,6 +253,7 @@ export default function Home() {
         fullHeight
         fullWidth
         overflowY="auto"
+        height="fit-content"
       >
         <Box direction="column" p={32}>
           <Box direction="column">

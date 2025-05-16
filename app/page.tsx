@@ -70,13 +70,9 @@ export default function Home() {
     })),
   );
 
-  console.log(`---- rows:`, rows);
-
   const startIndex = (pagination.page - 1) * pagination.limit;
   const endIndex = startIndex + pagination.limit;
   const values = [...rows].slice(startIndex, endIndex);
-
-  console.log(`---- values:`, values);
 
   return (
     <>

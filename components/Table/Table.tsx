@@ -1,24 +1,26 @@
 import classNames from "classnames";
+import {t} from "i18next";
 import {forwardRef} from "react";
 import {Box} from "../Box";
+import {Button} from "../Button";
 import Icon from "../Icon/Icon";
 import {TextStyle} from "../TextStyle";
 import * as S from "./Table.styled";
 import {TableProps} from "./Table.types";
-import {Button} from "../Button";
-import {t} from "i18next";
+import {random} from "../../node_modules/nanoid/index.d";
 
 export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   (
     {
       className,
       headers = [],
-      rows = [],
+      values = [],
       page = 1,
       limit = 1,
       count = 1,
       onPageChange,
       onLimitChange,
+      isPaginationDisabled = false,
       ...rest
     }: TableProps,
     ref,
@@ -44,13 +46,13 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
         >
           {/* Scrollable area */}
           <Box direction="column">
-            <Box direction="column" overflowX="auto">
+            <Box direction="column" overflowX="auto" maxHeight={500}>
               <Box>
                 {/* Header */}
                 <Box
                   direction="row"
                   bgColor="var(--color-table-header-dark)"
-                  style={{position: "sticky", top: 0, zIndex: 10}}
+                  style={{position: "sticky", top: 0, zIndex: 100}}
                 >
                   {headers.map((col, index) => (
                     <Box
@@ -76,7 +78,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                         });
                       }}
                     >
-                      <TextStyle variant="labelSmallBold" color="color-primary">
+                      <TextStyle
+                        variant="labelSmallBold"
+                        color="color-primary"
+                        limitLine={1}
+                      >
                         {col.value}
                       </TextStyle>
                       {col.isSort && (
@@ -107,7 +113,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 
                 {/* Body */}
                 <Box direction="column">
-                  {rows.map((item, rowIndex) => (
+                  {values.map((item, rowIndex) => (
                     <Box key={rowIndex} direction="row" height="100%" m={0}>
                       {item.map((col, colIndex) => {
                         const cell = col || {value: ""};
@@ -127,7 +133,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                             }}
                             role={col.onClick ? "button" : "div"}
                             borderWidth={1}
-                            border="bottom"
+                            border="top"
                             px={8}
                             py={16}
                             style={{
@@ -140,6 +146,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                               variant="paragraphSmall"
                               color="color-primary"
                               textAlign="left"
+                              limitLine={1}
                             >
                               {cell.value}
                             </TextStyle>
@@ -156,113 +163,157 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           {/* Scrollable area */}
 
           {/* Footer */}
-          <Box
-            direction="row"
-            alignItems="center"
-            justifyContent="end"
-            gap={24}
-            color="var(--color-table-border-dark)"
-            p={8}
-          >
-            {/* Option */}
+          {!isPaginationDisabled && (
             <Box
               direction="row"
               alignItems="center"
               justifyContent="end"
-              gap={8}
+              borderWidth={1}
+              border="top"
+              gap={24}
+              color="var(--color-table-border-dark)"
+              p={8}
             >
-              <TextStyle
-                variant="paragraphXSmall"
-                color="color-neutral-grey-light"
+              {/* Option */}
+              <Box
+                direction="row"
+                alignItems="center"
+                justifyContent="end"
+                gap={8}
               >
-                {t("dashboard_contract_table_footer_limit")}
-              </TextStyle>
-              <Box direction="row" alignItems="center" gap={8}>
-                <TextStyle variant="labelSmallBold" color="color-primary">
-                  {limit}
+                <TextStyle
+                  variant="paragraphXSmall"
+                  color="color-neutral-grey-light"
+                >
+                  {t("dashboard_contract_table_footer_limit")}
                 </TextStyle>
+                <Box direction="row" alignItems="center" gap={8}>
+                  <TextStyle variant="labelSmallBold" color="color-primary">
+                    {limit}
+                  </TextStyle>
+                  <Button
+                    onClick={() => {}}
+                    variant="ghost-primary-no-padding"
+                    borderRadius="round"
+                  >
+                    <Icon
+                      icon="arrow_down"
+                      width={16}
+                      height={16}
+                      color="var(--color-primary)"
+                    />
+                  </Button>
+                  <Box
+                    direction="row"
+                    alignItems="center"
+                    gap={8}
+                    borderWidth={1}
+                    borderRadius="xl"
+                  >
+                    <Box
+                      direction="column"
+                      alignItems="center"
+                      gap={8}
+                      borderWidth={1}
+                      border="bottom"
+                      borderRadius="xl"
+                    >
+                      {[10, 25, 50, 100].map((option) => (
+                        <>
+                          {option !== limit && (
+                            <Box
+                              key={option}
+                              role="button"
+                              onClick={() => {
+                                if (limit !== option) {
+                                  onLimitChange?.(option);
+                                }
+                              }}
+                              borderRadius="round"
+                            >
+                              <TextStyle
+                                variant="labelSmallBold"
+                                color="color-primary"
+                              >
+                                {option}
+                              </TextStyle>
+                            </Box>
+                          )}
+                        </>
+                      ))}
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+
+              {/* Page Info */}
+              <Box
+                direction="row"
+                alignItems="center"
+                justifyContent="end"
+                gap={8}
+              >
+                <TextStyle
+                  variant="paragraphXSmall"
+                  color="color-neutral-grey-light"
+                >
+                  {`${(page - 1) * limit + 1}-${Math.min(
+                    page * limit,
+                    count,
+                  )} ${t("dashboard_contract_table_footer_to")} ${count}`}
+                </TextStyle>
+              </Box>
+
+              {/* Navigation */}
+              <Box
+                direction="row"
+                alignItems="center"
+                justifyContent="end"
+                gap={8}
+              >
                 <Button
                   onClick={() => {
-                    const newLimit = 100;
-                    onLimitChange?.(newLimit);
+                    const newPage = page - 1;
+                    if (!isPaginationDisabled && newPage >= 1) {
+                      onPageChange?.(newPage);
+                    }
                   }}
                   variant="ghost-primary-no-padding"
                   borderRadius="round"
+                  disabled={page <= 1 || isPaginationDisabled}
                 >
                   <Icon
-                    icon="arrow_down"
-                    width={16}
-                    height={16}
+                    icon="arrow_left"
+                    width={24}
+                    height={24}
+                    color="var(--color-primary)"
+                  />
+                </Button>
+
+                <Button
+                  onClick={() => {
+                    const maxPage = Math.ceil(count / limit);
+                    const newPage = page + 1;
+                    if (!isPaginationDisabled && newPage <= maxPage) {
+                      onPageChange?.(newPage);
+                    }
+                  }}
+                  variant="ghost-primary-no-padding"
+                  borderRadius="round"
+                  disabled={
+                    page >= Math.ceil(count / limit) || isPaginationDisabled
+                  }
+                >
+                  <Icon
+                    icon="arrow_right"
+                    width={24}
+                    height={24}
                     color="var(--color-primary)"
                   />
                 </Button>
               </Box>
             </Box>
-
-            {/* Page */}
-            <Box
-              direction="row"
-              alignItems="center"
-              justifyContent="end"
-              gap={8}
-            >
-              <TextStyle
-                variant="paragraphXSmall"
-                color="color-neutral-grey-light"
-              >
-                {`${(page - 1) * limit + 1}-${Math.min(
-                  page * limit,
-                  count,
-                )} ${t("dashboard_contract_table_footer_to")} ${count}`}
-              </TextStyle>
-            </Box>
-
-            {/* Navigation */}
-            <Box
-              direction="row"
-              alignItems="center"
-              justifyContent="end"
-              gap={8}
-            >
-              <Button
-                onClick={() => {
-                  const newPage = page - 1;
-                  if (newPage >= 1) {
-                    onPageChange?.(newPage);
-                  }
-                }}
-                variant="ghost-primary-no-padding"
-                borderRadius="round"
-                disabled={page <= 1}
-              >
-                <Icon
-                  icon="arrow_left"
-                  width={24}
-                  height={24}
-                  color="var(--color-primary)"
-                />
-              </Button>
-
-              <Button
-                onClick={() => {
-                  const maxPage = Math.ceil(count / limit);
-                  const newPage = page + 1;
-                  if (newPage <= maxPage) {
-                    onPageChange?.(newPage);
-                  }
-                }}
-                variant="ghost-primary-no-padding"
-                borderRadius="round"
-              >
-                <Icon
-                  icon="arrow_right"
-                  width={24}
-                  height={24}
-                  color="var(--color-primary)"
-                />
-              </Button>
-            </Box>
-          </Box>
+          )}
         </Box>
       </S.Table>
     );

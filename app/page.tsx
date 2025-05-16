@@ -54,14 +54,6 @@ export default function Home() {
 
   const headers = Array.apply(null, Array(col)).map((_, i) => ({
     value: `Header${i + 1}`,
-    // value:
-    //   i < 3 ? (
-    //     <TextStyle variant="h4" color="color-primary">
-    //       {`Header${i + 1}`}
-    //     </TextStyle>
-    //   ) : (
-    //     `Header${i + 1}`
-    //   ),
     isSort: i < 3,
     sortBy: i == 0 ? "asc" : i == 1 ? "desc" : undefined,
     onClick: i < 3 ? (e: any) => onClickHeader(e) : () => null,
@@ -69,24 +61,22 @@ export default function Home() {
     flex: 1,
   }));
 
-  const rows = Array.from({length: col}, (_, rowIndex) =>
-    Array.from({length: row}, (_, colIndex) => ({
-      // value: `Value${rowIndex + 1}-${colIndex + 1}`,
-      value:
-        colIndex < 3 ? (
-          <TextStyle variant="h4" color="color-primary">
-            {`Value${rowIndex + 1}-${colIndex + 1}`}
-          </TextStyle>
-        ) : (
-          `Value${rowIndex + 1}-${colIndex + 1}`
-        ),
+  const rows = Array.from({length: row}, (_, rowIndex) =>
+    Array.from({length: col}, (_, colIndex) => ({
+      value: `Value${rowIndex + 1}-${colIndex + 1}`,
       onClick: colIndex < 4 ? (e: any) => onClickValue(e) : null,
       minWidth: "100px",
       flex: 1,
     })),
   );
 
-  // console.log(`---- rows:`, rows);
+  console.log(`---- rows:`, rows);
+
+  const startIndex = (pagination.page - 1) * pagination.limit;
+  const endIndex = startIndex + pagination.limit;
+  const values = [...rows].slice(startIndex, endIndex);
+
+  console.log(`---- values:`, values);
 
   return (
     <>
@@ -188,7 +178,7 @@ export default function Home() {
               <>
                 <Table
                   headers={headers}
-                  rows={rows}
+                  values={values}
                   page={pagination.page}
                   limit={pagination.limit}
                   count={pagination.count}
@@ -202,6 +192,25 @@ export default function Home() {
                       page: 1,
                     }))
                   }
+                />
+                isPaginationDisabled
+                <Table
+                  headers={headers}
+                  values={values}
+                  page={pagination.page}
+                  limit={pagination.limit}
+                  count={pagination.count}
+                  onPageChange={(newPage) =>
+                    setPagination((prev) => ({...prev, page: newPage}))
+                  }
+                  onLimitChange={(newLimit) =>
+                    setPagination((prev) => ({
+                      ...prev,
+                      limit: newLimit,
+                      page: 1,
+                    }))
+                  }
+                  isPaginationDisabled
                 />
               </>
             </Box>

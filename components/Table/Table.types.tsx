@@ -28,22 +28,12 @@ export interface TableColumn {
 
 export interface TableProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
-  // tag?: string;
-  // TableShadow?: string;
-  // bgColor?: string;
-  // hover?: boolean;
-  // fullWidth?: boolean;
-  // fullHeight?: boolean;
-  // border?: string;
-  // borderRadius?: string;
-  // borderWidth?: number;
-  // direction?: string;
-
   headers?: TableColumn[];
-  rows?: TableColumn[][];
+  values?: TableColumn[][];
   page?: number;
   limit?: number;
   count?: number;
   onPageChange?: (newPage: number) => void;
   onLimitChange?: (newLimit: number) => void;
+  isPaginationDisabled?: boolean;
 }

@@ -52,27 +52,73 @@ export default function Home() {
     console.log(`---- col:`, col);
   };
 
-  const headers = Array.apply(null, Array(col)).map((_, i) => ({
-    value: `Header${i + 1}`,
+  const headerKeys = [
+    {key: "contract_no", label: t("dashboard_contract_table_header_row1")},
+    {key: "id_card", label: t("dashboard_contract_table_header_row2")},
+    {key: "full_name", label: t("dashboard_contract_table_header_row3")},
+    {key: "doc_type", label: t("dashboard_contract_table_header_row4")},
+    {key: "status", label: t("dashboard_contract_table_header_row5")},
+    {key: "last_updated", label: t("dashboard_contract_table_header_row6")},
+    {key: "created_by", label: t("dashboard_contract_table_header_row7")},
+  ];
+
+  const headers = [...headerKeys].map((item, i) => ({
+    key: item.key,
+    value: item.label,
     isSort: i < 3,
-    sortBy: i == 0 ? "asc" : i == 1 ? "desc" : undefined,
+    sortBy: i === 0 ? "asc" : i === 1 ? "desc" : undefined,
     onClick: i < 3 ? (e: any) => onClickHeader(e) : () => null,
     minWidth: "100px",
     flex: 1,
   }));
 
-  const rows = Array.from({length: row}, (_, rowIndex) =>
-    Array.from({length: col}, (_, colIndex) => ({
-      value: `Value${rowIndex + 1}-${colIndex + 1}`,
-      onClick: colIndex < 4 ? (e: any) => onClickValue(e) : null,
+  const rawData = Array.from({length: pagination.count}, (_, i) => ({
+    contract_no: `CN-${i + 1}`,
+    id_card: `123456789012${i % 10}`,
+    full_name: `Name ${i + 1}`,
+    doc_type: i % 2 === 0 ? "PDF" : "DOCX",
+    status: i % 2 === 0 ? "Active" : "Inactive",
+    last_updated: `2025-05-${(i % 30) + 1}`,
+    created_by: `Admin${i + 1}`,
+  }));
+
+  const startIndex = (pagination.page - 1) * pagination.limit;
+  const endIndex = startIndex + pagination.limit;
+  const paginatedData = rawData.slice(startIndex, endIndex);
+
+  const values = [...paginatedData].map((row, rowIndex) =>
+    headers.map((header, colIndex) => ({
+      value: row[header.key as keyof typeof row], // match header key to data
+      onClick:
+        colIndex < 4
+          ? (e: any) => onClickValue({row: rowIndex, col: colIndex})
+          : null,
       minWidth: "100px",
       flex: 1,
     })),
   );
 
-  const startIndex = (pagination.page - 1) * pagination.limit;
-  const endIndex = startIndex + pagination.limit;
-  const values = [...rows].slice(startIndex, endIndex);
+  // const headers = Array.apply(null, Array(col)).map((_, i) => ({
+  //   value: `Header${i + 1}`,
+  //   isSort: i < 3,
+  //   sortBy: i == 0 ? "asc" : i == 1 ? "desc" : undefined,
+  //   onClick: i < 3 ? (e: any) => onClickHeader(e) : () => null,
+  //   minWidth: "100px",
+  //   flex: 1,
+  // }));
+
+  // const rows = Array.from({length: row}, (_, rowIndex) =>
+  //   Array.from({length: col}, (_, colIndex) => ({
+  //     value: `Value${rowIndex + 1}-${colIndex + 1}`,
+  //     onClick: colIndex < 4 ? (e: any) => onClickValue(e) : null,
+  //     minWidth: "100px",
+  //     flex: 1,
+  //   })),
+  // );
+
+  // const startIndex = (pagination.page - 1) * pagination.limit;
+  // const endIndex = startIndex + pagination.limit;
+  // const values = [...rows].slice(startIndex, endIndex);
 
   return (
     <>

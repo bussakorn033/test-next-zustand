@@ -39,15 +39,14 @@ export default function Home() {
   console.log(`---- pagination:`, pagination);
   const col = 10;
   const row = pagination.count;
-
   const onClickHeader = ({
-    ...rest,
     row,
     col,
+    ...rest
   }: {
-    [key: string]: any;
     row: number;
     col: number;
+    [key: string]: any;
   }) => {
     console.log("Header clicked at index:");
     console.log("---- row:", row);
@@ -56,13 +55,13 @@ export default function Home() {
   };
 
   const onClickValue = ({
-    ...rest,
     row,
     col,
+    ...rest
   }: {
-    [key: string]: any;
     row: number;
     col: number;
+    [key: string]: any;
   }) => {
     console.log("Value clicked at index:");
     console.log("---- row:", row);
@@ -114,7 +113,7 @@ export default function Home() {
       key: "last_updated",
       label: t("dashboard_contract_table_header_row6"), // อัปเดตล่าสุด
       isSort: true,
-      sortBy: "asc", // default active sort
+      sortBy: "asc",
       minWidth: "160px",
       flex: 1,
     },
@@ -129,37 +128,39 @@ export default function Home() {
       key: "view",
       label: "",
       icon: "view_document",
-      minWidth: "60px",
+      minWidth: "40px",
       flex: 0,
     },
     {
       key: "history",
       label: "",
       icon: "history",
-      minWidth: "60px",
+      minWidth: "40px",
       flex: 0,
     },
     {
       key: "trash",
       label: "",
       icon: "trash",
-      minWidth: "60px",
+      minWidth: "40px",
       flex: 0,
     },
   ];
 
-  const headers = headerKeys.map((item) => ({
+  const headers = headerKeys.map((item, index) => ({
     key: item.key,
     value: item.label || "",
     isSort: item.isSort || false,
     sortBy: item.sortBy,
     icon: item.icon,
-    onClick: item.isSort ? (e: any) => onClickHeader(...item, ...e) : undefined,
+    onClick: item.isSort
+      ? () => onClickHeader({row: -1, col: index, key: item.key})
+      : undefined,
     minWidth: item.minWidth || "100px",
     flex: item.flex !== undefined ? item.flex : 1,
   }));
 
-  console.log(`---- headers:`, headers);
+  console.log("---- headers:", headers);
 
   const valuesKey = Array.from({length: pagination.count}, (_, i) => {
     const row: Record<string, any> = {};
@@ -190,66 +191,54 @@ export default function Home() {
         case "history":
         case "trash":
           row[header.key] = (
-            <Icon
-              icon={header.icon}
-              width={24}
-              height={24}
-              color="var(--color-primary)"
-            />
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                // const result = col.onClick?.({row: 1, col: index});
+                // console.log("Sort icon onClick:", {
+                //   row: 1,
+                //   col: index,
+                //   result,
+                // });
+              }}
+              variant="ghost-icon-secondary-no-padding"
+              borderRadius="round"
+              // iconLeft={header.icon}
+              // color="var(--color-primary)"
+            >
+              <Icon
+                icon={header.icon}
+                width={24}
+                height={24}
+                color="var(--color-primary)"
+              />
+            </Button>
           );
           break;
         default:
           row[header.key] = "-";
-          break;
       }
     });
-
     return row;
   });
-
-  // const valuesKey = Array.from({length: pagination.count}, (_, i) => ({
-  //   contract_no: `CN-${i + 1}`,
-  //   id_card: `123456789012${i % 10}`,
-  //   full_name: `Name ${i + 1}`,
-  //   doc_type: i % 2 === 0 ? "PDF" : "DOCX",
-  //   status: i % 2 === 0 ? "Active" : "Inactive",
-  //   last_updated: `2025-05-${(i % 30) + 1}`,
-  //   created_by: `Admin${i + 1}`,
-  //   icon: (
-  //     <Icon
-  //       icon={item.icon}
-  //       width={24}
-  //       height={24}
-  //       color="var(--color-primary)"
-  //     />
-  //   ),
-  // }));
 
   const startIndex = (pagination.page - 1) * pagination.limit;
   const endIndex = startIndex + pagination.limit;
   const paginatedData = valuesKey.slice(startIndex, endIndex);
 
-  // const values = [...paginatedData].map((row, rowIndex) =>
-  //   headers.map((header, colIndex) => ({
-  //     value: row[header.key as keyof typeof row], // match header key to data
-  //     onClick:
-  //       colIndex < 4
-  //         ? (e: any) => onClickValue({row: rowIndex, col: colIndex})
-  //         : null,
-  //     minWidth: "100px",
-  //     flex: 1,
-  //   })),
-  // );
   const values = paginatedData.map((row, rowIndex) =>
     headers.map((header, colIndex) => ({
-      value: row[header.key as keyof typeof row], // value matched by header key
-      onClick: colIndex < 4 ? (e: any) => onClickValue(row[colIndex], e) : null,
+      value: row[header.key as keyof typeof row],
+      onClick:
+        colIndex < 4
+          ? () => onClickValue({row: rowIndex, col: colIndex})
+          : null,
       minWidth: header.minWidth || "100px",
       flex: header.flex || 1,
     })),
   );
 
-  console.log(`---- values:`, values);
+  console.log("---- values:", values);
 
   return (
     <>

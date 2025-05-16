@@ -67,7 +67,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       style={{
                         flex: col.flex ?? 1,
                         minWidth: col.minWidth ?? "100px",
-                        maxWidth: "500px",
+                        maxWidth: col.maxWidth ?? "500px",
                       }}
                       onClick={() => {
                         const result = col.onClick?.({row: 1, col: index});
@@ -136,10 +136,13 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                             border="top"
                             px={8}
                             py={16}
+                            // style={{
+                            //   maxWidth: "500px",
+                            // }}
                             style={{
                               flex: headers[colIndex]?.flex ?? 1,
                               minWidth: headers[colIndex]?.minWidth ?? "100px",
-                              maxWidth: "500px",
+                              maxWidth: headers[colIndex]?.maxWidth ?? "100px",
                             }}
                           >
                             <TextStyle

@@ -23,7 +23,9 @@ export interface TableColumn {
   sortBy?: "asc" | "desc" | undefined;
   isSort?: boolean;
   onClick?: ({row, col}: Record<string, number>) => void | null;
-  minWidth?: string;
+  flex?: number | string;
+  minWidth?: number | string;
+  maxWidth?: number | string;
 }
 
 export interface TableProps extends React.HTMLAttributes<HTMLElement> {

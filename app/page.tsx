@@ -75,7 +75,8 @@ export default function Home() {
       label: t("dashboard_contract_table_header_row1"), // เลขที่
       isSort: true,
       sortBy: undefined,
-      minWidth: "120px",
+      minWidth: "96px",
+      maxWidth: "calc(96px * 2)",
       flex: 1,
     },
     {
@@ -83,7 +84,7 @@ export default function Home() {
       label: t("dashboard_contract_table_header_row2"), // เลขบัตรประชาชน/เลขพาสปอร์ต
       isSort: true,
       sortBy: undefined,
-      minWidth: "150px",
+      minWidth: "144px",
       flex: 1,
     },
     {
@@ -91,7 +92,7 @@ export default function Home() {
       label: t("dashboard_contract_table_header_row3"), // ชื่อ - นามสกุล
       isSort: true,
       sortBy: undefined,
-      minWidth: "180px",
+      minWidth: "118px",
       flex: 1,
     },
     {
@@ -99,14 +100,14 @@ export default function Home() {
       label: t("dashboard_contract_table_header_row4"), // ประเภทเอกสาร
       isSort: true,
       sortBy: undefined,
-      minWidth: "140px",
+      minWidth: "218px",
       flex: 1,
     },
     {
       key: "status",
       label: t("dashboard_contract_table_header_row5"), // สถานะ
       isSort: false,
-      minWidth: "120px",
+      minWidth: "114px",
       flex: 1,
     },
     {
@@ -114,14 +115,15 @@ export default function Home() {
       label: t("dashboard_contract_table_header_row6"), // อัปเดตล่าสุด
       isSort: true,
       sortBy: "asc",
-      minWidth: "160px",
+      minWidth: "100px",
       flex: 1,
     },
     {
       key: "created_by",
       label: t("dashboard_contract_table_header_row7"), // สร้างโดย
       isSort: false,
-      minWidth: "140px",
+      minWidth: "144px",
+      maxWidth: "calc(144px * 2)",
       flex: 1,
     },
     {
@@ -129,6 +131,7 @@ export default function Home() {
       label: "",
       icon: "view_document",
       minWidth: "40px",
+      maxWidth: "calc(40px * 2)",
       flex: 0,
     },
     {
@@ -136,6 +139,7 @@ export default function Home() {
       label: "",
       icon: "history",
       minWidth: "40px",
+      maxWidth: "calc(40px * 2)",
       flex: 0,
     },
     {
@@ -143,6 +147,7 @@ export default function Home() {
       label: "",
       icon: "trash",
       minWidth: "40px",
+      maxWidth: "calc(40px * 2)",
       flex: 0,
     },
   ];
@@ -156,7 +161,8 @@ export default function Home() {
     onClick: item.isSort
       ? () => onClickHeader({row: -1, col: index, key: item.key})
       : undefined,
-    minWidth: item.minWidth || "100px",
+    minWidth: item.minWidth,
+    maxWidth: item.maxWidth,
     flex: item.flex !== undefined ? item.flex : 1,
   }));
 
@@ -242,7 +248,12 @@ export default function Home() {
 
   return (
     <>
-      <Box bgColor="var(--color-bg-primary)" fullHeight fullWidth>
+      <Box
+        bgColor="var(--color-bg-primary)"
+        fullHeight
+        fullWidth
+        overflowY="auto"
+      >
         <Box direction="column" p={32}>
           <Box direction="column">
             <Box direction="column" gap={24}>

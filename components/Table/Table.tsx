@@ -46,7 +46,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
         >
           {/* Scrollable area */}
           <Box direction="column">
-            <Box direction="column" overflowX="auto" maxHeight={500}>
+            <Box direction="column" overflowX="auto" overflowY="hidden">
               <Box>
                 {/* Header */}
                 <Box
@@ -67,7 +67,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       style={{
                         flex: col.flex ?? 1,
                         minWidth: col.minWidth ?? "100px",
-                        maxWidth: col.maxWidth ?? "500px",
+                        maxWidth: col.maxWidth ?? undefined,
                       }}
                       onClick={() => {
                         const result = col.onClick?.({row: 1, col: index});
@@ -82,6 +82,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                         variant="labelSmallBold"
                         color="color-primary"
                         limitLine={1}
+                        style={{width: col.isSort ? "fit-content" : "100%"}}
                       >
                         {col.value}
                       </TextStyle>
@@ -111,55 +112,91 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 </Box>
                 {/* Header */}
 
-                {/* Body */}
-                <Box direction="column">
-                  {values.map((item, rowIndex) => (
-                    <Box key={rowIndex} direction="row" height="100%" m={0}>
-                      {item.map((col, colIndex) => {
-                        const cell = col || {value: ""};
-                        return (
+                <Box
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                  overflowY="auto"
+                  minHeight={400}
+                  maxHeight={500}
+                >
+                  {!!values.length && values.length == 0 ? (
+                    <>
+                      {/* Body */}
+                      <Box direction="column">
+                        {values.map((item, rowIndex) => (
                           <Box
-                            key={colIndex}
-                            onClick={() => {
-                              const result = col.onClick?.({
-                                row: rowIndex,
-                                col: colIndex,
-                              });
-                              console.log("Cell onClick:", {
-                                row: rowIndex,
-                                col: colIndex,
-                                result,
-                              });
-                            }}
-                            role={col.onClick ? "button" : "div"}
-                            borderWidth={1}
-                            border="top"
-                            px={8}
-                            py={16}
-                            // style={{
-                            //   maxWidth: "500px",
-                            // }}
-                            style={{
-                              flex: headers[colIndex]?.flex ?? 1,
-                              minWidth: headers[colIndex]?.minWidth ?? "100px",
-                              maxWidth: headers[colIndex]?.maxWidth ?? "100px",
-                            }}
+                            key={rowIndex}
+                            direction="row"
+                            height="100%"
+                            m={0}
                           >
-                            <TextStyle
-                              variant="paragraphSmall"
-                              color="color-primary"
-                              textAlign="left"
-                              limitLine={1}
-                            >
-                              {cell.value}
-                            </TextStyle>
+                            {item.map((col, colIndex) => {
+                              const cell = col || {value: ""};
+                              return (
+                                <Box
+                                  key={colIndex}
+                                  onClick={() => {
+                                    const result = col.onClick?.({
+                                      row: rowIndex,
+                                      col: colIndex,
+                                    });
+                                    console.log("Cell onClick:", {
+                                      row: rowIndex,
+                                      col: colIndex,
+                                      result,
+                                    });
+                                  }}
+                                  role={col.onClick ? "button" : "div"}
+                                  borderWidth={1}
+                                  border="top"
+                                  px={8}
+                                  py={16}
+                                  style={{
+                                    flex: headers[colIndex]?.flex ?? 1,
+                                    minWidth:
+                                      headers[colIndex]?.minWidth ?? "100px",
+                                    maxWidth:
+                                      headers[colIndex]?.maxWidth ?? undefined,
+                                  }}
+                                >
+                                  <TextStyle
+                                    variant="paragraphSmall"
+                                    color="color-primary"
+                                    textAlign="left"
+                                    limitLine={1}
+                                  >
+                                    {cell.value}
+                                  </TextStyle>
+                                </Box>
+                              );
+                            })}
                           </Box>
-                        );
-                      })}
-                    </Box>
-                  ))}
+                        ))}
+                      </Box>
+                      {/* Body */}
+                    </>
+                  ) : (
+                    <>
+                      <Box
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        overflowX="auto"
+                      >
+                        <TextStyle
+                          variant="paragraphSmall"
+                          color="color-primary"
+                          textAlign="center"
+
+                          // style={{padding:}}
+                        >
+                          NotFound
+                        </TextStyle>
+                      </Box>
+                    </>
+                  )}
                 </Box>
-                {/* Body */}
               </Box>
             </Box>
           </Box>

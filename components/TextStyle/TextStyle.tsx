@@ -93,12 +93,13 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
         wordBreak={wordBreak}
         textAlign={textAlign}
         textDecoration={textDecoration}
+        {...rest}
         style={
           {
+            ...rest.style,
             "--text-color": color && `var(--${color})`,
           } as React.CSSProperties
         }
-        {...rest}
       >
         {children}
       </S.TextStyle>

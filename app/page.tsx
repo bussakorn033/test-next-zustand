@@ -40,7 +40,7 @@ export default function Home() {
 
   // Initialize header and data arrays
   const headers = Array.apply(null, Array(col)).map((_, i) => ({
-    value: `header${i + 1}`,
+    value: `${i + 1}`,
     // value:
     //   i < 3 ? (
     //     <TextStyle variant="h2" color="color-primary">
@@ -57,7 +57,7 @@ export default function Home() {
   // console.log(`---- headers:`, headers);
   const rows: TableColumn[][] = Array.from({length: row}, (_, rowIndex) =>
     Array.from({length: col}, (_, colIndex) => ({
-      value: `Value${rowIndex + 1}-${colIndex + 1}`,
+      value: `${rowIndex + 1}-${colIndex + 1}`,
       // value:
       //   colIndex < 3 ? (
       //     <TextStyle variant="h2" color="color-primary">
@@ -74,6 +74,69 @@ export default function Home() {
 
   return (
     <>
+      <div style={{border: "4px solid red", overflowX: "auto"}}>
+        {/* <div style={{border: "3px solid green"}}> */}
+        {/* headers */}
+        <>
+          <div
+            style={{
+              // border: "2px solid blue",
+              boxSizing: "border-box",
+              display: "flex",
+            }}
+          >
+            {headers.map((col, index) => {
+              return (
+                <>
+                  <div
+                    style={{
+                      border: "1px solid pink",
+                      background: "yellow",
+                      width: "calc(100% / 10)",
+                      minWidth: "100px",
+                      maxWidth: "300px",
+                    }}
+                  >
+                    headers: {col.value}
+                  </div>
+                </>
+              );
+            })}
+          </div>
+        </>
+        {/* </div> */}
+        {/* <div style={{border: "3px solid green"}}> */}
+        {/* rows */}
+        <>
+          <div
+            style={{
+              // border: "2px solid blue",
+              boxSizing: "border-box",
+              display: "flex",
+            }}
+          >
+            {headers.map((col, index) => {
+              return (
+                <>
+                  <div
+                    style={{
+                      border: "1px solid pink",
+                      background: "yellow",
+                      width: "calc(100% / 10)",
+                      minWidth: "100px",
+                      maxWidth: "300px",
+                    }}
+                  >
+                    rows: {col.value}
+                  </div>
+                </>
+              );
+            })}
+          </div>
+        </>
+        {/* </div> */}
+      </div>
+
       <Box bgColor="var(--color-bg-primary)" fullHeight fullWidth>
         <Box direction="column" p={32}>
           <Box direction="column">
@@ -120,9 +183,9 @@ export default function Home() {
                     >
                       <Icon
                         icon="arrow_down"
+                        color="var(--color-primary)"
                         width={16}
                         height={16}
-                        color="color-primary"
                       />
                     </Button>
                   </Box>
@@ -139,7 +202,12 @@ export default function Home() {
                       variant={"ghost-icon-secondary-no-padding"}
                       borderRadius="round"
                     >
-                      <Icon icon="arrow_down" width={16} height={16} />
+                      <Icon
+                        icon="arrow_down"
+                        color="var(--color-primary)"
+                        width={16}
+                        height={16}
+                      />
                     </Button>
                   </Box>
                   <Box direction="row" alignItems="center" gap={8}>
@@ -153,7 +221,12 @@ export default function Home() {
                       variant={"ghost-icon-secondary-no-padding"}
                       borderRadius="round"
                     >
-                      <Icon icon="arrow_down" width={16} height={16} />
+                      <Icon
+                        icon="arrow_down"
+                        color="var(--color-primary)"
+                        width={16}
+                        height={16}
+                      />
                     </Button>
                   </Box>
                 </Box>

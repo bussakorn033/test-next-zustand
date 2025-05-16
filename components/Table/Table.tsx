@@ -40,92 +40,145 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           overflow="hidden"
         >
           <Box direction="column">
-            <Box
-              direction="column"
-              bgColor="var(--color-neutral-light)"
-              color="var(--color-table-border-dark)"
-              overflow="auto"
-            >
-              {/* Header */}
-              <Box
-                direction="row"
-                color="var(--color-table-border-dark)"
-                bgColor="var(--color-table-header-dark)"
-                borderWidth={1}
-                border="bottom"
-                gap={16}
-                px={8}
-                py={10}
-                style={{width: "100%"}}
-              >
-                {headers.map((col, index) => (
-                  <Box
-                    key={index}
-                    direction="row"
-                    alignItems="center"
-                    gap={4}
-                    style={{
-                      flex: 1,
-                      cursor: col.onClick ? "pointer" : "default",
-                    }}
-                    onClick={() => col.onClick?.({index})}
-                  >
-                    <TextStyle variant="labelSmallBold" color="color-primary">
-                      {col.value}
-                    </TextStyle>
-                    {col.isSort && (
-                      <Button
-                        onClick={() => {
-                          console.log("onClick");
-                        }}
-                        variant={"ghost-icon-secondary-no-padding"}
-                        borderRadius="round"
-                      >
-                        <Icon
-                          icon={getSortIcon(col.sortBy)}
-                          width={16}
-                          height={16}
-                        />
-                      </Button>
-                    )}
-                  </Box>
-                ))}
-              </Box>
-              {/* Header */}
-
-              {/* Body */}
-              <Box
-                direction="column"
-                gap={8}
-                px={8}
-                py={10}
-                style={{width: "100%"}}
-              >
-                {rows.map((item, rowIndex) => (
-                  <Box key={rowIndex} direction="row" gap={16}>
-                    {item.map((cell, colIndex) => (
-                      <Box
-                        key={colIndex}
-                        style={{
-                          flex: 1,
-                        }}
-                      >
-                        <TextStyle
-                          variant="paragraphSmall"
-                          color="color-primary"
-                          onClick={() => cell.onClick?.({index: colIndex})}
-                          style={{
-                            cursor: cell.onClick ? "pointer" : "default",
+            {/* Scrollable area */}
+            <Box direction="column" overflowX="auto" maxHeight={600}>
+              <Box>
+                {/* Header */}
+                <Box
+                  direction="row"
+                  // bgColor="var(--color-table-header-dark)"
+                  // borderWidth={1}
+                  // border="bottom"
+                  // gap={16}
+                  // px={8}
+                  // py={10}
+                  style={{
+                    // width: "100%",
+                    position: "sticky",
+                    top: 0,
+                    zIndex: 10,
+                  }}
+                >
+                  {headers.map((col, index) => (
+                    <Box
+                      key={index}
+                      direction="row"
+                      alignItems="center"
+                      bgColor="var(--color-table-header-dark)"
+                      borderWidth={1}
+                      border="bottom"
+                      // gap={4}
+                      px={8}
+                      py={10}
+                      style={{
+                        flex: 1,
+                        // border: "1px solid pink",
+                        // background: "yellow",
+                        width: "calc(100% / 10)",
+                        minWidth: "50px",
+                        // maxWidth: "300px",
+                        cursor: col.onClick ? "pointer" : "default",
+                      }}
+                      onClick={() => col.onClick?.({index})}
+                    >
+                      <TextStyle variant="labelSmallBold" color="color-primary">
+                        {col.value}
+                      </TextStyle>
+                      {col.isSort && (
+                        <Button
+                          onClick={() => {
+                            console.log("onClick");
                           }}
+                          variant="ghost-primary-no-padding"
+                          borderRadius="round"
                         >
-                          {cell.value}
-                        </TextStyle>
-                      </Box>
-                    ))}
-                  </Box>
-                ))}
+                          <Icon
+                            icon={getSortIcon(col.sortBy)}
+                            width={16}
+                            height={16}
+                          />
+                        </Button>
+                      )}
+                    </Box>
+                  ))}
+                </Box>
+                {/* Header */}
+
+                {/* Body */}
+                <Box
+                  direction="column"
+                  // px={8}
+                  // py={10}
+                >
+                  {rows.map((item, rowIndex) => (
+                    // <Box
+                    //   direction="row"
+                    //   alignItems="center"
+                    //   // bgColor="var(--color-table-header-dark)"
+                    //   borderWidth={1}
+                    //   border="bottom"
+                    // >
+                    <Box
+                      key={rowIndex}
+                      direction="row"
+                      // bgColor="var(--color-error)"
+                      // borderWidth={1}
+                      // border="bottom"
+                      // gap={16}
+                      // px={8}
+                      // py={10}
+                      style={{
+                        // width: "100%",
+                        position: "sticky",
+                        top: 0,
+                        zIndex: 10,
+                      }}
+                    >
+                      {headers.map((_, colIndex) => {
+                        const cell = item[colIndex] || {value: ""}; // fallback
+                        return (
+                          <Box
+                            key={colIndex}
+                            px={8}
+                            py={10}
+                            // bgColor="var(--color-error)"
+                            borderWidth={1}
+                            border="top"
+                            style={{
+                              // border: "1px solid pink",
+                              // background: "yellow",
+                              width: "calc(100% / 10)",
+                              minWidth: "50px",
+                              // maxWidth: "300px",
+                              flex: 1,
+                            }}
+                          >
+                            {/* <Button
+                              variant="ghost-primary-no-padding"
+                              width="full"
+                              color="color-primary"
+                              onClick={() => cell.onClick?.({index: colIndex})}
+                              style={{
+                                cursor: cell.onClick ? "pointer" : "default",
+                                justifyContent: "flex-start",
+                              }}
+                            > */}
+                            <TextStyle
+                              variant="paragraphSmall"
+                              color="color-primary"
+                              textAlign="left"
+                            >
+                              {cell.value}
+                            </TextStyle>
+                            {/* </Button> */}
+                          </Box>
+                        );
+                      })}
+                    </Box>
+                  ))}
+                </Box>
+                {/* Body */}
               </Box>
-              {/* Body */}
             </Box>
           </Box>
 
@@ -154,13 +207,25 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 จำนวนแถว
               </TextStyle>
               <Box direction="row" alignItems="center" gap={8}>
-                <TextStyle variant="paragraphXSmall" color="color-primary">
+                <TextStyle variant="labelSmallBold" color="color-primary">
                   50
                 </TextStyle>
-                <Icon icon="arrow_down" width={16} color="color-primary" />
+                <Button
+                  onClick={() => {
+                    console.log("onClick");
+                  }}
+                  variant="ghost-primary-no-padding"
+                  borderRadius="round"
+                >
+                  <Icon
+                    icon="arrow_down"
+                    width={16}
+                    height={16}
+                    color="var(--color-primary)"
+                  />
+                </Button>
               </Box>
             </Box>
-            {/* Option */}
 
             {/* Page */}
             <Box
@@ -176,19 +241,45 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 {`${page}-${page * limit} จาก ${count}`}
               </TextStyle>
             </Box>
-            {/* Page */}
 
-            {/* Next */}
+            {/* Navigation */}
             <Box
               direction="row"
               alignItems="center"
               justifyContent="end"
               gap={8}
             >
-              <Icon icon="arrow_left" width={24} color="color-primary" />
-              <Icon icon="arrow_right" width={24} color="color-primary" />
+              <Button
+                onClick={() => {
+                  console.log("onClick");
+                }}
+                variant="ghost-primary-no-padding"
+                borderRadius="round"
+                disabled
+              >
+                <Icon
+                  icon="arrow_left"
+                  width={24}
+                  height={24}
+                  color={true ? "var(--color-primary)" : "var(--color-primary)"}
+                />
+              </Button>
+
+              <Button
+                onClick={() => {
+                  console.log("onClick");
+                }}
+                variant="ghost-primary-no-padding"
+                borderRadius="round"
+              >
+                <Icon
+                  icon="arrow_right"
+                  width={24}
+                  height={24}
+                  color={true ? "var(--color-primary)" : "var(--color-primary)"}
+                />
+              </Button>
             </Box>
-            {/* Page */}
           </Box>
         </Box>
       </S.Table>

@@ -52,7 +52,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               // overflowX="auto"
               overflow="auto"
               minHeight={300}
-              maxHeight={500}
+              maxHeight={400}
               fullWidth
             >
               {/* Header */}
@@ -126,13 +126,12 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 // alignItems="center"
                 // overflowY="auto"
                 // overflowX="hidden"
-                // minHeight={500}
-                // maxHeight={500}
                 minHeight={300}
-                maxHeight={500}
+                maxHeight={400}
+                // borderWidth={1}
                 fullWidth
               >
-                {!!values.length && values.length !== 0 ? (
+                {!!values.length && values.length !== 0 && !!true ? (
                   <>
                     <Box direction="column" fullWidth>
                       {values.map((item, rowIndex) => (
@@ -186,10 +185,13 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   <>
                     <Box
                       direction="row"
-                      justifyContent="center"
-                      alignItems="center"
+                      // justifyContent="center"
+                      // alignItems="center"
                       // overflowX="auto"
-                      fullWidth
+                      // height="100%"
+                      borderWidth={1}
+                      style={{margin: "auto"}}
+                      // fullWidth
                     >
                       <TextStyle
                         variant="paragraphSmall"

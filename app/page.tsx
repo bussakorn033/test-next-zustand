@@ -9,6 +9,7 @@ import {Table} from "@/components/Table";
 import {TableColumn} from "@/components/Table/Table.types";
 import {TextStyle} from "@/components/TextStyle";
 import globalSlice from "@/stores/globalSlice";
+import {useState} from "react";
 import {useTranslation} from "react-i18next";
 
 export default function Home() {
@@ -29,9 +30,15 @@ export default function Home() {
   } = globalStore;
 
   const {t} = useTranslation();
-
-  const row = 10;
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: 10,
+    count: 55,
+  });
   const col = 10;
+  const row = pagination.count;
+
+  console.log(`---- row:`, row);
 
   const onClickHeader = ({row, col}: Record<string, number>) => {
     console.log(`Header clicked at index:`);
@@ -46,15 +53,15 @@ export default function Home() {
   };
 
   const headers = Array.apply(null, Array(col)).map((_, i) => ({
-    // value: `${i + 1}`,
-    value:
-      i < 3 ? (
-        <TextStyle variant="h4" color="color-primary">
-          {`header${i + 1}`}
-        </TextStyle>
-      ) : (
-        `header${i + 1}`
-      ),
+    value: `Header${i + 1}`,
+    // value:
+    //   i < 3 ? (
+    //     <TextStyle variant="h4" color="color-primary">
+    //       {`Header${i + 1}`}
+    //     </TextStyle>
+    //   ) : (
+    //     `Header${i + 1}`
+    //   ),
     isSort: i < 3,
     sortBy: i == 0 ? "asc" : i == 1 ? "desc" : undefined,
     onClick: i < 3 ? (e: any) => onClickHeader(e) : () => null,
@@ -62,9 +69,9 @@ export default function Home() {
     flex: 1,
   }));
 
-  const rows = Array.from({length: row}, (_, rowIndex) =>
-    Array.from({length: col}, (_, colIndex) => ({
-      // value: `${rowIndex + 1}-${colIndex + 1}`,
+  const rows = Array.from({length: col}, (_, rowIndex) =>
+    Array.from({length: row}, (_, colIndex) => ({
+      // value: `Value${rowIndex + 1}-${colIndex + 1}`,
       value:
         colIndex < 3 ? (
           <TextStyle variant="h4" color="color-primary">
@@ -179,7 +186,23 @@ export default function Home() {
               </Box>
 
               <>
-                <Table headers={headers} rows={rows} />
+                <Table
+                  headers={headers}
+                  rows={rows}
+                  page={pagination.page}
+                  limit={pagination.limit}
+                  count={pagination.count}
+                  onPageChange={(newPage) =>
+                    setPagination((prev) => ({...prev, page: newPage}))
+                  }
+                  onLimitChange={(newLimit) =>
+                    setPagination((prev) => ({
+                      ...prev,
+                      limit: newLimit,
+                      page: 1,
+                    }))
+                  }
+                />
               </>
             </Box>
 

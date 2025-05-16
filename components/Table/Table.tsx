@@ -16,6 +16,8 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       page = 1,
       limit = 1,
       count = 1,
+      onPageChange,
+      onLimitChange,
       ...rest
     }: TableProps,
     ref,
@@ -41,22 +43,13 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
         >
           {/* Scrollable area */}
           <Box direction="column">
-            <Box
-              direction="column"
-              overflowX="auto"
-              // width="100vw"
-              // maxHeight={600}
-            >
+            <Box direction="column" overflowX="auto">
               <Box>
                 {/* Header */}
                 <Box
                   direction="row"
                   bgColor="var(--color-table-header-dark)"
-                  style={{
-                    position: "sticky",
-                    top: 0,
-                    zIndex: 10,
-                  }}
+                  style={{position: "sticky", top: 0, zIndex: 10}}
                 >
                   {headers.map((col, index) => (
                     <Box
@@ -69,21 +62,32 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       p={8}
                       gap={4}
                       style={{
-                        // flex: 1,
-                        flex: col.flex,
-                        // width: "100%",
-                        minWidth: col.minWidth,
+                        flex: col.flex ?? 1,
+                        minWidth: col.minWidth ?? "100px",
                         maxWidth: "500px",
                       }}
-                      onClick={() => col.onClick?.({row: 1, col: index})}
+                      onClick={() => {
+                        const result = col.onClick?.({row: 1, col: index});
+                        console.log("Header onClick:", {
+                          row: 1,
+                          col: index,
+                          result,
+                        });
+                      }}
                     >
                       <TextStyle variant="labelSmallBold" color="color-primary">
                         {col.value}
                       </TextStyle>
                       {col.isSort && (
                         <Button
-                          onClick={() => {
-                            console.log("onClick");
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const result = col.onClick?.({row: 1, col: index});
+                            console.log("Sort icon onClick:", {
+                              row: 1,
+                              col: index,
+                              result,
+                            });
                           }}
                           variant="ghost-primary-no-padding"
                           borderRadius="round"
@@ -109,18 +113,25 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                         return (
                           <Box
                             key={colIndex}
-                            onClick={() =>
-                              col.onClick?.({row: rowIndex, col: colIndex})
-                            }
-                            role={col.onClick !== null ? "button" : "div"}
+                            onClick={() => {
+                              const result = col.onClick?.({
+                                row: rowIndex,
+                                col: colIndex,
+                              });
+                              console.log("Cell onClick:", {
+                                row: rowIndex,
+                                col: colIndex,
+                                result,
+                              });
+                            }}
+                            role={col.onClick ? "button" : "div"}
                             borderWidth={1}
                             border="bottom"
                             px={8}
                             py={16}
                             style={{
-                              // flex: 1,
-                              // width: "100%",
-                              // minWidth: "70px",
+                              flex: headers[colIndex]?.flex ?? 1,
+                              minWidth: headers[colIndex]?.minWidth ?? "100px",
                               maxWidth: "500px",
                             }}
                           >
@@ -150,8 +161,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
             justifyContent="end"
             gap={24}
             color="var(--color-table-border-dark)"
-            // borderWidth={1}
-            // border="top"
             p={8}
           >
             {/* Option */}
@@ -169,11 +178,12 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               </TextStyle>
               <Box direction="row" alignItems="center" gap={8}>
                 <TextStyle variant="labelSmallBold" color="color-primary">
-                  50
+                  {limit}
                 </TextStyle>
                 <Button
                   onClick={() => {
-                    console.log("onClick");
+                    const newLimit = 100;
+                    onLimitChange?.(newLimit);
                   }}
                   variant="ghost-primary-no-padding"
                   borderRadius="round"
@@ -199,7 +209,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 variant="paragraphXSmall"
                 color="color-neutral-grey-light"
               >
-                {`${page}-${page * limit} จาก ${count}`}
+                {`${page * limit}-${page * limit + limit} จาก ${count}`}
               </TextStyle>
             </Box>
 
@@ -212,23 +222,30 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
             >
               <Button
                 onClick={() => {
-                  console.log("onClick");
+                  const newPage = page - 1;
+                  if (newPage >= 1) {
+                    onPageChange?.(newPage);
+                  }
                 }}
                 variant="ghost-primary-no-padding"
                 borderRadius="round"
-                disabled
+                disabled={page <= 1}
               >
                 <Icon
                   icon="arrow_left"
                   width={24}
                   height={24}
-                  color={true ? "var(--color-primary)" : "var(--color-primary)"}
+                  color="var(--color-primary)"
                 />
               </Button>
 
               <Button
                 onClick={() => {
-                  console.log("onClick");
+                  const maxPage = Math.ceil(count / limit);
+                  const newPage = page + 1;
+                  if (newPage <= maxPage) {
+                    onPageChange?.(newPage);
+                  }
                 }}
                 variant="ghost-primary-no-padding"
                 borderRadius="round"
@@ -237,7 +254,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   icon="arrow_right"
                   width={24}
                   height={24}
-                  color={true ? "var(--color-primary)" : "var(--color-primary)"}
+                  color="var(--color-primary)"
                 />
               </Button>
             </Box>

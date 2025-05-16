@@ -6,6 +6,7 @@ import {TextStyle} from "../TextStyle";
 import * as S from "./Table.styled";
 import {TableProps} from "./Table.types";
 import {Button} from "../Button";
+import {t} from "i18next";
 
 export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   (
@@ -174,7 +175,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 variant="paragraphXSmall"
                 color="color-neutral-grey-light"
               >
-                จำนวนแถว
+                {t("dashboard_contract_table_footer_limit")}
               </TextStyle>
               <Box direction="row" alignItems="center" gap={8}>
                 <TextStyle variant="labelSmallBold" color="color-primary">
@@ -209,7 +210,10 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 variant="paragraphXSmall"
                 color="color-neutral-grey-light"
               >
-                {`${page * limit}-${page * limit + limit} จาก ${count}`}
+                {`${(page - 1) * limit + 1}-${Math.min(
+                  page * limit,
+                  count,
+                )} ${t("dashboard_contract_table_footer_to")} ${count}`}
               </TextStyle>
             </Box>
 

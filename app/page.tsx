@@ -35,10 +35,10 @@ export default function Home() {
     limit: 10,
     count: 55,
   });
+
+  console.log(`---- pagination:`, pagination);
   const col = 10;
   const row = pagination.count;
-
-  console.log(`---- row:`, row);
 
   const onClickHeader = ({row, col}: Record<string, number>) => {
     console.log(`Header clicked at index:`);

@@ -1,0 +1,19 @@
+{
+  "dashboard_title": "สวัสดีครับ คุณชานนท์",
+  "dashboard_sub_title": "ยินดีต้อนรับเข้าสู่ ttb e-contract portal",
+  "dashboard_title_table": "รายการสัญญา",
+  "dashboard_btn_refresh": "รีเฟรช",
+  "dashboard_btn_create_contract": "สร้างสัญญา",
+
+  "dashboard_filter_by_user": "ค้นหาลูกค้า",
+  "dashboard_filter_by_type_doc": "ประเภทเอกสาร",
+  "dashboard_filter_by_status": "สถานะ",
+
+  "dashboard_contract_table_header_row1": "เลขที่",
+  "dashboard_contract_table_header_row2": "เลขบัตรประชาชน/ Passport",
+  "dashboard_contract_table_header_row3": "ชื่อ - นามสกุล",
+  "dashboard_contract_table_header_row4": "ประเภทเอกสาร",
+  "dashboard_contract_table_header_row5": "สถานะ",
+  "dashboard_contract_table_header_row6": "อัปเดตล่าสุด",
+  "dashboard_contract_table_header_row7": "สร้างโดย"
+}

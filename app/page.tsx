@@ -9,6 +9,7 @@ import {Table} from "@/components/Table";
 import {TableColumn} from "@/components/Table/Table.types";
 import {TextStyle} from "@/components/TextStyle";
 import globalSlice from "@/stores/globalSlice";
+import {useTranslation} from "react-i18next";
 
 export default function Home() {
   // Access Zustand store
@@ -26,6 +27,8 @@ export default function Home() {
     addBearAndFish, // SharedState
     calculateBearAndFish, // SharedState
   } = globalStore;
+
+  const {t} = useTranslation();
 
   const row = 10;
   const col = 10;
@@ -74,69 +77,6 @@ export default function Home() {
 
   return (
     <>
-      <div style={{border: "4px solid red", overflowX: "auto"}}>
-        {/* <div style={{border: "3px solid green"}}> */}
-        {/* headers */}
-        <>
-          <div
-            style={{
-              // border: "2px solid blue",
-              boxSizing: "border-box",
-              display: "flex",
-            }}
-          >
-            {headers.map((col, index) => {
-              return (
-                <>
-                  <div
-                    style={{
-                      border: "1px solid pink",
-                      background: "yellow",
-                      width: "calc(100% / 10)",
-                      minWidth: "100px",
-                      maxWidth: "300px",
-                    }}
-                  >
-                    headers: {col.value}
-                  </div>
-                </>
-              );
-            })}
-          </div>
-        </>
-        {/* </div> */}
-        {/* <div style={{border: "3px solid green"}}> */}
-        {/* rows */}
-        <>
-          <div
-            style={{
-              // border: "2px solid blue",
-              boxSizing: "border-box",
-              display: "flex",
-            }}
-          >
-            {headers.map((col, index) => {
-              return (
-                <>
-                  <div
-                    style={{
-                      border: "1px solid pink",
-                      background: "yellow",
-                      width: "calc(100% / 10)",
-                      minWidth: "100px",
-                      maxWidth: "300px",
-                    }}
-                  >
-                    rows: {col.value}
-                  </div>
-                </>
-              );
-            })}
-          </div>
-        </>
-        {/* </div> */}
-      </div>
-
       <Box bgColor="var(--color-bg-primary)" fullHeight fullWidth>
         <Box direction="column" p={32}>
           <Box direction="column">
@@ -144,25 +84,25 @@ export default function Home() {
               <Box direction="column" gap={48}>
                 <Box direction="column" gap={0}>
                   <TextStyle variant="h2" color="color-primary">
-                    title
+                    {t("dashboard_title")}
                   </TextStyle>
                   <TextStyle
                     variant="paragraphMedium"
                     color="color-neutral-grey-light"
                   >
-                    sub_title
+                    {t("dashboard_sub_title")}
                   </TextStyle>
                 </Box>
                 <Box direction="row" justifyContent="space-between" gap={24}>
                   <TextStyle variant="h4" color="color-primary">
-                    title_table
+                    {t("dashboard_title_table")}
                   </TextStyle>
                   <Box direction="row" alignItems="center" gap={8}>
                     <Button variant="ghost-primary" iconLeft="refresh">
-                      btn_refresh
+                      {t("dashboard_btn_refresh")}
                     </Button>
                     <Button variant="primary" iconLeft="plus">
-                      btn_create_contract
+                      {t("dashboard_btn_create_contract")}
                     </Button>
                   </Box>
                 </Box>
@@ -172,7 +112,7 @@ export default function Home() {
                 <Box direction="column" justifyContent="center" gap={8}>
                   <Box direction="row" alignItems="center" gap={8}>
                     <TextStyle variant="labelXSmall" color="color-secondary">
-                      filter_by_user
+                      {t("dashboard_filter_by_user")}
                     </TextStyle>
                     <Button
                       onClick={() => {
@@ -193,7 +133,7 @@ export default function Home() {
                 <Box direction="row" alignItems="center" gap={8}>
                   <Box direction="row" alignItems="center" gap={8}>
                     <TextStyle variant="labelSmallBold" color="color-primary">
-                      filter_by_type_doc
+                      {t("dashboard_filter_by_type_doc")}
                     </TextStyle>
                     <Button
                       onClick={() => {
@@ -212,7 +152,7 @@ export default function Home() {
                   </Box>
                   <Box direction="row" alignItems="center" gap={8}>
                     <TextStyle variant="labelSmallBold" color="color-primary">
-                      filter_by_status
+                      {t("dashboard_filter_by_status")}
                     </TextStyle>
                     <Button
                       onClick={() => {

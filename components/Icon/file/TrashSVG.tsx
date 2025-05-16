@@ -15,7 +15,6 @@ export const TrashSVG: React.FC<IconProps> = ({
     width={width}
     height={height}
     {...rest}
-    {...rest}
   >
     <path
       fillRule="evenodd"

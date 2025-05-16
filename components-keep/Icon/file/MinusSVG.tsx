@@ -16,7 +16,6 @@ export const MinusSVG: React.FC<IconProps> = ({
     width={width}
     height={height}
     {...rest}
-    {...rest}
   >
     <path
       fillRule="evenodd"

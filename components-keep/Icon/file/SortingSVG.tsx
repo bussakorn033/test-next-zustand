@@ -16,7 +16,6 @@ export const SortingSVG: React.FC<IconProps> = ({
     width={width}
     height={height}
     {...rest}
-    {...rest}
   >
     <path
       fillRule="evenodd"

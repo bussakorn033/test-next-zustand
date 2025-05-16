@@ -16,7 +16,6 @@ export const HistorySVG: React.FC<IconProps> = ({
     width={width}
     height={height}
     {...rest}
-    {...rest}
   >
     <path
       fillRule="evenodd"

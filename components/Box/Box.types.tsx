@@ -71,8 +71,8 @@ export interface BoxProps
   fullWidth?: boolean;
   fullHeight?: boolean;
   column?: number;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
   minWidth?: number;
   maxWidth?: number;
   minHeight?: number;

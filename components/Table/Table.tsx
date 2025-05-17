@@ -48,18 +48,15 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           <Box direction="column">
             <Box
               direction="column"
-              // overflowY="hidden"
-              // overflowX="auto"
-              overflow="auto"
-              minHeight={300}
-              maxHeight={400}
+              overflowY="hidden"
+              overflowX="auto"
               fullWidth
             >
               {/* Header */}
               <Box
                 direction="row"
                 bgColor="var(--color-table-header-dark)"
-                style={{position: "sticky", top: 0, zIndex: 100}}
+                style={{position: "sticky", top: 0, zIndex: 900}}
               >
                 {headers.map((col, index) => (
                   <Box
@@ -120,92 +117,146 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               {/* Header */}
 
               {/* Body */}
-              <Box
-                direction="column"
-                // justifyContent="center"
-                // alignItems="center"
-                // overflowY="auto"
-                // overflowX="hidden"
-                minHeight={300}
-                maxHeight={400}
-                // borderWidth={1}
-                fullWidth
-              >
-                {!!values.length && values.length !== 0 && !!true ? (
+              <table style={{width: "100%", display: "table"}}>
+                <Box
+                  direction="column"
+                  height={300}
+                  minHeight={300}
+                  maxHeight={300}
+                  fullWidth
+                  borderWidth={1}
+                  color="pink"
+                  overflowY="auto"
+                  overflowX="hidden"
+                  // overflow="auto"
+                  style={{
+                    // display: "inline-table",
+                    // position: "relative",
+                    margin: "auto",
+                    // position: "sticky",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    zIndex: 100,
+                  }}
+                >
                   <>
-                    <Box direction="column" fullWidth>
-                      {values.map((item, rowIndex) => (
-                        <Box key={rowIndex} direction="row" height="100%" m={0}>
-                          {item.map((col, colIndex) => {
-                            const cell = col || {value: ""};
-                            return (
-                              <Box
-                                key={colIndex}
-                                onClick={() => {
-                                  const result = col.onClick?.({
-                                    row: rowIndex,
-                                    col: colIndex,
-                                  });
-                                  console.log("Cell onClick:", {
-                                    row: rowIndex,
-                                    col: colIndex,
-                                    result,
-                                  });
-                                }}
-                                role={col.onClick ? "button" : "div"}
-                                borderWidth={1}
-                                border="top"
-                                px={8}
-                                py={16}
-                                style={{
-                                  flex: headers[colIndex]?.flex ?? 1,
-                                  minWidth:
-                                    headers[colIndex]?.minWidth ?? "100px",
-                                  maxWidth:
-                                    headers[colIndex]?.maxWidth ?? undefined,
-                                }}
-                                fullWidth
-                              >
-                                <TextStyle
-                                  variant="paragraphSmall"
-                                  color="color-primary"
-                                  textAlign="left"
-                                  limitLine={1}
-                                >
-                                  {cell.value}
-                                </TextStyle>
-                              </Box>
-                            );
-                          })}
-                        </Box>
-                      ))}
-                    </Box>
-                  </>
-                ) : (
-                  <>
+                    {/* <Box
+                    direction="row"
+                    borderWidth={1}
+                    justifyContent="center"
+                    fullWidth
+                    style={{
+                      margin: "auto",
+                      position: "sticky",
+                      top: 0,
+                      left: 0,
+                      zIndex: 100,
+                    }}
+                  > */}
                     <Box
-                      direction="row"
-                      // justifyContent="center"
-                      // alignItems="center"
-                      // overflowX="auto"
-                      // height="100%"
+                      direction="column"
+                      fullWidth
                       borderWidth={1}
-                      style={{margin: "auto"}}
-                      // fullWidth
+                      color="red"
+                      p={150}
+                      style={{
+                        flex: 1,
+                        minWidth: "100px",
+                        // maxWidth: headers[colIndex]?.maxWidth ?? undefined,
+                      }}
                     >
                       <TextStyle
                         variant="paragraphSmall"
                         color="color-primary"
                         textAlign="center"
-
-                        // style={{padding:}}
                       >
                         NotFound
                       </TextStyle>
                     </Box>
                   </>
-                )}
-              </Box>
+                  {!!values.length && values.length !== 0 && !!true ? (
+                    <>
+                      <Box direction="column" fullWidth color="blue">
+                        {values.map((item, rowIndex) => (
+                          <Box
+                            key={rowIndex}
+                            direction="row"
+                            height="100%"
+                            m={0}
+                          >
+                            {item.map((col, colIndex) => {
+                              const cell = col || {value: ""};
+                              return (
+                                <Box
+                                  key={colIndex}
+                                  onClick={() => {
+                                    const result = col.onClick?.({
+                                      row: rowIndex,
+                                      col: colIndex,
+                                    });
+                                    console.log("Cell onClick:", {
+                                      row: rowIndex,
+                                      col: colIndex,
+                                      result,
+                                    });
+                                  }}
+                                  role={col.onClick ? "button" : "div"}
+                                  borderWidth={1}
+                                  border="top"
+                                  px={8}
+                                  py={16}
+                                  style={{
+                                    flex: headers[colIndex]?.flex ?? 1,
+                                    minWidth:
+                                      headers[colIndex]?.minWidth ?? "100px",
+                                    maxWidth:
+                                      headers[colIndex]?.maxWidth ?? undefined,
+                                  }}
+                                  fullWidth
+                                >
+                                  <TextStyle
+                                    variant="paragraphSmall"
+                                    color="color-primary"
+                                    textAlign="left"
+                                    limitLine={1}
+                                  >
+                                    {cell.value}
+                                  </TextStyle>
+                                </Box>
+                              );
+                            })}
+                          </Box>
+                        ))}
+                      </Box>
+                    </>
+                  ) : (
+                    <>
+                      <Box
+                        direction="row"
+                        borderWidth={1}
+                        justifyContent="center"
+                        fullWidth
+                        style={{
+                          margin: "auto",
+                          position: "sticky",
+                          top: 0,
+                          left: 0,
+                          zIndex: 100,
+                        }}
+                      >
+                        <TextStyle
+                          variant="paragraphSmall"
+                          color="color-primary"
+                          textAlign="center"
+                        >
+                          NotFound
+                        </TextStyle>
+                      </Box>
+                    </>
+                  )}
+                </Box>
+              </table>
               {/* Body */}
             </Box>
           </Box>

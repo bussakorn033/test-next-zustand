@@ -18,21 +18,16 @@ function transformFlexProperties(
     | "baseline"
     | undefined,
 ) {
-  if (prop === "end") {
-    return "flex-end";
-  } else if (prop === "start") {
-    return "flex-start";
-  } else {
-    return prop;
-  }
+  if (prop === "end") return "flex-end";
+  if (prop === "start") return "flex-start";
+  return prop;
 }
 
-export const Box = styled.div`
+export const Box = styled.div<BoxProps>`
   &[role="button"] {
     cursor: pointer;
     * {
       cursor: pointer;
-      /* background: pink; */
     }
   }
 
@@ -45,409 +40,296 @@ export const Box = styled.div`
     }
   }
 
-  ${(props: Omit<BoxProps, "as">) => {
-    if (props.direction !== "none") {
+  ${({direction, gap, gapRow, gapColumn}) => {
+    if (direction !== "none") {
       return css`
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
       `;
-    } else if (props.gap || props.gapRow || props.gapColumn) {
+    } else if (gap || gapRow || gapColumn) {
       return css`
         display: grid;
-        ${props.gap && `gap: ${props.gap}px;`}
-        ${props.gapRow && `row-gap: ${props.gapRow}px;`}
-        ${props.gapColumn && `column-gap: ${props.gapColumn}px;`}
+        ${gap && `gap: ${gap}px;`}
+        ${gapRow && `row-gap: ${gapRow}px;`}
+        ${gapColumn && `column-gap: ${gapColumn}px;`}
       `;
     }
   }}
-  ${(props: BoxProps) => {
-    if (props.overflow) {
-      return css`
-        overflow: ${props.overflow};
-      `;
-    }
+
+  ${({overflow}) =>
+    overflow &&
+    css`
+      overflow: ${overflow};
+    `}
+  ${({overflowX}) =>
+    overflowX &&
+    css`
+      overflow-x: ${overflowX};
+    `}
+  ${({overflowY}) =>
+    overflowY &&
+    css`
+      overflow-y: ${overflowY};
+    `}
+
+  ${({fullWidth}) =>
+    fullWidth &&
+    css`
+      width: 100%;
+    `}
+  ${({fullHeight}) =>
+    fullHeight &&
+    css`
+      height: 100dvh;
+    `}
+
+  ${({width}) =>
+    width &&
+    css`
+      width: ${toPx(width)};
+    `}
+  ${({height}) =>
+    height &&
+    css`
+      height: ${toPx(height)};
+    `}
+  ${({minWidth}) =>
+    minWidth &&
+    css`
+      min-width: ${toPx(minWidth)};
+    `}
+  ${({minHeight}) =>
+    minHeight &&
+    css`
+      min-height: ${toPx(minHeight)};
+    `}
+  ${({maxWidth}) =>
+    maxWidth &&
+    css`
+      max-width: ${toPx(maxWidth)};
+    `}
+  ${({maxHeight}) =>
+    maxHeight &&
+    css`
+      max-height: ${toPx(maxHeight)};
+    `}
+
+  ${({direction, gap}) => {
+    if (!direction || direction === "none") return;
+    const isColumn = direction.includes("column");
+    const isReverse = direction.includes("reverse");
+    const flexDirection = isColumn
+      ? isReverse
+        ? "column-reverse"
+        : "column"
+      : isReverse
+      ? "row-reverse"
+      : "row";
+    return css`
+      flex-direction: ${flexDirection};
+      gap: ${gap}px;
+    `;
   }}
-  ${(props: BoxProps) => {
-    if (props.overflowX) {
-      return css`
-        overflow-x: ${props.overflowX};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.overflowY) {
-      return css`
-        overflow-y: ${props.overflowY};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.fullWidth) {
-      return css`
-        width: 100%;
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.fullHeight) {
-      return css`
-        height: 100dvh;
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.width) {
-      return css`
-        width: ${toPx(props.width)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.height) {
-      return css`
-        height: ${toPx(props.height)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.minWidth) {
-      return css`
-        min-width: ${toPx(props.minWidth)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.minHeight) {
-      return css`
-        min-height: ${toPx(props.minHeight)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.maxWidth) {
-      return css`
-        max-width: ${toPx(props.maxWidth)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.maxHeight) {
-      return css`
-        max-height: ${toPx(props.maxHeight)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.direction === "row") {
-      return css`
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: ${props.direction};
-        flex-direction: ${props.direction};
-        gap: ${props.gap}px;
-      `;
-    } else if (props.direction === "row-wrap") {
-      return css`
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -ms-flex-flow: wrap;
-        flex-flow: wrap;
-        gap: ${props.gap}px;
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.direction === "row-reverse") {
-      return css`
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: reverse;
-        -ms-flex-direction: row-reverse;
-        flex-direction: row-reverse;
-        gap: ${props.gap}px;
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.direction === "column") {
-      return css`
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: ${props.direction};
-        flex-direction: ${props.direction};
-        gap: ${props.gap}px;
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.direction === "column-reverse") {
-      return css`
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-        flex-direction: column-reverse;
-        gap: ${props.gap}px;
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.direction && props.alignItems) {
-      return css`
-        align-items: ${(props: BoxProps) =>
-          transformFlexProperties(props.alignItems)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.direction && props.justifyContent) {
-      return css`
-        justify-content: ${(props: BoxProps) =>
-          transformFlexProperties(props.justifyContent)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.column && props.justifyContent) {
-      return css`
-        justify-items: ${(props: BoxProps) =>
-          transformFlexProperties(props.justifyContent)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.hover) {
-      return css`
-        cursor: pointer;
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.m) {
-      return css`
-        margin: ${toPx(props.m)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.mx) {
-      return css`
-        margin-left: ${toPx(props.mx)};
-        margin-right: ${toPx(props.mx)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.my) {
-      return css`
-        margin-top: ${toPx(props.my)};
-        margin-bottom: ${toPx(props.my)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.mt) {
-      return css`
-        margin-top: ${toPx(props.mt)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.mb) {
-      return css`
-        margin-bottom: ${toPx(props.mb)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.mr) {
-      return css`
-        margin-right: ${toPx(props.mr)};
-      `;
-    }
-  }}
-  ${(props: BoxProps) => {
-    if (props.ml) {
-      return css`
-        margin-left: ${toPx(props.ml)};
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.bgColor) {
-      return css`
-        background-color: ${props.bgColor};
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (
-      props.borderWidth &&
-      props.borderWidth > 0 &&
-      props.borderWidth &&
-      props.borderWidth <= 2
-    ) {
-      return css`
-        border-style: solid;
-        border-width: ${props.borderWidth}px;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.border === "all") {
-      return css`
-        border-width: ${props.borderWidth}px;
-      `;
-    } else if (props.border) {
-      return css`
+
+  ${({direction, alignItems}) =>
+    direction &&
+    alignItems &&
+    css`
+      align-items: ${transformFlexProperties(alignItems)};
+    `}
+  
+  ${({direction, justifyContent}) =>
+    direction &&
+    justifyContent &&
+    css`
+      justify-content: ${transformFlexProperties(justifyContent)};
+    `}
+
+  ${({column, justifyContent}) =>
+    column &&
+    justifyContent &&
+    css`
+      justify-items: ${transformFlexProperties(justifyContent)};
+    `}
+
+  ${({hover}) =>
+    hover &&
+    css`
+      cursor: pointer;
+    `}
+
+  ${({m}) =>
+    m &&
+    css`
+      margin: ${toPx(m)};
+    `}
+  ${({mx}) =>
+    mx &&
+    css`
+      margin-left: ${toPx(mx)};
+      margin-right: ${toPx(mx)};
+    `}
+  ${({my}) =>
+    my &&
+    css`
+      margin-top: ${toPx(my)};
+      margin-bottom: ${toPx(my)};
+    `}
+  ${({mt}) =>
+    mt &&
+    css`
+      margin-top: ${toPx(mt)};
+    `}
+  ${({mb}) =>
+    mb &&
+    css`
+      margin-bottom: ${toPx(mb)};
+    `}
+  ${({mr}) =>
+    mr &&
+    css`
+      margin-right: ${toPx(mr)};
+    `}
+  ${({ml}) =>
+    ml &&
+    css`
+      margin-left: ${toPx(ml)};
+    `}
+
+  ${({bgColor}) =>
+    bgColor &&
+    css`
+      background-color: ${bgColor};
+    `}
+
+  ${({borderWidth}) =>
+    borderWidth &&
+    borderWidth > 0 &&
+    borderWidth <= 2 &&
+    css`
+      border-style: solid;
+      border-width: ${borderWidth}px;
+    `}
+
+  ${({border, borderWidth}) =>
+    border &&
+    css`
       border-width: 0;
-      border-${props.border}-width: ${props.borderWidth}px;
-        `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.boxShadow !== "none") {
-      const boxShadow = () => {
-        switch (props.boxShadow) {
+      ${border === "all"
+        ? css`
+            border-width: ${borderWidth}px;
+          `
+        : css`border-${border}-width: ${borderWidth}px;`}
+    `}
+
+  ${({boxShadow}) =>
+    boxShadow !== "none" &&
+    css`
+      box-shadow: ${(() => {
+        switch (boxShadow) {
           case "top":
             return "0px -2px 0px rgba(0, 0, 0, 0.04), 0px -4px 0px rgba(76, 87, 101, 0.06)";
           case "bottom":
             return "0px 2px 0px rgba(0, 0, 0, 0.04), 0px 4px 0px rgba(76, 87, 101, 0.06)";
-          case "none":
           default:
             return "none";
         }
-      };
-      return css`
-        box-shadow: ${boxShadow()};
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.borderColor) {
-      return css`
-        border-color: ${props.borderColor};
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.borderRadius) {
-      const radius = () => {
-        switch (props.borderRadius) {
-          case "none":
-            return "0px";
-          case "xs":
-            return "4px";
-          case "sm":
-            return "8px";
-          case "md":
-            return "12px";
-          case "lg":
-            return "16px";
-          case "xl":
-            return "24px";
-          case "circle":
-            return "50%";
-          default:
-            return `${props.borderRadius}`;
-        }
-      };
-      if (props.border === "all") {
-        return css`
-          border-radius: ${radius()};
+      })()};
+    `}
+
+  ${({borderColor}) =>
+    borderColor &&
+    css`
+      border-color: ${borderColor};
+    `}
+
+  ${({borderRadius, border}) =>
+    borderRadius &&
+    css`
+      ${() => {
+        const radiusMap = {
+          none: "0px",
+          xs: "4px",
+          sm: "8px",
+          md: "12px",
+          lg: "16px",
+          xl: "24px",
+          circle: "50%",
+        };
+        const value = radiusMap[borderRadius] || borderRadius;
+        return border === "all"
+          ? css`
+              border-radius: ${value};
+            `
+          : css`
+          border-${border}-left-radius: ${value};
+          border-${border}-right-radius: ${value};
         `;
-      } else {
-        return css`
-          border-${props.border}-left-radius: ${radius()};
-          border-${props.border}-right-radius: ${radius()};
-        `;
+      }}
+    `}
+
+  ${({p, borderWidth}) =>
+    p !== undefined &&
+    css`
+      padding: ${calPadding(p, borderWidth)}px;
+    `}
+  ${({px, borderWidth}) =>
+    px !== undefined &&
+    css`
+      padding-left: ${calPadding(px, borderWidth)}px;
+      padding-right: ${calPadding(px, borderWidth)}px;
+    `}
+  ${({py, borderWidth}) =>
+    py !== undefined &&
+    css`
+      padding-top: ${calPadding(py, borderWidth)}px;
+      padding-bottom: ${calPadding(py, borderWidth)}px;
+    `}
+  ${({pt, borderWidth}) =>
+    pt !== undefined &&
+    css`
+      padding-top: ${calPadding(pt, borderWidth)}px;
+    `}
+  ${({pb, borderWidth}) =>
+    pb !== undefined &&
+    css`
+      padding-bottom: ${calPadding(pb, borderWidth)}px;
+    `}
+  ${({pr, borderWidth}) =>
+    pr !== undefined &&
+    css`
+      padding-right: ${calPadding(pr, borderWidth)}px;
+    `}
+  ${({pl, borderWidth}) =>
+    pl !== undefined &&
+    css`
+      padding-left: ${calPadding(pl, borderWidth)}px;
+    `}
+
+  ${({column}) =>
+    column &&
+    css`
+      display: grid;
+      grid-template-columns: repeat(${column}, minmax(0, 1fr));
+      grid-template-rows: auto;
+      word-break: break-word;
+    `}
+
+  ${({limit}) =>
+    limit &&
+    css`
+      > *:nth-child(n + ${limit + 1}) {
+        display: none;
       }
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.p) {
-      return css`
-        padding: ${calPadding(props.p, props.borderWidth)}px;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.px || props.px === 0) {
-      return css`
-        padding-left: ${calPadding(props.px, props.borderWidth)}px;
-        padding-right: ${calPadding(props.px, props.borderWidth)}px;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.py || props.py === 0) {
-      return css`
-        padding-top: ${calPadding(props.py, props.borderWidth)}px;
-        padding-bottom: ${calPadding(props.py, props.borderWidth)}px;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.pt || props.pt === 0) {
-      return css`
-        padding-top: ${calPadding(props.pt, props.borderWidth)}px;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.pb || props.pb === 0) {
-      return css`
-        padding-bottom: ${calPadding(props.pb, props.borderWidth)}px;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.pr || props.pr === 0) {
-      return css`
-        padding-right: ${calPadding(props.pr, props.borderWidth)}px;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.pl || props.pl === 0) {
-      return css`
-        padding-left: ${calPadding(props.pl, props.borderWidth)}px;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.column || props.column === 0) {
-      return css`
-        display: grid;
-        grid-template-columns: repeat(${props.column}, 1fr);
-        grid-template-columns: repeat(${props.column}, minmax(0, 1fr));
-        grid-template-rows: auto;
-        word-break: break-word;
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.limit) {
-      return css`
-        > *:nth-child(n + ${props.limit + 1}) {
-          display: none;
-        }
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.textAlign) {
-      return css`
-        text-align: ${props.textAlign};
-      `;
-    }
-  }}
-    ${(props: BoxProps) => {
-    if (props.color) {
-      return css`
-        color: ${props.color};
-      `;
-    }
-  }}
+    `}
+
+  ${({textAlign}) =>
+    textAlign &&
+    css`
+      text-align: ${textAlign};
+    `}
+  ${({color}) =>
+    color &&
+    css`
+      color: ${color};
+    `}
 `;

@@ -1,29 +1,46 @@
+// Box.styled.ts
 import styled, {css} from "styled-components";
 import {BoxProps} from "./Box.types";
 import {toPx} from "@/src/utils/Utility";
 
-function calPadding(padding: number = 0, borderWidth: number = 0) {
-  return Number(padding - borderWidth);
-}
+const transformFlexProperties = (
+  prop: BoxProps["alignItems"] | BoxProps["justifyContent"] | undefined,
+) => {
+  switch (prop) {
+    case "start":
+      return "flex-start";
+    case "end":
+      return "flex-end";
+    default:
+      return prop;
+  }
+};
 
-function transformFlexProperties(
-  prop:
-    | "start"
-    | "center"
-    | "end"
-    | "space-between"
-    | "space-around"
-    | "flex-end"
-    | "flex-start"
-    | "baseline"
-    | undefined,
-) {
-  if (prop === "end") return "flex-end";
-  if (prop === "start") return "flex-start";
-  return prop;
-}
+const getRadius = (value: BoxProps["borderRadius"]) => {
+  switch (value) {
+    case "none":
+      return "0px";
+    case "xs":
+      return "4px";
+    case "sm":
+      return "8px";
+    case "md":
+      return "12px";
+    case "lg":
+      return "16px";
+    case "xl":
+      return "24px";
+    case "circle":
+      return "50%";
+    default:
+      return `${value}`;
+  }
+};
 
-export const Box = styled.div<BoxProps>`
+const calPadding = (padding: number = 0, borderWidth: number = 0) =>
+  padding - borderWidth;
+
+export const Box = styled.div<Omit<BoxProps, "as">>`
   &[role="button"] {
     cursor: pointer;
     * {
@@ -70,7 +87,6 @@ export const Box = styled.div<BoxProps>`
     css`
       overflow-y: ${overflowY};
     `}
-
   ${({fullWidth}) =>
     fullWidth &&
     css`
@@ -113,22 +129,19 @@ export const Box = styled.div<BoxProps>`
       max-height: ${toPx(maxHeight)};
     `}
 
-  ${({direction, gap}) => {
-    if (!direction || direction === "none") return;
-    const isColumn = direction.includes("column");
-    const isReverse = direction.includes("reverse");
-    const flexDirection = isColumn
-      ? isReverse
-        ? "column-reverse"
-        : "column"
-      : isReverse
-      ? "row-reverse"
-      : "row";
-    return css`
-      flex-direction: ${flexDirection};
-      gap: ${gap}px;
-    `;
-  }}
+  ${({direction, gap}) =>
+    direction &&
+    css`
+      flex-direction: ${direction.replace("-wrap", "")};
+      ${direction.includes("wrap") &&
+      css`
+        flex-wrap: wrap;
+      `}
+      ${gap !== undefined &&
+      css`
+        gap: ${gap}px;
+      `}
+    `}
 
   ${({direction, alignItems}) =>
     direction &&
@@ -136,7 +149,7 @@ export const Box = styled.div<BoxProps>`
     css`
       align-items: ${transformFlexProperties(alignItems)};
     `}
-  
+
   ${({direction, justifyContent}) =>
     direction &&
     justifyContent &&
@@ -201,39 +214,27 @@ export const Box = styled.div<BoxProps>`
       background-color: ${bgColor};
     `}
 
-  ${({borderWidth}) =>
+  ${({borderWidth, border}) =>
     borderWidth &&
     borderWidth > 0 &&
-    borderWidth <= 2 &&
     css`
       border-style: solid;
-      border-width: ${borderWidth}px;
-    `}
-
-  ${({border, borderWidth}) =>
-    border &&
-    css`
-      border-width: 0;
       ${border === "all"
         ? css`
             border-width: ${borderWidth}px;
           `
-        : css`border-${border}-width: ${borderWidth}px;`}
+        : css`
+        border-width: 0;
+        border-${border}-width: ${borderWidth}px;
+      `}
     `}
 
   ${({boxShadow}) =>
     boxShadow !== "none" &&
     css`
-      box-shadow: ${(() => {
-        switch (boxShadow) {
-          case "top":
-            return "0px -2px 0px rgba(0, 0, 0, 0.04), 0px -4px 0px rgba(76, 87, 101, 0.06)";
-          case "bottom":
-            return "0px 2px 0px rgba(0, 0, 0, 0.04), 0px 4px 0px rgba(76, 87, 101, 0.06)";
-          default:
-            return "none";
-        }
-      })()};
+      box-shadow: ${boxShadow === "top"
+        ? "0px -2px 0px rgba(0, 0, 0, 0.04), 0px -4px 0px rgba(76, 87, 101, 0.06)"
+        : "0px 2px 0px rgba(0, 0, 0, 0.04), 0px 4px 0px rgba(76, 87, 101, 0.06)"};
     `}
 
   ${({borderColor}) =>
@@ -242,29 +243,17 @@ export const Box = styled.div<BoxProps>`
       border-color: ${borderColor};
     `}
 
-  ${({borderRadius, border}) =>
+    ${({borderRadius, border}) =>
     borderRadius &&
     css`
-      ${() => {
-        const radiusMap = {
-          none: "0px",
-          xs: "4px",
-          sm: "8px",
-          md: "12px",
-          lg: "16px",
-          xl: "24px",
-          circle: "50%",
-        };
-        const value = radiusMap[borderRadius] || borderRadius;
-        return border === "all"
-          ? css`
-              border-radius: ${value};
-            `
-          : css`
-          border-${border}-left-radius: ${value};
-          border-${border}-right-radius: ${value};
-        `;
-      }}
+      ${border === "all"
+        ? css`
+            border-radius: ${getRadius(borderRadius)};
+          `
+        : css`
+          border-${border}-left-radius: ${getRadius(borderRadius)};
+          border-${border}-right-radius: ${getRadius(borderRadius)};
+        `}
     `}
 
   ${({p, borderWidth}) =>

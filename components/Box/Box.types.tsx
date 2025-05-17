@@ -97,11 +97,11 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   maxHeight?: string | number;
 
   position?: "static" | "relative" | "absolute" | "fixed" | "sticky" | string;
-  zIndex?: string;
-  top?: string;
-  bottom?: string;
-  left?: string;
-  right?: string;
+  zIndex?: string | number;
+  top?: string | number;
+  bottom?: string | number;
+  left?: string | number;
+  right?: string | number;
 
   flex?: string | number;
   column?: number;

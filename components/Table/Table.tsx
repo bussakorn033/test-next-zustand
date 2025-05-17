@@ -65,7 +65,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     direction="row"
                     alignItems="center"
                     bgColor="var(--color-table-header-dark)"
-                    borderWidth={1}
+                    // borderWidth={1}
                     border="bottom"
                     p={8}
                     gap={4}
@@ -123,8 +123,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   direction="column"
                   maxHeight={maxHeightTable}
                   fullWidth
-                  borderWidth={1}
-                  color="pink"
+                  // borderWidth={1}
                   overflowY="auto"
                   overflowX="hidden"
                   style={{
@@ -149,7 +148,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       zIndex: 100,
                     }}
                   > */}
-                    <Box
+                    {/* <Box
                       direction="column"
                       fullWidth
                       borderWidth={1}
@@ -168,11 +167,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       >
                         NotFound
                       </TextStyle>
-                    </Box>
+                    </Box> */}
                   </>
                   {!!values.length && values.length !== 0 && !!true ? (
                     <>
-                      <Box direction="column" fullWidth color="blue">
+                      <Box direction="column" fullWidth>
                         {values.map((item, rowIndex) => (
                           <Box
                             key={rowIndex}

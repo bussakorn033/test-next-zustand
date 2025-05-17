@@ -65,7 +65,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     direction="row"
                     alignItems="center"
                     bgColor="var(--color-table-header-dark)"
-                    // borderWidth={1}
                     border="bottom"
                     p={8}
                     gap={4}
@@ -123,7 +122,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   direction="column"
                   maxHeight={maxHeightTable}
                   fullWidth
-                  // borderWidth={1}
                   overflowY="auto"
                   overflowX="hidden"
                   style={{
@@ -134,41 +132,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     zIndex: 100,
                   }}
                 >
-                  <>
-                    {/* <Box
-                    direction="row"
-                    borderWidth={1}
-                    justifyContent="center"
-                    fullWidth
-                    style={{
-                      margin: "auto",
-                      position: "sticky",
-                      top: 0,
-                      left: 0,
-                      zIndex: 100,
-                    }}
-                  > */}
-                    {/* <Box
-                      direction="column"
-                      fullWidth
-                      borderWidth={1}
-                      color="red"
-                      p={150}
-                      style={{
-                        flex: 1,
-                        minWidth: "100px",
-                        // maxWidth: headers[colIndex]?.maxWidth ?? undefined,
-                      }}
-                    >
-                      <TextStyle
-                        variant="paragraphSmall"
-                        color="color-primary"
-                        textAlign="center"
-                      >
-                        NotFound
-                      </TextStyle>
-                    </Box> */}
-                  </>
                   {!!values.length && values.length !== 0 && !!true ? (
                     <>
                       <Box direction="column" fullWidth>

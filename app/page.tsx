@@ -73,7 +73,7 @@ export default function Home() {
       isSort: true,
       sortBy: undefined,
       minWidth: "96px",
-      maxWidth: "calc(96px * 2)",
+      maxWidth: "calc(96px * 1.25)",
       flex: 1,
     },
     {
@@ -82,6 +82,7 @@ export default function Home() {
       isSort: true,
       sortBy: undefined,
       minWidth: "144px",
+      maxWidth: "calc(144px * 1.5)",
       flex: 1,
     },
     {

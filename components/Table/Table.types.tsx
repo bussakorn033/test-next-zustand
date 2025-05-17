@@ -32,6 +32,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
   headers?: TableColumn[];
   values?: TableColumn[][];
+  maxHeightTable?: number | string;
   page?: number;
   limit?: number;
   count?: number;

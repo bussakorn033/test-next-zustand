@@ -35,10 +35,7 @@ export default function Home() {
     limit: 10,
     count: 55,
   });
-
   console.log(`---- pagination:`, pagination);
-  const col = 10;
-  const row = pagination.count;
   const onClickHeader = ({
     row,
     col,
@@ -209,8 +206,7 @@ export default function Home() {
               }}
               variant="ghost-icon-secondary-no-padding"
               borderRadius="round"
-              // iconLeft={header.icon}
-              // color="var(--color-primary)"
+              disabled={false}
             >
               <Icon
                 icon={header.icon}

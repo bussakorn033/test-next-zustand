@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components";
 import {BoxProps} from "./Box.types";
+import {toPx} from "@/src/utils/Utility";
 
 function calPadding(padding: number = 0, borderWidth: number = 0) {
   return Number(padding - borderWidth);
@@ -98,42 +99,42 @@ export const Box = styled.div`
   ${(props: BoxProps) => {
     if (props.width) {
       return css`
-        width: ${props.width};
+        width: ${toPx(props.width)};
       `;
     }
   }}
   ${(props: BoxProps) => {
     if (props.height) {
       return css`
-        height: ${props.height};
+        height: ${toPx(props.height)};
       `;
     }
   }}
   ${(props: BoxProps) => {
     if (props.minWidth) {
       return css`
-        min-width: ${props.minWidth}px;
+        min-width: ${toPx(props.minWidth)};
       `;
     }
   }}
   ${(props: BoxProps) => {
     if (props.minHeight) {
       return css`
-        min-height: ${props.minHeight}px;
+        min-height: ${toPx(props.minHeight)};
       `;
     }
   }}
   ${(props: BoxProps) => {
     if (props.maxWidth) {
       return css`
-        max-width: ${props.maxWidth}px;
+        max-width: ${toPx(props.maxWidth)};
       `;
     }
   }}
   ${(props: BoxProps) => {
     if (props.maxHeight) {
       return css`
-        max-height: ${props.maxHeight}px;
+        max-height: ${toPx(props.maxHeight)};
       `;
     }
   }}
@@ -223,53 +224,53 @@ export const Box = styled.div`
     }
   }}
   ${(props: BoxProps) => {
-    if (props.m && props.m >= 0) {
+    if (props.m) {
       return css`
-        margin: ${props.m}px;
+        margin: ${toPx(props.m)};
       `;
     }
   }}
   ${(props: BoxProps) => {
-    if (props.mx && props.mx >= 0) {
+    if (props.mx) {
       return css`
-        margin-left: ${props.mx}px;
-        margin-right: ${props.mx}px;
+        margin-left: ${toPx(props.mx)};
+        margin-right: ${toPx(props.mx)};
       `;
     }
   }}
   ${(props: BoxProps) => {
-    if (props.my && props.my >= 0) {
+    if (props.my) {
       return css`
-        margin-top: ${props.my}px;
-        margin-bottom: ${props.my}px;
+        margin-top: ${toPx(props.my)};
+        margin-bottom: ${toPx(props.my)};
       `;
     }
   }}
   ${(props: BoxProps) => {
-    if (props.mt && props.mt >= 0) {
+    if (props.mt) {
       return css`
-        margin-top: ${props.mt}px;
+        margin-top: ${toPx(props.mt)};
       `;
     }
   }}
   ${(props: BoxProps) => {
-    if (props.mb && props.mb >= 0) {
+    if (props.mb) {
       return css`
-        margin-bottom: ${props.mb}px;
+        margin-bottom: ${toPx(props.mb)};
       `;
     }
   }}
   ${(props: BoxProps) => {
-    if (props.mr && props.mr >= 0) {
+    if (props.mr) {
       return css`
-        margin-right: ${props.mr}px;
+        margin-right: ${toPx(props.mr)};
       `;
     }
   }}
   ${(props: BoxProps) => {
-    if (props.ml && props.ml >= 0) {
+    if (props.ml) {
       return css`
-        margin-left: ${props.ml}px;
+        margin-left: ${toPx(props.ml)};
       `;
     }
   }}
@@ -365,14 +366,14 @@ export const Box = styled.div`
     }
   }}
     ${(props: BoxProps) => {
-    if (props.p && props.p >= 0) {
+    if (props.p) {
       return css`
         padding: ${calPadding(props.p, props.borderWidth)}px;
       `;
     }
   }}
     ${(props: BoxProps) => {
-    if ((props.px || props.px === 0) && props.px >= 0) {
+    if (props.px || props.px === 0) {
       return css`
         padding-left: ${calPadding(props.px, props.borderWidth)}px;
         padding-right: ${calPadding(props.px, props.borderWidth)}px;
@@ -380,7 +381,7 @@ export const Box = styled.div`
     }
   }}
     ${(props: BoxProps) => {
-    if ((props.py || props.py === 0) && props.py >= 0) {
+    if (props.py || props.py === 0) {
       return css`
         padding-top: ${calPadding(props.py, props.borderWidth)}px;
         padding-bottom: ${calPadding(props.py, props.borderWidth)}px;
@@ -388,35 +389,35 @@ export const Box = styled.div`
     }
   }}
     ${(props: BoxProps) => {
-    if ((props.pt || props.pt === 0) && props.pt >= 0) {
+    if (props.pt || props.pt === 0) {
       return css`
         padding-top: ${calPadding(props.pt, props.borderWidth)}px;
       `;
     }
   }}
     ${(props: BoxProps) => {
-    if ((props.pb || props.pb === 0) && props.pb >= 0) {
+    if (props.pb || props.pb === 0) {
       return css`
         padding-bottom: ${calPadding(props.pb, props.borderWidth)}px;
       `;
     }
   }}
     ${(props: BoxProps) => {
-    if ((props.pr || props.pr === 0) && props.pr >= 0) {
+    if (props.pr || props.pr === 0) {
       return css`
         padding-right: ${calPadding(props.pr, props.borderWidth)}px;
       `;
     }
   }}
     ${(props: BoxProps) => {
-    if ((props.pl || props.pl === 0) && props.pl >= 0) {
+    if (props.pl || props.pl === 0) {
       return css`
         padding-left: ${calPadding(props.pl, props.borderWidth)}px;
       `;
     }
   }}
     ${(props: BoxProps) => {
-    if ((props.column || props.column === 0) && props.column >= 0) {
+    if (props.column || props.column === 0) {
       return css`
         display: grid;
         grid-template-columns: repeat(${props.column}, 1fr);

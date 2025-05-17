@@ -25,8 +25,8 @@ boxShadow?: "none" | "top" | "bottom";
 
 width?: "normal" | "full";
 
-color?: string; // var(--color-error) || #f00
+color?: string; // "var(--color-error)" | "#f00" | "red" | string;
 
-bgColor?: string; // var(--color-error) || #f00
+bgColor?: string; // "var(--color-error)" | "#f00" | "red" | string;
 
 ```

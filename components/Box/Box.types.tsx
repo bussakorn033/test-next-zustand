@@ -73,11 +73,18 @@ export interface BoxProps
   column?: number;
   width?: string | number;
   height?: string | number;
-  minWidth?: number;
-  maxWidth?: number;
-  minHeight?: number;
-  maxHeight?: number;
+  minWidth?: string | number;
+  maxWidth?: string | number;
+  minHeight?: string | number;
+  maxHeight?: string | number;
   limit?: number;
+  position?: "" | "sticky" | string;
+  zIndex?: "" | "" | string;
+  top?: "" | "" | string;
+  bottom?: "" | "" | string;
+  left?: "" | "" | string;
+  right?: "" | "" | string;
+  flex?: "1" | 1 | string | number;
   overflow?: "auto" | "scroll" | "hidden" | "visible";
   overflowX?: "auto" | "scroll" | "hidden" | "visible";
   overflowY?: "auto" | "scroll" | "hidden" | "visible";
@@ -98,30 +105,33 @@ export interface BoxProps
     | "column"
     | "column-reverse";
 
-  p?: number;
-  px?: number;
-  py?: number;
-  pt?: number;
-  pb?: number;
-  pr?: number;
-  pl?: number;
-  m?: number;
-  mx?: number;
-  my?: number;
-  mt?: number;
-  mb?: number;
-  mr?: number;
-  ml?: number;
-  gap?: number;
-  gapRow?: number;
-  gapColumn?: number;
+  display?: "flex" | "table";
+  boxSeizing?: "border-box" | string;
+
+  p?: string | number;
+  px?: string | number;
+  py?: string | number;
+  pt?: string | number;
+  pb?: string | number;
+  pr?: string | number;
+  pl?: string | number;
+  m?: string | number;
+  mx?: string | number;
+  my?: string | number;
+  mt?: string | number;
+  mb?: string | number;
+  mr?: string | number;
+  ml?: string | number;
+  gap?: string | number;
+  gapRow?: string | number;
+  gapColumn?: string | number;
 
   className?: string;
   bgColor?: string;
-  color?: string;
+  color?: "var(--color-error)" | "#f00" | "red" | string;
   border?: "all" | "top" | "bottom";
   borderWidth?: 0 | 1 | 2;
-  borderColor?: string;
-  borderRadius?: string;
+  borderColor?: "var(--color-error)" | "#f00" | "red" | string;
+  borderRadius?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "circle" | string;
   boxShadow?: "none" | "top" | "bottom";
 }

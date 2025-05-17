@@ -15,6 +15,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       className,
       headers = [],
       values = [],
+      maxHeightTable = 400,
       page = 1,
       limit = 1,
       count = 1,
@@ -120,20 +121,14 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               <table style={{width: "100%", display: "table"}}>
                 <Box
                   direction="column"
-                  height={300}
-                  minHeight={300}
-                  maxHeight={300}
+                  maxHeight={maxHeightTable}
                   fullWidth
                   borderWidth={1}
                   color="pink"
                   overflowY="auto"
                   overflowX="hidden"
-                  // overflow="auto"
                   style={{
-                    // display: "inline-table",
-                    // position: "relative",
                     margin: "auto",
-                    // position: "sticky",
                     top: 0,
                     left: 0,
                     right: 0,

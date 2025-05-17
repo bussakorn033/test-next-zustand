@@ -6,17 +6,19 @@ import {BoxProps} from "./Box.types";
 export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
   (
     {
-      className,
       tag = "div",
-      boxShadow = "none",
-      bgColor = "transparent",
-      hover,
+      display = "grid",
+      direction = "none",
       fullWidth,
       fullHeight,
+      bgColor = "transparent",
+      boxShadow = "none",
       border = "all",
-      borderRadius = "none",
       borderWidth = 0,
-      direction = "none",
+      borderRadius = "none",
+      hover,
+      className,
+      children,
       ...rest
     }: BoxProps,
     ref,
@@ -25,21 +27,22 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
 
     return (
       <S.Box
-        as={tag}
-        bgColor={bgColor}
-        boxShadow={boxShadow}
         className={classnames}
+        as={tag}
+        display={display}
+        direction={direction}
         fullWidth={fullWidth}
         fullHeight={fullHeight}
-        hover={hover}
+        bgColor={bgColor}
+        boxShadow={boxShadow}
         border={border}
-        borderRadius={borderRadius}
         borderWidth={borderWidth}
-        direction={direction}
+        borderRadius={borderRadius}
+        hover={hover}
         ref={ref}
         {...rest}
       >
-        {rest?.children}
+        {children}
       </S.Box>
     );
   },

@@ -4,29 +4,32 @@
 import {Box} from "@/shared-components/Box";
 
 <Box
+  display="flex"
   direction="column"
   gap={8}
-  color="var(--color-table-border-dark)"
+  padding={16}
   bgColor="var(--color-neutral-light)"
+  color="var(--color-table-border-dark)"
   border="all"
   borderRadius="md"
   borderWidth={1}
+  width="full"
+  justifyContent="center"
+  alignItems="center"
 >
-  text
+  Box Component
 </Box>;
 
-direction?: "none"| "row"| "row-reverse"| "row-wrap"| "column"| "column-reverse";
-
-border?: "all" | "top" | "bottom";
-
-borderRadius?: string; // none: '0' | xs: '4px' | sm: '8px'| md: '12px'| lg: '16px'| xl: '24px'| circle: '50%'
-
-boxShadow?: "none" | "top" | "bottom";
-
-width?: "normal" | "full";
-
-color?: string; // "var(--color-error)" | "#f00" | "red" | string;
-
-bgColor?: string; // "var(--color-error)" | "#f00" | "red" | string;
-
+| Prop           | Type                                | Description              |
+| -------------- | ----------------------------------- | ------------------------ |
+| `display`      | `"flex"`, `"grid"`, `"block"`, etc. | Controls the CSS display |
+| `direction`    | `"row"`, `"column"`, etc.           | Flex direction           |
+| `gap`          | `string` | `number`                 | Spacing between children |
+| `bgColor`      | `string`                            | Background color         |
+| `color`        | `string`                            | Text color               |
+| `border`       | `"all"`, `"top"`, `"bottom"`        | Border sides             |
+| `borderRadius` | `"none"` | `"xs"` | `"circle"`      | Corner radius            |
+| `boxShadow`    | `"none"`, `"top"`, `"bottom"`       | Box shadow               |
+| `fullWidth`    | `boolean`                           | Sets width to 100%       |
+| `fullHeight`   | `boolean`                           | Sets height to 100vh     |
 ```

@@ -6,7 +6,6 @@ import {Box} from "@/components/Box";
 import {Button} from "@/components/Button";
 import Icon from "@/components/Icon/Icon";
 import {Table} from "@/components/Table";
-import {TableColumn} from "@/components/Table/Table.types";
 import {TextStyle} from "@/components/TextStyle";
 import globalSlice from "@/stores/globalSlice";
 import {useState} from "react";
@@ -151,17 +150,17 @@ export default function Home() {
   ];
 
   const headers = headerKeys.map((item, index) => ({
-    key: item.key,
-    value: item.label || "",
-    isSort: item.isSort || false,
-    sortBy: item.sortBy,
-    icon: item.icon,
-    onClick: item.isSort
-      ? () => onClickHeader({row: -1, col: index, key: item.key})
-      : undefined,
-    minWidth: item.minWidth,
-    maxWidth: item.maxWidth,
-    flex: item.flex !== undefined ? item.flex : 1,
+    key: item?.key,
+    value: item?.label || "",
+    isSort: item?.isSort || false,
+    sortBy: item?.sortBy || undefined,
+    icon: item?.icon,
+    onClick: item?.isSort
+      ? () => onClickHeader({row: -1, col: index, key: item?.key})
+      : null,
+    minWidth: item?.minWidth,
+    maxWidth: item?.maxWidth,
+    flex: item?.flex !== undefined ? item?.flex : 1,
   }));
 
   console.log("---- headers:", headers);

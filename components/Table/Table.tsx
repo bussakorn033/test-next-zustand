@@ -50,7 +50,9 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       if (firstSortableIndex !== -1) {
         const initialSortBy = headers[firstSortableIndex].sortBy as
           | "asc"
-          | "desc";
+          | "desc"
+          | "sorting"
+          | undefined;
         const initialSortKey = headers[firstSortableIndex].key as string;
         console.log("initialSortKey", initialSortKey);
         setSortColumnIndex(firstSortableIndex);
@@ -61,6 +63,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           row: 1,
           col: firstSortableIndex,
           sortBy: initialSortBy,
+          sortKey: initialSortKey,
         });
       }
     }, [headers]);

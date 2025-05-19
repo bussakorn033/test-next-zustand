@@ -19,7 +19,7 @@
  */
 
 export interface TableColumn {
-  key: string;
+  key?: string;
   value: string | React.ReactNode;
   sortBy?: "asc" | "desc" | "sorting" | undefined;
   isSort?: boolean;
@@ -29,9 +29,9 @@ export interface TableColumn {
     sortBy,
     sortKey,
   }: {
-    row: number;
-    col: number;
-    sortBy?: "asc" | "desc";
+    row?: number;
+    col?: number;
+    sortBy?: "asc" | "desc" | "sorting" | undefined;
     sortKey?: string;
   }) => void | null;
   flex?: number | string;

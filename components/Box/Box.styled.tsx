@@ -37,8 +37,15 @@ const getRadius = (value: BoxProps["borderRadius"]) => {
   }
 };
 
-const calPadding = (padding: number = 0, borderWidth: number = 0) =>
-  padding - borderWidth;
+const calPadding = (
+  padding: string | number = 0,
+  borderWidth: string | number = 0,
+): number => {
+  const toNumber = (value: string | number): number =>
+    typeof value === "string" ? parseFloat(value) || 0 : value;
+
+  return toNumber(padding) - toNumber(borderWidth);
+};
 
 export const Box = styled.div<Omit<BoxProps, "as">>`
   &[role="button"] {

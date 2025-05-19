@@ -74,6 +74,7 @@ export default function Home() {
       minWidth: "96px",
       maxWidth: "calc(96px * 1.25)",
       flex: 1,
+      align: "left",
     },
     {
       key: "id_card",
@@ -83,6 +84,7 @@ export default function Home() {
       minWidth: "144px",
       maxWidth: "calc(144px * 1.5)",
       flex: 1,
+      align: "left",
     },
     {
       key: "full_name",
@@ -91,6 +93,7 @@ export default function Home() {
       sortBy: undefined,
       minWidth: "118px",
       flex: 1,
+      align: "left",
     },
     {
       key: "doc_type",
@@ -99,6 +102,7 @@ export default function Home() {
       sortBy: undefined,
       minWidth: "218px",
       flex: 1,
+      align: "left",
     },
     {
       key: "status",
@@ -106,6 +110,7 @@ export default function Home() {
       isSort: false,
       minWidth: "114px",
       flex: 1,
+      align: "left",
     },
     {
       key: "last_updated",
@@ -114,6 +119,7 @@ export default function Home() {
       sortBy: "asc",
       minWidth: "100px",
       flex: 1,
+      align: "left",
     },
     {
       key: "created_by",
@@ -122,6 +128,7 @@ export default function Home() {
       minWidth: "144px",
       maxWidth: "calc(144px * 2)",
       flex: 1,
+      align: "left",
     },
     {
       key: "view",
@@ -129,7 +136,9 @@ export default function Home() {
       icon: "view_document",
       minWidth: "40px",
       maxWidth: "calc(40px * 2)",
-      flex: 0,
+      flex: 1,
+      alignHeader: "center",
+      align: "center",
     },
     {
       key: "history",
@@ -137,7 +146,9 @@ export default function Home() {
       icon: "history",
       minWidth: "40px",
       maxWidth: "calc(40px * 2)",
-      flex: 0,
+      flex: 1,
+      alignHeader: "center",
+      align: "center",
     },
     {
       key: "trash",
@@ -145,7 +156,9 @@ export default function Home() {
       icon: "trash",
       minWidth: "40px",
       maxWidth: "calc(40px * 2)",
-      flex: 0,
+      flex: 1,
+      alignHeader: "center",
+      align: "center",
     },
   ];
 
@@ -161,6 +174,8 @@ export default function Home() {
     minWidth: item?.minWidth,
     maxWidth: item?.maxWidth,
     flex: item?.flex !== undefined ? item?.flex : 1,
+    alignHeader: item?.alignHeader || "left",
+    align: item?.align || "left",
   }));
 
   console.log("---- headers:", headers);
@@ -238,6 +253,7 @@ export default function Home() {
           : null,
       minWidth: header.minWidth || "100px",
       flex: header.flex || 1,
+      align: header.align || "left",
     })),
   );
 

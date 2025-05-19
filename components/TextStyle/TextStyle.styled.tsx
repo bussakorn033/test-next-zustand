@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components";
 import {TextStyleProps} from "./TextStyle.types";
+import {toPx, transformFlexProperties} from "@/src/utils/Utility";
 
 const textStyleMixin = (
   fontSize: string,
@@ -217,5 +218,22 @@ export const TextStyle = styled.p<TextStyleProps>`
     textDecoration &&
     css`
       text-decoration: ${textDecoration};
+    `}
+
+  ${({alignContent}) =>
+    alignContent &&
+    css`
+      align-content: ${transformFlexProperties(alignContent)};
+    `}
+
+  ${({width}) =>
+    width &&
+    css`
+      width: ${toPx(width)};
+    `}
+  ${({height}) =>
+    height &&
+    css`
+      height: ${toPx(height)};
     `}
 `;

@@ -21,6 +21,8 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       onPageChange,
       onLimitChange,
       isPaginationDisabled = false,
+      mode = "dark",
+      size = "md",
       ...rest
     }: TableProps,
     ref,
@@ -95,28 +97,32 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               <Box
                 direction="row"
                 bgColor="var(--color-table-header-dark)"
-                style={{position: "sticky", top: 0, zIndex: 900}}
+                position="sticky"
+                top={0}
+                zIndex={900}
               >
                 {headers.map((col, index) => (
                   <Box
                     key={index}
                     direction="row"
                     alignItems="center"
+                    alignContent="center"
                     bgColor="var(--color-table-header-dark)"
                     border="bottom"
                     p={8}
                     gap={4}
-                    style={{
-                      flex: col?.flex ?? 1,
-                      minWidth: col?.minWidth ?? "100px",
-                      maxWidth: col?.maxWidth ?? undefined,
-                    }}
+                    flex={col?.flex || 1}
+                    minWidth={col?.minWidth || "100px"}
+                    maxWidth={col?.maxWidth || undefined}
                   >
                     <TextStyle
                       variant="labelSmallBold"
                       color="color-primary"
-                      limitLine={5}
-                      style={{width: col?.isSort ? "fit-content" : "100%"}}
+                      limitLine={1}
+                      width={col?.isSort ? "fit-content" : "100%"}
+                      height="100%"
+                      alignContent={"center"}
+                      textAlign={col.alignHeader || "left"}
                     >
                       {col?.value}
                     </TextStyle>
@@ -177,7 +183,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               </Box>
 
               {/* Body */}
-              <table style={{width: "100%", display: "table"}}>
+              <Box tag="table" width="100%">
                 <Box
                   direction="column"
                   maxHeight={maxHeightTable}
@@ -208,22 +214,25 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                                 role={col?.onClick ? "button" : "div"}
                                 borderWidth={1}
                                 border="top"
+                                alignContent="center"
                                 px={8}
                                 py={16}
-                                style={{
-                                  flex: headers[colIndex]?.flex ?? 1,
-                                  minWidth:
-                                    headers[colIndex]?.minWidth ?? "100px",
-                                  maxWidth:
-                                    headers[colIndex]?.maxWidth ?? undefined,
-                                }}
+                                flex={headers[colIndex]?.flex || 1}
+                                minWidth={
+                                  headers[colIndex]?.minWidth || "100px"
+                                }
+                                maxWidth={
+                                  headers[colIndex]?.maxWidth || undefined
+                                }
                                 fullWidth
                               >
                                 <TextStyle
                                   variant="paragraphSmall"
                                   color="color-primary"
-                                  textAlign="left"
+                                  textAlign={cell.align}
                                   limitLine={1}
+                                  height="100%"
+                                  alignContent="center"
                                 >
                                   {cell.value}
                                 </TextStyle>
@@ -245,7 +254,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     </Box>
                   )}
                 </Box>
-              </table>
+              </Box>
             </Box>
           </Box>
 
@@ -266,11 +275,16 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 <TextStyle
                   variant="paragraphXSmall"
                   color="color-neutral-grey-light"
+                  alignContent="center"
                 >
                   {t("dashboard_contract_table_footer_limit")}
                 </TextStyle>
                 <Box direction="row" alignItems="center" gap={8}>
-                  <TextStyle variant="labelSmallBold" color="color-primary">
+                  <TextStyle
+                    variant="labelSmallBold"
+                    color="color-primary"
+                    alignContent="center"
+                  >
                     {limit}
                   </TextStyle>
                   <Button
@@ -332,6 +346,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 <TextStyle
                   variant="paragraphXSmall"
                   color="color-neutral-grey-light"
+                  alignContent="center"
                 >
                   {`${(page - 1) * limit + 1}-${Math.min(
                     page * limit,

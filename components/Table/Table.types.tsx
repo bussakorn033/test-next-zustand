@@ -21,6 +21,8 @@
 export interface TableColumn {
   key?: string | undefined;
   value: string | React.ReactNode;
+  alignHeader?: "left" | "center" | "right";
+  align?: "left" | "center" | "right";
   sortBy?: "asc" | "desc" | "sorting" | undefined;
   isSort?: boolean;
   onClick?: ({
@@ -51,4 +53,6 @@ export interface TableProps
   onPageChange?: (newPage: number) => void;
   onLimitChange?: (newLimit: number) => void;
   isPaginationDisabled?: boolean;
+  mode?: "dark" | "light" | string;
+  size?: "md" | "lg" | string;
 }

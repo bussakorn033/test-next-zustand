@@ -134,6 +134,7 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 
   textAlign?: "left" | "center" | "right";
   alignItems?: "start" | "center" | "end" | "baseline";
+  alignContent?: "start" | "center" | "end" | "baseline";
   justifyContent?:
     | "start"
     | "center"

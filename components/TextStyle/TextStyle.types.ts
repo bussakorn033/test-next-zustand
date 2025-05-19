@@ -45,4 +45,7 @@ export interface TextStyleProps
   textAlign?: "left" | "center" | "right";
   color?: string;
   textDecoration?: "none" | "underline" | "line-through" | "overline";
+  alignContent?: "start" | "center" | "end" | "baseline";
+  width?: string | number;
+  height?: string | number;
 }

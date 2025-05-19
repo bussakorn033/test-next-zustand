@@ -1,20 +1,7 @@
 // Box.styled.ts
 import styled, {css} from "styled-components";
 import {BoxProps} from "./Box.types";
-import {toPx} from "@/src/utils/Utility";
-
-const transformFlexProperties = (
-  prop: BoxProps["alignItems"] | BoxProps["justifyContent"] | undefined,
-) => {
-  switch (prop) {
-    case "start":
-      return "flex-start";
-    case "end":
-      return "flex-end";
-    default:
-      return prop;
-  }
-};
+import {toPx, transformFlexProperties} from "@/src/utils/Utility";
 
 const getRadius = (value: BoxProps["borderRadius"]) => {
   switch (value) {
@@ -149,12 +136,19 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
         gap: ${gap}px;
       `}
     `}
+  ${({flex}) =>
+    flex &&
+    css`
+      flex: ${flex};
+    `}
 
-  ${({direction, alignItems}) =>
+  ${({direction, alignItems, alignContent}) =>
     direction &&
     alignItems &&
+    alignContent &&
     css`
       align-items: ${transformFlexProperties(alignItems)};
+      align-content: ${transformFlexProperties(alignContent)};
     `}
 
   ${({direction, justifyContent}) =>
@@ -327,5 +321,41 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
     color &&
     css`
       color: ${color};
+    `}
+  ${({boxSizing}) =>
+    boxSizing &&
+    css`
+      box-sizing: ${boxSizing};
+    `}
+    
+  ${({position}) =>
+    position &&
+    css`
+      position: ${position};
+    `}
+  ${({zIndex}) =>
+    zIndex &&
+    css`
+      z-index: ${zIndex};
+    `}
+  ${({top}) =>
+    top !== undefined &&
+    css`
+      top: ${top};
+    `}
+  ${({bottom}) =>
+    bottom !== undefined &&
+    css`
+      bottom: ${bottom};
+    `}
+  ${({left}) =>
+    left !== undefined &&
+    css`
+      left: ${left};
+    `}
+  ${({right}) =>
+    right !== undefined &&
+    css`
+      right: ${right};
     `}
 `;

@@ -97,7 +97,7 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
         style={
           {
             ...rest.style,
-            "--text-color": color && `var(--${color})`,
+            "--text-color": color && `var(${color})`,
           } as React.CSSProperties
         }
       >

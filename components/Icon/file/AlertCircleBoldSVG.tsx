@@ -15,6 +15,12 @@ export const AlertCircleBoldSVG: React.FC<IconProps> = ({
     width={width}
     height={height}
     {...rest}
+    style={
+      {
+        ...rest.style,
+        "--text-color": color && `var(${color})`,
+      } as React.CSSProperties
+    }
   >
     <path
       fillRule="evenodd"

@@ -8,8 +8,8 @@ import {Box} from "@/shared-components/Box";
   direction="column"
   gap={8}
   padding={16}
-  bgColor="var(--color-neutral-light)"
-  color="var(--color-table-border-dark)"
+  bgColor="--color-neutral-light"
+  color="--color-table-border-dark"
   border="all"
   borderRadius="md"
   borderWidth={1}

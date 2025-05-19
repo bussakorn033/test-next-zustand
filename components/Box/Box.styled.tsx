@@ -212,7 +212,7 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
   ${({bgColor}) =>
     bgColor &&
     css`
-      background-color: ${bgColor};
+      background-color: var(--text-bg-color, currentColor);
     `}
 
   ${({borderWidth, border}) =>
@@ -241,7 +241,7 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
   ${({borderColor}) =>
     borderColor &&
     css`
-      border-color: ${borderColor};
+      border-color: var(--text-border-color, currentColor);
     `}
 
     ${({borderRadius, border}) =>
@@ -320,7 +320,7 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
   ${({color}) =>
     color &&
     css`
-      color: ${color};
+      color: var(--text-color, currentColor);
     `}
   ${({boxSizing}) =>
     boxSizing &&

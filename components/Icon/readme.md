@@ -5,12 +5,12 @@ import {Icon} from "@/shared-components/Icon";
 
 <Icon
   icon="arrow_down"
-  color="var(--color-error)"
+  color="--color-error"
   width={24}
   height={24}
 />;
 
-icon?: string; // var(arrow_down)
+icon?: string; // arrow_down
 
-color?: string; // var(--color-error) || #f00
+color?: string; // --color-error || #f00
 ```

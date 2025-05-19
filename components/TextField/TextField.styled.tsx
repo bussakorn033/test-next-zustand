@@ -10,7 +10,7 @@ export const InputWrapper = styled.div<{error?: boolean}>`
   display: flex;
   align-items: center;
   border: 1px solid
-    ${({error}) => (error ? "var(--color-danger)" : "var(--color-neutral)")};
+    ${({error}) => (error ? "--color-danger)" : "--color-neutral)")};
   border-radius: 4px;
   padding: 8px;
   background-color: var(--color-background);
@@ -46,6 +46,5 @@ export const Icon = styled.div`
 
 export const HelpingText = styled.span<{error?: boolean}>`
   font-size: 12px;
-  color: ${({error}) =>
-    error ? "var(--color-danger)" : "var(--color-neutral-dark)"};
+  color: ${({error}) => (error ? "--color-danger)" : "--color-neutral-dark)")};
 `;

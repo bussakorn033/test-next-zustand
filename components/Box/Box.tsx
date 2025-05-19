@@ -12,6 +12,8 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
       fullWidth,
       fullHeight,
       bgColor = "transparent",
+      color = "transparent",
+      borderColor = "transparent",
       boxShadow = "none",
       border = "all",
       borderWidth = 0,
@@ -34,6 +36,8 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
         fullWidth={fullWidth}
         fullHeight={fullHeight}
         bgColor={bgColor}
+        color={color}
+        borderColor={borderColor}
         boxShadow={boxShadow}
         border={border}
         borderWidth={borderWidth}
@@ -41,6 +45,14 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
         hover={hover}
         ref={ref}
         {...rest}
+        style={
+          {
+            ...rest.style,
+            "--text-bg-color": bgColor && `var(${bgColor})`,
+            "--text-color": color && `var(${color})`,
+            "--text-border-color": borderColor && `var(${borderColor})`,
+          } as React.CSSProperties
+        }
       >
         {children}
       </S.Box>

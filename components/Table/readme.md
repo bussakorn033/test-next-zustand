@@ -6,8 +6,8 @@ import {Table} from "@/shared-components/Table";
 <Table
   direction="column"
   gap={8}
-  color="var(--color-table-border-dark)"
-  bgColor="var(--color-neutral-light)"
+  color="--color-table-border-dark"
+  bgColor="--color-neutral-light"
   border="all"
   borderRadius="md"
   borderWidth={1}
@@ -25,8 +25,8 @@ TableShadow?: "none" | "top" | "bottom";
 
 width?: "normal" | "full";
 
-color?: string; // var(--color-error) || #f00
+color?: string; // --color-error || #f00
 
-bgColor?: string; // var(--color-error) || #f00
+bgColor?: string; // --color-error || #f00
 
 ```

@@ -5,12 +5,12 @@ import {Icon} from "@/shared-components/Icon";
 
 <TextStyle
   variant="h2"
-  color="color-error"
+  color="--color-error"
 >
   text
 </TextStyle>;
 
-color?: string; // color-error || #f00
+color?: string; // --color-error || #f00
 
 limitLine?: number;
 

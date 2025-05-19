@@ -21,8 +21,7 @@ export const Button = ({
   const icon = iconRight ?? iconLeft;
   const isIconOnly = Boolean(icon && !children);
   const iconSize = size === "large" ? 32 : 24;
-  const iconColor =
-    variant === "primary" ? "var(--color-neutral-light)" : "currentColor";
+  const iconColor = variant === "primary" ? "--color-neutral-light" : "";
 
   const textStyleVariant: "buttonMedium" | "buttonBig" = {
     medium: "buttonMedium",

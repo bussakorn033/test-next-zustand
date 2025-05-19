@@ -1,11 +1,10 @@
 "use client";
 
-import {galleryList, iconList} from "@/components-keep/Icon/IconList";
-import {TextField} from "@/components-keep/TextField";
 import {Box} from "@/components/Box";
 import {Button} from "@/components/Button";
 import Icon from "@/components/Icon/Icon";
 import {Table} from "@/components/Table";
+import {TextField} from "@/components/TextField";
 import {TextStyle} from "@/components/TextStyle";
 import globalSlice from "@/stores/globalSlice";
 import {useState} from "react";
@@ -227,7 +226,7 @@ export default function Home() {
                 icon={header.icon}
                 width={24}
                 height={24}
-                color="var(--color-primary)"
+                color="--color-primary"
               />
             </Button>
           );
@@ -262,7 +261,7 @@ export default function Home() {
   return (
     <>
       <Box
-        bgColor="var(--color-bg-primary)"
+        bgColor="--color-bg-primary"
         fullHeight
         fullWidth
         overflowY="auto"
@@ -270,151 +269,285 @@ export default function Home() {
       >
         <Box direction="column" p={32}>
           <Box direction="column">
-            <Box direction="column" gap={24}>
-              <Box direction="column" gap={48}>
-                <Box direction="column" gap={0}>
-                  <TextStyle variant="h2" color="color-primary">
-                    {t("dashboard_title")}
-                  </TextStyle>
-                  <TextStyle
-                    variant="paragraphMedium"
-                    color="color-neutral-grey-light"
-                  >
-                    {t("dashboard_sub_title")}
-                  </TextStyle>
-                </Box>
-                <Box direction="row" justifyContent="space-between" gap={24}>
-                  <TextStyle variant="h4" color="color-primary">
-                    {t("dashboard_title_table")}
-                  </TextStyle>
-                  <Box direction="row" alignItems="center" gap={8}>
-                    <Button variant="ghost-primary" iconLeft="refresh">
-                      {t("dashboard_btn_refresh")}
-                    </Button>
-                    <Button variant="primary" iconLeft="plus">
-                      {t("dashboard_btn_create_contract")}
-                    </Button>
+            <>
+              <Box direction="column" gap={24}>
+                <Box direction="column" gap={48}>
+                  <Box direction="column" gap={0}>
+                    <TextStyle variant="h2" color="--color-primary">
+                      {t("dashboard_title")}
+                    </TextStyle>
+                    <TextStyle
+                      variant="paragraphMedium"
+                      color="--color-neutral-grey-light"
+                    >
+                      {t("dashboard_sub_title")}
+                    </TextStyle>
+                  </Box>
+                  <Box direction="row" justifyContent="space-between" gap={24}>
+                    <TextStyle variant="h4" color="--color-primary">
+                      {t("dashboard_title_table")}
+                    </TextStyle>
+                    <Box direction="row" alignItems="center" gap={8}>
+                      <Button variant="ghost-primary" iconLeft="refresh">
+                        {t("dashboard_btn_refresh")}
+                      </Button>
+                      <Button variant="primary" iconLeft="plus">
+                        {t("dashboard_btn_create_contract")}
+                      </Button>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
 
-              <Box direction="row" justifyContent="space-between">
-                <Box direction="column" justifyContent="center" gap={8}>
+                <Box direction="row" justifyContent="space-between">
+                  <Box direction="column" justifyContent="center" gap={8}>
+                    <Box direction="row" alignItems="center" gap={8}>
+                      <TextStyle
+                        variant="labelXSmall"
+                        color="--color-secondary"
+                      >
+                        {t("dashboard_filter_by_user")}
+                      </TextStyle>
+                      <Button
+                        onClick={() => {
+                          console.log("onClick");
+                        }}
+                        variant={"ghost-icon-secondary-no-padding"}
+                        borderRadius="round"
+                      >
+                        <Icon
+                          icon="arrow_down"
+                          color="--color-primary"
+                          width={16}
+                          height={16}
+                        />
+                      </Button>
+                    </Box>
+                  </Box>
                   <Box direction="row" alignItems="center" gap={8}>
-                    <TextStyle variant="labelXSmall" color="color-secondary">
-                      {t("dashboard_filter_by_user")}
-                    </TextStyle>
-                    <Button
-                      onClick={() => {
-                        console.log("onClick");
-                      }}
-                      variant={"ghost-icon-secondary-no-padding"}
-                      borderRadius="round"
-                    >
-                      <Icon
-                        icon="arrow_down"
-                        color="var(--color-primary)"
-                        width={16}
-                        height={16}
-                      />
-                    </Button>
+                    <Box direction="row" alignItems="center" gap={8}>
+                      <TextStyle
+                        variant="labelSmallBold"
+                        color="--color-primary"
+                      >
+                        {t("dashboard_filter_by_type_doc")}
+                      </TextStyle>
+                      <Button
+                        onClick={() => {
+                          console.log("onClick");
+                        }}
+                        variant={"ghost-icon-secondary-no-padding"}
+                        borderRadius="round"
+                      >
+                        <Icon
+                          icon="arrow_down"
+                          color="--color-primary"
+                          width={16}
+                          height={16}
+                        />
+                      </Button>
+                    </Box>
+                    <Box direction="row" alignItems="center" gap={8}>
+                      <TextStyle
+                        variant="labelSmallBold"
+                        color="--color-primary"
+                      >
+                        {t("dashboard_filter_by_status")}
+                      </TextStyle>
+                      <Button
+                        onClick={() => {
+                          console.log("onClick");
+                        }}
+                        variant={"ghost-icon-secondary-no-padding"}
+                        borderRadius="round"
+                      >
+                        <Icon
+                          icon="arrow_down"
+                          color="--color-primary"
+                          width={16}
+                          height={16}
+                        />
+                      </Button>
+                    </Box>
                   </Box>
                 </Box>
-                <Box direction="row" alignItems="center" gap={8}>
-                  <Box direction="row" alignItems="center" gap={8}>
-                    <TextStyle variant="labelSmallBold" color="color-primary">
-                      {t("dashboard_filter_by_type_doc")}
-                    </TextStyle>
-                    <Button
-                      onClick={() => {
-                        console.log("onClick");
-                      }}
-                      variant={"ghost-icon-secondary-no-padding"}
-                      borderRadius="round"
-                    >
-                      <Icon
-                        icon="arrow_down"
-                        color="var(--color-primary)"
-                        width={16}
-                        height={16}
-                      />
-                    </Button>
-                  </Box>
-                  <Box direction="row" alignItems="center" gap={8}>
-                    <TextStyle variant="labelSmallBold" color="color-primary">
-                      {t("dashboard_filter_by_status")}
-                    </TextStyle>
-                    <Button
-                      onClick={() => {
-                        console.log("onClick");
-                      }}
-                      variant={"ghost-icon-secondary-no-padding"}
-                      borderRadius="round"
-                    >
-                      <Icon
-                        icon="arrow_down"
-                        color="var(--color-primary)"
-                        width={16}
-                        height={16}
-                      />
-                    </Button>
-                  </Box>
-                </Box>
-              </Box>
 
-              <>
-                <Table
-                  headers={headers}
-                  values={values}
-                  page={pagination.page}
-                  limit={pagination.limit}
-                  count={pagination.count}
-                  onPageChange={(newPage) =>
-                    setPagination((prev) => ({...prev, page: newPage}))
-                  }
-                  onLimitChange={(newLimit) =>
-                    setPagination((prev) => ({
-                      ...prev,
-                      limit: newLimit,
-                      page: 1,
-                    }))
-                  }
-                />
-                isPaginationDisabled
-                <Table
-                  headers={headers}
-                  values={values}
-                  page={pagination.page}
-                  limit={pagination.limit}
-                  count={pagination.count}
-                  onPageChange={(newPage) =>
-                    setPagination((prev) => ({...prev, page: newPage}))
-                  }
-                  onLimitChange={(newLimit) =>
-                    setPagination((prev) => ({
-                      ...prev,
-                      limit: newLimit,
-                      page: 1,
-                    }))
-                  }
+                <>
+                  <Table
+                    headers={headers}
+                    values={values}
+                    page={pagination.page}
+                    limit={pagination.limit}
+                    count={pagination.count}
+                    onPageChange={(newPage) =>
+                      setPagination((prev) => ({...prev, page: newPage}))
+                    }
+                    onLimitChange={(newLimit) =>
+                      setPagination((prev) => ({
+                        ...prev,
+                        limit: newLimit,
+                        page: 1,
+                      }))
+                    }
+                  />
                   isPaginationDisabled
-                />
-              </>
-            </Box>
+                  <br />
+                  mode="light"
+                  <br />
+                  size="md"
+                  <br />
+                  <Table
+                    mode="light"
+                    size="md"
+                    headers={headers}
+                    values={values}
+                    page={pagination.page}
+                    limit={pagination.limit}
+                    count={pagination.count}
+                    onPageChange={(newPage) =>
+                      setPagination((prev) => ({...prev, page: newPage}))
+                    }
+                    onLimitChange={(newLimit) =>
+                      setPagination((prev) => ({
+                        ...prev,
+                        limit: newLimit,
+                        page: 1,
+                      }))
+                    }
+                    isPaginationDisabled
+                  />
+                </>
+              </Box>
+            </>
 
             <>
               {/* Common  Box */}
               <Box direction="column" gap={50} mt={500}>
                 {/* Common Table  */}
                 <TextStyle variant="h2">Table</TextStyle>
-                <></>
+                <Box>Table</Box>
                 {/* Common Table  */}
+
+                {/* Common TextField  */}
+                <TextStyle variant="h2">TextField</TextStyle>
+                <>
+                  <Box
+                    bgColor="--color-bg-test"
+                    border="all" // all | top | bottom
+                    borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                    borderWidth={1} // 0 | 1 | 2
+                    boxShadow="top" // none | top | bottom
+                    direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+                    hover={true}
+                    gap={10}
+                    px={24}
+                    py={24}
+                  >
+                    <>
+                      {/* Normal Text Fields */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Normal Text Fields</TextStyle>
+                        <TextField
+                          label="Default TextField"
+                          placeholder="Enter text here"
+                        />
+                        <TextField
+                          label="With Helper Text"
+                          placeholder="Enter text"
+                          helpingText="This is a helping text"
+                        />
+                        <TextField
+                          label="With Error"
+                          placeholder="Enter text"
+                          error={true}
+                          errorMessage="This is an error message"
+                        />
+                        <TextField
+                          label="Disabled TextField"
+                          placeholder="Cannot edit this"
+                          disabled={true}
+                        />
+                      </Box>
+                      {/* Normal Text Fields */}
+
+                      {/* Special Types */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Special Types</TextStyle>
+                        <TextField
+                          label="Email Field"
+                          type="email"
+                          placeholder="Enter email"
+                        />
+                        <TextField
+                          label="Password Field"
+                          type="password"
+                          placeholder="Enter password"
+                        />
+                        <TextField
+                          label="Number Field"
+                          type="number"
+                          placeholder="Enter number"
+                        />
+                        <TextField
+                          label="Tel Field"
+                          type="tel"
+                          placeholder="Enter phone number"
+                        />
+                      </Box>
+                      {/* Special Types */}
+
+                      {/* With Icons */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">With Icons</TextStyle>
+                        <TextField
+                          label="Left Icon"
+                          placeholder="Search..."
+                          iconLeft={<Icon icon="search" />}
+                        />
+                        <TextField
+                          label="Right Icon"
+                          placeholder="Select date"
+                          iconRight={<Icon icon="calendar" />}
+                        />
+                        <TextField
+                          label="Both Icons"
+                          placeholder="Enter amount"
+                          iconLeft={<Icon icon="plus" />}
+                          iconRight={<Icon icon="minus" />}
+                        />
+                      </Box>
+                      {/* With Icons */}
+
+                      {/* Variants */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Variants</TextStyle>
+                        <TextField
+                          label="Amount"
+                          variant="amount"
+                          placeholder="0.00"
+                        />
+                        <TextField
+                          label="Search"
+                          variant="search"
+                          placeholder="Search..."
+                          iconLeft={<Icon icon="search" />}
+                        />
+                        <TextField
+                          label="Amount Transaction"
+                          variant="amount-transaction"
+                          placeholder="Enter amount"
+                        />
+                      </Box>
+                      {/* Variants */}
+                    </>
+                  </Box>
+                </>
+                {/* Common TextField  */}
 
                 {/* Common Button  */}
                 <TextStyle variant="h2">Button</TextStyle>
                 <>
                   <Box
-                    bgColor="#a4caf0"
+                    bgColor="--color-bg-test"
                     border="all" // all | top | bottom
                     borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                     borderWidth={1} // 0 | 1 | 2
@@ -629,7 +762,7 @@ export default function Home() {
                 <TextStyle variant="h2">TextStyle</TextStyle>
                 <>
                   <Box
-                    bgColor="#a4caf0"
+                    bgColor="--color-bg-test"
                     border="all" // all | top | bottom
                     borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                     borderWidth={1} // 0 | 1 | 2
@@ -703,22 +836,22 @@ export default function Home() {
                       <Box direction="column" gap={16}>
                         <TextStyle variant="h2">Text Colors</TextStyle>
                         <Box direction="column" gap={8}>
-                          <TextStyle color="text-primary-dark">
+                          <TextStyle color="--text-primary-dark">
                             Primary Dark Text
                           </TextStyle>
-                          <TextStyle color="color-primary">
+                          <TextStyle color="--color-primary">
                             Primary Brand Color
                           </TextStyle>
-                          <TextStyle color="color-secondary">
+                          <TextStyle color="--color-secondary">
                             Secondary Text
                           </TextStyle>
-                          <TextStyle color="color-success">
+                          <TextStyle color="--color-success">
                             Success Message
                           </TextStyle>
-                          <TextStyle color="color-danger">
+                          <TextStyle color="--color-danger">
                             Error Message
                           </TextStyle>
-                          <TextStyle color="color-warning">
+                          <TextStyle color="--color-warning">
                             Warning Message
                           </TextStyle>
                         </Box>
@@ -783,7 +916,7 @@ export default function Home() {
                         <TextStyle variant="h2">Nested Text Example</TextStyle>
                         <TextStyle variant="h2">
                           Main Heading with{" "}
-                          <TextStyle color="color-accent">
+                          <TextStyle color="--color-accent)">
                             inline accent text
                           </TextStyle>{" "}
                           and continuation
@@ -793,7 +926,7 @@ export default function Home() {
                   </Box>
                   {/* White Space Handling */}
                   <Box
-                    bgColor="#a4caf0"
+                    bgColor="--color-bg-test"
                     border="all" // all | top | bottom
                     borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                     borderWidth={1} // 0 | 1 | 2
@@ -820,7 +953,7 @@ export default function Home() {
                 <>
                   <Box
                     color="#f00"
-                    bgColor="#a4caf0"
+                    bgColor="--color-bg-test"
                     border="all" // all | top | bottom
                     borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                     borderWidth={1} // 0 | 1 | 2
@@ -882,7 +1015,8 @@ export default function Home() {
                         >
                           <Icon
                             icon={iconName}
-                            color="#0f0"
+                            // color="#0f0"
+                            color="--color-error"
                             width={50}
                             height={50}
                           />
@@ -899,7 +1033,7 @@ export default function Home() {
                 <>
                   <Box
                     color="#f00"
-                    bgColor="#a4caf0"
+                    bgColor="--color-bg-test"
                     border="all" // all | top | bottom
                     borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                     borderWidth={1} // 0 | 1 | 2
@@ -920,7 +1054,7 @@ export default function Home() {
                   </Box>
                   <Box
                     color="#f00"
-                    bgColor="#a4caf0"
+                    bgColor="--color-bg-test"
                     border="all" // all | top | bottom
                     borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                     borderWidth={1} // 0 | 1 | 2
@@ -941,7 +1075,7 @@ export default function Home() {
                   </Box>
                   <Box
                     color="#f00"
-                    bgColor="#a4caf0"
+                    bgColor="--color-bg-test"
                     border="all" // all | top | bottom
                     borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                     borderWidth={1} // 0 | 1 | 2

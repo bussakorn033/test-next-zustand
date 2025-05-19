@@ -22,7 +22,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       onLimitChange,
       isPaginationDisabled = false,
       mode = "dark",
-      size = "md",
+      size = "lg",
       ...rest
     }: TableProps,
     ref,
@@ -79,11 +79,16 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       <S.Table className={classnames} {...rest}>
         <Box
           direction="column"
-          color="var(--color-table-border-dark)"
-          bgColor="var(--color-neutral-light)"
+          color="--color-table-border-dark"
+          bgColor="--color-neutral-light"
+          borderColor={
+            mode === "dark"
+              ? "--color-table-border-dark"
+              : "--color-table-border-light"
+          }
           border="all"
           borderWidth={1}
-          borderRadius="md"
+          borderRadius={mode === "dark" ? "md" : "none"}
           overflow="hidden"
         >
           <Box direction="column">
@@ -96,7 +101,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               {/* Header */}
               <Box
                 direction="row"
-                bgColor="var(--color-table-header-dark)"
+                bgColor="--color-table-header-dark"
                 position="sticky"
                 top={0}
                 zIndex={900}
@@ -107,9 +112,14 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     direction="row"
                     alignItems="center"
                     alignContent="center"
-                    bgColor="var(--color-table-header-dark)"
+                    bgColor={
+                      mode === "dark"
+                        ? "--color-table-header-dark"
+                        : "--color-table-header-light"
+                    }
                     border="bottom"
-                    p={8}
+                    // p={8}
+                    p={size === "lg" ? "8px" : "2px"}
                     gap={4}
                     flex={col?.flex || 1}
                     minWidth={col?.minWidth || "100px"}
@@ -117,7 +127,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   >
                     <TextStyle
                       variant="labelSmallBold"
-                      color="color-primary"
+                      color={
+                        mode === "dark"
+                          ? "--color-primary"
+                          : "--color-neutral-grey-light"
+                      }
                       limitLine={1}
                       width={col?.isSort ? "fit-content" : "100%"}
                       height="100%"
@@ -173,6 +187,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                               ? sortDirection
                               : undefined,
                           )}
+                          color={
+                            mode === "dark"
+                              ? "--color-primary"
+                              : "--color-neutral-grey-light"
+                          }
                           width={16}
                           height={16}
                         />
@@ -181,6 +200,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   </Box>
                 ))}
               </Box>
+              {/* Header */}
 
               {/* Body */}
               <Box tag="table" width="100%">
@@ -215,8 +235,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                                 borderWidth={1}
                                 border="top"
                                 alignContent="center"
-                                px={8}
-                                py={16}
+                                p={size === "lg" ? "16px 8px" : "10px 8px"}
                                 flex={headers[colIndex]?.flex || 1}
                                 minWidth={
                                   headers[colIndex]?.minWidth || "100px"
@@ -228,7 +247,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                               >
                                 <TextStyle
                                   variant="paragraphSmall"
-                                  color="color-primary"
+                                  color="--color-primary"
                                   textAlign={cell.align}
                                   limitLine={1}
                                   height="100%"
@@ -246,7 +265,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     <Box direction="row" justifyContent="center" fullWidth>
                       <TextStyle
                         variant="paragraphSmall"
-                        color="color-primary"
+                        color="--color-primary"
                         textAlign="center"
                       >
                         NotFound
@@ -255,6 +274,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   )}
                 </Box>
               </Box>
+              {/* Body */}
             </Box>
           </Box>
 
@@ -267,14 +287,14 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               borderWidth={1}
               border="top"
               gap={24}
-              color="var(--color-table-border-dark)"
+              color="--color-table-border-dark"
               p={8}
             >
               {/* Limit Selector */}
               <Box direction="row" alignItems="center" gap={8}>
                 <TextStyle
                   variant="paragraphXSmall"
-                  color="color-neutral-grey-light"
+                  color="--color-neutral-grey-light"
                   alignContent="center"
                 >
                   {t("dashboard_contract_table_footer_limit")}
@@ -282,7 +302,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 <Box direction="row" alignItems="center" gap={8}>
                   <TextStyle
                     variant="labelSmallBold"
-                    color="color-primary"
+                    color="--color-primary"
                     alignContent="center"
                   >
                     {limit}
@@ -296,7 +316,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       icon="arrow_down"
                       width={16}
                       height={16}
-                      color="var(--color-primary)"
+                      color="--color-primary"
                     />
                   </Button>
                   <Box
@@ -329,7 +349,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                             >
                               <TextStyle
                                 variant="labelSmallBold"
-                                color="color-primary"
+                                color="--color-primary"
                               >
                                 {option}
                               </TextStyle>
@@ -345,7 +365,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               <Box direction="row" alignItems="center" gap={8}>
                 <TextStyle
                   variant="paragraphXSmall"
-                  color="color-neutral-grey-light"
+                  color="--color-neutral-grey-light"
                   alignContent="center"
                 >
                   {`${(page - 1) * limit + 1}-${Math.min(
@@ -372,7 +392,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     icon="arrow_left"
                     width={24}
                     height={24}
-                    color="var(--color-primary)"
+                    color="--color-primary"
                   />
                 </Button>
 
@@ -394,7 +414,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     icon="arrow_right"
                     width={24}
                     height={24}
-                    color="var(--color-primary)"
+                    color="--color-primary"
                   />
                 </Button>
               </Box>

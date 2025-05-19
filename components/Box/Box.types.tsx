@@ -162,11 +162,11 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   gapColumn?: string | number;
 
   className?: string;
-  bgColor?: "var(--color-error)" | "#f00" | "red" | string;
-  color?: "var(--color-error)" | "#f00" | "red" | string;
+  bgColor?: "--color-error" | "#f00" | "red" | string;
+  color?: "--color-error" | "#f00" | "red" | string;
   border?: "all" | "top" | "bottom";
   borderWidth?: 0 | 1 | 2;
-  borderColor?: "var(--color-error)" | "#f00" | "red" | string;
+  borderColor?: "--color-error" | "#f00" | "red" | string;
   borderRadius?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "circle" | string;
   boxShadow?: "none" | "top" | "bottom";
 

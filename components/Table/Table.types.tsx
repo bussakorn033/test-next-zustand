@@ -19,10 +19,21 @@
  */
 
 export interface TableColumn {
+  key: string;
   value: string | React.ReactNode;
-  sortBy?: "asc" | "desc" | undefined;
+  sortBy?: "asc" | "desc" | "sorting" | undefined;
   isSort?: boolean;
-  onClick?: ({row, col}: Record<string, number>) => void | null;
+  onClick?: ({
+    row,
+    col,
+    sortBy,
+    sortKey,
+  }: {
+    row: number;
+    col: number;
+    sortBy?: "asc" | "desc";
+    sortKey?: string;
+  }) => void | null;
   flex?: number | string;
   minWidth?: number | string;
   maxWidth?: number | string;

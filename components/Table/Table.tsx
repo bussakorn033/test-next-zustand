@@ -1,13 +1,12 @@
 import classNames from "classnames";
 import {t} from "i18next";
-import {forwardRef} from "react";
+import {forwardRef, useEffect, useState} from "react";
 import {Box} from "../Box";
 import {Button} from "../Button";
 import Icon from "../Icon/Icon";
 import {TextStyle} from "../TextStyle";
 import * as S from "./Table.styled";
 import {TableProps} from "./Table.types";
-import {random} from "../../node_modules/nanoid/index.d";
 
 export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   (
@@ -28,11 +27,43 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   ) => {
     const classnames = classNames(className, "ds-ui-table");
 
-    const getSortIcon = (sortBy?: "asc" | "desc") => {
+    const [sortColumnIndex, setSortColumnIndex] = useState<number>(-1);
+    const [sortDirection, setSortDirection] = useState<
+      "asc" | "desc" | "sorting" | undefined
+    >(undefined);
+    const [sortKey, setSortKey] = useState<string>("");
+
+    const getSortIcon = (sortBy?: "asc" | "desc" | "sorting" | undefined) => {
       if (sortBy === "asc") return "sort_ascending";
       if (sortBy === "desc") return "sort_descending";
       return "sorting";
     };
+
+    // Initial sort setup based on headers.sortBy
+    useEffect(() => {
+      if (!headers || headers.length === 0) return;
+
+      const firstSortableIndex = headers.findIndex(
+        (col) => col.isSort && col.sortBy,
+      );
+
+      if (firstSortableIndex !== -1) {
+        const initialSortBy = headers[firstSortableIndex].sortBy as
+          | "asc"
+          | "desc";
+        const initialSortKey = headers[firstSortableIndex].key as string;
+        console.log("initialSortKey", initialSortKey);
+        setSortColumnIndex(firstSortableIndex);
+        setSortDirection(initialSortBy);
+        setSortKey(initialSortKey);
+
+        headers[firstSortableIndex].onClick?.({
+          row: 1,
+          col: firstSortableIndex,
+          sortBy: initialSortBy,
+        });
+      }
+    }, [headers]);
 
     return (
       <S.Table className={classnames} {...rest}>
@@ -45,7 +76,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           borderRadius="md"
           overflow="hidden"
         >
-          {/* Scrollable area */}
           <Box direction="column">
             <Box
               direction="column"
@@ -73,39 +103,68 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       minWidth: col.minWidth ?? "100px",
                       maxWidth: col.maxWidth ?? undefined,
                     }}
-                    onClick={() => {
-                      const result = col.onClick?.({row: 1, col: index});
-                      console.log("Header onClick:", {
-                        row: 1,
-                        col: index,
-                        result,
-                      });
-                    }}
                   >
                     <TextStyle
                       variant="labelSmallBold"
                       color="color-primary"
-                      limitLine={1}
+                      limitLine={5}
                       style={{width: col.isSort ? "fit-content" : "100%"}}
                     >
                       {col.value}
+                      <br />
+                      sortColumnIndex:{sortColumnIndex}
+                      <br />
+                      sortDirection:{sortDirection}
+                      <br />
+                      col.isSort:{`${col.isSort}`}
                     </TextStyle>
                     {col.isSort && (
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
-                          const result = col.onClick?.({row: 1, col: index});
-                          console.log("Sort icon onClick:", {
+
+                          if (!col.isSort) return;
+
+                          let nextDirection: "asc" | "desc" = "asc";
+
+                          if (sortColumnIndex === index) {
+                            console.log(
+                              `---- sortColumnIndex:`,
+                              sortColumnIndex,
+                            );
+                            nextDirection =
+                              sortDirection === "asc" ? "desc" : "asc";
+                          }
+                          console.log(`---- nextDirection:`, nextDirection);
+                          console.log(`---- col.sortBy:`, col.sortBy);
+
+                          setSortColumnIndex(index);
+                          setSortDirection(nextDirection);
+
+                          // Reset sortBy on all other columns
+                          headers.forEach((header, idx) => {
+                            if (idx !== index && header.isSort) {
+                              header.sortBy = "sorting";
+                            }
+                          });
+
+                          col.sortBy = nextDirection;
+
+                          col.onClick?.({
                             row: 1,
                             col: index,
-                            result,
+                            sortBy: nextDirection,
                           });
                         }}
                         variant="ghost-primary-no-padding"
                         borderRadius="round"
                       >
                         <Icon
-                          icon={getSortIcon(col.sortBy)}
+                          icon={
+                            sortColumnIndex === index
+                              ? getSortIcon(sortDirection)
+                              : getSortIcon(col.sortBy)
+                          }
                           width={16}
                           height={16}
                         />
@@ -114,7 +173,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   </Box>
                 ))}
               </Box>
-              {/* Header */}
 
               {/* Body */}
               <table style={{width: "100%", display: "table"}}>
@@ -124,100 +182,70 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   fullWidth
                   overflowY="auto"
                   overflowX="hidden"
-                  style={{
-                    margin: "auto",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    zIndex: 100,
-                  }}
                 >
-                  {!!values.length && values.length !== 0 && !!true ? (
-                    <>
-                      <Box direction="column" fullWidth>
-                        {values.map((item, rowIndex) => (
-                          <Box
-                            key={rowIndex}
-                            direction="row"
-                            height="100%"
-                            m={0}
-                          >
-                            {item.map((col, colIndex) => {
-                              const cell = col || {value: ""};
-                              return (
-                                <Box
-                                  key={colIndex}
-                                  onClick={() => {
-                                    const result = col.onClick?.({
-                                      row: rowIndex,
-                                      col: colIndex,
-                                    });
-                                    console.log("Cell onClick:", {
-                                      row: rowIndex,
-                                      col: colIndex,
-                                      result,
-                                    });
-                                  }}
-                                  role={col.onClick ? "button" : "div"}
-                                  borderWidth={1}
-                                  border="top"
-                                  px={8}
-                                  py={16}
-                                  style={{
-                                    flex: headers[colIndex]?.flex ?? 1,
-                                    minWidth:
-                                      headers[colIndex]?.minWidth ?? "100px",
-                                    maxWidth:
-                                      headers[colIndex]?.maxWidth ?? undefined,
-                                  }}
-                                  fullWidth
+                  {!!values.length ? (
+                    <Box direction="column" fullWidth>
+                      {values.map((item, rowIndex) => (
+                        <Box key={rowIndex} direction="row" height="100%" m={0}>
+                          {item.map((col, colIndex) => {
+                            const cell = col || {value: ""};
+                            return (
+                              <Box
+                                key={colIndex}
+                                onClick={() => {
+                                  const result = col.onClick?.({
+                                    row: rowIndex,
+                                    col: colIndex,
+                                  });
+                                  console.log("Cell onClick:", {
+                                    row: rowIndex,
+                                    col: colIndex,
+                                    result,
+                                  });
+                                }}
+                                role={col.onClick ? "button" : "div"}
+                                borderWidth={1}
+                                border="top"
+                                px={8}
+                                py={16}
+                                style={{
+                                  flex: headers[colIndex]?.flex ?? 1,
+                                  minWidth:
+                                    headers[colIndex]?.minWidth ?? "100px",
+                                  maxWidth:
+                                    headers[colIndex]?.maxWidth ?? undefined,
+                                }}
+                                fullWidth
+                              >
+                                <TextStyle
+                                  variant="paragraphSmall"
+                                  color="color-primary"
+                                  textAlign="left"
+                                  limitLine={1}
                                 >
-                                  <TextStyle
-                                    variant="paragraphSmall"
-                                    color="color-primary"
-                                    textAlign="left"
-                                    limitLine={1}
-                                  >
-                                    {cell.value}
-                                  </TextStyle>
-                                </Box>
-                              );
-                            })}
-                          </Box>
-                        ))}
-                      </Box>
-                    </>
+                                  {cell.value}
+                                </TextStyle>
+                              </Box>
+                            );
+                          })}
+                        </Box>
+                      ))}
+                    </Box>
                   ) : (
-                    <>
-                      <Box
-                        direction="row"
-                        borderWidth={1}
-                        justifyContent="center"
-                        fullWidth
-                        style={{
-                          margin: "auto",
-                          position: "sticky",
-                          top: 0,
-                          left: 0,
-                          zIndex: 100,
-                        }}
+                    <Box direction="row" justifyContent="center" fullWidth>
+                      <TextStyle
+                        variant="paragraphSmall"
+                        color="color-primary"
+                        textAlign="center"
                       >
-                        <TextStyle
-                          variant="paragraphSmall"
-                          color="color-primary"
-                          textAlign="center"
-                        >
-                          NotFound
-                        </TextStyle>
-                      </Box>
-                    </>
+                        NotFound
+                      </TextStyle>
+                    </Box>
                   )}
                 </Box>
               </table>
-              {/* Body */}
             </Box>
           </Box>
-          {/* Scrollable area */}
 
           {/* Footer */}
           {!isPaginationDisabled && (
@@ -231,13 +259,8 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               color="var(--color-table-border-dark)"
               p={8}
             >
-              {/* Option */}
-              <Box
-                direction="row"
-                alignItems="center"
-                justifyContent="end"
-                gap={8}
-              >
+              {/* Limit Selector */}
+              <Box direction="row" alignItems="center" gap={8}>
                 <TextStyle
                   variant="paragraphXSmall"
                   color="color-neutral-grey-light"
@@ -275,9 +298,9 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       border="bottom"
                       borderRadius="xl"
                     >
-                      {[10, 25, 50, 100].map((option) => (
-                        <>
-                          {option !== limit && (
+                      {[10, 25, 50, 100].map(
+                        (option) =>
+                          option !== limit && (
                             <Box
                               key={option}
                               role="button"
@@ -295,21 +318,15 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                                 {option}
                               </TextStyle>
                             </Box>
-                          )}
-                        </>
-                      ))}
+                          ),
+                      )}
                     </Box>
                   </Box>
                 </Box>
               </Box>
 
               {/* Page Info */}
-              <Box
-                direction="row"
-                alignItems="center"
-                justifyContent="end"
-                gap={8}
-              >
+              <Box direction="row" alignItems="center" gap={8}>
                 <TextStyle
                   variant="paragraphXSmall"
                   color="color-neutral-grey-light"
@@ -321,13 +338,8 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                 </TextStyle>
               </Box>
 
-              {/* Navigation */}
-              <Box
-                direction="row"
-                alignItems="center"
-                justifyContent="end"
-                gap={8}
-              >
+              {/* Pagination Buttons */}
+              <Box direction="row" alignItems="center" gap={8}>
                 <Button
                   onClick={() => {
                     const newPage = page - 1;

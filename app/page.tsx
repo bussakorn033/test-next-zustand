@@ -231,6 +231,7 @@ export default function Home() {
 
   const values = paginatedData.map((row, rowIndex) =>
     headers.map((header, colIndex) => ({
+      key: header.key,
       value: row[header.key as keyof typeof row],
       onClick:
         colIndex < 4

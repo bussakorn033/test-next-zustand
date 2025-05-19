@@ -19,27 +19,28 @@
  */
 
 export interface TableColumn {
-  key?: string;
+  key?: string | undefined;
   value: string | React.ReactNode;
   sortBy?: "asc" | "desc" | "sorting" | undefined;
   isSort?: boolean;
   onClick?: ({
+    key,
     row,
     col,
     sortBy,
-    sortKey,
   }: {
+    key?: string;
     row?: number;
     col?: number;
     sortBy?: "asc" | "desc" | "sorting" | undefined;
-    sortKey?: string;
   }) => void | null;
   flex?: number | string;
   minWidth?: number | string;
   maxWidth?: number | string;
 }
 
-export interface TableProps extends React.HTMLAttributes<HTMLElement> {
+export interface TableProps
+  extends React.HTMLAttributes<HTMLElement | undefined> {
   className?: string;
   headers?: TableColumn[];
   values?: TableColumn[][];

@@ -27,11 +27,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   ) => {
     const classnames = classNames(className, "ds-ui-table");
 
+    const [key, setKey] = useState<string | undefined>("");
     const [sortColumnIndex, setSortColumnIndex] = useState<number>(-1);
     const [sortDirection, setSortDirection] = useState<
       "asc" | "desc" | "sorting" | undefined
     >(undefined);
-    const [sortKey, setSortKey] = useState<string>("");
 
     const getSortIcon = (sortBy?: "asc" | "desc" | "sorting" | undefined) => {
       if (sortBy === "asc") return "sort_ascending";
@@ -44,29 +44,34 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       if (!headers || headers.length === 0) return;
 
       const firstSortableIndex = headers.findIndex(
-        (col) => col.isSort && col.sortBy,
+        (col) => col?.isSort && col?.sortBy,
       );
 
       if (firstSortableIndex !== -1) {
+        const initialKey = headers[firstSortableIndex].key as string;
         const initialSortBy = headers[firstSortableIndex].sortBy as
           | "asc"
           | "desc"
           | "sorting"
           | undefined;
-        const initialSortKey = headers[firstSortableIndex].key as string;
-        console.log("initialSortKey", initialSortKey);
+
+        setKey(initialKey);
         setSortColumnIndex(firstSortableIndex);
         setSortDirection(initialSortBy);
-        setSortKey(initialSortKey);
 
         headers[firstSortableIndex].onClick?.({
+          key: initialKey,
           row: 1,
           col: firstSortableIndex,
           sortBy: initialSortBy,
-          sortKey: initialSortKey,
         });
       }
-    }, [headers]);
+      return () => {
+        setKey("");
+        setSortColumnIndex(-1);
+        setSortDirection(undefined);
+      };
+    }, []);
 
     return (
       <S.Table className={classnames} {...rest}>
@@ -102,31 +107,25 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     p={8}
                     gap={4}
                     style={{
-                      flex: col.flex ?? 1,
-                      minWidth: col.minWidth ?? "100px",
-                      maxWidth: col.maxWidth ?? undefined,
+                      flex: col?.flex ?? 1,
+                      minWidth: col?.minWidth ?? "100px",
+                      maxWidth: col?.maxWidth ?? undefined,
                     }}
                   >
                     <TextStyle
                       variant="labelSmallBold"
                       color="color-primary"
                       limitLine={5}
-                      style={{width: col.isSort ? "fit-content" : "100%"}}
+                      style={{width: col?.isSort ? "fit-content" : "100%"}}
                     >
-                      {col.value}
-                      <br />
-                      sortColumnIndex:{sortColumnIndex}
-                      <br />
-                      sortDirection:{sortDirection}
-                      <br />
-                      col.isSort:{`${col.isSort}`}
+                      {col?.value}
                     </TextStyle>
-                    {col.isSort && (
+                    {col?.isSort && (
                       <Button
                         onClick={(e) => {
                           e.stopPropagation();
 
-                          if (!col.isSort) return;
+                          if (!col?.isSort) return;
 
                           let nextDirection: "asc" | "desc" = "asc";
 
@@ -138,9 +137,8 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                             nextDirection =
                               sortDirection === "asc" ? "desc" : "asc";
                           }
-                          console.log(`---- nextDirection:`, nextDirection);
-                          console.log(`---- col.sortBy:`, col.sortBy);
 
+                          setKey(col?.key);
                           setSortColumnIndex(index);
                           setSortDirection(nextDirection);
 
@@ -154,6 +152,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                           col.sortBy = nextDirection;
 
                           col.onClick?.({
+                            key: col?.key,
                             row: 1,
                             col: index,
                             sortBy: nextDirection,
@@ -163,11 +162,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                         borderRadius="round"
                       >
                         <Icon
-                          icon={
+                          icon={getSortIcon(
                             sortColumnIndex === index
-                              ? getSortIcon(sortDirection)
-                              : getSortIcon(col.sortBy)
-                          }
+                              ? sortDirection
+                              : undefined,
+                          )}
                           width={16}
                           height={16}
                         />
@@ -196,7 +195,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                               <Box
                                 key={colIndex}
                                 onClick={() => {
-                                  const result = col.onClick?.({
+                                  const result = col?.onClick?.({
                                     row: rowIndex,
                                     col: colIndex,
                                   });
@@ -206,7 +205,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                                     result,
                                   });
                                 }}
-                                role={col.onClick ? "button" : "div"}
+                                role={col?.onClick ? "button" : "div"}
                                 borderWidth={1}
                                 border="top"
                                 px={8}

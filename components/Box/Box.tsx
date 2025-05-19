@@ -11,9 +11,6 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
       direction = "none",
       fullWidth,
       fullHeight,
-      bgColor = "transparent",
-      color = "transparent",
-      borderColor = "transparent",
       boxShadow = "none",
       border = "all",
       borderWidth = 0,
@@ -26,6 +23,7 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
     ref,
   ) => {
     const classnames = classNames(className, "ds-ui-box");
+    const {bgColor, color, borderColor} = rest;
 
     return (
       <S.Box
@@ -35,9 +33,6 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
         direction={direction}
         fullWidth={fullWidth}
         fullHeight={fullHeight}
-        bgColor={bgColor}
-        color={color}
-        borderColor={borderColor}
         boxShadow={boxShadow}
         border={border}
         borderWidth={borderWidth}

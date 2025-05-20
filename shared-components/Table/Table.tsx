@@ -71,9 +71,10 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 
         headers[firstSortableIndex].onClick?.({
           key: initialKey,
-          row: 1,
+          row: 0,
           col: firstSortableIndex,
           sortBy: initialSortBy,
+          ...headers[firstSortableIndex],
         });
       }
       return () => {
@@ -182,11 +183,10 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                           col.sortBy = nextDirection;
 
                           col.onClick?.({
-                            key: col?.key,
-                            row: 1,
+                            row: 0,
                             col: index,
                             sortBy: nextDirection,
-                            rest: {...col},
+                            ...col,
                           });
                           handleScrollTableToTop();
                         }}
@@ -233,25 +233,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                             return (
                               <Box
                                 key={colIndex}
-                                onClick={() => {
-                                  // const result = col?.onClick?.({
-                                  //   key: col?.key,
-                                  //   row: rowIndex,
-                                  //   col: colIndex,
-                                  //   rest: {...col},
-                                  // });
-                                  // console.log("Cell onClick:", {
-                                  //   row: rowIndex,
-                                  //   col: colIndex,
-                                  //   result,
-                                  // });
-                                  col.onClick?.({
-                                    key: col?.key,
-                                    row: rowIndex,
-                                    col: colIndex,
-                                    rest: {...col},
-                                  });
-                                }}
                                 role={col?.onClick ? "button" : "div"}
                                 borderWidth={1}
                                 border={mode === "dark" ? "top" : "bottom"}

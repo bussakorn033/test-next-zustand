@@ -1,11 +1,11 @@
 "use client";
 
-import {Box} from "@/components/Box";
-import {Button} from "@/components/Button";
-import Icon from "@/components/Icon/Icon";
-import {Table} from "@/components/Table";
-import {TextField} from "@/components/TextField";
-import {TextStyle} from "@/components/TextStyle";
+import {Box} from "@/shared-components/Box";
+import {Button} from "@/shared-components/Button";
+import Icon from "@/shared-components/Icon/Icon";
+import {Table} from "@/shared-components/Table";
+import {TextField} from "@/shared-components/TextField";
+import {TextStyle} from "@/shared-components/TextStyle";
 import useDashboard from "@/hooks/useDashboard";
 import globalSlice from "@/stores/globalSlice";
 import {useState} from "react";

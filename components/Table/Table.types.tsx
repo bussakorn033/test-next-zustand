@@ -55,6 +55,7 @@ export interface TableProps
   values?: TableColumn[][];
   className?: string;
   maxHeightTable?: number | string;
+  optionPagination?: number[];
   page?: number;
   limit?: number;
   count?: number;

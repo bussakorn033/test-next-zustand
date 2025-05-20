@@ -29,7 +29,8 @@ export default function Home() {
   } = globalStore;
 
   const {t} = useTranslation();
-  const {pagination, setPagination, headers, values} = useDashboard();
+  const {optionPagination, pagination, setPagination, headers, values} =
+    useDashboard();
 
   return (
     <>
@@ -156,6 +157,7 @@ export default function Home() {
                   <Table
                     headers={headers}
                     values={values}
+                    optionPagination={optionPagination}
                     page={pagination.page}
                     limit={pagination.limit}
                     count={pagination.count}
@@ -176,6 +178,7 @@ export default function Home() {
                     maxHeightTable={"200px"}
                     headers={headers}
                     values={values}
+                    optionPagination={optionPagination}
                     page={pagination.page}
                     limit={pagination.limit}
                     count={pagination.count}

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import {t} from "i18next";
-import {forwardRef, useEffect, useState} from "react";
+import {forwardRef, useEffect, useRef, useState} from "react";
 import {Box} from "../Box";
 import {Button} from "../Button";
 import Icon from "../Icon/Icon";
@@ -15,6 +15,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       headers = [],
       values = [],
       maxHeightTable = 400,
+      optionPagination = [25, 50, 100],
       page = 1,
       limit = 1,
       count = 1,
@@ -29,6 +30,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   ) => {
     const classnames = classNames(className, "ds-ui-table");
 
+    const bodyRef = useRef<HTMLDivElement>(null);
     const [key, setKey] = useState<string | undefined>("");
     const [sortColumnIndex, setSortColumnIndex] = useState<number>(-1);
     const [sortDirection, setSortDirection] = useState<
@@ -39,6 +41,12 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       if (sortBy === "asc") return "sort_ascending";
       if (sortBy === "desc") return "sort_descending";
       return "sorting";
+    };
+
+    const handleScrollTableToTop = () => {
+      if (bodyRef.current) {
+        bodyRef.current.scrollTop = 0;
+      }
     };
 
     // Initial sort setup based on headers.sortBy
@@ -97,6 +105,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               overflowY="hidden"
               overflowX="auto"
               fullWidth
+              // ref={bodyRef}
             >
               {/* Header */}
               <Box
@@ -137,6 +146,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       height="100%"
                       alignContent={"center"}
                       textAlign={col.alignHeader || "left"}
+                      wordBreak="break-all"
                     >
                       {col?.value}
                     </TextStyle>
@@ -176,7 +186,9 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                             row: 1,
                             col: index,
                             sortBy: nextDirection,
+                            rest: {...col},
                           });
+                          handleScrollTableToTop();
                         }}
                         variant="ghost-primary-no-padding"
                         borderRadius="round"
@@ -210,6 +222,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                   fullWidth
                   overflowY="auto"
                   overflowX="hidden"
+                  ref={bodyRef}
                 >
                   {!!values.length ? (
                     <Box direction="column" fullWidth>
@@ -221,14 +234,22 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                               <Box
                                 key={colIndex}
                                 onClick={() => {
-                                  const result = col?.onClick?.({
+                                  // const result = col?.onClick?.({
+                                  //   key: col?.key,
+                                  //   row: rowIndex,
+                                  //   col: colIndex,
+                                  //   rest: {...col},
+                                  // });
+                                  // console.log("Cell onClick:", {
+                                  //   row: rowIndex,
+                                  //   col: colIndex,
+                                  //   result,
+                                  // });
+                                  col.onClick?.({
+                                    key: col?.key,
                                     row: rowIndex,
                                     col: colIndex,
-                                  });
-                                  console.log("Cell onClick:", {
-                                    row: rowIndex,
-                                    col: colIndex,
-                                    result,
+                                    rest: {...col},
                                   });
                                 }}
                                 role={col?.onClick ? "button" : "div"}
@@ -308,7 +329,9 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     {limit}
                   </TextStyle>
                   <Button
-                    onClick={() => {}}
+                    onClick={() => {
+                      handleScrollTableToTop();
+                    }}
                     variant="ghost-primary-no-padding"
                     borderRadius="round"
                   >
@@ -334,7 +357,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       border="bottom"
                       borderRadius="xl"
                     >
-                      {[10, 25, 50, 100].map(
+                      {[...optionPagination].map(
                         (option) =>
                           option !== limit && (
                             <Box
@@ -343,6 +366,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                               onClick={() => {
                                 if (limit !== option) {
                                   onLimitChange?.(option);
+                                  handleScrollTableToTop();
                                 }
                               }}
                               borderRadius="round"
@@ -383,6 +407,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     if (!isPaginationDisabled && newPage >= 1) {
                       onPageChange?.(newPage);
                     }
+                    handleScrollTableToTop();
                   }}
                   variant="ghost-primary-no-padding"
                   borderRadius="round"
@@ -403,6 +428,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     if (!isPaginationDisabled && newPage <= maxPage) {
                       onPageChange?.(newPage);
                     }
+                    handleScrollTableToTop();
                   }}
                   variant="ghost-primary-no-padding"
                   borderRadius="round"

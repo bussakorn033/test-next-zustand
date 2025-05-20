@@ -11,11 +11,14 @@ import {
 const useDashboard = () => {
   const {t} = useTranslation();
 
+  const optionPagination = [25, 50, 100];
   const [pagination, setPagination] = useState<Pagination>({
     page: 1,
     limit: 10,
     count: 55,
   });
+
+  console.log(`---- pagination:`, pagination);
 
   const onClickHeader = ({row, col, ...rest}: OnClickCellParams) => {
     console.log("Header clicked at index:", {row, col, rest});
@@ -134,7 +137,13 @@ const useDashboard = () => {
         sortBy: item.sortBy,
         icon: item.icon,
         onClick: item.isSort
-          ? () => onClickHeader({row: -1, col: index, key: item.key})
+          ? () =>
+              onClickHeader({
+                row: -1,
+                col: index,
+                key: item.key,
+                rest: item,
+              })
           : undefined,
         minWidth: item.minWidth,
         maxWidth: item.maxWidth,
@@ -179,7 +188,10 @@ const useDashboard = () => {
           case "trash":
             row[header.key] = (
               <Button
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  console.log("click icon");
+                  // e.stopPropagation();
+                }}
                 variant="ghost-icon-secondary-no-padding"
                 borderRadius="round"
               >
@@ -208,13 +220,15 @@ const useDashboard = () => {
   const values: TableColumn[][] = useMemo(
     () =>
       paginatedData.map((row, rowIndex) =>
-        headers.map((header, colIndex) => ({
+        [...headers].map((header, colIndex) => ({
           key: header.key,
           value: row[header.key as keyof typeof row],
-          onClick:
-            colIndex < 4
-              ? () => onClickValue({row: rowIndex, col: colIndex})
-              : undefined,
+          onClick: () =>
+            onClickValue({
+              row: rowIndex,
+              col: colIndex,
+              rest: row,
+            }),
           minWidth: header.minWidth || "100px",
           flex: header.flex || 1,
           align: header.align || "left",
@@ -224,10 +238,11 @@ const useDashboard = () => {
   );
 
   return {
+    optionPagination,
     pagination,
     setPagination,
-    headers,
-    values,
+    headers: [...headers],
+    values: [...values],
   };
 };
 

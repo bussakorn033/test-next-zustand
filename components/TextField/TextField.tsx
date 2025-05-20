@@ -2,12 +2,16 @@ import {TextFieldProps} from "./TextField.types";
 import {forwardRef, useEffect} from "react";
 import classNames from "classnames";
 import * as S from "./TextField.styled";
+import {TextStyle} from "../TextStyle";
+import Icon from "../Icon/Icon";
+import {Box} from "../Box";
 
 export const TextField = forwardRef<undefined | any, TextFieldProps>(
   (
     {
       id,
       label,
+      labelHelping,
       value,
       type,
       variant,
@@ -35,9 +39,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
       type === "email" ||
       type === "password";
 
-    const classnames = classNames(className, "ds-text-field", {
-      [`ds-text-field--${variant}`]: variant,
-    });
+    const classnames = classNames(className, "ds-text-field");
 
     useEffect(() => {
       // Fix bug in Chrome mobile: ensure blur on "Done" keyboard press
@@ -56,23 +58,40 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 
     return (
       <S.TextFieldWrapper className={classnames}>
+        <Box direction="row" alignItems="center" gap={6}>
+          <TextStyle variant="labelXSmall" color="--color-secondary">
+            {label}
+          </TextStyle>
+          {labelHelping && (
+            <TextStyle
+              variant="labelXSmall"
+              color="--color-secondary"
+              alignContent="center"
+            >
+              <Icon
+                icon="help_circle_fill"
+                width={12}
+                height={12}
+                color="--color-secondary"
+              />
+            </TextStyle>
+          )}
+        </Box>
         <S.InputWrapper error={error}>
           {iconLeft && <S.Icon>{iconLeft}</S.Icon>}
           <S.Input {...rest} disabled={disabled} id={id} />
           {iconRight && <S.Icon>{iconRight}</S.Icon>}
         </S.InputWrapper>
         {helpingText && (
-          <S.HelpingText error={error}>{helpingText}</S.HelpingText>
+          <S.HelpingText error={error}>
+            <TextStyle variant="labelXSmall">{helpingText}</TextStyle>
+          </S.HelpingText>
         )}
       </S.TextFieldWrapper>
     );
   },
 );
 
-TextField.defaultProps = {
-  type: "text",
-  iconTyping: false,
-  keyboard: "text",
-};
+TextField.displayName = "TextField";
 
 export default TextField;

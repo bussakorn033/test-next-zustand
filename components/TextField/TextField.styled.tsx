@@ -1,19 +1,38 @@
 import styled, {css} from "styled-components";
+import {TextFieldProps} from "./TextField.types";
+import {toPx} from "@/src/utils/Utility";
 
-export const TextFieldWrapper = styled.div`
+export const TextFieldWrapper = styled.div<TextFieldProps>`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
+
+  ${({width}) =>
+    width &&
+    css`
+      width: ${toPx(width)};
+    `}
+  ${({zIndex}) =>
+    zIndex &&
+    css`
+      z-index: ${zIndex};
+    `}
+  ${({marginBottom}) =>
+    marginBottom &&
+    css`
+      margin-bottom: ${toPx(marginBottom)};
+    `}
 `;
 
 export const InputWrapper = styled.div<{error?: boolean}>`
   display: flex;
   align-items: center;
   border: 1px solid
-    ${({error}) => (error ? "--color-danger)" : "--color-neutral)")};
-  border-radius: 4px;
-  padding: 8px;
-  background-color: var(--color-background);
+    ${({error}) =>
+      error ? "var(--color-danger)" : "var(--color-neutral-light)"};
+  border-radius: 10px;
+  padding: 10px 12px;
+  background-color: var(--color-neutral-light);
 
   &:focus-within {
     border-color: var(--color-primary);
@@ -46,5 +65,6 @@ export const Icon = styled.div`
 
 export const HelpingText = styled.span<{error?: boolean}>`
   font-size: 12px;
-  color: ${({error}) => (error ? "--color-danger)" : "--color-neutral-dark)")};
+  color: ${({error}) =>
+    error ? "var(--color-danger)" : "var(--color-neutral-dark)"};
 `;

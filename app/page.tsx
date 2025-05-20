@@ -430,6 +430,167 @@ export default function Home() {
                 {/* Common TextField  */}
                 <TextStyle variant="h2">TextField</TextStyle>
                 <>
+                  <Box direction="column" gap={40}>
+                    {/* ✅ Normal */}
+                    <Box direction="column" gap={8}>
+                      <TextStyle variant="h4">Normal TextFields</TextStyle>
+                      <TextField label="Basic" placeholder="Type here..." />
+                      <TextField
+                        labelHelping="With Helper"
+                        label="With Helper"
+                        placeholder="Enter something"
+                        helpingText="Supporting text here"
+                      />
+                      <TextField
+                        label="With Error"
+                        placeholder="Oops..."
+                        error
+                        helpingText="Still showing helper"
+                        errorMessage="Something went wrong"
+                      />
+                      <TextField
+                        label="Disabled"
+                        placeholder="Not editable"
+                        disabled
+                      />
+                    </Box>
+
+                    {/* ✅ Input Types */}
+                    <Box direction="column" gap={8}>
+                      <TextStyle variant="h4">Input Types</TextStyle>
+                      <TextField
+                        label="Text"
+                        type="text"
+                        placeholder="Enter text"
+                      />
+                      <TextField
+                        label="Number"
+                        type="number"
+                        placeholder="Enter number"
+                      />
+                      <TextField
+                        label="Email"
+                        type="email"
+                        placeholder="your@email.com"
+                      />
+                      <TextField
+                        label="Password"
+                        type="password"
+                        placeholder="••••••••"
+                      />
+                      <TextField
+                        label="Telephone"
+                        type="tel"
+                        placeholder="012-345-6789"
+                      />
+                    </Box>
+
+                    {/* ✅ With Icons */}
+                    <Box direction="column" gap={8}>
+                      <TextStyle variant="h4">With Icons</TextStyle>
+                      <TextField
+                        label="Left Icon"
+                        iconLeft={<Icon icon="search" />}
+                        placeholder="Search here"
+                      />
+                      <TextField
+                        label="Right Icon"
+                        iconRight={<Icon icon="calendar" />}
+                        placeholder="Pick a date"
+                      />
+                      <TextField
+                        label="Both Icons"
+                        iconLeft={<Icon icon="plus" />}
+                        iconRight={<Icon icon="minus" />}
+                        placeholder="Adjust amount"
+                      />
+                    </Box>
+
+                    {/* ✅ Variants */}
+                    <Box direction="column" gap={8}>
+                      <TextStyle variant="h4">Variants</TextStyle>
+                      <TextField
+                        label="Amount"
+                        variant="amount"
+                        placeholder="0.00"
+                        type="number"
+                      />
+                      <TextField
+                        label="Search Field"
+                        variant="search"
+                        placeholder="Search something..."
+                        iconLeft={<Icon icon="search" />}
+                      />
+                      <TextField
+                        label="Amount Transaction"
+                        variant="amount-transaction"
+                        placeholder="Enter amount"
+                      />
+                    </Box>
+
+                    {/* ✅ Styling: width, marginBottom, zIndex */}
+                    <Box direction="column" gap={8}>
+                      <TextStyle variant="h4">Styled TextField</TextStyle>
+                      <TextField
+                        label="Custom Width"
+                        placeholder="400px wide"
+                        width={400}
+                      />
+                      <TextField
+                        label="With zIndex"
+                        placeholder="This field has zIndex"
+                        zIndex={100}
+                      />
+                      <TextField
+                        label="Margin Bottom"
+                        placeholder="Has spacing below"
+                        marginBottom={32}
+                      />
+                    </Box>
+
+                    <Box direction="column" gap={8}>
+                      <TextStyle variant="h4">Error States</TextStyle>
+
+                      {/* 🔴 Basic error state */}
+                      <TextField
+                        label="Error Only"
+                        labelHelping="Error Only"
+                        placeholder="Invalid input"
+                        error
+                      />
+
+                      {/* 🔴 Error with message */}
+                      <TextField
+                        label="Error with Message"
+                        placeholder="Try again"
+                        error
+                        helpingText="Username must be at least 6 characters"
+                      />
+
+                      {/* 🔴 Error + Helper text */}
+                      <TextField
+                        label="Error with Both Messages"
+                        placeholder="Enter email"
+                        type="email"
+                        error
+                        helpingText="Use your company email"
+                        errorMessage="Invalid email format"
+                      />
+
+                      {/* 🔴 Disabled with error (for edge case testing) */}
+                      <TextField
+                        label="Disabled + Error"
+                        placeholder="Can't type"
+                        disabled
+                        error
+                        helpingText="Field cannot be edited"
+                        errorMessage="Still showing error"
+                      />
+                    </Box>
+                  </Box>
+                </>
+
+                <>
                   <Box
                     bgColor="--color-bg-test"
                     border="all" // all | top | bottom

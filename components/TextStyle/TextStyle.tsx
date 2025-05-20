@@ -9,7 +9,7 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
       variant = "paragraphMedium",
       color,
       className = "",
-      tag = "p",
+      tag = "",
       children,
       limitLine = 0,
       whiteSpace = "pre-line",
@@ -85,7 +85,7 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
 
     return (
       <S.TextStyle
-        as={tag || customTag}
+        as={tag || customTag || "p"}
         variant={variant}
         className={classnames}
         limitLine={limitLine}

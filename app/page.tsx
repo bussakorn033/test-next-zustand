@@ -6,6 +6,7 @@ import Icon from "@/components/Icon/Icon";
 import {Table} from "@/components/Table";
 import {TextField} from "@/components/TextField";
 import {TextStyle} from "@/components/TextStyle";
+import useDashboard from "@/hooks/useDashboard";
 import globalSlice from "@/stores/globalSlice";
 import {useState} from "react";
 import {useTranslation} from "react-i18next";
@@ -28,235 +29,7 @@ export default function Home() {
   } = globalStore;
 
   const {t} = useTranslation();
-  const [pagination, setPagination] = useState({
-    page: 1,
-    limit: 10,
-    count: 55,
-  });
-  console.log(`---- pagination:`, pagination);
-  const onClickHeader = ({
-    row,
-    col,
-    ...rest
-  }: {
-    row: number;
-    col: number;
-    [key: string]: any;
-  }) => {
-    console.log("Header clicked at index:");
-    console.log("---- row:", row);
-    console.log("---- col:", col);
-    console.log("---- rest:", rest);
-  };
-
-  const onClickValue = ({
-    row,
-    col,
-    ...rest
-  }: {
-    row: number;
-    col: number;
-    [key: string]: any;
-  }) => {
-    console.log("Value clicked at index:");
-    console.log("---- row:", row);
-    console.log("---- col:", col);
-    console.log("---- rest:", rest);
-  };
-
-  const headerKeys = [
-    {
-      key: "contract_no",
-      label: t("dashboard_contract_table_header_row1"), // เลขที่
-      isSort: true,
-      sortBy: undefined,
-      minWidth: "96px",
-      maxWidth: "calc(96px * 1.25)",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "id_card",
-      label: t("dashboard_contract_table_header_row2"), // เลขบัตรประชาชน/เลขพาสปอร์ต
-      isSort: true,
-      sortBy: undefined,
-      minWidth: "144px",
-      maxWidth: "calc(144px * 1.5)",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "full_name",
-      label: t("dashboard_contract_table_header_row3"), // ชื่อ - นามสกุล
-      isSort: true,
-      sortBy: undefined,
-      minWidth: "118px",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "doc_type",
-      label: t("dashboard_contract_table_header_row4"), // ประเภทเอกสาร
-      isSort: true,
-      sortBy: undefined,
-      minWidth: "218px",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "status",
-      label: t("dashboard_contract_table_header_row5"), // สถานะ
-      isSort: false,
-      minWidth: "114px",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "last_updated",
-      label: t("dashboard_contract_table_header_row6"), // อัปเดตล่าสุด
-      isSort: true,
-      sortBy: "asc",
-      minWidth: "100px",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "created_by",
-      label: t("dashboard_contract_table_header_row7"), // สร้างโดย
-      isSort: false,
-      minWidth: "144px",
-      maxWidth: "calc(144px * 2)",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "view",
-      label: "",
-      icon: "view_document",
-      minWidth: "40px",
-      maxWidth: "calc(40px * 2)",
-      flex: 1,
-      alignHeader: "center",
-      align: "center",
-    },
-    {
-      key: "history",
-      label: "",
-      icon: "history",
-      minWidth: "40px",
-      maxWidth: "calc(40px * 2)",
-      flex: 1,
-      alignHeader: "center",
-      align: "center",
-    },
-    {
-      key: "trash",
-      label: "",
-      icon: "trash",
-      minWidth: "40px",
-      maxWidth: "calc(40px * 2)",
-      flex: 1,
-      alignHeader: "center",
-      align: "center",
-    },
-  ];
-
-  const headers = headerKeys.map((item, index) => ({
-    key: item?.key,
-    value: item?.label || "",
-    isSort: item?.isSort || false,
-    sortBy: item?.sortBy || undefined,
-    icon: item?.icon,
-    onClick: item?.isSort
-      ? () => onClickHeader({row: -1, col: index, key: item?.key})
-      : null,
-    minWidth: item?.minWidth,
-    maxWidth: item?.maxWidth,
-    flex: item?.flex !== undefined ? item?.flex : 1,
-    alignHeader: item?.alignHeader || "left",
-    align: item?.align || "left",
-  }));
-
-  console.log("---- headers:", headers);
-
-  const valuesKey = Array.from({length: pagination.count}, (_, i) => {
-    const row: Record<string, any> = {};
-    headerKeys.forEach((header) => {
-      switch (header.key) {
-        case "contract_no":
-          row[header.key] = `CN-${i + 1}`;
-          break;
-        case "id_card":
-          row[header.key] = `123456789012${i % 10}`;
-          break;
-        case "full_name":
-          row[header.key] = `Name ${i + 1}`;
-          break;
-        case "doc_type":
-          row[header.key] = i % 2 === 0 ? "PDF" : "DOCX";
-          break;
-        case "status":
-          row[header.key] = i % 2 === 0 ? "Active" : "Inactive";
-          break;
-        case "last_updated":
-          row[header.key] = `2025-05-${String((i % 30) + 1).padStart(2, "0")}`;
-          break;
-        case "created_by":
-          row[header.key] = `Admin${i + 1}`;
-          break;
-        case "view":
-        case "history":
-        case "trash":
-          row[header.key] = (
-            <Button
-              onClick={(e) => {
-                e.stopPropagation();
-                // const result = col.onClick?.({row: 1, col: index});
-                // console.log("Sort icon onClick:", {
-                //   row: 1,
-                //   col: index,
-                //   result,
-                // });
-              }}
-              variant="ghost-icon-secondary-no-padding"
-              borderRadius="round"
-              disabled={false}
-            >
-              <Icon
-                icon={header.icon}
-                width={24}
-                height={24}
-                color="--color-primary"
-              />
-            </Button>
-          );
-          break;
-        default:
-          row[header.key] = "-";
-      }
-    });
-    return row;
-  });
-
-  const startIndex = (pagination.page - 1) * pagination.limit;
-  const endIndex = startIndex + pagination.limit;
-  const paginatedData = valuesKey.slice(startIndex, endIndex);
-
-  const values = paginatedData.map((row, rowIndex) =>
-    headers.map((header, colIndex) => ({
-      key: header.key,
-      value: row[header.key as keyof typeof row],
-      onClick:
-        colIndex < 4
-          ? () => onClickValue({row: rowIndex, col: colIndex})
-          : null,
-      minWidth: header.minWidth || "100px",
-      flex: header.flex || 1,
-      align: header.align || "left",
-    })),
-  );
-
-  console.log("---- values:", values);
+  const {pagination, setPagination, headers, values} = useDashboard();
 
   return (
     <>
@@ -370,7 +143,15 @@ export default function Home() {
                     </Box>
                   </Box>
                 </Box>
+              </Box>
+            </>
 
+            <>
+              {/* Common  Box */}
+              <Box direction="column" gap={50} mt={500}>
+                {/* Common Table  */}
+                <TextStyle variant="h2">Table</TextStyle>
+                <Box>Table</Box>
                 <>
                   <Table
                     headers={headers}
@@ -389,12 +170,6 @@ export default function Home() {
                       }))
                     }
                   />
-                  isPaginationDisabled
-                  <br />
-                  mode="light"
-                  <br />
-                  size="md"
-                  <br />
                   <Table
                     mode="light"
                     size="md"
@@ -417,15 +192,6 @@ export default function Home() {
                     isPaginationDisabled
                   />
                 </>
-              </Box>
-            </>
-
-            <>
-              {/* Common  Box */}
-              <Box direction="column" gap={50} mt={500}>
-                {/* Common Table  */}
-                <TextStyle variant="h2">Table</TextStyle>
-                <Box>Table</Box>
                 {/* Common Table  */}
 
                 {/* Common TextField  */}

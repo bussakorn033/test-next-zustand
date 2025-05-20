@@ -18,34 +18,42 @@
  * @param direction - Layout direction of the table (e.g., 'row', 'column')
  */
 
+export type SortDirection = "asc" | "desc" | "sorting" | undefined;
+export type Align = "left" | "center" | "right";
+
+export interface Pagination {
+  page: number;
+  limit: number;
+  count: number;
+}
+
+export interface OnClickCellParams {
+  key?: string;
+  row?: number;
+  col?: number;
+  sortBy?: SortDirection;
+  [key: string]: any;
+}
+
 export interface TableColumn {
   key?: string | undefined;
   value: string | React.ReactNode;
-  alignHeader?: "left" | "center" | "right";
-  align?: "left" | "center" | "right";
-  sortBy?: "asc" | "desc" | "sorting" | undefined;
+  alignHeader?: Align;
+  align?: Align;
+  sortBy?: SortDirection;
   isSort?: boolean;
-  onClick?: ({
-    key,
-    row,
-    col,
-    sortBy,
-  }: {
-    key?: string;
-    row?: number;
-    col?: number;
-    sortBy?: "asc" | "desc" | "sorting" | undefined;
-  }) => void | null;
+  onClick?: (params: OnClickCellParams) => void | null;
   flex?: number | string;
   minWidth?: number | string;
   maxWidth?: number | string;
+  icon?: string;
 }
 
 export interface TableProps
   extends React.HTMLAttributes<HTMLElement | undefined> {
-  className?: string;
   headers?: TableColumn[];
   values?: TableColumn[][];
+  className?: string;
   maxHeightTable?: number | string;
   page?: number;
   limit?: number;

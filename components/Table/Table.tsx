@@ -118,7 +118,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                         : "--color-table-header-light"
                     }
                     border="bottom"
-                    // p={8}
+                    borderWidth={1}
                     p={size === "lg" ? "8px" : "2px"}
                     gap={4}
                     flex={col?.flex || 1}
@@ -233,9 +233,9 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                                 }}
                                 role={col?.onClick ? "button" : "div"}
                                 borderWidth={1}
-                                border="top"
+                                border={mode === "dark" ? "top" : "bottom"}
                                 alignContent="center"
-                                p={size === "lg" ? "16px 8px" : "10px 8px"}
+                                p={size === "lg" ? "16px 8px" : "2px"}
                                 flex={headers[colIndex]?.flex || 1}
                                 minWidth={
                                   headers[colIndex]?.minWidth || "100px"

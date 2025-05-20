@@ -213,7 +213,7 @@
   --color-table-border-dark: #dfe6ec;
   --color-table-bg-dark: var(--color-neutral-light);
   --color-table-header-light: var(--color-neutral-light);
-  --color-table-border-light: transparent;
+  --color-table-border-light: var(--color-neutral-light);
   --color-table-bg-light: var(--color-neutral-light);
 
   /* Font Weights */

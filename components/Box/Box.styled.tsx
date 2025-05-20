@@ -27,11 +27,25 @@ const getRadius = (value: BoxProps["borderRadius"]) => {
 const calPadding = (
   padding: string | number = 0,
   borderWidth: string | number = 0,
-): number => {
+): string => {
   const toNumber = (value: string | number): number =>
     typeof value === "string" ? parseFloat(value) || 0 : value;
 
-  return toNumber(padding) - toNumber(borderWidth);
+  const border = toNumber(borderWidth);
+
+  if (typeof padding === "string" && padding.trim().includes(" ")) {
+    // Process multi-value padding if padding is a string containing space-separated values.
+    const tokens = padding.trim().split(/\s+/);
+    const newTokens = tokens.map((token) => {
+      const num = parseFloat(token) || 0;
+      // Extract the unit by removing the numeric part from token.
+      const unit = token.replace(num.toString(), "");
+      return `${num - border}${unit}`;
+    });
+    return newTokens.join(" ");
+  }
+
+  return toPx(toNumber(padding) - border);
 };
 
 export const Box = styled.div<Omit<BoxProps, "as">>`
@@ -259,39 +273,39 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
   ${({p, borderWidth}) =>
     p !== undefined &&
     css`
-      padding: ${calPadding(p, borderWidth)}px;
+      padding: ${calPadding(p, borderWidth)};
     `}
   ${({px, borderWidth}) =>
     px !== undefined &&
     css`
-      padding-left: ${calPadding(px, borderWidth)}px;
-      padding-right: ${calPadding(px, borderWidth)}px;
+      padding-left: ${calPadding(px, borderWidth)};
+      padding-right: ${calPadding(px, borderWidth)};
     `}
   ${({py, borderWidth}) =>
     py !== undefined &&
     css`
-      padding-top: ${calPadding(py, borderWidth)}px;
-      padding-bottom: ${calPadding(py, borderWidth)}px;
+      padding-top: ${calPadding(py, borderWidth)};
+      padding-bottom: ${calPadding(py, borderWidth)};
     `}
   ${({pt, borderWidth}) =>
     pt !== undefined &&
     css`
-      padding-top: ${calPadding(pt, borderWidth)}px;
+      padding-top: ${calPadding(pt, borderWidth)};
     `}
   ${({pb, borderWidth}) =>
     pb !== undefined &&
     css`
-      padding-bottom: ${calPadding(pb, borderWidth)}px;
+      padding-bottom: ${calPadding(pb, borderWidth)};
     `}
   ${({pr, borderWidth}) =>
     pr !== undefined &&
     css`
-      padding-right: ${calPadding(pr, borderWidth)}px;
+      padding-right: ${calPadding(pr, borderWidth)};
     `}
   ${({pl, borderWidth}) =>
     pl !== undefined &&
     css`
-      padding-left: ${calPadding(pl, borderWidth)}px;
+      padding-left: ${calPadding(pl, borderWidth)};
     `}
 
   ${({column}) =>

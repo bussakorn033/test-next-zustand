@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components";
 import {TextStyleProps} from "./TextStyle.types";
-import {toPx, transformFlexProperties} from "@/src/utils/Utility";
+import {toPx, transformFlexProperties} from "@/utils/Utility";
 
 const textStyleMixin = (
   fontSize: string,

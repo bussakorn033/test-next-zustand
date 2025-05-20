@@ -34,13 +34,7 @@ export default function Home() {
 
   return (
     <>
-      <Box
-        bgColor="--color-bg-primary"
-        fullHeight
-        fullWidth
-        overflowY="auto"
-        height="fit-content"
-      >
+      <Box bgColor="--color-bg-primary" fullHeight fullWidth overflowY="auto">
         <Box direction="column" p={32}>
           <Box direction="column">
             <>

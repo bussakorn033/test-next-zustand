@@ -1,7 +1,7 @@
 // Box.styled.ts
 import styled, {css} from "styled-components";
 import {BoxProps} from "./Box.types";
-import {toPx, transformFlexProperties} from "@/src/utils/Utility";
+import {toPx, transformFlexProperties} from "@/utils/Utility";
 
 const getRadius = (value: BoxProps["borderRadius"]) => {
   switch (value) {

@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components";
 import {TextFieldProps} from "./TextField.types";
-import {toPx} from "@/src/utils/Utility";
+import {toPx} from "@/utils/Utility";
 
 export const TextFieldWrapper = styled.div<TextFieldProps>`
   display: flex;

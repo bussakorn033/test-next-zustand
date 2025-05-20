@@ -10,10 +10,13 @@
   "dashboard_filter_by_status": "สถานะ",
 
   "dashboard_contract_table_header_row1": "เลขที่",
-  "dashboard_contract_table_header_row2": "เลขบัตรประชาชน/ Passport",
+  "dashboard_contract_table_header_row2": "เลขบัตรประชาชน/เลขพาสปอร์ต",
   "dashboard_contract_table_header_row3": "ชื่อ - นามสกุล",
   "dashboard_contract_table_header_row4": "ประเภทเอกสาร",
   "dashboard_contract_table_header_row5": "สถานะ",
   "dashboard_contract_table_header_row6": "อัปเดตล่าสุด",
-  "dashboard_contract_table_header_row7": "สร้างโดย"
+  "dashboard_contract_table_header_row7": "สร้างโดย",
+
+  "dashboard_contract_table_footer_limit": "จำนวนแถว",
+  "dashboard_contract_table_footer_to": "จาก"
 }

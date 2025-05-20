@@ -18,8 +18,8 @@
  * @param direction - Layout direction of the table (e.g., 'row', 'column')
  */
 
-export type SortDirection = "asc" | "desc" | "sorting" | undefined;
-export type Align = "left" | "center" | "right";
+export type SortDirection = "asc" | "desc" | "sorting" | string | undefined;
+export type Align = "left" | "center" | "right" | string | undefined;
 
 export interface Pagination {
   page: number;
@@ -47,6 +47,7 @@ export interface TableColumn {
   minWidth?: number | string;
   maxWidth?: number | string;
   icon?: string;
+  [key: string]: any | (() => void | null);
 }
 
 export interface TableProps

@@ -34,143 +34,15 @@ export default function Home() {
 
   return (
     <>
-      <Box bgColor="--color-bg-primary" fullHeight fullWidth overflowY="auto">
+      <Box
+        bgColor="--color-bg-primary"
+        display="block"
+        fullHeight
+        fullWidth
+        overflowY="auto"
+      >
         <>
           <Box direction="column" p={32}>
-            <>
-              <Box direction="column">
-                <>
-                  <Box direction="column" gap={24}>
-                    <Box direction="column" gap={48}>
-                      <Box direction="column" gap={0}>
-                        <TextStyle variant="h2" color="--color-primary">
-                          {t("dashboard_title")}
-                        </TextStyle>
-                        <TextStyle
-                          variant="paragraphMedium"
-                          color="--color-neutral-grey-light"
-                        >
-                          {t("dashboard_sub_title")}
-                        </TextStyle>
-                      </Box>
-                      <Box
-                        direction="row"
-                        justifyContent="space-between"
-                        gap={24}
-                      >
-                        <TextStyle variant="h4" color="--color-primary">
-                          {t("dashboard_title_table")}
-                        </TextStyle>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <Button variant="ghost-primary" iconLeft="refresh">
-                            {t("dashboard_btn_refresh")}
-                          </Button>
-                          <Button variant="primary" iconLeft="plus">
-                            {t("dashboard_btn_create_contract")}
-                          </Button>
-                        </Box>
-                      </Box>
-                    </Box>
-
-                    {/* Filter */}
-                    <Box direction="row" justifyContent="space-between">
-                      <Box direction="column" justifyContent="center" gap={8}>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <TextStyle
-                            variant="labelXSmall"
-                            color="--color-secondary"
-                          >
-                            {t("dashboard_filter_by_user")}
-                          </TextStyle>
-                          <Button
-                            onClick={() => {
-                              console.log("onClick");
-                            }}
-                            variant={"ghost-icon-secondary-no-padding"}
-                            borderRadius="round"
-                          >
-                            <Icon
-                              icon="arrow_down"
-                              color="--color-primary"
-                              width={16}
-                              height={16}
-                            />
-                          </Button>
-                        </Box>
-                      </Box>
-                      <Box direction="row" alignItems="center" gap={8}>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <TextStyle
-                            variant="labelSmallBold"
-                            color="--color-primary"
-                          >
-                            {t("dashboard_filter_by_type_doc")}
-                          </TextStyle>
-                          <Button
-                            onClick={() => {
-                              console.log("onClick");
-                            }}
-                            variant={"ghost-icon-secondary-no-padding"}
-                            borderRadius="round"
-                          >
-                            <Icon
-                              icon="arrow_down"
-                              color="--color-primary"
-                              width={16}
-                              height={16}
-                            />
-                          </Button>
-                        </Box>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <TextStyle
-                            variant="labelSmallBold"
-                            color="--color-primary"
-                          >
-                            {t("dashboard_filter_by_status")}
-                          </TextStyle>
-                          <Button
-                            onClick={() => {
-                              console.log("onClick");
-                            }}
-                            variant={"ghost-icon-secondary-no-padding"}
-                            borderRadius="round"
-                          >
-                            <Icon
-                              icon="arrow_down"
-                              color="--color-primary"
-                              width={16}
-                              height={16}
-                            />
-                          </Button>
-                        </Box>
-                      </Box>
-                    </Box>
-                    {/* Filter */}
-
-                    {/* Table */}
-                    <Table
-                      headers={headers}
-                      values={values}
-                      optionPagination={optionPagination}
-                      page={pagination.page}
-                      limit={pagination.limit}
-                      count={pagination.count}
-                      onPageChange={(newPage) =>
-                        setPagination((prev) => ({...prev, page: newPage}))
-                      }
-                      onLimitChange={(newLimit) =>
-                        setPagination((prev) => ({
-                          ...prev,
-                          limit: newLimit,
-                          page: 1,
-                        }))
-                      }
-                    />
-                    {/* Table */}
-                  </Box>
-                </>
-              </Box>
-            </>
             <>
               <Box direction="column">
                 <>

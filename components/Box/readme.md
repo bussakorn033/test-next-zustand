@@ -9,7 +9,8 @@ import {Box} from "@/shared-components/Box";
   gap={8}
   padding={16}
   bgColor="--color-neutral-light"
-  color="--color-table-border-dark"
+  borderColor="--color-primary"
+  color="--color-primary"
   border="all"
   borderRadius="md"
   borderWidth={1}
@@ -20,16 +21,67 @@ import {Box} from "@/shared-components/Box";
   Box Component
 </Box>;
 
-| Prop           | Type                                | Description              |
-| -------------- | ----------------------------------- | ------------------------ |
-| `display`      | `"flex"`, `"grid"`, `"block"`, etc. | Controls the CSS display |
-| `direction`    | `"row"`, `"column"`, etc.           | Flex direction           |
-| `gap`          | `string` | `number`                 | Spacing between children |
-| `bgColor`      | `string`                            | Background color         |
-| `color`        | `string`                            | Text color               |
-| `border`       | `"all"`, `"top"`, `"bottom"`        | Border sides             |
-| `borderRadius` | `"none"` | `"xs"` | `"circle"`      | Corner radius            |
-| `boxShadow`    | `"none"`, `"top"`, `"bottom"`       | Box shadow               |
-| `fullWidth`    | `boolean`                           | Sets width to 100%       |
-| `fullHeight`   | `boolean`                           | Sets height to 100vh     |
+display?: "flex" | "grid" | "inline" | "inline-block" | "inline-flex" | "inline-grid" | "block" | "table" | "contents" | "none";
+
+direction?: "row"| "row-reverse"| "row-wrap"| "column"| "column-reverse"| "none";
+
+gap?: string | number;
+gapRow?: string | number;
+gapColumn?: string | number;
+
+p?: string | number;
+px?: string | number;
+py?: string | number;
+pt?: string | number;
+pb?: string | number;
+pr?: string | number;
+pl?: string | number;
+m?: string | number;
+mx?: string | number;
+my?: string | number;
+mt?: string | number;
+mb?: string | number;
+mr?: string | number;
+ml?: string | number;
+
+bgColor?: string; // --color-error || #f00
+color?: string; // --color-error || #f00
+borderColor?: string; // --color-error || #f00
+
+border?: "all" | "top" | "bottom" ;
+
+borderRadius?:
+  | "none"
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "circle";
+
+borderWidth?: 0 | 1 | 2;
+
+width?: string | number;;
+height?: string | number;;
+minWidth?: string | number;;
+maxWidth?: string | number;;
+minHeight?: string | number;;
+maxHeight?: string | number;;
+
+boxShadow?: "none" | "top" | "bottom";
+
+hover?: boolean;
+
+textAlign?: "left" | "center" | "right";
+alignItems?: "start" | "center" | "end" | "baseline";
+alignContent?: "start" | "center" | "end" | "baseline";
+justifyContent?: "start"| "center"| "end"| "space-between"| "space-around";
+
+position?: "static" | "relative" | "absolute" | "fixed" | "sticky" | string;
+zIndex?: string | number;
+top?: string | number;
+bottom?: string | number;
+left?: string | number;
+right?: string | number;
+
 ```

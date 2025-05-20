@@ -65,12 +65,12 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
     }
   }
 
-  ${({direction, gap, gapRow, gapColumn}) => {
+  ${({direction, display, gap, gapRow, gapColumn}) => {
     if (direction !== "none") {
       return css`
         display: flex;
       `;
-    } else if (gap || gapRow || gapColumn) {
+    } else if (display || gap || gapRow || gapColumn) {
       return css`
         display: grid;
         ${gap && `gap: ${gap}px;`}

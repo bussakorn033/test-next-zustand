@@ -7,7 +7,7 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
   (
     {
       tag = "div",
-      display = "grid",
+      display = "flex",
       direction = "none",
       fullWidth,
       fullHeight,

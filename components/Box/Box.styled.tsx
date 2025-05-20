@@ -142,10 +142,9 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
       flex: ${flex};
     `}
 
-  ${({direction, alignItems, alignContent}) =>
+  ${({direction, alignItems = undefined, alignContent = undefined}) =>
     direction &&
-    alignItems &&
-    alignContent &&
+    (alignItems || alignContent) &&
     css`
       align-items: ${transformFlexProperties(alignItems)};
       align-content: ${transformFlexProperties(alignContent)};

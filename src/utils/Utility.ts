@@ -194,7 +194,7 @@ export function throttle(func: (...args: any[]) => void, limit: number) {
 export const toPx = (value: number | string): string =>
   typeof value === "number" ? `${value}px` : value;
 
-export const transformFlexProperties = (prop: string) => {
+export const transformFlexProperties = (prop: string | undefined) => {
   switch (prop) {
     case "start":
       return "flex-start";

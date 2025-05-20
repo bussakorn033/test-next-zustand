@@ -66,16 +66,20 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
   }
 
   ${({direction, display, gap, gapRow, gapColumn}) => {
-    if (direction !== "none") {
+    if (direction !== "none" && display !== "block") {
       return css`
         display: flex;
       `;
-    } else if (display || gap || gapRow || gapColumn) {
+    } else if (gap || gapRow || gapColumn) {
       return css`
         display: grid;
         ${gap && `gap: ${gap}px;`}
         ${gapRow && `row-gap: ${gapRow}px;`}
         ${gapColumn && `column-gap: ${gapColumn}px;`}
+      `;
+    } else if (display) {
+      return css`
+        display: ${display};
       `;
     }
   }}

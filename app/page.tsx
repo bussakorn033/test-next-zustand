@@ -398,6 +398,7 @@ export default function Home() {
                   <Table
                     mode="light"
                     size="md"
+                    maxHeightTable={"200px"}
                     headers={headers}
                     values={values}
                     page={pagination.page}

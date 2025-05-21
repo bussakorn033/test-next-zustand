@@ -189,7 +189,7 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
     }
   }}
 
-  ${({borderRadius, variant}) => {
+  ${({borderRadius}) => {
     switch (borderRadius) {
       case "none":
         return css`
@@ -237,6 +237,6 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
   ${({flexWrap}) =>
     flexWrap !== undefined &&
     css`
-      flex-wrap: ${flexWrap | 1};
+      flex-wrap: ${flexWrap};
     `}
 `;

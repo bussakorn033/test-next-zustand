@@ -138,9 +138,15 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
         };
       }
     }, [id]);
-
+    console.log(`clearable && value:${clearable + " " + value}`);
     return (
-      <S.TextFieldWrapper className={classnames} {...rest}>
+      <S.TextFieldWrapper
+        className={classnames}
+        disabled={disabled}
+        value={value}
+        clearable={clearable}
+        {...rest}
+      >
         <Box direction="row" alignItems="center" gap={6}>
           <TextStyle variant="labelXSmall" color="--color-secondary">
             {label}
@@ -166,12 +172,14 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
             variant="labelSmall"
             color="--color-primary"
             alignContent="center"
+            flex={1}
           >
             <S.Input
               {...rest}
-              disabled={disabled}
               id={id}
+              disabled={disabled}
               value={value}
+              clearable={clearable}
               onChange={onchangeHandler}
               onKeyDown={onKeyDownHandler}
               onKeyUp={onKeyUpHandler}
@@ -198,7 +206,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
                 icon="cancel_circle_fill"
                 width={20}
                 height={20}
-                color="--color-primary"
+                color="--color-neutral-grey-lighter"
               />
             </S.ClearButton>
           )}

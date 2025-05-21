@@ -215,7 +215,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               {/* Header */}
 
               {/* Body */}
-              <Box tag="table" width="100%">
+              <Box display="inline-table" tag="table" width="100%">
                 <Box
                   direction="column"
                   maxHeight={maxHeightTable}

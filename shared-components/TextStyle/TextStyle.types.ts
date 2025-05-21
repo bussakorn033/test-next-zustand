@@ -48,4 +48,5 @@ export interface TextStyleProps
   alignContent?: "start" | "center" | "end" | "baseline";
   width?: string | number;
   height?: string | number;
+  flex?: number;
 }

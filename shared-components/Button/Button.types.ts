@@ -40,6 +40,8 @@ export interface ButtonProps
   label?: string;
   size?: "medium" | "large";
   sizeIcon?: string | number | null;
+  flex?: string | number | null;
+  flexWrap?: string | null;
   width?: "normal" | "full";
   borderRadius?: "normal" | "round" | "none";
   iconLeft?: string;

@@ -135,24 +135,22 @@ export default function Home() {
                           />
                           <Box direction="row" alignItems="center" gap={8}>
                             <Button
-                              onClick={() => {
-                                console.log("onClick");
-                              }}
                               variant={"ghost-icon-secondary-no-padding"}
+                              iconLeft="search"
                               borderRadius="round"
-                              // flex-wrap: wrap;
-                            >
-                              <Icon
-                                icon="search"
-                                color="--color-secondary"
-                                width={20}
-                                height={20}
-                              />
-                            </Button>
+                              sizeIcon={20}
+                              onClick={() => {
+                                console.log("onClick search");
+                              }}
+                            />
                             <Button
                               variant="ghost-primary-no-padding"
                               iconLeft="close"
                               sizeIcon={24}
+                              flexWrap="wrap"
+                              onClick={() => {
+                                console.log("onClick close");
+                              }}
                             >
                               {t("dashboard_filter_btn_reset")}
                             </Button>
@@ -296,21 +294,26 @@ export default function Home() {
                     <TextStyle variant="h4">Normal TextFields</TextStyle>
                     <TextField
                       label="Basic"
-                      value="Basic"
+                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                       placeholder="Type here..."
-                      minWidth={100}
+                      width={100}
                     />
                     <TextField
                       label="Basic clearable"
-                      value="Basic clearable"
+                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                       placeholder="Type here..."
-                      minWidth={100}
+                      width={100}
                       clearable
                     />
                     <TextField
                       label="Basic"
                       placeholder="Type here..."
-                      minWidth={100}
+                      width={100}
+                    />
+                    <TextField
+                      label="Basic"
+                      placeholder="Type here..."
+                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                       clearable
                     />
                     <TextField label="Basic" placeholder="Type here..." />

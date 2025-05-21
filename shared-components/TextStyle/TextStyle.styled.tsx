@@ -236,4 +236,10 @@ export const TextStyle = styled.p<TextStyleProps>`
     css`
       height: ${toPx(height)};
     `}
+
+  ${({flex}) =>
+    flex &&
+    css`
+      flex: ${flex};
+    `}
 `;

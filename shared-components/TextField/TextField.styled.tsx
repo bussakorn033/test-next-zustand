@@ -36,7 +36,6 @@ export const TextFieldWrapper = styled.div<TextFieldProps>`
 `;
 
 export const InputWrapper = styled.div<{error?: boolean}>`
-  width: inherit;
   display: flex;
   flex: 1;
   align-items: center;

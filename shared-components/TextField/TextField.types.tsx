@@ -46,22 +46,9 @@ export interface TextFieldProps
    * @deprecated
    */
   options?: string;
-  // TextField.types.ts
-  // id?: string;
-  // label?: string;
-  // value?: string;
-  // type?: string;
-  // disabled?: boolean;
-  // error?: boolean;
-  // helpingText?: string;
-  // iconLeft?: React.ReactNode;
-  // iconRight?: React.ReactNode;
-  // className?: string;
-  // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // maxLength?: number;
-
-  // 👇 Extra style-related props (not currently styled)
-  width?: string | number;
   zIndex?: number;
-  marginBottom?: string | number;;
+  width?: string | number;
+  marginBottom?: string | number;
+  clearable?: boolean;
+  [key: string]: any;
 }

@@ -14,13 +14,7 @@ export const Icon = ({
   const classnames = classNames(className, "ds-ui-icon");
 
   return (
-    <Box
-      className={classnames}
-      // color="transparent"
-      // bgColor="transparent"
-      // borderColor="transparent"
-      // {...rest}
-    >
+    <Box className={classnames}>
       {/* {color} */}
       <IconComponent
         icon={icon}

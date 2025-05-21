@@ -11,6 +11,10 @@ import {
 const useDashboard = () => {
   const {t} = useTranslation();
 
+  const [filters, setFilters] = useState({
+    userName: "",
+    lastName: "",
+  });
   const optionPagination = [25, 50, 100];
   const [pagination, setPagination] = useState<Pagination>({
     page: 1,
@@ -18,6 +22,11 @@ const useDashboard = () => {
     count: 55,
   });
 
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters((prev) => ({...prev, [e.target.name]: e.target.value}));
+
+    console.log(`---- e.target.name:`, e.target);
+  };
   console.log(`---- pagination:`, pagination);
 
   const onClickHeader = ({row, col, ...rest}: OnClickCellParams) => {
@@ -28,102 +37,105 @@ const useDashboard = () => {
     console.log("Value clicked at index:", {row, col, ...rest});
   };
 
-  const headerKeys = useMemo(() => [
-    {
-      key: "contract_no",
-      label: t("dashboard_contract_table_header_row1"),
-      isSort: true,
-      sortBy: undefined,
-      minWidth: "96px",
-      maxWidth: "calc(96px * 1.25)",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "id_card",
-      label: t("dashboard_contract_table_header_row2"),
-      isSort: true,
-      sortBy: undefined,
-      minWidth: "144px",
-      maxWidth: "calc(144px * 1.5)",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "full_name",
-      label: t("dashboard_contract_table_header_row3"),
-      isSort: true,
-      sortBy: undefined,
-      minWidth: "118px",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "doc_type",
-      label: t("dashboard_contract_table_header_row4"),
-      isSort: true,
-      sortBy: undefined,
-      minWidth: "218px",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "status",
-      label: t("dashboard_contract_table_header_row5"),
-      isSort: false,
-      minWidth: "114px",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "last_updated",
-      label: t("dashboard_contract_table_header_row6"),
-      isSort: true,
-      sortBy: "asc",
-      minWidth: "100px",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "created_by",
-      label: t("dashboard_contract_table_header_row7"),
-      isSort: false,
-      minWidth: "144px",
-      maxWidth: "calc(144px * 2)",
-      flex: 1,
-      align: "left",
-    },
-    {
-      key: "view",
-      label: "",
-      icon: "view_document",
-      minWidth: "40px",
-      maxWidth: "calc(40px * 2)",
-      flex: 1,
-      alignHeader: "center",
-      align: "center",
-    },
-    {
-      key: "history",
-      label: "",
-      icon: "history",
-      minWidth: "40px",
-      maxWidth: "calc(40px * 2)",
-      flex: 1,
-      alignHeader: "center",
-      align: "center",
-    },
-    {
-      key: "trash",
-      label: "",
-      icon: "trash",
-      minWidth: "40px",
-      maxWidth: "calc(40px * 2)",
-      flex: 1,
-      alignHeader: "center",
-      align: "center",
-    },
-  ]);
+  const headerKeys = useMemo(
+    () => [
+      {
+        key: "contract_no",
+        label: t("dashboard_contract_table_header_row1"),
+        isSort: true,
+        sortBy: undefined,
+        minWidth: "96px",
+        maxWidth: "calc(96px * 1.25)",
+        flex: 1,
+        align: "left",
+      },
+      {
+        key: "id_card",
+        label: t("dashboard_contract_table_header_row2"),
+        isSort: true,
+        sortBy: undefined,
+        minWidth: "144px",
+        maxWidth: "calc(144px * 1.5)",
+        flex: 1,
+        align: "left",
+      },
+      {
+        key: "full_name",
+        label: t("dashboard_contract_table_header_row3"),
+        isSort: true,
+        sortBy: undefined,
+        minWidth: "118px",
+        flex: 1,
+        align: "left",
+      },
+      {
+        key: "doc_type",
+        label: t("dashboard_contract_table_header_row4"),
+        isSort: true,
+        sortBy: undefined,
+        minWidth: "218px",
+        flex: 1,
+        align: "left",
+      },
+      {
+        key: "status",
+        label: t("dashboard_contract_table_header_row5"),
+        isSort: false,
+        minWidth: "114px",
+        flex: 1,
+        align: "left",
+      },
+      {
+        key: "last_updated",
+        label: t("dashboard_contract_table_header_row6"),
+        isSort: true,
+        sortBy: "asc",
+        minWidth: "100px",
+        flex: 1,
+        align: "left",
+      },
+      {
+        key: "created_by",
+        label: t("dashboard_contract_table_header_row7"),
+        isSort: false,
+        minWidth: "144px",
+        maxWidth: "calc(144px * 2)",
+        flex: 1,
+        align: "left",
+      },
+      {
+        key: "view",
+        label: "",
+        icon: "view_document",
+        minWidth: "40px",
+        maxWidth: "calc(40px * 2)",
+        flex: 1,
+        alignHeader: "center",
+        align: "center",
+      },
+      {
+        key: "history",
+        label: "",
+        icon: "history",
+        minWidth: "40px",
+        maxWidth: "calc(40px * 2)",
+        flex: 1,
+        alignHeader: "center",
+        align: "center",
+      },
+      {
+        key: "trash",
+        label: "",
+        icon: "trash",
+        minWidth: "40px",
+        maxWidth: "calc(40px * 2)",
+        flex: 1,
+        alignHeader: "center",
+        align: "center",
+      },
+    ],
+    [t],
+  );
 
   const headers = useMemo(
     () =>
@@ -228,6 +240,8 @@ const useDashboard = () => {
   );
 
   return {
+    filters,
+    handleFilterChange,
     optionPagination,
     pagination,
     setPagination,

@@ -130,6 +130,7 @@
   --text-quaternary: var(--color-neutral-grey-lighter);
   --text-accent: var(--color-accent);
   --text-error: var(--color-error);
+  --text-placeholder: var(--color-neutral-grey-lighter);
 
   /* Button Colors */
   --button-padding-none: 0px;

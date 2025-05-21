@@ -35,6 +35,8 @@ borderRadius?: "normal" | "round" | "none";
 
 width?: "normal" | "full";
 
+sizeIcon?: string | number | null;
+
 disabled?: boolean;
 
 ```

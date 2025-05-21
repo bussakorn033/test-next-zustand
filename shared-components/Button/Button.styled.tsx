@@ -4,6 +4,7 @@ import {Box} from "../Box";
 
 interface StyledButtonProps extends ButtonProps {
   isIconOnly?: boolean;
+  [key: string]: any;
 }
 
 export const StyledButton = styled(Box)<StyledButtonProps>`
@@ -206,22 +207,36 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
   }}
 
   ${({width}) => {
-    return width
-      ? css`
-          width: ${width === "full" ? "100%" : "fit-content"};
-        `
-      : "";
+    switch (width) {
+      case "full":
+        return css`
+          width: 100%;
+        `;
+      default:
+        return css`
+          width: fit-content;
+        `;
+    }
   }}
 
-  ${({disabled}) => {
-    return disabled
-      ? css`
-          cursor: default;
-          pointer-events: none;
-          &:hover * {
-            cursor: default;
-          }
-        `
-      : "";
-  }}
+  ${({disabled}) =>
+    disabled !== undefined &&
+    css`
+      cursor: default;
+      pointer-events: none;
+      &:hover * {
+        cursor: default;
+      }
+    `}
+
+  ${({flex}) =>
+    flex !== undefined &&
+    css`
+      flex: ${flex};
+    `}
+  ${({flexWrap}) =>
+    flexWrap !== undefined &&
+    css`
+      flex-wrap: ${flexWrap | 1};
+    `}
 `;

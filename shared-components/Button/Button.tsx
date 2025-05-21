@@ -7,6 +7,7 @@ import Icon from "../Icon/Icon";
 export const Button = ({
   variant = "primary",
   size = "medium",
+  sizeIcon = null,
   width = "normal",
   borderRadius = "normal",
   iconLeft,
@@ -20,7 +21,7 @@ export const Button = ({
 
   const icon = iconRight ?? iconLeft;
   const isIconOnly = Boolean(icon && !children);
-  const iconSize = size === "large" ? 32 : 24;
+  const iconSize = sizeIcon ? sizeIcon : size === "large" ? 32 : 24;
   const iconColor = variant === "primary" ? "--color-neutral-light" : "";
 
   const textStyleVariant: "buttonMedium" | "buttonBig" = {

@@ -6,8 +6,11 @@
   "dashboard_btn_create_contract": "สร้างสัญญา",
 
   "dashboard_filter_by_user": "ค้นหาลูกค้า",
+  "dashboard_filter_by_user_name": "ชื่อ",
+  "dashboard_filter_by_last_name": "นามสกุล",
   "dashboard_filter_by_type_doc": "ประเภทเอกสาร",
   "dashboard_filter_by_status": "สถานะ",
+  "dashboard_filter_btn_reset": "รีเซ็ต",
 
   "dashboard_contract_table_header_row1": "เลขที่",
   "dashboard_contract_table_header_row2": "เลขบัตรประชาชน/เลขพาสปอร์ต",

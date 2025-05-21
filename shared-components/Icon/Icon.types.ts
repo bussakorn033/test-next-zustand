@@ -13,6 +13,6 @@ export interface IconProps {
   className?: string;
   icon: string | undefined;
   color?: string;
-  width?: number;
-  height?: number;
+  width?: string | number;
+  height?: string | number;
 }

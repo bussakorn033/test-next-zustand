@@ -29,8 +29,15 @@ export default function Home() {
   } = globalStore;
 
   const {t} = useTranslation();
-  const {optionPagination, pagination, setPagination, headers, values} =
-    useDashboard();
+  const {
+    optionPagination,
+    pagination,
+    setPagination,
+    headers,
+    values,
+    filters,
+    handleFilterChange,
+  } = useDashboard();
 
   return (
     <>
@@ -79,29 +86,77 @@ export default function Home() {
                     </Box>
 
                     {/* Filter */}
-                    <Box direction="row" justifyContent="space-between">
+                    <Box
+                      direction="row"
+                      justifyContent="space-between"
+                      gap={12}
+                    >
                       <Box direction="column" justifyContent="center" gap={8}>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <TextStyle
-                            variant="labelXSmall"
-                            color="--color-secondary"
-                          >
-                            {t("dashboard_filter_by_user")}
-                          </TextStyle>
-                          <Button
-                            onClick={() => {
-                              console.log("onClick");
-                            }}
-                            variant={"ghost-icon-secondary-no-padding"}
-                            borderRadius="round"
-                          >
-                            <Icon
-                              icon="arrow_down"
-                              color="--color-primary"
-                              width={16}
-                              height={16}
-                            />
-                          </Button>
+                        <Box direction="row" alignItems="center" gap={12}>
+                          <Box direction="row" alignItems="center" gap={4}>
+                            <TextStyle
+                              variant="labelXSmall"
+                              color="--color-secondary"
+                            >
+                              {t("dashboard_filter_by_user")}
+                            </TextStyle>
+                            <Button
+                              onClick={() => {
+                                console.log("onClick");
+                              }}
+                              variant={"ghost-icon-secondary-no-padding"}
+                              borderRadius="round"
+                            >
+                              <Icon
+                                icon="arrow_down"
+                                color="--color-primary"
+                                width={16}
+                                height={16}
+                              />
+                            </Button>
+                          </Box>
+                          <TextField
+                            placeholder={t("dashboard_filter_by_user_name")}
+                            type="text"
+                            width={160}
+                            clearable
+                            name="userName"
+                            value={filters.userName}
+                            onChange={handleFilterChange}
+                          />
+                          <TextField
+                            placeholder={t("dashboard_filter_by_last_name")}
+                            type="text"
+                            width={160}
+                            clearable
+                            name="lastName"
+                            value={filters.lastName}
+                            onChange={handleFilterChange}
+                          />
+                          <Box direction="row" alignItems="center" gap={8}>
+                            <Button
+                              onClick={() => {
+                                console.log("onClick");
+                              }}
+                              variant={"ghost-icon-secondary-no-padding"}
+                              borderRadius="round"
+                              // flex-wrap: wrap;
+                            >
+                              <Icon
+                                icon="search"
+                                color="--color-secondary"
+                                width={20}
+                                height={20}
+                              />
+                            </Button>
+                            <Button
+                              variant="ghost-primary-no-padding"
+                              iconLeft="close"
+                              sizeIcon={24}
+                            >
+                              {t("dashboard_filter_btn_reset")}
+                            </Button>
+                          </Box>
                         </Box>
                       </Box>
                       <Box direction="row" alignItems="center" gap={8}>
@@ -239,6 +294,25 @@ export default function Home() {
                   {/* ✅ Normal */}
                   <Box direction="column" gap={8}>
                     <TextStyle variant="h4">Normal TextFields</TextStyle>
+                    <TextField
+                      label="Basic"
+                      value="Basic"
+                      placeholder="Type here..."
+                      minWidth={100}
+                    />
+                    <TextField
+                      label="Basic clearable"
+                      value="Basic clearable"
+                      placeholder="Type here..."
+                      minWidth={100}
+                      clearable
+                    />
+                    <TextField
+                      label="Basic"
+                      placeholder="Type here..."
+                      minWidth={100}
+                      clearable
+                    />
                     <TextField label="Basic" placeholder="Type here..." />
                     <TextField
                       labelHelping="With Helper"

@@ -7,11 +7,21 @@ export const TextFieldWrapper = styled.div<TextFieldProps>`
   flex-direction: column;
   gap: 4px;
 
-  ${({width}) =>
+  /* ${({width}) =>
     width &&
     css`
       width: ${toPx(width)};
     `}
+  ${({minWidth}) =>
+    minWidth &&
+    css`
+      min-width: ${toPx(minWidth)};
+    `}
+  ${({maxWidth}) =>
+    maxWidth &&
+    css`
+      max-width: ${toPx(maxWidth)};
+    `} */
   ${({zIndex}) =>
     zIndex &&
     css`
@@ -39,13 +49,31 @@ export const InputWrapper = styled.div<{error?: boolean}>`
   }
 `;
 
-export const Input = styled.input<{disabled?: boolean}>`
+export const Input = styled.input<TextFieldProps & {disabled?: boolean}>`
   flex: 1;
   border: none;
   outline: none;
-  font-size: 16px;
-  color: var(--color-text);
   background-color: transparent;
+
+  ::placeholder {
+    color: var(--color-placeholder);
+  }
+
+  ${({width}) =>
+    width &&
+    css`
+      width: ${toPx(width)};
+    `}
+  ${({minWidth}) =>
+    minWidth &&
+    css`
+      min-width: ${toPx(minWidth)};
+    `}
+  ${({maxWidth}) =>
+    maxWidth &&
+    css`
+      max-width: ${toPx(maxWidth)};
+    `}
 
   ${({disabled}) =>
     disabled &&
@@ -67,4 +95,12 @@ export const HelpingText = styled.span<{error?: boolean}>`
   font-size: 12px;
   color: ${({error}) =>
     error ? "var(--color-danger)" : "var(--color-neutral-dark)"};
+`;
+
+export const ClearButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
 `;

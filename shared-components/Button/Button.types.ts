@@ -39,6 +39,7 @@ export interface ButtonProps
     | undefined;
   label?: string;
   size?: "medium" | "large";
+  sizeIcon?: string | number | null;
   width?: "normal" | "full";
   borderRadius?: "normal" | "round" | "none";
   iconLeft?: string;

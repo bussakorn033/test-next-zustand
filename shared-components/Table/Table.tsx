@@ -14,7 +14,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       className,
       headers = [],
       values = [],
-      maxHeightTable = 400,
+      maxHeightTable = 350,
       optionPagination = [25, 50, 100],
       page = 1,
       limit = 1,

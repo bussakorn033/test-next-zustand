@@ -14,7 +14,7 @@ export const Divider = styled.hr<DividerProps>`
 					border-top-width: ${props.weight}px;
 					margin-top: 0;
 					margin-bottom: 0;
-					border-color: ${props.color || 'var(--color-border-light)'};
+					border-color: var(--${props.color || 'color-border-light'});
 					width: 100%;
 				`
 			: css`
@@ -25,6 +25,6 @@ export const Divider = styled.hr<DividerProps>`
 					border-top-width: 1px;
 					margin-top: 16px;
 					margin-bottom: 16px;
-					background: ${props.color || 'var(--color-border-light)'};
+					background: var(--${props.color || 'color-border-light'});
 				`}
 `;

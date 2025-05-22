@@ -32,6 +32,7 @@ export interface TextStyleProps extends React.HTMLAttributes<HTMLHeadingElement>
 		| 'buttonMedium'
 		| 'buttonBig'
 		| 'pageTitle'
+		| 'allCap'
 		| 'allCapSmall'
 		| 'mobileH4'
 		| 'mobileLabelSmallBold'

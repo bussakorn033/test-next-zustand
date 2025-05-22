@@ -56,13 +56,16 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
         customTag = "p";
         break;
 
-      // Special Cases
-      case "pageTitle": // 20px bold, 24px
-        customTag = "h1";
-        break;
-      case "allCapSmall": // 12px regular, 16px, uppercase
-        customTag = "span";
-        break;
+			// Special Cases
+			case 'pageTitle': // 20px bold, 24px
+				customTag = 'h1';
+				break;
+			case 'allCap': // 12px regular, 16px, uppercase
+				customTag = 'span';
+				break;
+			case 'allCapSmall': // 12px regular, 16px, uppercase
+				customTag = 'span';
+				break;
 
       // Mobile Specific
       case "mobileH4": // 14px bold, 20px

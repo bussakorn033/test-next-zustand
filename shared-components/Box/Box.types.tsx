@@ -104,6 +104,7 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 	right?: string | number;
 
 	flex?: string | number;
+	flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string;
 	column?: number;
 	direction?: 'none' | 'row' | 'row-reverse' | 'row-wrap' | 'column' | 'column-reverse' | string;
 

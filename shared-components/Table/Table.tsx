@@ -346,11 +346,18 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 										}
 										handleScrollTableToTop();
 									}}
-									variant='ghost-primary-no-padding'
+									variant='ghost-secondary-no-padding'
 									borderRadius='round'
+									iconLeft={'arrow_left'}
+									sizeIcon={24}
+									colorIcon={
+										page <= 1 || isPaginationDisabled
+											? '--color-neutral-grey-lighter'
+											: '--color-primary'
+									}
 									disabled={page <= 1 || isPaginationDisabled}
 								>
-									<Icon icon='arrow_left' width={24} height={24} color='--color-primary' />
+									{/* <Icon icon='arrow_left' width={24} height={24} color='--color-primary' /> */}
 								</Button>
 
 								<Button
@@ -362,11 +369,18 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 										}
 										handleScrollTableToTop();
 									}}
-									variant='ghost-primary-no-padding'
+									variant='ghost-secondary-no-padding'
 									borderRadius='round'
+									iconLeft={'arrow_right'}
+									sizeIcon={24}
+									colorIcon={
+										page >= Math.ceil(count / limit) || isPaginationDisabled
+											? '--color-neutral-grey-lighter'
+											: '--color-primary'
+									}
 									disabled={page >= Math.ceil(count / limit) || isPaginationDisabled}
 								>
-									<Icon icon='arrow_right' width={24} height={24} color='--color-primary' />
+									{/* <Icon icon='arrow_right' width={24} height={24} color='--color-primary' /> */}
 								</Button>
 							</Box>
 						</Box>

@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { PopoverProps } from './Popover.types';
 import * as S from './Popover.styled';
 
-const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children }) => {
+const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, onClose }) => {
 	const [position, setPosition] = useState({ top: 0, left: 0 });
 	const popoverRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,10 +29,28 @@ const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children }) => {
 		}
 	}, [isOpen, anchorRef]);
 
+	const handleClickOutside = (event: MouseEvent) => {
+		if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+			onClose && onClose();
+		}
+	};
+
+	useEffect(() => {
+		if (isOpen) {
+			document.addEventListener('mousedown', handleClickOutside);
+		} else {
+			document.removeEventListener('mousedown', handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isOpen, onClose]);
+
 	if (!isOpen) return null;
 
 	return (
-		<S.Popover ref={popoverRef} style={{ top: position.top, left: position.left }}>
+		<S.Popover ref={popoverRef} width={width} style={{ top: position.top, left: position.left }}>
 			{children}
 		</S.Popover>
 	);

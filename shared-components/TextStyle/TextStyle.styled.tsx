@@ -158,6 +158,14 @@ export const TextStyle = styled.p<TextStyleProps>`
 					'--letter-spacing-wide'
 				);
 
+			case 'allCap':
+				return textStyleMixin(
+					'--font-size-12',
+					'--font-weight-regular',
+					'--line-height-16',
+					'--letter-spacing-wide'
+				);
+
 			case 'allCapSmall':
 				return textStyleMixin(
 					'--font-size-12',

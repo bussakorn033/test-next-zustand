@@ -37,6 +37,8 @@ export default function Home() {
     values,
     filters,
     handleFilterChange,
+    handleFilterBtnSearch,
+    handleFilterBtnReset,
   } = useDashboard();
 
   return (
@@ -49,56 +51,121 @@ export default function Home() {
         overflowY="auto"
       >
         <>
-          <Box direction="column" p={32}>
-            <>
-              <Box direction="column">
-                <>
-                  <Box direction="column" gap={24}>
-                    <Box direction="column" gap={48}>
-                      <Box direction="column" gap={0}>
-                        <TextStyle variant="h2" color="--color-primary">
-                          {t("dashboard_title")}
-                        </TextStyle>
-                        <TextStyle
-                          variant="paragraphMedium"
-                          color="--color-neutral-grey-light"
+          <>
+            <Box direction="column" p={32}>
+              <>
+                <Box direction="column">
+                  <>
+                    <Box direction="column" gap={24}>
+                      <Box direction="column" gap={48}>
+                        <Box direction="column" gap={0}>
+                          <TextStyle variant="h2" color="--color-primary">
+                            {t("dashboard_title")}
+                          </TextStyle>
+                          <TextStyle
+                            variant="paragraphMedium"
+                            color="--color-neutral-grey-light"
+                          >
+                            {t("dashboard_sub_title")}
+                          </TextStyle>
+                        </Box>
+                        <Box
+                          direction="row"
+                          justifyContent="space-between"
+                          gap={24}
                         >
-                          {t("dashboard_sub_title")}
-                        </TextStyle>
+                          <TextStyle variant="h4" color="--color-primary">
+                            {t("dashboard_title_table")}
+                          </TextStyle>
+                          <Box direction="row" alignItems="center" gap={8}>
+                            <Button variant="ghost-primary" iconLeft="refresh">
+                              {t("dashboard_btn_refresh")}
+                            </Button>
+                            <Button variant="primary" iconLeft="plus">
+                              {t("dashboard_btn_create_contract")}
+                            </Button>
+                          </Box>
+                        </Box>
                       </Box>
+
+                      {/* Filter */}
                       <Box
                         direction="row"
                         justifyContent="space-between"
-                        gap={24}
+                        gap={12}
                       >
-                        <TextStyle variant="h4" color="--color-primary">
-                          {t("dashboard_title_table")}
-                        </TextStyle>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <Button variant="ghost-primary" iconLeft="refresh">
-                            {t("dashboard_btn_refresh")}
-                          </Button>
-                          <Button variant="primary" iconLeft="plus">
-                            {t("dashboard_btn_create_contract")}
-                          </Button>
-                        </Box>
-                      </Box>
-                    </Box>
+                        <Box direction="column" justifyContent="center" gap={8}>
+                          <Box direction="row" alignItems="center" gap={12}>
+                            <Box direction="row" alignItems="center" gap={4}>
+                              <TextStyle
+                                variant="labelXSmall"
+                                color="--color-secondary"
+                              >
+                                {t("dashboard_filter_by_user")}
+                              </TextStyle>
+                              <Button
+                                onClick={() => {
+                                  console.log("onClick");
+                                }}
+                                variant={"ghost-icon-secondary-no-padding"}
+                                borderRadius="round"
+                              >
+                                <Icon
+                                  icon="arrow_down"
+                                  color="--color-primary"
+                                  width={16}
+                                  height={16}
+                                />
+                              </Button>
+                            </Box>
+                            <TextField
+                              placeholder={t("dashboard_filter_by_user_name")}
+                              type="text"
+                              width={160}
+                              clearable
+                              name="userName"
+                              value={filters.userName}
+                              onChange={handleFilterChange}
+                            />
+                            <TextField
+                              placeholder={t("dashboard_filter_by_last_name")}
+                              type="text"
+                              width={160}
+                              clearable
+                              name="lastName"
+                              value={filters.lastName}
+                              onChange={handleFilterChange}
+                            />
+                            <Box direction="row" alignItems="center" gap={8}>
+                              <Button
+                                variant={"ghost-icon-secondary-no-padding"}
+                                iconLeft="search"
+                                borderRadius="round"
+                                sizeIcon={20}
+                                onClick={handleFilterBtnSearch}
+                              />
 
-                    {/* Filter */}
-                    <Box
-                      direction="row"
-                      justifyContent="space-between"
-                      gap={12}
-                    >
-                      <Box direction="column" justifyContent="center" gap={8}>
-                        <Box direction="row" alignItems="center" gap={12}>
-                          <Box direction="row" alignItems="center" gap={4}>
+                              {(filters.userName || filters.lastName) && (
+                                <Button
+                                  variant="ghost-primary-no-padding"
+                                  iconLeft="close"
+                                  sizeIcon={24}
+                                  flexWrap="wrap"
+                                  onClick={handleFilterBtnReset}
+                                >
+                                  {t("dashboard_filter_btn_reset")}
+                                </Button>
+                              )}
+                            </Box>
+                          </Box>
+                        </Box>
+                        <Box direction="row" alignItems="center" gap={8}>
+                          <Box direction="row" alignItems="center" gap={8}>
                             <TextStyle
-                              variant="labelXSmall"
-                              color="--color-secondary"
+                              variant="labelSmallBold"
+                              color="--color-primary"
                             >
-                              {t("dashboard_filter_by_user")}
+                              {t("dashboard_filter_by_type_doc")}
                             </TextStyle>
                             <Button
                               onClick={() => {
@@ -115,122 +182,58 @@ export default function Home() {
                               />
                             </Button>
                           </Box>
-                          <TextField
-                            placeholder={t("dashboard_filter_by_user_name")}
-                            type="text"
-                            width={160}
-                            clearable
-                            name="userName"
-                            value={filters.userName}
-                            onChange={handleFilterChange}
-                          />
-                          <TextField
-                            placeholder={t("dashboard_filter_by_last_name")}
-                            type="text"
-                            width={160}
-                            clearable
-                            name="lastName"
-                            value={filters.lastName}
-                            onChange={handleFilterChange}
-                          />
                           <Box direction="row" alignItems="center" gap={8}>
-                            <Button
-                              variant={"ghost-icon-secondary-no-padding"}
-                              iconLeft="search"
-                              borderRadius="round"
-                              sizeIcon={20}
-                              onClick={() => {
-                                console.log("onClick search");
-                              }}
-                            />
-                            <Button
-                              variant="ghost-primary-no-padding"
-                              iconLeft="close"
-                              sizeIcon={24}
-                              flexWrap="wrap"
-                              onClick={() => {
-                                console.log("onClick close");
-                              }}
+                            <TextStyle
+                              variant="labelSmallBold"
+                              color="--color-primary"
                             >
-                              {t("dashboard_filter_btn_reset")}
+                              {t("dashboard_filter_by_status")}
+                            </TextStyle>
+                            <Button
+                              onClick={() => {
+                                console.log("onClick");
+                              }}
+                              variant={"ghost-icon-secondary-no-padding"}
+                              borderRadius="round"
+                            >
+                              <Icon
+                                icon="arrow_down"
+                                color="--color-primary"
+                                width={16}
+                                height={16}
+                              />
                             </Button>
                           </Box>
                         </Box>
                       </Box>
-                      <Box direction="row" alignItems="center" gap={8}>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <TextStyle
-                            variant="labelSmallBold"
-                            color="--color-primary"
-                          >
-                            {t("dashboard_filter_by_type_doc")}
-                          </TextStyle>
-                          <Button
-                            onClick={() => {
-                              console.log("onClick");
-                            }}
-                            variant={"ghost-icon-secondary-no-padding"}
-                            borderRadius="round"
-                          >
-                            <Icon
-                              icon="arrow_down"
-                              color="--color-primary"
-                              width={16}
-                              height={16}
-                            />
-                          </Button>
-                        </Box>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <TextStyle
-                            variant="labelSmallBold"
-                            color="--color-primary"
-                          >
-                            {t("dashboard_filter_by_status")}
-                          </TextStyle>
-                          <Button
-                            onClick={() => {
-                              console.log("onClick");
-                            }}
-                            variant={"ghost-icon-secondary-no-padding"}
-                            borderRadius="round"
-                          >
-                            <Icon
-                              icon="arrow_down"
-                              color="--color-primary"
-                              width={16}
-                              height={16}
-                            />
-                          </Button>
-                        </Box>
-                      </Box>
-                    </Box>
-                    {/* Filter */}
+                      {/* Filter */}
 
-                    {/* Table */}
-                    <Table
-                      headers={headers}
-                      values={values}
-                      optionPagination={optionPagination}
-                      page={pagination.page}
-                      limit={pagination.limit}
-                      count={pagination.count}
-                      onPageChange={(newPage) =>
-                        setPagination((prev) => ({...prev, page: newPage}))
-                      }
-                      onLimitChange={(newLimit) =>
-                        setPagination((prev) => ({
-                          ...prev,
-                          limit: newLimit,
-                          page: 1,
-                        }))
-                      }
-                    />
-                    {/* Table */}
-                  </Box>
-                </>
-              </Box>
-            </>
-          </Box>
+                      {/* Table */}
+                      <Table
+                        headers={headers}
+                        values={values}
+                        optionPagination={optionPagination}
+                        page={pagination.page}
+                        limit={pagination.limit}
+                        count={pagination.count}
+                        onPageChange={(newPage) =>
+                          setPagination((prev) => ({...prev, page: newPage}))
+                        }
+                        onLimitChange={(newLimit) =>
+                          setPagination((prev) => ({
+                            ...prev,
+                            limit: newLimit,
+                            page: 1,
+                          }))
+                        }
+                      />
+                      {/* Table */}
+                    </Box>
+                  </>
+                </Box>
+              </>
+            </Box>
+          </>
         </>
 
         {/* Note */}

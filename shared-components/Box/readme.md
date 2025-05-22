@@ -73,9 +73,9 @@ boxShadow?: "none" | "top" | "bottom";
 hover?: boolean;
 
 textAlign?: "left" | "center" | "right";
-alignItems?: "start" | "center" | "end" | "baseline";
-alignContent?: "start" | "center" | "end" | "baseline";
-justifyContent?: "start"| "center"| "end"| "space-between"| "space-around";
+alignItems?: "start" | "center" | "end" | "baseline" | string;
+alignContent?: "start" | "center" | "end" | "baseline" | string;
+justifyContent?: "start" | "center" | "end" | "space-between" | "space-around" | string;
 
 position?: "static" | "relative" | "absolute" | "fixed" | "sticky" | string;
 zIndex?: string | number;

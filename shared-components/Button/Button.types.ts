@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /**
  * Button component props
@@ -15,37 +15,37 @@ import React from "react";
  * @param children - Button content
  */
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  id?: string;
-  className?: string;
-  variant?:
-    | "primary"
-    | "negative"
-    | "secondary"
-    | "secondary-negative"
-    | "ghost-primary"
-    | "ghost-secondary"
-    | "ghost-negative"
-    | "ghost-primary-no-padding"
-    | "ghost-secondary-no-padding"
-    | "ghost-negative-no-padding"
-    | "ghost-icon-primary"
-    | "ghost-icon-secondary"
-    | "ghost-icon-negative"
-    | "ghost-icon-primary-no-padding"
-    | "ghost-icon-secondary-no-padding"
-    | "ghost-icon-negative-no-padding"
-    | undefined;
-  label?: string;
-  size?: "medium" | "large";
-  sizeIcon?: string | number | null;
-  flex?: string | number | null;
-  flexWrap?: string | null;
-  width?: "normal" | "full";
-  borderRadius?: "normal" | "round" | "none";
-  iconLeft?: string;
-  iconRight?: string;
-  disabled?: boolean;
-  children?: React.ReactNode;
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	id?: string;
+	className?: string;
+	variant?:
+		| 'primary'
+		| 'negative'
+		| 'secondary'
+		| 'secondary-negative'
+		| 'ghost-primary'
+		| 'ghost-secondary'
+		| 'ghost-negative'
+		| 'ghost-primary-no-padding'
+		| 'ghost-secondary-no-padding'
+		| 'ghost-negative-no-padding'
+		| 'ghost-icon-primary'
+		| 'ghost-icon-secondary'
+		| 'ghost-icon-negative'
+		| 'ghost-icon-primary-no-padding'
+		| 'ghost-icon-secondary-no-padding'
+		| 'ghost-icon-negative-no-padding'
+		| undefined;
+	label?: string;
+	size?: 'medium' | 'large';
+	sizeIcon?: string | number | null;
+	colorIcon?: '--color-neutral-light' | '#f00' | 'red' | string | null;
+	flex?: string | number | null;
+	flexWrap?: string | null;
+	width?: 'normal' | 'full';
+	borderRadius?: 'normal' | 'round' | 'none';
+	iconLeft?: string;
+	iconRight?: string;
+	disabled?: boolean;
+	children?: React.ReactNode;
 }

@@ -194,13 +194,60 @@ export function throttle(func: (...args: any[]) => void, limit: number) {
 export const toPx = (value: number | string): string =>
   typeof value === "number" ? `${value}px` : value;
 
-export const transformFlexProperties = (prop: string | undefined) => {
+/**
+ * Transforms alignment keywords into valid CSS flex alignment values.
+ *
+ * @param prop - A string value like 'left', 'right', 'start', or 'end'.
+ * @returns A valid CSS flex alignment like 'flex-start', 'flex-end', or the original value.
+ *
+ * @example
+ * ```ts
+ * transformFlexProperties('left');  // "flex-start"
+ * transformFlexProperties('right'); // "flex-end"
+ * transformFlexProperties('center'); // "center"
+ * ```
+ */
+export const transformFlexProperties = (
+  prop: string | undefined,
+): string | undefined => {
   switch (prop) {
+    case "left":
     case "start":
       return "flex-start";
+    case "right":
     case "end":
       return "flex-end";
     default:
       return prop;
   }
+};
+
+/**
+ * Formats a date (ISO string, number timestamp, or Date object) to 'DD/MM/YYYY'.
+ *
+ * @param date - The input date as a string (ISO), Unix timestamp (in seconds or milliseconds), or Date object.
+ * @returns The formatted date string in 'DD/MM/YYYY' format.
+ *
+ * @example
+ * ```ts
+ * formatDate("2025-05-21");           // "21/05/2025"
+ * formatDate(new Date(2025, 4, 21));  // "21/05/2025"
+ * formatDate(1747785600);             // "21/05/2025"
+ * formatDate(1747785600000);          // "21/05/2025"
+ * ```
+ */
+export const formatDate = (date: string | number | Date): string => {
+  let d: Date;
+
+  if (typeof date === "number") {
+    d = new Date(date < 1e12 ? date * 1000 : date); // handle seconds or ms
+  } else {
+    d = new Date(date);
+  }
+
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = d.getFullYear();
+
+  return `${day}/${month}/${year}`;
 };

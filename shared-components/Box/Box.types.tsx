@@ -77,98 +77,86 @@
  */
 
 export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
-  id?: string;
-  as?: any;
-  htmlFor?: string;
-  tag?: string;
-  children?: React.ReactNode;
+	id?: string;
+	as?: any;
+	htmlFor?: string;
+	tag?: string;
+	children?: React.ReactNode;
 
-  disabled?: boolean;
-  onClick?: React.MouseEventHandler<HTMLElement>;
-  hover?: boolean;
+	disabled?: boolean;
+	onClick?: React.MouseEventHandler<HTMLElement>;
+	hover?: boolean;
 
-  fullWidth?: boolean;
-  fullHeight?: boolean;
-  width?: string | number;
-  height?: string | number;
-  minWidth?: string | number;
-  maxWidth?: string | number;
-  minHeight?: string | number;
-  maxHeight?: string | number;
+	fullWidth?: boolean;
+	fullHeight?: boolean;
+	width?: string | number;
+	height?: string | number;
+	minWidth?: string | number;
+	maxWidth?: string | number;
+	minHeight?: string | number;
+	maxHeight?: string | number;
 
-  position?: "static" | "relative" | "absolute" | "fixed" | "sticky" | string;
-  zIndex?: string | number;
-  top?: string | number;
-  bottom?: string | number;
-  left?: string | number;
-  right?: string | number;
+	position?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky' | string;
+	zIndex?: string | number;
+	top?: string | number;
+	bottom?: string | number;
+	left?: string | number;
+	right?: string | number;
 
-  flex?: string | number;
-  column?: number;
-  direction?:
-    | "none"
-    | "row"
-    | "row-reverse"
-    | "row-wrap"
-    | "column"
-    | "column-reverse"
-    | string;
+	flex?: string | number;
+	column?: number;
+	direction?: 'none' | 'row' | 'row-reverse' | 'row-wrap' | 'column' | 'column-reverse' | string;
 
-  display?:
-    | "flex"
-    | "grid"
-    | "inline"
-    | "inline-block"
-    | "inline-flex"
-    | "inline-grid"
-    | "block"
-    | "table"
-    | "contents"
-    | "none"
-    | string;
-  boxSizing?: "border-box" | "content-box" | string;
+	display?:
+		| 'flex'
+		| 'grid'
+		| 'inline'
+		| 'inline-block'
+		| 'inline-flex'
+		| 'inline-grid'
+		| 'block'
+		| 'table'
+		| 'contents'
+		| 'none'
+		| string;
+	boxSizing?: 'border-box' | 'content-box' | string;
 
-  overflow?: "auto" | "scroll" | "hidden" | "visible";
-  overflowX?: "auto" | "scroll" | "hidden" | "visible";
-  overflowY?: "auto" | "scroll" | "hidden" | "visible";
+	overflow?: 'auto' | 'scroll' | 'hidden' | 'visible';
+	overflowX?: 'auto' | 'scroll' | 'hidden' | 'visible';
+	overflowY?: 'auto' | 'scroll' | 'hidden' | 'visible';
 
-  textAlign?: "left" | "center" | "right";
-  alignItems?: "start" | "center" | "end" | "baseline";
-  alignContent?: "start" | "center" | "end" | "baseline";
-  justifyContent?:
-    | "start"
-    | "center"
-    | "end"
-    | "space-between"
-    | "space-around";
+	textAlign?: 'left' | 'center' | 'right';
+	alignItems?: 'start' | 'center' | 'end' | 'baseline' | string;
+	alignContent?: 'start' | 'center' | 'end' | 'baseline' | string;
+	justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | string;
 
-  p?: string | number;
-  px?: string | number;
-  py?: string | number;
-  pt?: string | number;
-  pb?: string | number;
-  pr?: string | number;
-  pl?: string | number;
-  m?: string | number;
-  mx?: string | number;
-  my?: string | number;
-  mt?: string | number;
-  mb?: string | number;
-  mr?: string | number;
-  ml?: string | number;
+	p?: string | number;
+	px?: string | number;
+	py?: string | number;
+	pt?: string | number;
+	pb?: string | number;
+	pr?: string | number;
+	pl?: string | number;
+	m?: string | number;
+	mx?: string | number;
+	my?: string | number;
+	mt?: string | number;
+	mb?: string | number;
+	mr?: string | number;
+	ml?: string | number;
 
-  gap?: string | number;
-  gapRow?: string | number;
-  gapColumn?: string | number;
+	gap?: string | number;
+	gapRow?: string | number;
+	gapColumn?: string | number;
 
-  className?: string;
-  bgColor?: "--color-error" | "#f00" | "red" | string;
-  color?: "--color-error" | "#f00" | "red" | string;
-  border?: "all" | "top" | "bottom";
-  borderWidth?: 0 | 1 | 2;
-  borderColor?: "--color-error" | "#f00" | "red" | string;
-  borderRadius?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "circle" | string;
-  boxShadow?: "none" | "top" | "bottom";
+	className?: string;
+	bgColor?: '--color-error' | '#f00' | 'red' | string;
+	color?: '--color-error' | '#f00' | 'red' | string;
+	border?: 'all' | 'top' | 'bottom';
+	borderWidth?: 0 | 1 | 2;
+	borderColor?: '--color-error' | '#f00' | 'red' | string;
+	borderRadius?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'circle' | string;
+	boxShadow?: 'none' | 'top' | 'bottom';
 
-  limit?: number;
+	limit?: number;
 }

@@ -301,191 +301,6 @@ export default function Home() {
               {/* Common TextArea  */}
               <TextStyle variant="h2">TextArea</TextStyle>
               <>
-                <Box direction="column" gap={40}>
-                  {/* ✅ Normal */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Normal TextAreas</TextStyle>
-                    <TextArea
-                      label="Basic"
-                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                      placeholder="Type here..."
-                      width={400}
-                    />
-                    <TextArea
-                      label="Basic clearable"
-                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                      placeholder="Type here..."
-                      width={400}
-                      clearable
-                    />
-                    <TextArea
-                      label="Basic"
-                      placeholder="Type here..."
-                      width={400}
-                    />
-                    <TextArea
-                      label="Basic"
-                      placeholder="Type here..."
-                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                      clearable
-                    />
-                    <TextArea label="Basic" placeholder="Type here..." />
-                    <TextArea
-                      labelHelping="With Helper"
-                      label="With Helper"
-                      placeholder="Enter something"
-                      helpingText="Supporting text here"
-                    />
-                    <TextArea
-                      label="With Error"
-                      placeholder="Oops..."
-                      error
-                      helpingText="Still showing helper"
-                      errorMessage="Something went wrong"
-                    />
-                    <TextArea
-                      label="Disabled"
-                      placeholder="Not editable"
-                      disabled
-                    />
-                  </Box>
-
-                  {/* ✅ Input Types */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Input Types</TextStyle>
-                    <TextArea
-                      label="Text"
-                      type="text"
-                      placeholder="Enter text"
-                    />
-                    <TextArea
-                      label="Number"
-                      type="number"
-                      placeholder="Enter number"
-                    />
-                    <TextArea
-                      label="Email"
-                      type="email"
-                      placeholder="your@email.com"
-                    />
-                    <TextArea
-                      label="Password"
-                      type="password"
-                      placeholder="••••••••"
-                    />
-                    <TextArea
-                      label="Telephone"
-                      type="tel"
-                      placeholder="012-345-6789"
-                    />
-                  </Box>
-
-                  {/* ✅ With Icons */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">With Icons</TextStyle>
-                    <TextArea
-                      label="Left Icon"
-                      iconLeft={<Icon icon="search" />}
-                      placeholder="Search here"
-                    />
-                    <TextArea
-                      label="Right Icon"
-                      iconRight={<Icon icon="calendar" />}
-                      placeholder="Pick a date"
-                    />
-                    <TextArea
-                      label="Both Icons"
-                      iconLeft={<Icon icon="plus" />}
-                      iconRight={<Icon icon="minus" />}
-                      placeholder="Adjust amount"
-                    />
-                  </Box>
-
-                  {/* ✅ Variants */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Variants</TextStyle>
-                    <TextArea
-                      label="Amount"
-                      variant="amount"
-                      placeholder="0.00"
-                      type="number"
-                    />
-                    <TextArea
-                      label="Search Field"
-                      variant="search"
-                      placeholder="Search something..."
-                      iconLeft={<Icon icon="search" />}
-                    />
-                    <TextArea
-                      label="Amount Transaction"
-                      variant="amount-transaction"
-                      placeholder="Enter amount"
-                    />
-                  </Box>
-
-                  {/* ✅ Styling: width, marginBottom, zIndex */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Styled TextArea</TextStyle>
-                    <TextArea
-                      label="Custom Width"
-                      placeholder="400px wide"
-                      width={400}
-                    />
-                    <TextArea
-                      label="With zIndex"
-                      placeholder="This field has zIndex"
-                      zIndex={100}
-                    />
-                    <TextArea
-                      label="Margin Bottom"
-                      placeholder="Has spacing below"
-                      marginBottom={32}
-                    />
-                  </Box>
-
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Error States</TextStyle>
-
-                    {/* 🔴 Basic error state */}
-                    <TextArea
-                      label="Error Only"
-                      labelHelping="Error Only"
-                      placeholder="Invalid input"
-                      error
-                    />
-
-                    {/* 🔴 Error with message */}
-                    <TextArea
-                      label="Error with Message"
-                      placeholder="Try again"
-                      error
-                      helpingText="Username must be at least 6 characters"
-                    />
-
-                    {/* 🔴 Error + Helper text */}
-                    <TextArea
-                      label="Error with Both Messages"
-                      placeholder="Enter email"
-                      type="email"
-                      error
-                      helpingText="Use your company email"
-                      errorMessage="Invalid email format"
-                    />
-
-                    {/* 🔴 Disabled with error (for edge case testing) */}
-                    <TextArea
-                      label="Disabled + Error"
-                      placeholder="Can't type"
-                      disabled
-                      error
-                      helpingText="Field cannot be edited"
-                      errorMessage="Still showing error"
-                    />
-                  </Box>
-                </Box>
-              </>
-
-              <>
                 <Box
                   bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
@@ -499,101 +314,301 @@ export default function Home() {
                   py={24}
                 >
                   <>
-                    {/* Normal Text Fields */}
-                    <Box direction="column" gap={8}>
-                      <TextStyle variant="h4">Normal Text Fields</TextStyle>
-                      <TextArea
-                        label="Default TextArea"
-                        placeholder="Enter text here"
-                      />
-                      <TextArea
-                        label="With Helper Text"
-                        placeholder="Enter text"
-                        helpingText="This is a helping text"
-                      />
-                      <TextArea
-                        label="With Error"
-                        placeholder="Enter text"
-                        error={true}
-                        errorMessage="This is an error message"
-                      />
-                      <TextArea
-                        label="Disabled TextArea"
-                        placeholder="Cannot edit this"
-                        disabled={true}
-                      />
-                    </Box>
-                    {/* Normal Text Fields */}
+                    <Box direction="column" gap={40}>
+                      {/* ✅ Normal */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Normal TextAreas</TextStyle>
+                        <TextArea
+                          label="Basic"
+                          value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                          placeholder="Type here..."
+                          width={400}
+                        />
+                        <TextArea
+                          label="Basic clearable"
+                          value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                          placeholder="Type here..."
+                          width={400}
+                          clearable
+                        />
+                        <TextArea
+                          label="Basic"
+                          placeholder="Type here..."
+                          width={400}
+                        />
+                        <TextArea
+                          label="Basic"
+                          placeholder="Type here..."
+                          value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                          clearable
+                        />
+                        <TextArea label="Basic" placeholder="Type here..." />
+                        <TextArea
+                          labelHelping="With Helper"
+                          label="With Helper"
+                          placeholder="Enter something"
+                          helpingText="Supporting text here"
+                        />
+                        <TextArea
+                          label="With Error"
+                          placeholder="Oops..."
+                          error
+                          helpingText="Still showing helper"
+                          errorMessage="Something went wrong"
+                        />
+                        <TextArea
+                          label="Disabled"
+                          placeholder="Not editable"
+                          disabled
+                        />
+                      </Box>
 
-                    {/* Special Types */}
-                    <Box direction="column" gap={8}>
-                      <TextStyle variant="h4">Special Types</TextStyle>
-                      <TextArea
-                        label="Email Field"
-                        type="email"
-                        placeholder="Enter email"
-                      />
-                      <TextArea
-                        label="Password Field"
-                        type="password"
-                        placeholder="Enter password"
-                      />
-                      <TextArea
-                        label="Number Field"
-                        type="number"
-                        placeholder="Enter number"
-                      />
-                      <TextArea
-                        label="Tel Field"
-                        type="tel"
-                        placeholder="Enter phone number"
-                      />
-                    </Box>
-                    {/* Special Types */}
+                      {/* ✅ Input Types */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Input Types</TextStyle>
+                        <TextArea
+                          label="Text"
+                          type="text"
+                          placeholder="Enter text"
+                        />
+                        <TextArea
+                          label="Number"
+                          type="number"
+                          placeholder="Enter number"
+                        />
+                        <TextArea
+                          label="Email"
+                          type="email"
+                          placeholder="your@email.com"
+                        />
+                        <TextArea
+                          label="Password"
+                          type="password"
+                          placeholder="••••••••"
+                        />
+                        <TextArea
+                          label="Telephone"
+                          type="tel"
+                          placeholder="012-345-6789"
+                        />
+                      </Box>
 
-                    {/* With Icons */}
-                    <Box direction="column" gap={8}>
-                      <TextStyle variant="h4">With Icons</TextStyle>
-                      <TextArea
-                        label="Left Icon"
-                        placeholder="Search..."
-                        iconLeft={<Icon icon="search" />}
-                      />
-                      <TextArea
-                        label="Right Icon"
-                        placeholder="Select date"
-                        iconRight={<Icon icon="calendar" />}
-                      />
-                      <TextArea
-                        label="Both Icons"
-                        placeholder="Enter amount"
-                        iconLeft={<Icon icon="plus" />}
-                        iconRight={<Icon icon="minus" />}
-                      />
-                    </Box>
-                    {/* With Icons */}
+                      {/* ✅ With Icons */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">With Icons</TextStyle>
+                        <TextArea
+                          label="Left Icon"
+                          iconLeft={<Icon icon="search" />}
+                          placeholder="Search here"
+                        />
+                        <TextArea
+                          label="Right Icon"
+                          iconRight={<Icon icon="calendar" />}
+                          placeholder="Pick a date"
+                        />
+                        <TextArea
+                          label="Both Icons"
+                          iconLeft={<Icon icon="plus" />}
+                          iconRight={<Icon icon="minus" />}
+                          placeholder="Adjust amount"
+                        />
+                      </Box>
 
-                    {/* Variants */}
-                    <Box direction="column" gap={8}>
-                      <TextStyle variant="h4">Variants</TextStyle>
-                      <TextArea
-                        label="Amount"
-                        variant="amount"
-                        placeholder="0.00"
-                      />
-                      <TextArea
-                        label="Search"
-                        variant="search"
-                        placeholder="Search..."
-                        iconLeft={<Icon icon="search" />}
-                      />
-                      <TextArea
-                        label="Amount Transaction"
-                        variant="amount-transaction"
-                        placeholder="Enter amount"
-                      />
+                      {/* ✅ Variants */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Variants</TextStyle>
+                        <TextArea
+                          label="Amount"
+                          variant="amount"
+                          placeholder="0.00"
+                          type="number"
+                        />
+                        <TextArea
+                          label="Search Field"
+                          variant="search"
+                          placeholder="Search something..."
+                          iconLeft={<Icon icon="search" />}
+                        />
+                        <TextArea
+                          label="Amount Transaction"
+                          variant="amount-transaction"
+                          placeholder="Enter amount"
+                        />
+                      </Box>
+
+                      {/* ✅ Styling: width, marginBottom, zIndex */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Styled TextArea</TextStyle>
+                        <TextArea
+                          label="Custom Width"
+                          placeholder="400px wide"
+                          width={400}
+                        />
+                        <TextArea
+                          label="With zIndex"
+                          placeholder="This field has zIndex"
+                          zIndex={100}
+                        />
+                        <TextArea
+                          label="Margin Bottom"
+                          placeholder="Has spacing below"
+                          marginBottom={32}
+                        />
+                      </Box>
+
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Error States</TextStyle>
+
+                        {/* 🔴 Basic error state */}
+                        <TextArea
+                          label="Error Only"
+                          labelHelping="Error Only"
+                          placeholder="Invalid input"
+                          error
+                        />
+
+                        {/* 🔴 Error with message */}
+                        <TextArea
+                          label="Error with Message"
+                          placeholder="Try again"
+                          error
+                          helpingText="Username must be at least 6 characters"
+                        />
+
+                        {/* 🔴 Error + Helper text */}
+                        <TextArea
+                          label="Error with Both Messages"
+                          placeholder="Enter email"
+                          type="email"
+                          error
+                          helpingText="Use your company email"
+                          errorMessage="Invalid email format"
+                        />
+
+                        {/* 🔴 Disabled with error (for edge case testing) */}
+                        <TextArea
+                          label="Disabled + Error"
+                          placeholder="Can't type"
+                          disabled
+                          error
+                          helpingText="Field cannot be edited"
+                          errorMessage="Still showing error"
+                        />
+                      </Box>
                     </Box>
-                    {/* Variants */}
+                  </>
+
+                  <>
+                    <Box
+                      bgColor="--color-bg-primary"
+                      border="all" // all | top | bottom
+                      borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                      borderWidth={1} // 0 | 1 | 2
+                      boxShadow="top" // none | top | bottom
+                      direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+                      hover={true}
+                      gap={10}
+                      px={24}
+                      py={24}
+                    >
+                      <>
+                        {/* Normal Text Fields */}
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h4">Normal Text Fields</TextStyle>
+                          <TextArea
+                            label="Default TextArea"
+                            placeholder="Enter text here"
+                          />
+                          <TextArea
+                            label="With Helper Text"
+                            placeholder="Enter text"
+                            helpingText="This is a helping text"
+                          />
+                          <TextArea
+                            label="With Error"
+                            placeholder="Enter text"
+                            error={true}
+                            errorMessage="This is an error message"
+                          />
+                          <TextArea
+                            label="Disabled TextArea"
+                            placeholder="Cannot edit this"
+                            disabled={true}
+                          />
+                        </Box>
+                        {/* Normal Text Fields */}
+
+                        {/* Special Types */}
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h4">Special Types</TextStyle>
+                          <TextArea
+                            label="Email Field"
+                            type="email"
+                            placeholder="Enter email"
+                          />
+                          <TextArea
+                            label="Password Field"
+                            type="password"
+                            placeholder="Enter password"
+                          />
+                          <TextArea
+                            label="Number Field"
+                            type="number"
+                            placeholder="Enter number"
+                          />
+                          <TextArea
+                            label="Tel Field"
+                            type="tel"
+                            placeholder="Enter phone number"
+                          />
+                        </Box>
+                        {/* Special Types */}
+
+                        {/* With Icons */}
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h4">With Icons</TextStyle>
+                          <TextArea
+                            label="Left Icon"
+                            placeholder="Search..."
+                            iconLeft={<Icon icon="search" />}
+                          />
+                          <TextArea
+                            label="Right Icon"
+                            placeholder="Select date"
+                            iconRight={<Icon icon="calendar" />}
+                          />
+                          <TextArea
+                            label="Both Icons"
+                            placeholder="Enter amount"
+                            iconLeft={<Icon icon="plus" />}
+                            iconRight={<Icon icon="minus" />}
+                          />
+                        </Box>
+                        {/* With Icons */}
+
+                        {/* Variants */}
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h4">Variants</TextStyle>
+                          <TextArea
+                            label="Amount"
+                            variant="amount"
+                            placeholder="0.00"
+                          />
+                          <TextArea
+                            label="Search"
+                            variant="search"
+                            placeholder="Search..."
+                            iconLeft={<Icon icon="search" />}
+                          />
+                          <TextArea
+                            label="Amount Transaction"
+                            variant="amount-transaction"
+                            placeholder="Enter amount"
+                          />
+                        </Box>
+                        {/* Variants */}
+                      </>
+                    </Box>
                   </>
                 </Box>
               </>
@@ -602,191 +617,6 @@ export default function Home() {
               {/* Common TextField  */}
               <TextStyle variant="h2">TextField</TextStyle>
               <>
-                <Box direction="column" gap={40}>
-                  {/* ✅ Normal */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Normal TextFields</TextStyle>
-                    <TextField
-                      label="Basic"
-                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                      placeholder="Type here..."
-                      width={400}
-                    />
-                    <TextField
-                      label="Basic clearable"
-                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                      placeholder="Type here..."
-                      width={400}
-                      clearable
-                    />
-                    <TextField
-                      label="Basic"
-                      placeholder="Type here..."
-                      width={400}
-                    />
-                    <TextField
-                      label="Basic"
-                      placeholder="Type here..."
-                      value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                      clearable
-                    />
-                    <TextField label="Basic" placeholder="Type here..." />
-                    <TextField
-                      labelHelping="With Helper"
-                      label="With Helper"
-                      placeholder="Enter something"
-                      helpingText="Supporting text here"
-                    />
-                    <TextField
-                      label="With Error"
-                      placeholder="Oops..."
-                      error
-                      helpingText="Still showing helper"
-                      errorMessage="Something went wrong"
-                    />
-                    <TextField
-                      label="Disabled"
-                      placeholder="Not editable"
-                      disabled
-                    />
-                  </Box>
-
-                  {/* ✅ Input Types */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Input Types</TextStyle>
-                    <TextField
-                      label="Text"
-                      type="text"
-                      placeholder="Enter text"
-                    />
-                    <TextField
-                      label="Number"
-                      type="number"
-                      placeholder="Enter number"
-                    />
-                    <TextField
-                      label="Email"
-                      type="email"
-                      placeholder="your@email.com"
-                    />
-                    <TextField
-                      label="Password"
-                      type="password"
-                      placeholder="••••••••"
-                    />
-                    <TextField
-                      label="Telephone"
-                      type="tel"
-                      placeholder="012-345-6789"
-                    />
-                  </Box>
-
-                  {/* ✅ With Icons */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">With Icons</TextStyle>
-                    <TextField
-                      label="Left Icon"
-                      iconLeft={<Icon icon="search" />}
-                      placeholder="Search here"
-                    />
-                    <TextField
-                      label="Right Icon"
-                      iconRight={<Icon icon="calendar" />}
-                      placeholder="Pick a date"
-                    />
-                    <TextField
-                      label="Both Icons"
-                      iconLeft={<Icon icon="plus" />}
-                      iconRight={<Icon icon="minus" />}
-                      placeholder="Adjust amount"
-                    />
-                  </Box>
-
-                  {/* ✅ Variants */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Variants</TextStyle>
-                    <TextField
-                      label="Amount"
-                      variant="amount"
-                      placeholder="0.00"
-                      type="number"
-                    />
-                    <TextField
-                      label="Search Field"
-                      variant="search"
-                      placeholder="Search something..."
-                      iconLeft={<Icon icon="search" />}
-                    />
-                    <TextField
-                      label="Amount Transaction"
-                      variant="amount-transaction"
-                      placeholder="Enter amount"
-                    />
-                  </Box>
-
-                  {/* ✅ Styling: width, marginBottom, zIndex */}
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Styled TextField</TextStyle>
-                    <TextField
-                      label="Custom Width"
-                      placeholder="400px wide"
-                      width={400}
-                    />
-                    <TextField
-                      label="With zIndex"
-                      placeholder="This field has zIndex"
-                      zIndex={100}
-                    />
-                    <TextField
-                      label="Margin Bottom"
-                      placeholder="Has spacing below"
-                      marginBottom={32}
-                    />
-                  </Box>
-
-                  <Box direction="column" gap={8}>
-                    <TextStyle variant="h4">Error States</TextStyle>
-
-                    {/* 🔴 Basic error state */}
-                    <TextField
-                      label="Error Only"
-                      labelHelping="Error Only"
-                      placeholder="Invalid input"
-                      error
-                    />
-
-                    {/* 🔴 Error with message */}
-                    <TextField
-                      label="Error with Message"
-                      placeholder="Try again"
-                      error
-                      helpingText="Username must be at least 6 characters"
-                    />
-
-                    {/* 🔴 Error + Helper text */}
-                    <TextField
-                      label="Error with Both Messages"
-                      placeholder="Enter email"
-                      type="email"
-                      error
-                      helpingText="Use your company email"
-                      errorMessage="Invalid email format"
-                    />
-
-                    {/* 🔴 Disabled with error (for edge case testing) */}
-                    <TextField
-                      label="Disabled + Error"
-                      placeholder="Can't type"
-                      disabled
-                      error
-                      helpingText="Field cannot be edited"
-                      errorMessage="Still showing error"
-                    />
-                  </Box>
-                </Box>
-              </>
-
-              <>
                 <Box
                   bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
@@ -800,101 +630,301 @@ export default function Home() {
                   py={24}
                 >
                   <>
-                    {/* Normal Text Fields */}
-                    <Box direction="column" gap={8}>
-                      <TextStyle variant="h4">Normal Text Fields</TextStyle>
-                      <TextField
-                        label="Default TextField"
-                        placeholder="Enter text here"
-                      />
-                      <TextField
-                        label="With Helper Text"
-                        placeholder="Enter text"
-                        helpingText="This is a helping text"
-                      />
-                      <TextField
-                        label="With Error"
-                        placeholder="Enter text"
-                        error={true}
-                        errorMessage="This is an error message"
-                      />
-                      <TextField
-                        label="Disabled TextField"
-                        placeholder="Cannot edit this"
-                        disabled={true}
-                      />
-                    </Box>
-                    {/* Normal Text Fields */}
+                    <Box direction="column" gap={40}>
+                      {/* ✅ Normal */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Normal TextFields</TextStyle>
+                        <TextField
+                          label="Basic"
+                          value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                          placeholder="Type here..."
+                          width={400}
+                        />
+                        <TextField
+                          label="Basic clearable"
+                          value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                          placeholder="Type here..."
+                          width={400}
+                          clearable
+                        />
+                        <TextField
+                          label="Basic"
+                          placeholder="Type here..."
+                          width={400}
+                        />
+                        <TextField
+                          label="Basic"
+                          placeholder="Type here..."
+                          value="Basic clearable lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                          clearable
+                        />
+                        <TextField label="Basic" placeholder="Type here..." />
+                        <TextField
+                          labelHelping="With Helper"
+                          label="With Helper"
+                          placeholder="Enter something"
+                          helpingText="Supporting text here"
+                        />
+                        <TextField
+                          label="With Error"
+                          placeholder="Oops..."
+                          error
+                          helpingText="Still showing helper"
+                          errorMessage="Something went wrong"
+                        />
+                        <TextField
+                          label="Disabled"
+                          placeholder="Not editable"
+                          disabled
+                        />
+                      </Box>
 
-                    {/* Special Types */}
-                    <Box direction="column" gap={8}>
-                      <TextStyle variant="h4">Special Types</TextStyle>
-                      <TextField
-                        label="Email Field"
-                        type="email"
-                        placeholder="Enter email"
-                      />
-                      <TextField
-                        label="Password Field"
-                        type="password"
-                        placeholder="Enter password"
-                      />
-                      <TextField
-                        label="Number Field"
-                        type="number"
-                        placeholder="Enter number"
-                      />
-                      <TextField
-                        label="Tel Field"
-                        type="tel"
-                        placeholder="Enter phone number"
-                      />
-                    </Box>
-                    {/* Special Types */}
+                      {/* ✅ Input Types */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Input Types</TextStyle>
+                        <TextField
+                          label="Text"
+                          type="text"
+                          placeholder="Enter text"
+                        />
+                        <TextField
+                          label="Number"
+                          type="number"
+                          placeholder="Enter number"
+                        />
+                        <TextField
+                          label="Email"
+                          type="email"
+                          placeholder="your@email.com"
+                        />
+                        <TextField
+                          label="Password"
+                          type="password"
+                          placeholder="••••••••"
+                        />
+                        <TextField
+                          label="Telephone"
+                          type="tel"
+                          placeholder="012-345-6789"
+                        />
+                      </Box>
 
-                    {/* With Icons */}
-                    <Box direction="column" gap={8}>
-                      <TextStyle variant="h4">With Icons</TextStyle>
-                      <TextField
-                        label="Left Icon"
-                        placeholder="Search..."
-                        iconLeft={<Icon icon="search" />}
-                      />
-                      <TextField
-                        label="Right Icon"
-                        placeholder="Select date"
-                        iconRight={<Icon icon="calendar" />}
-                      />
-                      <TextField
-                        label="Both Icons"
-                        placeholder="Enter amount"
-                        iconLeft={<Icon icon="plus" />}
-                        iconRight={<Icon icon="minus" />}
-                      />
-                    </Box>
-                    {/* With Icons */}
+                      {/* ✅ With Icons */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">With Icons</TextStyle>
+                        <TextField
+                          label="Left Icon"
+                          iconLeft={<Icon icon="search" />}
+                          placeholder="Search here"
+                        />
+                        <TextField
+                          label="Right Icon"
+                          iconRight={<Icon icon="calendar" />}
+                          placeholder="Pick a date"
+                        />
+                        <TextField
+                          label="Both Icons"
+                          iconLeft={<Icon icon="plus" />}
+                          iconRight={<Icon icon="minus" />}
+                          placeholder="Adjust amount"
+                        />
+                      </Box>
 
-                    {/* Variants */}
-                    <Box direction="column" gap={8}>
-                      <TextStyle variant="h4">Variants</TextStyle>
-                      <TextField
-                        label="Amount"
-                        variant="amount"
-                        placeholder="0.00"
-                      />
-                      <TextField
-                        label="Search"
-                        variant="search"
-                        placeholder="Search..."
-                        iconLeft={<Icon icon="search" />}
-                      />
-                      <TextField
-                        label="Amount Transaction"
-                        variant="amount-transaction"
-                        placeholder="Enter amount"
-                      />
+                      {/* ✅ Variants */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Variants</TextStyle>
+                        <TextField
+                          label="Amount"
+                          variant="amount"
+                          placeholder="0.00"
+                          type="number"
+                        />
+                        <TextField
+                          label="Search Field"
+                          variant="search"
+                          placeholder="Search something..."
+                          iconLeft={<Icon icon="search" />}
+                        />
+                        <TextField
+                          label="Amount Transaction"
+                          variant="amount-transaction"
+                          placeholder="Enter amount"
+                        />
+                      </Box>
+
+                      {/* ✅ Styling: width, marginBottom, zIndex */}
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Styled TextField</TextStyle>
+                        <TextField
+                          label="Custom Width"
+                          placeholder="400px wide"
+                          width={400}
+                        />
+                        <TextField
+                          label="With zIndex"
+                          placeholder="This field has zIndex"
+                          zIndex={100}
+                        />
+                        <TextField
+                          label="Margin Bottom"
+                          placeholder="Has spacing below"
+                          marginBottom={32}
+                        />
+                      </Box>
+
+                      <Box direction="column" gap={8}>
+                        <TextStyle variant="h4">Error States</TextStyle>
+
+                        {/* 🔴 Basic error state */}
+                        <TextField
+                          label="Error Only"
+                          labelHelping="Error Only"
+                          placeholder="Invalid input"
+                          error
+                        />
+
+                        {/* 🔴 Error with message */}
+                        <TextField
+                          label="Error with Message"
+                          placeholder="Try again"
+                          error
+                          helpingText="Username must be at least 6 characters"
+                        />
+
+                        {/* 🔴 Error + Helper text */}
+                        <TextField
+                          label="Error with Both Messages"
+                          placeholder="Enter email"
+                          type="email"
+                          error
+                          helpingText="Use your company email"
+                          errorMessage="Invalid email format"
+                        />
+
+                        {/* 🔴 Disabled with error (for edge case testing) */}
+                        <TextField
+                          label="Disabled + Error"
+                          placeholder="Can't type"
+                          disabled
+                          error
+                          helpingText="Field cannot be edited"
+                          errorMessage="Still showing error"
+                        />
+                      </Box>
                     </Box>
-                    {/* Variants */}
+                  </>
+
+                  <>
+                    <Box
+                      bgColor="--color-bg-primary"
+                      border="all" // all | top | bottom
+                      borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                      borderWidth={1} // 0 | 1 | 2
+                      boxShadow="top" // none | top | bottom
+                      direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+                      hover={true}
+                      gap={10}
+                      px={24}
+                      py={24}
+                    >
+                      <>
+                        {/* Normal Text Fields */}
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h4">Normal Text Fields</TextStyle>
+                          <TextField
+                            label="Default TextField"
+                            placeholder="Enter text here"
+                          />
+                          <TextField
+                            label="With Helper Text"
+                            placeholder="Enter text"
+                            helpingText="This is a helping text"
+                          />
+                          <TextField
+                            label="With Error"
+                            placeholder="Enter text"
+                            error={true}
+                            errorMessage="This is an error message"
+                          />
+                          <TextField
+                            label="Disabled TextField"
+                            placeholder="Cannot edit this"
+                            disabled={true}
+                          />
+                        </Box>
+                        {/* Normal Text Fields */}
+
+                        {/* Special Types */}
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h4">Special Types</TextStyle>
+                          <TextField
+                            label="Email Field"
+                            type="email"
+                            placeholder="Enter email"
+                          />
+                          <TextField
+                            label="Password Field"
+                            type="password"
+                            placeholder="Enter password"
+                          />
+                          <TextField
+                            label="Number Field"
+                            type="number"
+                            placeholder="Enter number"
+                          />
+                          <TextField
+                            label="Tel Field"
+                            type="tel"
+                            placeholder="Enter phone number"
+                          />
+                        </Box>
+                        {/* Special Types */}
+
+                        {/* With Icons */}
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h4">With Icons</TextStyle>
+                          <TextField
+                            label="Left Icon"
+                            placeholder="Search..."
+                            iconLeft={<Icon icon="search" />}
+                          />
+                          <TextField
+                            label="Right Icon"
+                            placeholder="Select date"
+                            iconRight={<Icon icon="calendar" />}
+                          />
+                          <TextField
+                            label="Both Icons"
+                            placeholder="Enter amount"
+                            iconLeft={<Icon icon="plus" />}
+                            iconRight={<Icon icon="minus" />}
+                          />
+                        </Box>
+                        {/* With Icons */}
+
+                        {/* Variants */}
+                        <Box direction="column" gap={8}>
+                          <TextStyle variant="h4">Variants</TextStyle>
+                          <TextField
+                            label="Amount"
+                            variant="amount"
+                            placeholder="0.00"
+                          />
+                          <TextField
+                            label="Search"
+                            variant="search"
+                            placeholder="Search..."
+                            iconLeft={<Icon icon="search" />}
+                          />
+                          <TextField
+                            label="Amount Transaction"
+                            variant="amount-transaction"
+                            placeholder="Enter amount"
+                          />
+                        </Box>
+                        {/* Variants */}
+                      </>
+                    </Box>
                   </>
                 </Box>
               </>

@@ -5,6 +5,7 @@ import * as S from "./TextArea.styled";
 import {TextStyle} from "../TextStyle";
 import Icon from "../Icon/Icon";
 import {Box} from "../Box";
+import {Tooltip} from "../Tooltip";
 
 export const TextArea = forwardRef<undefined | any, TextAreaProps>(
   (
@@ -28,57 +29,20 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
       className,
       iconTyping,
       onChange,
-      maxLength,
+      rows = 5,
       clearable,
       ...rest
     }: TextAreaProps,
     ref,
   ) => {
-    const isNormalInput =
-      type === "text" ||
-      type === "number" ||
-      type === "email" ||
-      type === "password";
-
-    const classnames = classNames(className, "ds-text-field");
+    const classnames = classNames(className, "ds-text-area");
 
     const onchangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
         onChange(event);
       }
     };
-    const onKeyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === "Enter" && false) {
-        event.preventDefault();
-        if (onChange) {
-          onChange({
-            target: {name: rest.name, value: event.currentTarget.value},
-          } as React.ChangeEvent<HTMLInputElement>);
-        }
-      }
-    };
-    const onKeyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === "Enter" && false) {
-        event.preventDefault();
-        if (onChange) {
-          onChange({
-            target: {name: rest.name, value: event.currentTarget.value},
-          } as React.ChangeEvent<HTMLInputElement>);
-        }
-      }
-    };
-    const onKeyPressHandler = (
-      event: React.KeyboardEvent<HTMLInputElement>,
-    ) => {
-      if (event.key === "Enter" && false) {
-        event.preventDefault();
-        if (onChange) {
-          onChange({
-            target: {name: rest.name, value: event.currentTarget.value},
-          } as React.ChangeEvent<HTMLInputElement>);
-        }
-      }
-    };
+
     const onFocusHandler = (event: React.FocusEvent<HTMLInputElement>) => {
       if (event.target) {
         event.target.select();
@@ -89,6 +53,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
         } as React.ChangeEvent<HTMLInputElement>);
       }
     };
+
     const onBlurHandler = (event: React.FocusEvent<HTMLInputElement>) => {
       if (onChange) {
         onChange({
@@ -96,6 +61,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
         } as React.ChangeEvent<HTMLInputElement>);
       }
     };
+
     const onClickHandler = (event: React.MouseEvent<HTMLInputElement>) => {
       if (onChange) {
         onChange({
@@ -103,6 +69,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
         } as React.ChangeEvent<HTMLInputElement>);
       }
     };
+
     const onMouseDownHandler = (event: React.MouseEvent<HTMLInputElement>) => {
       if (event.currentTarget) {
         event.currentTarget.select();
@@ -113,6 +80,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
         } as React.ChangeEvent<HTMLInputElement>);
       }
     };
+
     const onMouseUpHandler = (event: React.MouseEvent<HTMLInputElement>) => {
       if (event.currentTarget) {
         event.currentTarget.select();
@@ -147,25 +115,32 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
         clearable={clearable}
         {...rest}
       >
-        <Box direction="row" alignItems="center" gap={6}>
-          <TextStyle variant="labelXSmall" color="--color-secondary">
-            {label}
-          </TextStyle>
-          {labelHelping && (
-            <TextStyle
-              variant="labelXSmall"
-              color="--color-secondary"
-              alignContent="center"
-            >
-              <Icon
-                icon="help_circle_fill"
-                width={12}
-                height={12}
-                color="--color-secondary"
-              />
-            </TextStyle>
-          )}
-        </Box>
+        {(label || labelHelping) && (
+          <>
+            <Box direction="row" alignItems="center" gap={6}>
+              <TextStyle variant="labelXSmall" color="--color-secondary">
+                {label}
+              </TextStyle>
+              {labelHelping && (
+                <TextStyle
+                  variant="labelXSmall"
+                  color="--color-secondary"
+                  alignContent="center"
+                >
+                  <Tooltip content={labelHelping}>
+                    <Icon
+                      icon="help_circle_fill"
+                      width={12}
+                      height={12}
+                      color="--color-secondary"
+                    />
+                  </Tooltip>
+                </TextStyle>
+              )}
+            </Box>
+          </>
+        )}
+
         <S.InputWrapper error={error}>
           {iconLeft && <S.Icon>{iconLeft}</S.Icon>}
           <TextStyle
@@ -179,11 +154,9 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
               id={id}
               disabled={disabled}
               value={value}
+              rows={rows}
               clearable={clearable}
               onChange={onchangeHandler}
-              onKeyDown={onKeyDownHandler}
-              onKeyUp={onKeyUpHandler}
-              onKeyPress={onKeyPressHandler}
               onFocus={onFocusHandler}
               onBlur={onBlurHandler}
               onClick={onClickHandler}

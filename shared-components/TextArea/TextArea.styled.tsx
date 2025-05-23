@@ -96,4 +96,5 @@ export const ClearButton = styled.button`
   cursor: pointer;
   padding: 0;
   margin-left: 8px;
+  align-self: flex-start;
 `;

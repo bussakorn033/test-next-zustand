@@ -1,7 +1,7 @@
 ## Usage
 
 ```js
-import {Icon} from "@/shared-components/Icon";
+import {TextStyle} from "@/shared-components/TextStyle";
 
 <TextStyle
   variant="h2"

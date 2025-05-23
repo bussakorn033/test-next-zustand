@@ -1,7 +1,7 @@
 ## Usage
 
 ```js
-import {Table} from "@/shared-components/Table";
+import {TextField} from "@/shared-components/TextField";
 
 <TextField
   placeholder={"Text shown inside the input when empty."}

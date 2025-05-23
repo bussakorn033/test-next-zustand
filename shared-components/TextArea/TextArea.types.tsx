@@ -31,7 +31,7 @@
  * @param width - Width of the TextArea.
  * @param marginBottom - Bottom margin.
  * @param clearable - Flag to show a clear button.
- * @param row - Flag to show a clear button.
+ * @param rows - The number of visible text lines in the TextArea. This determines the height of the text area and defaults to the browser's setting if not provided.
  * @param [key: string] - Additional custom properties.
  */
 

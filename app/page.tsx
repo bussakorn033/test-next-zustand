@@ -125,44 +125,48 @@ export default function Home() {
                               />
                             </Button>
                           </Box>
-                          <TextField
-                            placeholder={t("dashboard_filter_by_user_name")}
-                            type="text"
-                            width={160}
-                            clearable
-                            name="userName"
-                            value={filters.userName}
-                            onChange={handleFilterChange}
-                          />
-                          <TextField
-                            placeholder={t("dashboard_filter_by_last_name")}
-                            type="text"
-                            width={160}
-                            clearable
-                            name="lastName"
-                            value={filters.lastName}
-                            onChange={handleFilterChange}
-                          />
-                          <Box direction="row" alignItems="center" gap={8}>
-                            <Button
-                              variant={"ghost-icon-secondary-no-padding"}
-                              iconLeft="search"
-                              borderRadius="round"
-                              sizeIcon={20}
-                              onClick={handleFilterBtnSearch}
+                          <Box direction="row" alignItems="center" gap={12}>
+                            <TextField
+                              placeholder={t("dashboard_filter_by_user_name")}
+                              type="text"
+                              minWidth={50}
+                              maxWidth={160}
+                              clearable
+                              name="userName"
+                              value={filters.userName}
+                              onChange={handleFilterChange}
                             />
-
-                            {(filters.userName || filters.lastName) && (
+                            <TextField
+                              placeholder={t("dashboard_filter_by_last_name")}
+                              type="text"
+                              minWidth={50}
+                              maxWidth={160}
+                              clearable
+                              name="lastName"
+                              value={filters.lastName}
+                              onChange={handleFilterChange}
+                            />
+                            <Box direction="row" alignItems="center" gap={8}>
                               <Button
-                                variant="ghost-primary-no-padding"
-                                iconLeft="close"
-                                sizeIcon={24}
-                                flexWrap="wrap"
-                                onClick={handleFilterBtnReset}
-                              >
-                                {t("dashboard_filter_btn_reset")}
-                              </Button>
-                            )}
+                                variant={"ghost-icon-secondary-no-padding"}
+                                iconLeft="search"
+                                borderRadius="round"
+                                sizeIcon={20}
+                                onClick={handleFilterBtnSearch}
+                              />
+
+                              {(filters.userName || filters.lastName) && (
+                                <Button
+                                  variant="ghost-primary-no-padding"
+                                  iconLeft="close"
+                                  sizeIcon={24}
+                                  flexWrap="wrap"
+                                  onClick={handleFilterBtnReset}
+                                >
+                                  {t("dashboard_filter_btn_reset")}
+                                </Button>
+                              )}
+                            </Box>
                           </Box>
                         </Box>
                       </Box>

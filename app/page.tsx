@@ -483,7 +483,7 @@ export default function Home() {
 
               <>
                 <Box
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2
@@ -784,7 +784,7 @@ export default function Home() {
 
               <>
                 <Box
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2
@@ -900,7 +900,7 @@ export default function Home() {
               <TextStyle variant="h2">Button</TextStyle>
               <>
                 <Box
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2
@@ -1115,7 +1115,7 @@ export default function Home() {
               <TextStyle variant="h2">TextStyle</TextStyle>
               <>
                 <Box
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2
@@ -1275,7 +1275,7 @@ export default function Home() {
                 </Box>
                 {/* White Space Handling */}
                 <Box
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2
@@ -1301,7 +1301,7 @@ export default function Home() {
               <>
                 <Box
                   color="#f00"
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2
@@ -1380,7 +1380,7 @@ export default function Home() {
               <>
                 <Box
                   color="#f00"
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2
@@ -1401,7 +1401,7 @@ export default function Home() {
                 </Box>
                 <Box
                   color="#f00"
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2
@@ -1422,7 +1422,7 @@ export default function Home() {
                 </Box>
                 <Box
                   color="#f00"
-                  bgColor="--color-neutral-grey-lighter"
+                  bgColor="--color-bg-primary"
                   border="all" // all | top | bottom
                   borderRadius="xl" // none | xs | sm | md | lg | xl | circle
                   borderWidth={1} // 0 | 1 | 2

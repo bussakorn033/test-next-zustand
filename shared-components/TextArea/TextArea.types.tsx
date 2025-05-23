@@ -31,8 +31,10 @@
  * @param width - Width of the TextArea.
  * @param marginBottom - Bottom margin.
  * @param clearable - Flag to show a clear button.
+ * @param row - Flag to show a clear button.
  * @param [key: string] - Additional custom properties.
  */
+
 export interface TextAreaProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
@@ -79,5 +81,6 @@ export interface TextAreaProps
   width?: string | number;
   marginBottom?: string | number;
   clearable?: boolean;
+  rows?: number;
   [key: string]: any;
 }

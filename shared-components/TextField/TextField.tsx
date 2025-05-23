@@ -188,6 +188,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
               id={id}
               disabled={disabled}
               value={value}
+              type={type}
               clearable={clearable}
               onChange={onchangeHandler}
               onKeyDown={onKeyDownHandler}

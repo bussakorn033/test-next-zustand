@@ -20,5 +20,6 @@ export interface CheckboxProps
   gap?: number;
   name?: string;
   checked?: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  size?: number; // New size prop (in pixels)
 }

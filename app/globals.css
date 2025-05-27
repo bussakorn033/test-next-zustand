@@ -116,6 +116,8 @@
   --color-secondary: #5b6a83; /* Secondary brand color */
   --color-accent: #0050f0; /* Accent color */
   --color-disable: #f5f6f7; /* Accent color */
+  --color-disabled-border-checkbox: #dfe6ec; /* Accent color */
+  --color-disabled-bg-checkbox: #f5f6f7; /* Accent color */
   --color-error: #da2110; /* Accent color */
   --color-bg-primary: #eff7fc; /* Primary brand color */
 

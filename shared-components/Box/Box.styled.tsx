@@ -68,7 +68,7 @@ export const Box = styled.div<Omit<BoxProps, "as">>`
   ${({direction, display, gap, gapRow, gapColumn}) => {
     if (direction !== "none" && display !== "block") {
       return css`
-        display: flex;
+        display: ${display || "flex"};
       `;
     } else if (gap || gapRow || gapColumn) {
       return css`

@@ -61,16 +61,6 @@ export default function Home() {
                   <Box direction="column" gap={24}>
                     <Box direction="column" gap={48}>
                       <Box direction="column" gap={0}>
-                        <Checkbox
-                          name="termsConditions"
-                          label="Accept Terms and Conditions"
-                          labelVariant="h2"
-                          checked={checked}
-                          onChange={(e) => {
-                            console.log("e", e);
-                            setChecked(e.target.checked);
-                          }}
-                        />
                         <TextStyle variant="h2" color="--color-primary">
                           {/* Todo : Add user name */}
                           {t("dashboard_title")}
@@ -259,6 +249,7 @@ export default function Home() {
             </>
           </Box>
         </>
+
         {/* Note */}
         <>
           <Box direction="column" p={32}>
@@ -268,17 +259,70 @@ export default function Home() {
               <TextStyle variant="h2">Checkbox</TextStyle>
               <Box>Checkbox</Box>
               <>
-                <Checkbox
-                  label="Accept Terms and Conditions"
-                  checked={checked}
-                  onChange={(e) => console.log("e", e)}
-                />
+                <Box
+                  bgColor="--color-bg-primary"
+                  border="all" // all | top | bottom
+                  borderRadius="xl" // none | xs | sm | md | lg | xl | circle
+                  borderWidth={1} // 0 | 1 | 2
+                  boxShadow="top" // none | top | bottom
+                  direction="none" // none | row | row-reverse | row-wrap | column | column-reverse
+                  hover={true}
+                  gap={10}
+                  px={24}
+                  py={24}
+                >
+                  <Checkbox
+                    label="Default Checkbox"
+                    name="checkbox-gender"
+                    checked={checked}
+                    onChange={(e) => {
+                      console.log(e);
+                      setChecked(e.target.checked);
+                    }}
+                  />
+                  <Checkbox label="Default Checkbox (Checked)" checked={true} />
+                  <Checkbox
+                    label="Large Checkbox (Unchecked)"
+                    checked={false}
+                  />
+                  <Checkbox
+                    label="Default Checkbox (Checked)"
+                    checked={true}
+                    size={50}
+                  />
+                  <Checkbox
+                    label="Large Checkbox (Unchecked)"
+                    checked={false}
+                    size={50}
+                  />
+                  <Checkbox
+                    label="Disabled Checkbox (Checked)"
+                    checked={true}
+                    disabled
+                  />
+                  <Checkbox
+                    label="Disabled Checkbox (Unchecked)"
+                    checked={false}
+                    disabled
+                  />
+                  <Checkbox
+                    label="Disabled Checkbox (Checked)"
+                    checked={true}
+                    disabled
+                    size={50}
+                  />
+                  <Checkbox
+                    label="Disabled Checkbox (Unchecked)"
+                    checked={false}
+                    disabled
+                    size={50}
+                  />
+                </Box>
               </>
               {/* Common Checkbox  */}
 
               {/* Common Table  */}
               <TextStyle variant="h2">Table</TextStyle>
-              <Box>Table</Box>
               <>
                 <Table
                   headers={headers}

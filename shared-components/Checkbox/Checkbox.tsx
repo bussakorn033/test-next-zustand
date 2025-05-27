@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import {forwardRef} from "react";
-import {Box} from "../Box";
 import {TextStyle} from "../TextStyle";
 import * as S from "./Checkbox.styled";
 import {CheckboxProps} from "./Checkbox.types";
@@ -13,10 +12,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       checkColor = "--color-primary",
       name,
       checked,
+      disabled,
       onChange,
       label,
       labelVariant = "paragraphSmall",
       labelColor = "--color-primary",
+      size = 16,
       ...props
     },
     ref,
@@ -29,21 +30,26 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         direction="row"
         alignItems="center"
         gap={gap}
+        position="relative"
       >
         <S.HiddenCheckbox
           name={name}
           checked={checked}
           checkColor={checkColor}
-          onChange={onChange}
+          disabled={disabled}
+          onChange={(e) => (disabled ? e.preventDefault() : onChange(e))}
           ref={ref}
+          size={size}
           {...props}
         />
         <S.StyledCheckbox
           name={name}
           checked={checked}
           checkColor={checkColor}
-          onChange={onChange}
+          disabled={disabled}
+          onChange={(e) => (disabled ? e.preventDefault() : onChange(e))}
           ref={ref}
+          size={size}
           {...props}
         />
         {label && (

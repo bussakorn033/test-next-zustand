@@ -2,25 +2,23 @@ import styled, {css} from "styled-components";
 import {Box} from "../Box";
 import {CheckboxProps} from "./Checkbox.types";
 
-export const HiddenCheckbox = styled.input.attrs({type: "checkbox"})`
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
+export const HiddenCheckbox = styled.input.attrs<CheckboxProps>({
+  type: "checkbox",
+})`
   width: 16px;
   height: 16px;
-  overflow: hidden;
+  margin: -1px;
   padding: 0;
   position: absolute;
+  z-index: 1;
+  opacity: 0;
   white-space: nowrap;
-  width: 1px;
 `;
 
-export const StyledCheckbox = styled(Box).attrs<CheckboxProps>(() => ({
-  as: "label",
-}))`
+export const StyledCheckbox = styled(Box)<CheckboxProps>`
   cursor: pointer;
+  position: relative;
+  z-index: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -53,5 +51,5 @@ export const StyledCheckbox = styled(Box).attrs<CheckboxProps>(() => ({
 `;
 
 export const CheckboxContainer = styled(Box)`
-  /* cursor: pointer; */
+  position: relative;
 `;

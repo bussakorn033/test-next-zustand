@@ -173,4 +173,5 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   boxShadow?: "none" | "top" | "bottom";
 
   limit?: number;
+  pointerEvents?: "none" | "auto" | "all" | string;
 }

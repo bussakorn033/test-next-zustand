@@ -1,8 +1,9 @@
+import classNames from "classnames";
 import {forwardRef} from "react";
+import {Box} from "../Box";
 import {TextStyle} from "../TextStyle";
 import * as S from "./Checkbox.styled";
 import {CheckboxProps} from "./Checkbox.types";
-import classNames from "classnames";
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -32,11 +33,19 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <S.HiddenCheckbox
           name={name}
           checked={checked}
+          checkColor={checkColor}
           onChange={onChange}
           ref={ref}
           {...props}
         />
-        <S.StyledCheckbox checked={checked} />
+        <S.StyledCheckbox
+          name={name}
+          checked={checked}
+          checkColor={checkColor}
+          onChange={onChange}
+          ref={ref}
+          {...props}
+        />
         {label && (
           <TextStyle variant={labelVariant} color={labelColor}>
             {label}
@@ -48,5 +57,4 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 );
 
 Checkbox.displayName = "Checkbox";
-
 export default Checkbox;

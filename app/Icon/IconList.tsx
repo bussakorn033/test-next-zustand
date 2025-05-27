@@ -39,6 +39,11 @@ import ImageEmptySVG from "./file/ImageEmptySVG";
 import ImageNodataSVG from "./file/ImageNodataSVG";
 import ImageProfileCircleSVG from "./file/ImageProfileCircleSVG";
 import ImageTTBLogoSVG from "./file/ImageTTBLogoSVG";
+// import ImageEmptySVG from '@/static/images/img_empty.svg';
+// import ImageNodataSVG from '@/static/images/img_nodata.svg';
+// import ImageProfileCircleSVG from '@/static/images/img_profile_circle.svg';
+// import ImageTTBLogoSVG from '@/static/images/img_ttb_logo.svg';
+
 /* Image SVG Components */
 
 export const IconComponent = ({...rest}: any) => {

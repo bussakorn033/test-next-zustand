@@ -1,4 +1,8 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your existing global styles below */
 
 /* Regular */
 @font-face {
@@ -129,7 +133,16 @@
   --text-quaternary: var(--color-neutral-grey-lighter);
   --text-accent: var(--color-accent);
   --text-error: var(--color-error);
-  --text-placeholder: var(--color-neutral-grey-lighter);
+
+  --color-pill-text-default: #5b6a83;
+  --color-pill-text-purple: #965e8a;
+  --color-pill-text-danger: #c41d0e;
+  --color-pill-text-warning: #8c522a;
+  --color-pill-text-light-orange: #ba6a5c;
+  --color-pill-text-disabled: #ffffff;
+  --color-pill-text-information: #0050f0;
+  --color-pill-text-success: #388e3c;
+  --color-pill-text-primary: #0050f0;
 
   /* Button Colors */
   --button-padding-none: 0px;
@@ -216,6 +229,21 @@
   --color-table-border-light: var(--color-neutral-light);
   --color-table-bg-light: var(--color-neutral-light);
 
+  /* Border */
+  --color-border-light: #dfe6ec;
+  --color-border-tertiary: #f3f7f8;
+
+  /* BG */
+  --color-pill-bg-default: #f5f6f7;
+  --color-pill-bg-purple: #fbeaf8;
+  --color-pill-bg-danger: #fbe8e7;
+  --color-pill-bg-warning: #feeecc;
+  --color-pill-bg-light-orange: #ffeae6;
+  --color-pill-bg-disabled: #b0bccb;
+  --color-pill-bg-information: #eff7fc;
+  --color-pill-bg-success: #e8f8ed;
+  --color-pill-bg-primary: #e5edfd;
+
   /* Font Weights */
   --font-weight-extra-light: 200;
   --font-weight-light: 300;
@@ -224,6 +252,7 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
+  --font-weight-black: 900;
 
   /* Font Sizes */
   --font-size-60: 60px;
@@ -308,6 +337,22 @@
 }
 
 /* Apply font family globally */
+html,
 body {
   font-family: var(--font-family-primary);
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border: 0;
+  border-spacing: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-background-clip: text;
 }

@@ -11,6 +11,7 @@ import globalSlice from "@/stores/globalSlice";
 import {useState} from "react";
 import {useTranslation} from "react-i18next";
 import {TextArea} from "@/shared-components/TextArea";
+import Checkbox from "@/shared-components/Checkbox/Checkbox";
 
 export default function Home() {
   // Access Zustand store
@@ -41,6 +42,7 @@ export default function Home() {
     handleFilterBtnSearch,
     handleFilterBtnReset,
   } = useDashboard();
+  const [checked, setChecked] = useState(false);
 
   return (
     <>
@@ -59,7 +61,18 @@ export default function Home() {
                   <Box direction="column" gap={24}>
                     <Box direction="column" gap={48}>
                       <Box direction="column" gap={0}>
+                        <Checkbox
+                          name="termsConditions"
+                          label="Accept Terms and Conditions"
+                          labelVariant="h2"
+                          checked={checked}
+                          onChange={(e) => {
+                            console.log("e", e);
+                            setChecked(e.target.checked);
+                          }}
+                        />
                         <TextStyle variant="h2" color="--color-primary">
+                          {/* Todo : Add user name */}
                           {t("dashboard_title")}
                         </TextStyle>
                         <TextStyle
@@ -112,7 +125,7 @@ export default function Home() {
                             </TextStyle>
                             <Button
                               onClick={() => {
-                                console.log("onClick");
+                                /* TODO: Add filter by user name logic */
                               }}
                               variant={"ghost-icon-secondary-no-padding"}
                               borderRadius="round"
@@ -180,7 +193,7 @@ export default function Home() {
                           </TextStyle>
                           <Button
                             onClick={() => {
-                              console.log("onClick");
+                              /* TODO: Add filter by type doc logic */
                             }}
                             variant={"ghost-icon-secondary-no-padding"}
                             borderRadius="round"
@@ -202,7 +215,7 @@ export default function Home() {
                           </TextStyle>
                           <Button
                             onClick={() => {
-                              console.log("onClick");
+                              /* TODO: Add filter by status logic */
                             }}
                             variant={"ghost-icon-secondary-no-padding"}
                             borderRadius="round"
@@ -227,6 +240,7 @@ export default function Home() {
                       page={pagination.page}
                       limit={pagination.limit}
                       count={pagination.count}
+                      maxHeightTable={"calc(100dvh - 300px)"}
                       onPageChange={(newPage) =>
                         setPagination((prev) => ({...prev, page: newPage}))
                       }
@@ -245,12 +259,23 @@ export default function Home() {
             </>
           </Box>
         </>
-
         {/* Note */}
         <>
           <Box direction="column" p={32}>
             {/* Common  Box */}
             <Box direction="column" gap={50} mt={500}>
+              {/* Common Checkbox  */}
+              <TextStyle variant="h2">Checkbox</TextStyle>
+              <Box>Checkbox</Box>
+              <>
+                <Checkbox
+                  label="Accept Terms and Conditions"
+                  checked={checked}
+                  onChange={(e) => console.log("e", e)}
+                />
+              </>
+              {/* Common Checkbox  */}
+
               {/* Common Table  */}
               <TextStyle variant="h2">Table</TextStyle>
               <Box>Table</Box>

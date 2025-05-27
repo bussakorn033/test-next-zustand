@@ -31,7 +31,7 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
           &:disabled *,
           &:disabled {
             background: var(--button-disabled-negative);
-            color: var(--button-color-disabled-negative);
+            color: var(--button-color-disabled-negative) !important;
           }
         `;
       case "secondary":
@@ -51,8 +51,8 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
           }
           &:disabled *,
           &:disabled {
-            background: var(--button-disabled-secondary);
-            color: var(--button-color-disabled-secondary);
+            background: var(--button-disabled-secondary) !important;
+            color: var(--button-color-disabled-secondary) !important;
             outline: none;
           }
           &:focus,
@@ -80,8 +80,8 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
           }
           &:disabled *,
           &:disabled {
-            background: var(--button-disabled-secondary-negative);
-            color: var(--button-color-disabled-secondary-negative);
+            background: var(--button-disabled-secondary-negative) !important;
+            color: var(--button-color-disabled-secondary-negative) !important;
             outline: none;
           }
           &:focus,
@@ -142,7 +142,7 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
             * {
               color: var(
                 --button-color-disabled-${variant.replace("-icon", "")}
-              );
+              ) !important;
             }
           }
         `;
@@ -166,7 +166,7 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
           &:disabled *,
           &:disabled {
             background: var(--button-disabled-primary);
-            color: var(--button-color-disabled-primary);
+            color: var(--button-color-disabled-primary) !important;
           }
         `;
     }

@@ -29,9 +29,6 @@ export const StyledCheckbox = styled(Box)<CheckboxProps>`
   height: ${({size}) => (size ? `${toPx(size)}` : "16px")};
   background-color: ${({checked, checkColor, disabled}) =>
     `var(${
-      // disabled
-      //   ? `--color-disabled-border`
-      //   : checked && checkColor
       checked && checkColor
         ? checkColor
         : checked
@@ -39,12 +36,7 @@ export const StyledCheckbox = styled(Box)<CheckboxProps>`
         : "--color-neutral-light"
     })`};
   border: ${({checkColor, disabled}) =>
-    `2px solid var(${
-      // disabled
-      //   ? "--color-disabled-border"
-      //   : checkColor
-      checkColor ? checkColor : "--color-primary"
-    })`};
+    `2px solid var(${checkColor ? checkColor : "--color-primary"})`};
   border-radius: 4px;
   transition: background-color 0.25s, border-color 0.25s;
 
@@ -59,8 +51,6 @@ export const StyledCheckbox = styled(Box)<CheckboxProps>`
   ${({checked, size, disabled}) =>
     checked &&
     css`
-      /* background-color: var(--color-accent);
-      border-color: var(--color-accent); */
       background-color: var(
         ${disabled ? "--color-disabled-border-checkbox" : "--color-accent"}
       );

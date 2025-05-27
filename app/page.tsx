@@ -280,10 +280,15 @@ export default function Home() {
                       setChecked(e.target.checked);
                     }}
                   />
+                  <Checkbox
+                    label="Large Checkbox (Unchecked)"
+                    checked={false}
+                  />
                   <Checkbox label="Default Checkbox (Checked)" checked={true} />
                   <Checkbox
                     label="Large Checkbox (Unchecked)"
                     checked={false}
+                    size={50}
                   />
                   <Checkbox
                     label="Default Checkbox (Checked)"
@@ -291,9 +296,9 @@ export default function Home() {
                     size={50}
                   />
                   <Checkbox
-                    label="Large Checkbox (Unchecked)"
+                    label="Disabled Checkbox (Unchecked)"
                     checked={false}
-                    size={50}
+                    disabled
                   />
                   <Checkbox
                     label="Disabled Checkbox (Checked)"
@@ -304,16 +309,11 @@ export default function Home() {
                     label="Disabled Checkbox (Unchecked)"
                     checked={false}
                     disabled
+                    size={50}
                   />
                   <Checkbox
                     label="Disabled Checkbox (Checked)"
                     checked={true}
-                    disabled
-                    size={50}
-                  />
-                  <Checkbox
-                    label="Disabled Checkbox (Unchecked)"
-                    checked={false}
                     disabled
                     size={50}
                   />

@@ -1,9 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Your existing global styles below */
-
 /* Regular */
 @font-face {
   font-family: "Ekachon";

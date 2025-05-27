@@ -59,36 +59,22 @@ export default function Home() {
               <Box direction="column">
                 <>
                   <Box direction="column" gap={24}>
-                    <Box direction="column" gap={48}>
-                      <Box direction="column" gap={0}>
-                        <TextStyle variant="h2" color="--color-primary">
-                          {/* Todo : Add user name */}
-                          {t("dashboard_title")}
-                        </TextStyle>
-                        <TextStyle
-                          variant="paragraphMedium"
-                          color="--color-neutral-grey-light"
-                        >
-                          {t("dashboard_sub_title")}
-                        </TextStyle>
-                      </Box>
-                      <Box
-                        direction="row"
-                        justifyContent="space-between"
-                        gap={24}
-                        flexWrap="wrap"
-                      >
-                        <TextStyle variant="h4" color="--color-primary">
-                          {t("dashboard_title_table")}
-                        </TextStyle>
-                        <Box direction="row" alignItems="center" gap={8}>
-                          <Button variant="ghost-primary" iconLeft="refresh">
-                            {t("dashboard_btn_refresh")}
-                          </Button>
-                          <Button variant="primary" iconLeft="plus">
-                            {t("dashboard_btn_create_contract")}
-                          </Button>
-                        </Box>
+                    <Box
+                      direction="row"
+                      justifyContent="space-between"
+                      gap={24}
+                      flexWrap="wrap"
+                    >
+                      <TextStyle variant="h4" color="--color-primary">
+                        {t("dashboard_title_table")}
+                      </TextStyle>
+                      <Box direction="row" alignItems="center" gap={8}>
+                        <Button variant="ghost-primary" iconLeft="refresh">
+                          {t("dashboard_btn_refresh")}
+                        </Button>
+                        <Button variant="primary" iconLeft="plus">
+                          {t("dashboard_btn_create_contract")}
+                        </Button>
                       </Box>
                     </Box>
 
@@ -119,14 +105,10 @@ export default function Home() {
                               }}
                               variant={"ghost-icon-secondary-no-padding"}
                               borderRadius="round"
-                            >
-                              <Icon
-                                icon="arrow_down"
-                                color="--color-primary"
-                                width={16}
-                                height={16}
-                              />
-                            </Button>
+                              iconLeft="arrow_up"
+                              sizeIcon={16}
+                              colorIcon="--color-primary"
+                            />
                           </Box>
                           <Box direction="row" alignItems="center" gap={12}>
                             <TextField
@@ -187,14 +169,10 @@ export default function Home() {
                             }}
                             variant={"ghost-icon-secondary-no-padding"}
                             borderRadius="round"
-                          >
-                            <Icon
-                              icon="arrow_down"
-                              color="--color-primary"
-                              width={16}
-                              height={16}
-                            />
-                          </Button>
+                            iconLeft="arrow_up"
+                            sizeIcon={16}
+                            colorIcon="--color-primary"
+                          />
                         </Box>
                         <Box direction="row" alignItems="center" gap={8}>
                           <TextStyle
@@ -209,14 +187,10 @@ export default function Home() {
                             }}
                             variant={"ghost-icon-secondary-no-padding"}
                             borderRadius="round"
-                          >
-                            <Icon
-                              icon="arrow_down"
-                              color="--color-primary"
-                              width={16}
-                              height={16}
-                            />
-                          </Button>
+                            iconLeft="arrow_up"
+                            sizeIcon={16}
+                            colorIcon="--color-primary"
+                          />
                         </Box>
                       </Box>
                     </Box>
@@ -226,11 +200,11 @@ export default function Home() {
                     <Table
                       headers={headers}
                       values={values}
+                      maxHeightTable={"calc(100dvh - 300px)"}
                       optionPagination={optionPagination}
                       page={pagination.page}
                       limit={pagination.limit}
                       count={pagination.count}
-                      maxHeightTable={"calc(100dvh - 300px)"}
                       onPageChange={(newPage) =>
                         setPagination((prev) => ({...prev, page: newPage}))
                       }

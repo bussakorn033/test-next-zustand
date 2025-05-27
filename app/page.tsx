@@ -245,6 +245,15 @@ export default function Home() {
                   py={24}
                 >
                   <Checkbox
+                    label=""
+                    name="checkbox-gender"
+                    checked={checked}
+                    onChange={(e) => {
+                      console.log(e);
+                      setChecked(e.target.checked);
+                    }}
+                  />
+                  <Checkbox
                     label="Default Checkbox"
                     name="checkbox-gender"
                     checked={checked}

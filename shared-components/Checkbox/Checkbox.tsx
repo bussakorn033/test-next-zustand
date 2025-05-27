@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import {forwardRef} from "react";
 import {TextStyle} from "../TextStyle";
-import * as S from "./sCheckbox.styled";
+import * as S from "./Checkbox.styled";
 import {CheckboxProps} from "./Checkbox.types";
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(

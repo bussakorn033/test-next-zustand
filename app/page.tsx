@@ -257,7 +257,6 @@ export default function Home() {
             <Box direction="column" gap={50} mt={500}>
               {/* Common Checkbox  */}
               <TextStyle variant="h2">Checkbox</TextStyle>
-              <Box>Checkbox</Box>
               <>
                 <Box
                   bgColor="--color-bg-primary"

@@ -1,12 +1,13 @@
-import classNames from "classnames";
-import {t} from "i18next";
-import {forwardRef, useEffect, useRef, useState} from "react";
-import {Box} from "../Box";
-import {Button} from "../Button";
-import Icon from "../Icon/Icon";
-import {TextStyle} from "../TextStyle";
-import * as S from "./Table.styled";
-import {TableProps} from "./Table.types";
+import classNames from 'classnames';
+import { t } from 'i18next';
+import { forwardRef, useEffect, useRef, useState } from 'react';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import Icon from '../Icon/Icon';
+import { TextStyle } from '../TextStyle';
+import * as S from './Table.styled';
+import { TableProps } from './Table.types';
+import { InputDropdown } from '../InputDropdown';
 
 export const Table = forwardRef<HTMLElement | undefined, TableProps>(
   (
@@ -14,33 +15,34 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
       className,
       headers = [],
       values = [],
+      minHeightTable = 'unset',
       maxHeightTable = 350,
-      optionPagination = [25, 50, 100],
+      paginationOptions = [],
       page = 1,
-      limit = 1,
+      limit = 50,
       count = 1,
       onPageChange,
       onLimitChange,
       isPaginationDisabled = false,
-      mode = "dark",
-      size = "lg",
+      mode = 'dark',
+      size = 'lg',
       ...rest
     }: TableProps,
-    ref,
+    ref
   ) => {
-    const classnames = classNames(className, "ds-ui-table");
+    const classnames = classNames(className, 'ds-ui-table');
 
     const bodyRef = useRef<HTMLDivElement>(null);
-    const [key, setKey] = useState<string | undefined>("");
+    const [key, setKey] = useState<string | undefined>('');
     const [sortColumnIndex, setSortColumnIndex] = useState<number>(-1);
-    const [sortDirection, setSortDirection] = useState<
-      "asc" | "desc" | "sorting" | undefined
-    >(undefined);
+    const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | 'sorting' | undefined>(
+      undefined
+    );
 
-    const getSortIcon = (sortBy?: "asc" | "desc" | "sorting" | undefined) => {
-      if (sortBy === "asc") return "sort_ascending";
-      if (sortBy === "desc") return "sort_descending";
-      return "sorting";
+    const getSortIcon = (sortBy?: 'asc' | 'desc' | 'sorting' | undefined) => {
+      if (sortBy === 'asc') return 'sort_ascending';
+      if (sortBy === 'desc') return 'sort_descending';
+      return 'sorting';
     };
 
     const handleScrollTableToTop = () => {
@@ -53,16 +55,14 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
     useEffect(() => {
       if (!headers || headers.length === 0) return;
 
-      const firstSortableIndex = headers.findIndex(
-        (col) => col?.isSort && col?.sortBy,
-      );
+      const firstSortableIndex = headers.findIndex((col) => col?.isSort && col?.sortBy);
 
       if (firstSortableIndex !== -1) {
         const initialKey = headers[firstSortableIndex].key as string;
         const initialSortBy = headers[firstSortableIndex].sortBy as
-          | "asc"
-          | "desc"
-          | "sorting"
+          | 'asc'
+          | 'desc'
+          | 'sorting'
           | undefined;
 
         setKey(initialKey);
@@ -74,79 +74,64 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           row: 0,
           col: firstSortableIndex,
           sortBy: initialSortBy,
-          ...headers[firstSortableIndex],
+          ...headers[firstSortableIndex]
         });
       }
       return () => {
-        setKey("");
+        setKey('');
         setSortColumnIndex(-1);
         setSortDirection(undefined);
       };
     }, []);
 
     return (
-      <S.Table className={classnames} {...rest}>
+      <S.Table className={classnames} direction='column' {...rest}>
         <Box
-          direction="column"
-          color="--color-table-border-dark"
-          bgColor="--color-neutral-light"
-          borderColor={
-            mode === "dark"
-              ? "--color-table-border-dark"
-              : "--color-table-border-light"
-          }
-          border="all"
+          direction='column'
+          color='--color-table-border-dark'
+          bgColor='--color-neutral-light'
+          borderColor={mode === 'dark' ? '--color-table-border-dark' : '--color-table-border-light'}
+          border='all'
           borderWidth={1}
-          borderRadius={mode === "dark" ? "md" : "none"}
-          overflow="hidden"
+          borderRadius={mode === 'dark' ? 'md' : 'none'}
+          overflow='hidden'
         >
-          <Box direction="column">
-            <Box
-              direction="column"
-              overflowY="hidden"
-              overflowX="auto"
-              fullWidth
-            >
+          <Box direction='column'>
+            <Box direction='column' overflowY='hidden' overflowX='auto' fullWidth>
               {/* Header */}
               <Box
-                direction="row"
-                bgColor="--color-table-header-dark"
-                position="sticky"
+                direction='row'
+                bgColor='--color-table-header-dark'
+                position='sticky'
                 top={0}
                 zIndex={900}
               >
                 {headers.map((col, index) => (
                   <Box
                     key={index}
-                    direction="row"
-                    alignItems="center"
-                    alignContent="center"
+                    direction='row'
+                    alignItems='center'
+                    alignContent='center'
                     bgColor={
-                      mode === "dark"
-                        ? "--color-table-header-dark"
-                        : "--color-table-header-light"
+                      mode === 'dark' ? '--color-table-header-dark' : '--color-table-header-light'
                     }
-                    border="bottom"
+                    border='bottom'
                     borderWidth={1}
-                    p={size === "lg" ? "8px" : "2px"}
+                    p={size === 'lg' ? '8px' : '2px'}
                     gap={4}
                     flex={col?.flex || 1}
-                    minWidth={col?.minWidth || "100px"}
+                    minWidth={col?.minWidth || '100px'}
                     maxWidth={col?.maxWidth || undefined}
                   >
                     <TextStyle
-                      variant="labelSmallBold"
-                      color={
-                        mode === "dark"
-                          ? "--color-primary"
-                          : "--color-neutral-grey-light"
-                      }
+                      variant='labelSmallBold'
+                      color={mode === 'dark' ? '--color-primary' : '--color-neutral-grey-light'}
                       limitLine={1}
-                      width={col?.isSort ? "fit-content" : "100%"}
-                      height="100%"
-                      alignContent={"center"}
-                      textAlign={col.alignHeader || "left"}
-                      wordBreak="break-all"
+                      width={col?.isSort ? 'fit-content' : '100%'}
+                      height='100%'
+                      alignContent={'center'}
+                      textAlign={col.alignHeader || 'left'}
+                      wordBreak='break-all'
                     >
                       {col?.value}
                     </TextStyle>
@@ -157,15 +142,10 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 
                           if (!col?.isSort) return;
 
-                          let nextDirection: "asc" | "desc" = "asc";
+                          let nextDirection: 'asc' | 'desc' = 'asc';
 
                           if (sortColumnIndex === index) {
-                            console.log(
-                              `---- sortColumnIndex:`,
-                              sortColumnIndex,
-                            );
-                            nextDirection =
-                              sortDirection === "asc" ? "desc" : "asc";
+                            nextDirection = sortDirection === 'asc' ? 'desc' : 'asc';
                           }
 
                           setKey(col?.key);
@@ -175,7 +155,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                           // Reset sortBy on all other columns
                           headers.forEach((header, idx) => {
                             if (idx !== index && header.isSort) {
-                              header.sortBy = "sorting";
+                              header.sortBy = 'sorting';
                             }
                           });
 
@@ -185,24 +165,16 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                             row: 0,
                             col: index,
                             sortBy: nextDirection,
-                            ...col,
+                            ...col
                           });
                           handleScrollTableToTop();
                         }}
-                        variant="ghost-primary-no-padding"
-                        borderRadius="round"
+                        variant='ghost-primary-no-padding'
+                        borderRadius='round'
                       >
                         <Icon
-                          icon={getSortIcon(
-                            sortColumnIndex === index
-                              ? sortDirection
-                              : undefined,
-                          )}
-                          color={
-                            mode === "dark"
-                              ? "--color-primary"
-                              : "--color-neutral-grey-light"
-                          }
+                          icon={getSortIcon(sortColumnIndex === index ? sortDirection : undefined)}
+                          color={mode === 'dark' ? '--color-primary' : '--color-neutral-grey-light'}
                           width={16}
                           height={16}
                         />
@@ -214,47 +186,43 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
               {/* Header */}
 
               {/* Body */}
-              <Box display="inline-table" tag="table" width="100%">
+              <Box display='inline-table' tag='table' width='100%'>
                 <Box
-                  direction="column"
+                  direction='column'
                   maxHeight={maxHeightTable}
                   fullWidth
-                  overflowY="auto"
-                  overflowX="hidden"
+                  overflowY='auto'
+                  overflowX='hidden'
                   ref={bodyRef}
                 >
                   {!!values.length ? (
-                    <Box direction="column" fullWidth>
+                    <Box direction='column' fullWidth>
                       {values.map((item, rowIndex) => (
-                        <Box key={rowIndex} direction="row" height="100%" m={0}>
+                        <Box key={rowIndex} direction='row' height='100%' m={0}>
                           {item.map((col, colIndex) => {
-                            const cell = col || {value: ""};
+                            const cell = col || { value: '' };
 
                             return (
                               <Box
                                 key={colIndex}
-                                role={col?.onClick ? "button" : "div"}
+                                role={col?.onClick ? 'button' : 'div'}
                                 borderWidth={1}
-                                border={mode === "dark" ? "top" : "bottom"}
-                                alignContent="center"
+                                border={mode === 'dark' ? 'top' : 'bottom'}
+                                alignContent='center'
                                 justifyContent={cell.align}
-                                p={size === "lg" ? "16px 8px" : "2px"}
+                                p={size === 'lg' ? '16px 8px' : '2px'}
                                 flex={headers[colIndex]?.flex || 1}
-                                minWidth={
-                                  headers[colIndex]?.minWidth || "100px"
-                                }
-                                maxWidth={
-                                  headers[colIndex]?.maxWidth || undefined
-                                }
+                                minWidth={headers[colIndex]?.minWidth || '100px'}
+                                maxWidth={headers[colIndex]?.maxWidth || undefined}
                                 fullWidth
                               >
                                 <TextStyle
-                                  variant="paragraphSmallTable"
-                                  color="--color-primary"
-                                  textAlign={cell.align || "left"}
+                                  variant='paragraphSmallTable'
+                                  color='--color-primary'
+                                  textAlign={cell.align || 'left'}
                                   limitLine={1}
-                                  height="100%"
-                                  alignContent="center"
+                                  height='100%'
+                                  alignContent='center'
                                   justifyContent={cell.align}
                                   alignItems={cell.align}
                                 >
@@ -267,11 +235,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                       ))}
                     </Box>
                   ) : (
-                    <Box direction="row" justifyContent="center" fullWidth>
+                    <Box direction='row' justifyContent='center' fullWidth>
                       <TextStyle
-                        variant="paragraphSmallTable"
-                        color="--color-primary"
-                        textAlign="center"
+                        variant='paragraphSmallTable'
+                        color='--color-primary'
+                        textAlign='center'
                       >
                         NotFound
                       </TextStyle>
@@ -286,105 +254,61 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
           {/* Footer */}
           {!isPaginationDisabled && (
             <Box
-              direction="row"
-              alignItems="center"
-              justifyContent="end"
+              direction='row'
+              alignItems='center'
+              justifyContent='end'
               borderWidth={1}
-              border="top"
+              border='top'
               gap={24}
-              color="--color-table-border-dark"
+              color='--color-table-border-dark'
               p={8}
             >
               {/* Limit Selector */}
-              <Box direction="row" alignItems="center" gap={8}>
+              <Box direction='row' alignItems='center' gap={8}>
                 <TextStyle
-                  variant="paragraphXSmall"
-                  color="--color-neutral-grey-light"
-                  alignContent="center"
+                  variant='paragraphXSmall'
+                  color='--color-neutral-grey-light'
+                  alignContent='center'
                 >
-                  {t("dashboard_contract_table_footer_limit")}
+                  {t('dashboard_contract_table_footer_limit')}
                 </TextStyle>
-                <Box direction="row" alignItems="center" gap={8}>
-                  <TextStyle
-                    variant="labelSmallBold"
-                    color="--color-primary"
-                    alignContent="center"
-                  >
-                    {limit}
-                  </TextStyle>
-                  <Button
-                    onClick={() => {
+                <Box direction='row' alignItems='center' gap={8}>
+                  <InputDropdown
+                    label={
+                      <TextStyle variant='labelSmallBold' color='--color-primary'>
+                        {limit}
+                      </TextStyle>
+                    }
+                    variant='primary'
+                    menuItems={paginationOptions}
+                    activeMenu={limit.toString()}
+                    onSelect={(item) => {
+                      if (onLimitChange) {
+                        onLimitChange(Number(item.label));
+                      }
                       handleScrollTableToTop();
                     }}
-                    variant="ghost-primary-no-padding"
-                    borderRadius="round"
-                  >
-                    <Icon
-                      icon="arrow_down"
-                      width={16}
-                      height={16}
-                      color="--color-primary"
-                    />
-                  </Button>
-                  <Box
-                    direction="row"
-                    alignItems="center"
-                    gap={8}
-                    borderWidth={1}
-                    borderRadius="xl"
-                  >
-                    <Box
-                      direction="column"
-                      alignItems="center"
-                      gap={8}
-                      borderWidth={1}
-                      border="bottom"
-                      borderRadius="xl"
-                    >
-                      {[...optionPagination].map(
-                        (option) =>
-                          option !== limit && (
-                            <Box
-                              key={option}
-                              role="button"
-                              onClick={() => {
-                                if (limit !== option) {
-                                  onLimitChange?.(option);
-                                  handleScrollTableToTop();
-                                }
-                              }}
-                              borderRadius="round"
-                            >
-                              <TextStyle
-                                variant="labelSmallBold"
-                                color="--color-primary"
-                              >
-                                {option}
-                              </TextStyle>
-                            </Box>
-                          ),
-                      )}
-                    </Box>
-                  </Box>
+                    minWidth={55}
+                  />
                 </Box>
               </Box>
 
               {/* Page Info */}
-              <Box direction="row" alignItems="center" gap={8}>
+              <Box direction='row' alignItems='center' gap={8}>
                 <TextStyle
-                  variant="paragraphXSmall"
-                  color="--color-neutral-grey-light"
-                  alignContent="center"
+                  variant='paragraphXSmall'
+                  color='--color-neutral-grey-light'
+                  alignContent='center'
                 >
                   {`${(page - 1) * limit + 1}-${Math.min(
                     page * limit,
-                    count,
-                  )} ${t("dashboard_contract_table_footer_to")} ${count}`}
+                    count
+                  )} ${t('dashboard_contract_table_footer_to')} ${count}`}
                 </TextStyle>
               </Box>
 
               {/* Pagination Buttons */}
-              <Box direction="row" alignItems="center" gap={8}>
+              <Box direction='row' alignItems='center' gap={8}>
                 <Button
                   onClick={() => {
                     const newPage = page - 1;
@@ -393,19 +317,17 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     }
                     handleScrollTableToTop();
                   }}
-                  variant="ghost-secondary-no-padding"
-                  borderRadius="round"
-                  iconLeft={"arrow_left"}
+                  variant='ghost-secondary-no-padding'
+                  borderRadius='round'
+                  iconLeft={'arrow_left'}
                   sizeIcon={24}
                   colorIcon={
                     page <= 1 || isPaginationDisabled
-                      ? "--color-neutral-grey-lighter"
-                      : "--color-primary"
+                      ? '--color-neutral-grey-lighter'
+                      : '--color-primary'
                   }
                   disabled={page <= 1 || isPaginationDisabled}
-                >
-                  {/* <Icon icon='arrow_left' width={24} height={24} color='--color-primary' /> */}
-                </Button>
+                ></Button>
 
                 <Button
                   onClick={() => {
@@ -416,30 +338,26 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
                     }
                     handleScrollTableToTop();
                   }}
-                  variant="ghost-secondary-no-padding"
-                  borderRadius="round"
-                  iconLeft={"arrow_right"}
+                  variant='ghost-secondary-no-padding'
+                  borderRadius='round'
+                  iconLeft={'arrow_right'}
                   sizeIcon={24}
                   colorIcon={
                     page >= Math.ceil(count / limit) || isPaginationDisabled
-                      ? "--color-neutral-grey-lighter"
-                      : "--color-primary"
+                      ? '--color-neutral-grey-lighter'
+                      : '--color-primary'
                   }
-                  disabled={
-                    page >= Math.ceil(count / limit) || isPaginationDisabled
-                  }
-                >
-                  {/* <Icon icon='arrow_right' width={24} height={24} color='--color-primary' /> */}
-                </Button>
+                  disabled={page >= Math.ceil(count / limit) || isPaginationDisabled}
+                ></Button>
               </Box>
             </Box>
           )}
         </Box>
       </S.Table>
     );
-  },
+  }
 );
 
-Table.displayName = "Table";
+Table.displayName = 'Table';
 
 export default Table;

@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN } from "@/constants";
+import { ACCESS_TOKEN } from '@/constants';
 
 export function useAccessToken() {
   return new Promise((resolve) => {

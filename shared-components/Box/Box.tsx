@@ -1,29 +1,29 @@
-import classNames from "classnames";
-import {forwardRef} from "react";
-import * as S from "./Box.styled";
-import {BoxProps} from "./Box.types";
+import classNames from 'classnames';
+import { forwardRef } from 'react';
+import * as S from './Box.styled';
+import { BoxProps } from './Box.types';
 
 export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
   (
     {
-      tag = "div",
-      display = "flex",
-      direction = "none",
+      tag = 'div',
+      display = 'flex',
+      direction = 'none',
       fullWidth,
       fullHeight,
-      boxShadow = "none",
-      border = "all",
+      boxShadow = 'none',
+      border = 'all',
       borderWidth = 0,
-      borderRadius = "none",
+      borderRadius = 'none',
       hover,
       className,
       children,
       ...rest
     }: BoxProps,
-    ref,
+    ref
   ) => {
-    const classnames = classNames(className, "ds-ui-box");
-    const {bgColor, color, borderColor} = rest;
+    const classnames = classNames(className, 'ds-ui-box');
+    const { bgColor, color, borderColor } = rest;
 
     return (
       <S.Box
@@ -43,18 +43,18 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
         style={
           {
             ...rest.style,
-            "--text-bg-color": bgColor && `var(${bgColor})`,
-            "--text-color": color && `var(${color})`,
-            "--text-border-color": borderColor && `var(${borderColor})`,
+            '--text-bg-color': bgColor && `var(${bgColor})`,
+            '--text-color': color && `var(${color})`,
+            '--text-border-color': borderColor && `var(${borderColor})`
           } as React.CSSProperties
         }
       >
         {children}
       </S.Box>
     );
-  },
+  }
 );
 
-Box.displayName = "Box";
+Box.displayName = 'Box';
 
 export default Box;

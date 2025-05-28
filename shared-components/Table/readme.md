@@ -11,7 +11,7 @@ import {Table} from "@/shared-components/Table";
   maxHeightTable={"200px"}
   headers={headers}
   values={values}
-  optionPagination={optionPagination}
+  paginationOptions={paginationOptions}
   page={pagination.page}
   limit={pagination.limit}
   count={pagination.count}
@@ -21,11 +21,11 @@ import {Table} from "@/shared-components/Table";
 />;
 
 
-const {optionPagination, pagination, setPagination, headers, values} =
+const {paginationOptions, pagination, setPagination, headers, values} =
     useDashboard();
 
 
-  const optionPagination = [25, 50, 100];
+  const paginationOptions = [25, 50, 100];
   const [pagination, setPagination] = useState<Pagination>({
     page: 1,
     limit: 10,

@@ -1,2 +1,2 @@
-export {default as TextStyle} from "./TextStyle";
-export type {TextStyleProps} from "./TextStyle.types";
+export { default as TextStyle } from './TextStyle';
+export type { TextStyleProps } from './TextStyle.types';

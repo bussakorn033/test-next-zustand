@@ -1,6 +1,6 @@
-import {StateCreator} from "zustand";
-import {BearState} from "./bearSlice";
-import {SharedState} from "./sharedSlice";
+import { StateCreator } from 'zustand';
+import { BearState } from './bearSlice';
+import { SharedState } from './sharedSlice';
 
 export interface FishState {
   fishes: number;
@@ -8,19 +8,17 @@ export interface FishState {
   eatBear: () => void;
 }
 
-export const fishSlice: StateCreator<
-  BearState & FishState & SharedState,
-  [],
-  [],
-  FishState
-> = (set, get) => ({
+export const fishSlice: StateCreator<BearState & FishState & SharedState, [], [], FishState> = (
+  set,
+  get
+) => ({
   fishes: 0,
   addFish: () => {
-    set((state) => ({fishes: state.fishes + 1}));
+    set((state) => ({ fishes: state.fishes + 1 }));
     get().calculateBearAndFish();
   },
   eatBear: () => {
-    set((state) => ({bears: state.bears - 1}));
+    set((state) => ({ bears: state.bears - 1 }));
     get().calculateBearAndFish();
-  },
+  }
 });

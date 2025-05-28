@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import i18n from "i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import {initReactI18next} from "react-i18next";
+import i18n from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import { initReactI18next } from 'react-i18next';
 
-import translationEN from "./public/static/locales/en/common.json";
-import translationTH from "./public/static/locales/th/common.json";
+import translationEN from './public/static/locales/en/common.json';
+import translationTH from './public/static/locales/th/common.json';
 
 const resources = {
-  en: {translation: translationEN},
-  th: {translation: translationTH},
+  en: { translation: translationEN },
+  th: { translation: translationTH }
 };
 
 i18n
@@ -17,10 +17,10 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: "en",
+    fallbackLng: 'en',
     interpolation: {
-      escapeValue: false,
-    },
+      escapeValue: false
+    }
   });
 
 export default i18n;

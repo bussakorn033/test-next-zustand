@@ -96,7 +96,7 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   minHeight?: string | number;
   maxHeight?: string | number;
 
-  position?: "static" | "relative" | "absolute" | "fixed" | "sticky" | string;
+  position?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky' | string;
   zIndex?: string | number;
   top?: string | number;
   bottom?: string | number;
@@ -104,45 +104,32 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   right?: string | number;
 
   flex?: string | number;
-  flexWrap?: "nowrap" | "wrap" | "wrap-reverse" | string;
+  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string;
   column?: number;
-  direction?:
-    | "none"
-    | "row"
-    | "row-reverse"
-    | "row-wrap"
-    | "column"
-    | "column-reverse"
-    | string;
+  direction?: 'none' | 'row' | 'row-reverse' | 'row-wrap' | 'column' | 'column-reverse' | string;
 
   display?:
-    | "flex"
-    | "grid"
-    | "inline"
-    | "inline-block"
-    | "inline-flex"
-    | "inline-grid"
-    | "block"
-    | "table"
-    | "contents"
-    | "none"
+    | 'flex'
+    | 'grid'
+    | 'inline'
+    | 'inline-block'
+    | 'inline-flex'
+    | 'inline-grid'
+    | 'block'
+    | 'table'
+    | 'contents'
+    | 'none'
     | string;
-  boxSizing?: "border-box" | "content-box" | string;
+  boxSizing?: 'border-box' | 'content-box' | string;
 
-  overflow?: "auto" | "scroll" | "hidden" | "visible";
-  overflowX?: "auto" | "scroll" | "hidden" | "visible";
-  overflowY?: "auto" | "scroll" | "hidden" | "visible";
+  overflow?: 'auto' | 'scroll' | 'hidden' | 'visible';
+  overflowX?: 'auto' | 'scroll' | 'hidden' | 'visible';
+  overflowY?: 'auto' | 'scroll' | 'hidden' | 'visible';
 
-  textAlign?: "left" | "center" | "right";
-  alignItems?: "start" | "center" | "end" | "baseline" | string;
-  alignContent?: "start" | "center" | "end" | "baseline" | string;
-  justifyContent?:
-    | "start"
-    | "center"
-    | "end"
-    | "space-between"
-    | "space-around"
-    | string;
+  textAlign?: 'left' | 'center' | 'right';
+  alignItems?: 'start' | 'center' | 'end' | 'baseline' | string;
+  alignContent?: 'start' | 'center' | 'end' | 'baseline' | string;
+  justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | string;
 
   p?: string | number;
   px?: string | number;
@@ -164,14 +151,14 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
   gapColumn?: string | number;
 
   className?: string;
-  bgColor?: "--color-error" | "#f00" | "red" | string;
-  color?: "--color-error" | "#f00" | "red" | string;
-  border?: "all" | "top" | "bottom";
+  bgColor?: '--color-error' | '#f00' | 'red' | string;
+  color?: '--color-error' | '#f00' | 'red' | string;
+  border?: 'all' | 'top' | 'bottom';
   borderWidth?: 0 | 1 | 2;
-  borderColor?: "--color-error" | "#f00" | "red" | string;
-  borderRadius?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "circle" | string;
-  boxShadow?: "none" | "top" | "bottom";
+  borderColor?: '--color-error' | '#f00' | 'red' | string;
+  borderRadius?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'circle' | string;
+  boxShadow?: 'none' | 'top' | 'bottom';
 
   limit?: number;
-  pointerEvents?: "none" | "auto" | "all" | string;
+  pointerEvents?: 'none' | 'auto' | 'all' | string;
 }

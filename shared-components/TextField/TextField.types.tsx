@@ -34,31 +34,14 @@
  * @param [key: string] - Additional custom properties.
  */
 
-export interface TextFieldProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   value?: string | number;
   label?: string;
   labelHelping?: string;
   placeholder?: string;
-  type?:
-    | "text"
-    | "tel"
-    | "number"
-    | "amount"
-    | "email"
-    | "password"
-    | "card-id"
-    | "laser-card";
-  keyboard?:
-    | "none"
-    | "text"
-    | "numeric"
-    | "decimal"
-    | "tel"
-    | "search"
-    | "email"
-    | "url";
+  type?: 'text' | 'tel' | 'number' | 'amount' | 'email' | 'password' | 'card-id' | 'laser-card';
+  keyboard?: 'none' | 'text' | 'numeric' | 'decimal' | 'tel' | 'search' | 'email' | 'url';
   helpingText?: string;
   errorMessage?: string;
   suffix?: string;
@@ -67,7 +50,7 @@ export interface TextFieldProps
   half?: boolean;
   maxLength?: number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  variant?: "amount" | "amount-transaction" | "search";
+  variant?: 'amount' | 'amount-transaction' | 'search';
   className?: string;
   helpingTextRight?: string;
   focus?: boolean;

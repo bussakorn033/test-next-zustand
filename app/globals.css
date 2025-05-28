@@ -1,12 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /* Regular */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-Regular.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-Regular.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-Regular.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-Regular.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-Regular.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -14,10 +16,11 @@
 
 /* Regular Italic */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-Italic.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-Italic.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-Italic.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-Italic.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-Italic.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-Italic.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -25,10 +28,11 @@
 
 /* Extra Light */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-ExtraLight.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-ExtraLight.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-ExtraLight.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-ExtraLight.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-ExtraLight.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-ExtraLight.ttf') format('truetype');
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -36,10 +40,11 @@
 
 /* Extra Light Italic */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-ExtraLightItalic.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-ExtraLightItalic.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-ExtraLightItalic.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-ExtraLightItalic.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-ExtraLightItalic.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-ExtraLightItalic.ttf') format('truetype');
   font-weight: 200;
   font-style: italic;
   font-display: swap;
@@ -47,10 +52,11 @@
 
 /* Light */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-Light.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-Light.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-Light.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-Light.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-Light.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -58,10 +64,11 @@
 
 /* Light Italic */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-LightItalic.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-LightItalic.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-LightItalic.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-LightItalic.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-LightItalic.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-LightItalic.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -69,10 +76,11 @@
 
 /* Medium */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-Medium.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-Medium.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-Medium.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-Medium.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-Medium.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -80,10 +88,11 @@
 
 /* Bold */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-Bold.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-Bold.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-Bold.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-Bold.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-Bold.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -91,10 +100,11 @@
 
 /* Bold Italic */
 @font-face {
-  font-family: "Ekachon";
-  src: url("/fonts/Ekachon/Ekachon-BoldItalic.woff2") format("woff2"),
-    url("/fonts/Ekachon/Ekachon-BoldItalic.woff") format("woff"),
-    url("/fonts/Ekachon/Ekachon-BoldItalic.ttf") format("truetype");
+  font-family: 'Ekachon';
+  src:
+    url('/fonts/Ekachon/Ekachon-BoldItalic.woff2') format('woff2'),
+    url('/fonts/Ekachon/Ekachon-BoldItalic.woff') format('woff'),
+    url('/fonts/Ekachon/Ekachon-BoldItalic.ttf') format('truetype');
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -123,6 +133,10 @@
   --color-danger: #dc3545; /* Error red */
   --color-warning: #ffc107; /* Warning yellow */
   --color-info: #17a2b8; /* Info blue */
+  --color-toast-error: #da2110;
+  --color-toast-success: #1eb950;
+  --color-toast-warning: #feae00;
+  --color-toast-info: #65b2e8;
 
   /* Text Colors */
   --text-primary-dark: var(--color-neutral-dark);
@@ -231,6 +245,10 @@
   /* Border */
   --color-border-light: #dfe6ec;
   --color-border-tertiary: #f3f7f8;
+  --color-toast-border-error: #da2110;
+  --color-toast-border-success: #1eb950;
+  --color-toast-border-warning: #feae00;
+  --color-toast-border-info: #b0bccb;
 
   /* BG */
   --color-pill-bg-default: #f5f6f7;
@@ -242,6 +260,10 @@
   --color-pill-bg-information: #eff7fc;
   --color-pill-bg-success: #e8f8ed;
   --color-pill-bg-primary: #e5edfd;
+  --color-toast-bg-error: #fbe8e7;
+  --color-toast-bg-success: #e8f8ed;
+  --color-toast-bg-warning: #fef6e5;
+  --color-toast-bg-info: #eff7fc;
 
   /* Font Weights */
   --font-weight-extra-light: 200;
@@ -328,17 +350,19 @@
   /* Border Radius */
   --radius-none: 0px;
   --radius-normal: 10px;
+  --radius-small: 12px;
   --radius-round: 999999px;
   --radius-circle: 100%;
 
   /* Font Family */
-  --font-family-primary: "Ekachon", system-ui, sans-serif;
+  --font-family-primary: 'Ekachon', system-ui, sans-serif;
 }
 
 /* Apply font family globally */
 html,
 body {
   font-family: var(--font-family-primary);
+  background-color: var(--color-bg-primary);
   margin: 0;
   padding: 0;
 }
@@ -346,6 +370,10 @@ body {
 table {
   border: 0;
   border-spacing: 0;
+}
+td,
+tr {
+  border: none;
 }
 
 input:-webkit-autofill,

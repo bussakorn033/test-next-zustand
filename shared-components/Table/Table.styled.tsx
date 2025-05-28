@@ -1,7 +1,5 @@
-import styled, {css} from "styled-components";
-import {TableProps} from "./Table.types";
+import styled from 'styled-components';
+import { Box } from '../Box';
+import { TableProps } from './Table.types';
 
-export const Table = styled.div<TableProps>`
-  display: flex;
-  flex-direction: column;
-`;
+export const Table = styled(Box)<TableProps>``;

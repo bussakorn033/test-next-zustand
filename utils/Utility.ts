@@ -15,17 +15,10 @@
  * parseCurrency(null as any)   // "0.00"
  */
 export const parseCurrency = (value: string) =>
-  new Intl.NumberFormat("th-TH", {
+  new Intl.NumberFormat('th-TH', {
     minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(
-    parseFloat(
-      String(value === "" || !value ? "0.00" : value || "0.00").replace(
-        /,/g,
-        "",
-      ),
-    ),
-  );
+    maximumFractionDigits: 2
+  }).format(parseFloat(String(value === '' || !value ? '0.00' : value || '0.00').replace(/,/g, '')));
 
 /**
  * Formats a string number into Thai currency format **without decimal places**.
@@ -44,14 +37,10 @@ export const parseCurrency = (value: string) =>
  * parseCurrencyWithoutDecimal(null as any)    // "0"
  */
 export const parseCurrencyWithoutDecimal = (value: string) =>
-  new Intl.NumberFormat("th-TH", {
+  new Intl.NumberFormat('th-TH', {
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(
-    parseInt(
-      String(value === "" || !value ? "0" : value || "0").replace(/,/g, ""),
-    ),
-  );
+    maximumFractionDigits: 0
+  }).format(parseInt(String(value === '' || !value ? '0' : value || '0').replace(/,/g, '')));
 
 /**
  * Converts a snake_case string to camelCase.
@@ -86,15 +75,14 @@ export function toCamelCase(str: string): string {
  * convertKeysToCamelCase({ user_id: 1, user_info: { first_name: 'John' } })
  */
 export const convertKeysToCamelCase = <T>(obj: T): KeysToCamelCase<T> => {
-  if (typeof obj !== "object" || obj === null) return obj as KeysToCamelCase<T>;
-  if (Array.isArray(obj))
-    return obj.map(convertKeysToCamelCase) as KeysToCamelCase<T>;
+  if (typeof obj !== 'object' || obj === null) return obj as KeysToCamelCase<T>;
+  if (Array.isArray(obj)) return obj.map(convertKeysToCamelCase) as KeysToCamelCase<T>;
 
   return Object.fromEntries(
     Object.entries(obj as Record<string, unknown>).map(([key, value]) => [
       toCamelCase(key),
-      convertKeysToCamelCase(value),
-    ]),
+      convertKeysToCamelCase(value)
+    ])
   ) as KeysToCamelCase<T>;
 };
 
@@ -113,7 +101,7 @@ export const convertKeysToCamelCase = <T>(obj: T): KeysToCamelCase<T> => {
  * removeComma("")            // ""
  */
 export function removeComma(str: string): string {
-  return str.replace(/,/g, "");
+  return str.replace(/,/g, '');
 }
 
 /**
@@ -135,10 +123,7 @@ export function removeComma(str: string): string {
  * // Only "World" will be logged after 300ms if called in quick succession.
  * ```
  */
-export const debounce = <F extends (...args: Parameters<F>) => ReturnType<F>>(
-  func: F,
-  wait: number,
-) => {
+export const debounce = <F extends (...args: Parameters<F>) => ReturnType<F>>(func: F, wait: number) => {
   let timeout: NodeJS.Timeout;
 
   const debounced = (...args: Parameters<F>) => {
@@ -192,7 +177,7 @@ export function throttle(func: (...args: any[]) => void, limit: number) {
  * ```
  */
 export const toPx = (value: number | string): string =>
-  typeof value === "number" ? `${value}px` : value;
+  typeof value === 'number' ? `${value}px` : value;
 
 /**
  * Transforms alignment keywords into valid CSS flex alignment values.
@@ -207,16 +192,14 @@ export const toPx = (value: number | string): string =>
  * transformFlexProperties('center'); // "center"
  * ```
  */
-export const transformFlexProperties = (
-  prop: string | undefined,
-): string | undefined => {
+export const transformFlexProperties = (prop: string | undefined): string | undefined => {
   switch (prop) {
-    case "left":
-    case "start":
-      return "flex-start";
-    case "right":
-    case "end":
-      return "flex-end";
+    case 'left':
+    case 'start':
+      return 'flex-start';
+    case 'right':
+    case 'end':
+      return 'flex-end';
     default:
       return prop;
   }
@@ -239,14 +222,14 @@ export const transformFlexProperties = (
 export const formatDate = (date: string | number | Date): string => {
   let d: Date;
 
-  if (typeof date === "number") {
+  if (typeof date === 'number') {
     d = new Date(date < 1e12 ? date * 1000 : date); // handle seconds or ms
   } else {
     d = new Date(date);
   }
 
-  const day = String(d.getDate()).padStart(2, "0");
-  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
   const year = d.getFullYear();
 
   return `${day}/${month}/${year}`;

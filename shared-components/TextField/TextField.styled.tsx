@@ -1,48 +1,45 @@
-import styled, {css} from "styled-components";
-import {TextFieldProps} from "./TextField.types";
-import {toPx} from "@/utils/Utility";
+import styled, { css } from 'styled-components';
+import { TextFieldProps } from './TextField.types';
+import { toPx } from '@/utils/Utility';
 
 export const TextFieldWrapper = styled.div<TextFieldProps>`
   display: flex;
   flex-direction: column;
   gap: 4px;
 
-  ${({width}) =>
+  ${({ width }) =>
     width &&
     css`
       width: ${toPx(width)};
     `}
-  ${({minWidth}) =>
+  ${({ minWidth }) =>
     minWidth &&
     css`
       min-width: ${toPx(minWidth)};
     `}
-  ${({maxWidth}) =>
+  ${({ maxWidth }) =>
     maxWidth &&
     css`
       max-width: ${toPx(maxWidth)};
     `}
 
-  ${({zIndex}) =>
+  ${({ zIndex }) =>
     zIndex &&
     css`
       z-index: ${zIndex};
     `}
-  ${({marginBottom}) =>
+  ${({ marginBottom }) =>
     marginBottom &&
     css`
       margin-bottom: ${toPx(marginBottom)};
     `}
 `;
 
-export const InputWrapper = styled.div<{error?: boolean}>`
-  /* width: inherit; */
+export const InputWrapper = styled.div<{ error?: boolean }>`
   display: flex;
   flex: 1;
   align-items: center;
-  border: 1px solid
-    ${({error}) =>
-      error ? "var(--color-danger)" : "var(--color-neutral-light)"};
+  border: 1px solid ${({ error }) => (error ? 'var(--color-danger)' : 'var(--color-neutral-light)')};
   border-radius: 10px;
   padding: 10px 12px;
   background-color: var(--color-neutral-light);
@@ -52,7 +49,7 @@ export const InputWrapper = styled.div<{error?: boolean}>`
   }
 `;
 
-export const Input = styled.input<TextFieldProps & {disabled?: boolean}>`
+export const Input = styled.input<TextFieldProps & { disabled?: boolean }>`
   width: 100%;
   flex: 1;
   border: none;
@@ -63,7 +60,7 @@ export const Input = styled.input<TextFieldProps & {disabled?: boolean}>`
     color: var(--color-placeholder);
   }
 
-  ${({disabled}) =>
+  ${({ disabled }) =>
     disabled &&
     css`
       color: var(--color-disabled);
@@ -80,11 +77,10 @@ export const Icon = styled.div`
   color: var(--color-icon);
 `;
 
-export const HelpingText = styled.span<{error?: boolean}>`
+export const HelpingText = styled.span<{ error?: boolean }>`
   width: inherit;
   font-size: 12px;
-  color: ${({error}) =>
-    error ? "var(--color-danger)" : "var(--color-neutral-dark)"};
+  color: ${({ error }) => (error ? 'var(--color-danger)' : 'var(--color-neutral-dark)')};
 `;
 
 export const ClearButton = styled.button`

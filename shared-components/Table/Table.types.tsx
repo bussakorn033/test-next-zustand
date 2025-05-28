@@ -18,8 +18,8 @@
  * @param direction - Layout direction of the table (e.g., 'row', 'column')
  */
 
-export type SortDirection = "asc" | "desc" | "sorting" | string | undefined;
-export type Align = "left" | "center" | "right" | string | undefined;
+export type SortDirection = 'asc' | 'desc' | 'sorting' | string | undefined;
+export type Align = 'left' | 'center' | 'right' | string | undefined;
 
 export interface Pagination {
   page: number;
@@ -33,6 +33,11 @@ export interface OnClickCellParams {
   col?: number;
   sortBy?: SortDirection;
   [key: string]: any;
+}
+
+export interface PaginationOptions {
+  id: string | number;
+  label: string | number;
 }
 
 export interface TableColumn {
@@ -50,19 +55,19 @@ export interface TableColumn {
   [key: string]: any | (() => void | null);
 }
 
-export interface TableProps
-  extends React.HTMLAttributes<HTMLElement | undefined> {
+export interface TableProps extends React.HTMLAttributes<HTMLElement | undefined> {
   headers?: TableColumn[];
   values?: TableColumn[][];
   className?: string;
+  minHeightTable?: number | string;
   maxHeightTable?: number | string;
-  optionPagination?: number[];
+  paginationOptions?: PaginationOptions[];
   page?: number;
   limit?: number;
   count?: number;
-  onPageChange?: (newPage: number) => void;
-  onLimitChange?: (newLimit: number) => void;
+  onPageChange?: (newPage: number) => void | null;
+  onLimitChange?: (newLimit: number) => void | null;
   isPaginationDisabled?: boolean;
-  mode?: "dark" | "light" | string;
-  size?: "md" | "lg" | string;
+  mode?: 'dark' | 'light' | string;
+  size?: 'md' | 'lg' | string;
 }

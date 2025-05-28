@@ -1,5 +1,5 @@
-import React from "react";
-import {TextStyleProps} from "../TextStyle";
+import React from 'react';
+import { TextStyleProps } from '../TextStyle';
 
 /**
  * Checkbox component props
@@ -10,16 +10,15 @@ import {TextStyleProps} from "../TextStyle";
  * @param ...rest - Any additional native input props.
  */
 
-export interface CheckboxProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  labelVariant?: TextStyleProps["variant"];
-  labelColor?: TextStyleProps["color"];
-  checkColor?: TextStyleProps["color"];
+  labelVariant?: TextStyleProps['variant'];
+  labelColor?: TextStyleProps['color'];
+  checkColor?: TextStyleProps['color'];
   className?: string;
   gap?: number;
   name?: string;
   checked?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  size?: number; // New size prop (in pixels)
+  size?: number;
 }

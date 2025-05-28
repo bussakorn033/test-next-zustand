@@ -5,6 +5,6 @@
  */
 
 export interface TooltipProps {
-  content: string;
-  children: React.ReactNode;
+	content: string;
+	children: React.ReactNode;
 }

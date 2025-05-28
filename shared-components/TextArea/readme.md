@@ -9,7 +9,7 @@ import {TextArea} from "@/shared-components/TextArea";
   minWidth={50}
   maxWidth={160}
   rows={6}
-  clearable
+  isClearable
   name="key_input"
   value={"The current value of the input field."}
   label={"Displays a text label above the field."}
@@ -42,7 +42,7 @@ rows?: number
 
 onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 
-clearable?: boolean
+isClearable?: boolean
 
 disabled?: boolean
 
@@ -56,6 +56,6 @@ className?: string
 
 errorMessage?: string;
 
-error?: boolean;
+isError?: boolean;
 
 ```

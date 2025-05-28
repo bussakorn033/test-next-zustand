@@ -6,8 +6,8 @@
  */
 
 export interface SkeletonProps {
-  id?: string;
-  width?: string;
-  height?: string;
-  className?: string;
+	id?: string;
+	width?: string;
+	height?: string;
+	className?: string;
 }

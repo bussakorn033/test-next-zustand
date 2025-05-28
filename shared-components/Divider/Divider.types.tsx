@@ -8,15 +8,15 @@
  */
 
 export interface DividerProps {
-  orientation?: 'horizontal' | 'vertical';
-  color?: string;
-  weight?: number;
-  className?: string;
-  m?: string | number;
-  mx?: string | number;
-  my?: string | number;
-  mt?: string | number;
-  mb?: string | number;
-  mr?: string | number;
-  ml?: string | number;
+	orientation?: 'horizontal' | 'vertical';
+	color?: string;
+	weight?: number;
+	className?: string;
+	m?: string | number;
+	mx?: string | number;
+	my?: string | number;
+	mt?: string | number;
+	mb?: string | number;
+	mr?: string | number;
+	ml?: string | number;
 }

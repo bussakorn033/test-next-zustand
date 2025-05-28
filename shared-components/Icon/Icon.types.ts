@@ -9,11 +9,11 @@
  */
 
 export interface IconProps {
-  id?: string;
-  className?: string;
-  icon: string | undefined;
-  color?: string;
-  width?: string | number;
-  height?: string | number;
-  disabled?: boolean | null;
+	id?: string;
+	className?: string;
+	icon: string | undefined;
+	color?: string;
+	width?: string | number;
+	height?: string | number;
+	disabled?: boolean | null;
 }

@@ -37,6 +37,6 @@ width?: "normal" | "full";
 
 sizeIcon?: string | number | null;
 
-disabled?: boolean;
+isDisabled?: boolean;
 
 ```

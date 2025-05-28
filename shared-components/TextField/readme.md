@@ -8,7 +8,7 @@ import {TextField} from "@/shared-components/TextField";
   type="text"
   minWidth={50}
   maxWidth={160}
-  clearable
+  isClearable
   name="key_input"
   value={"The current value of the input field."}
   label={"Displays a text label above the field."}
@@ -39,7 +39,7 @@ value*: string
 
 onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 
-clearable?: boolean
+isClearable?: boolean
 
 disabled?: boolean
 
@@ -53,6 +53,6 @@ className?: string
 
 errorMessage?: string;
 
-error?: boolean;
+isError?: boolean;
 
 ```

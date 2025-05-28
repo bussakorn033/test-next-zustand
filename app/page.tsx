@@ -54,9 +54,31 @@ export default function Home() {
     setFilterByStatusDocOptionsActive
   } = useDashboard();
 
+  /* 
+  <Checkbox
+    label=''
+    name='checkbox-gender'
+    isChecked={checked}
+    onChange={(e) => {
+    console.log(e);
+    setChecked(e.target.checked);
+    }}
+    />
+
+  <Checkbox
+    label='Default Checkbox'
+    name='checkbox-gender'
+    isChecked={checked}
+    onChange={(e) => {
+    console.log(e);
+    setChecked(e.target.checked);
+    }}
+  />
+  */
+
   return (
     <>
-      <Box bgColor='--color-bg-primary' display='block' fullHeight fullWidth overflowY='auto'>
+      <Box bgColor='--color-bg-primary' display='block' isFullHeight isFullWidth overflowY='auto'>
         <>
           <Box direction='column' p={32}>
             <>
@@ -232,7 +254,7 @@ export default function Home() {
                   borderWidth={1} // 0 | 1 | 2
                   boxShadow='top' // none | top | bottom
                   direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={10}
                   px={24}
                   py={24}
@@ -240,7 +262,7 @@ export default function Home() {
                   <Checkbox
                     label=''
                     name='checkbox-gender'
-                    checked={checked}
+                    isChecked={checked}
                     onChange={(e) => {
                       console.log(e);
                       setChecked(e.target.checked);
@@ -249,20 +271,30 @@ export default function Home() {
                   <Checkbox
                     label='Default Checkbox'
                     name='checkbox-gender'
-                    checked={checked}
+                    isChecked={checked}
                     onChange={(e) => {
                       console.log(e);
                       setChecked(e.target.checked);
                     }}
                   />
-                  <Checkbox label='Large Checkbox (Unchecked)' checked={false} />
-                  <Checkbox label='Default Checkbox (Checked)' checked={true} />
-                  <Checkbox label='Large Checkbox (Unchecked)' checked={false} size={50} />
-                  <Checkbox label='Default Checkbox (Checked)' checked={true} size={50} />
-                  <Checkbox label='Disabled Checkbox (Unchecked)' checked={false} disabled />
-                  <Checkbox label='Disabled Checkbox (Checked)' checked={true} disabled />
-                  <Checkbox label='Disabled Checkbox (Unchecked)' checked={false} disabled size={50} />
-                  <Checkbox label='Disabled Checkbox (Checked)' checked={true} disabled size={50} />
+                  <Checkbox label='Large Checkbox (Unchecked)' isChecked={false} />
+                  <Checkbox label='Default Checkbox (Checked)' isChecked={true} />
+                  <Checkbox label='Large Checkbox (Unchecked)' isChecked={false} size={50} />
+                  <Checkbox label='Default Checkbox (Checked)' isChecked={true} size={50} />
+                  <Checkbox label='Disabled Checkbox (Unchecked)' isChecked={false} isDisabled />
+                  <Checkbox label='isDisabled Checkbox (Checked)' isChecked={true} isDisabled />
+                  <Checkbox
+                    label='isDisabled Checkbox (Unchecked)'
+                    isChecked={false}
+                    isDisabled
+                    size={50}
+                  />
+                  <Checkbox
+                    label='isDisabled Checkbox (Checked)'
+                    isChecked={true}
+                    isDisabled
+                    size={50}
+                  />
                 </Box>
               </>
               {/* Common Checkbox  */}
@@ -319,7 +351,7 @@ export default function Home() {
                   borderWidth={1} // 0 | 1 | 2
                   boxShadow='top' // none | top | bottom
                   direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={10}
                   px={24}
                   py={24}
@@ -476,7 +508,7 @@ export default function Home() {
                       borderWidth={1} // 0 | 1 | 2
                       boxShadow='top' // none | top | bottom
                       direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                      hover={true}
+                      isHover={true}
                       gap={10}
                       px={24}
                       py={24}
@@ -575,7 +607,7 @@ export default function Home() {
                   borderWidth={1} // 0 | 1 | 2
                   boxShadow='top' // none | top | bottom
                   direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={10}
                   px={24}
                   py={24}
@@ -736,7 +768,7 @@ export default function Home() {
                       borderWidth={1} // 0 | 1 | 2
                       boxShadow='top' // none | top | bottom
                       direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                      hover={true}
+                      isHover={true}
                       gap={10}
                       px={24}
                       py={24}
@@ -835,7 +867,7 @@ export default function Home() {
                   borderWidth={1} // 0 | 1 | 2
                   boxShadow='top' // none | top | bottom
                   direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={10}
                   px={24}
                   py={24}
@@ -1050,7 +1082,7 @@ export default function Home() {
                   borderWidth={1} // 0 | 1 | 2
                   boxShadow='top' // none | top | bottom
                   direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={10}
                   px={24}
                   py={24}
@@ -1166,7 +1198,7 @@ export default function Home() {
                   borderWidth={1} // 0 | 1 | 2
                   boxShadow='top' // none | top | bottom
                   direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={10}
                   px={24}
                   py={24}
@@ -1193,7 +1225,7 @@ export default function Home() {
                   boxShadow='top' // none | top | bottom
                   textAlign='right' // left | center | right
                   direction='row-wrap' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={10}
                   px={24}
                   py={24}
@@ -1264,7 +1296,7 @@ export default function Home() {
                   alignItems='center' // start | center | end | baseline
                   justifyContent='center' // start | center | end | space-between | space-around
                   direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={0}
                   px={0}
                   py={0}
@@ -1285,7 +1317,7 @@ export default function Home() {
                   alignItems='center' // start | center | end | baseline
                   justifyContent='center' // start | center | end | space-between | space-around
                   direction='row-wrap' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={50}
                   px={10}
                   py={10}
@@ -1306,7 +1338,7 @@ export default function Home() {
                   alignItems='center' // start | center | end | baseline
                   justifyContent='center' // start | center | end | space-between | space-around
                   direction='column' // none | row | row-reverse | row-wrap | column | column-reverse
-                  hover={true}
+                  isHover={true}
                   gap={50}
                   px={10}
                   py={50}

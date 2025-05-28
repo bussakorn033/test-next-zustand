@@ -14,42 +14,42 @@
  */
 
 export interface TextStyleProps extends React.HTMLAttributes<HTMLHeadingElement> {
-  id?: string;
-  variant?:
-    | 'h2'
-    | 'h4'
-    | 'h6'
-    | 'paragraphMedium'
-    | 'paragraphSmall'
-    | 'paragraphSmallTable'
-    | 'paragraphXSmall'
-    | 'labelMedium'
-    | 'labelSmall'
-    | 'labelSmallBold'
-    | 'labelXSmall'
-    | 'labelXSmallBold'
-    | 'valueSmall'
-    | 'buttonMedium'
-    | 'buttonBig'
-    | 'pageTitle'
-    | 'allCap'
-    | 'allCapSmall'
-    | 'mobileH4'
-    | 'mobileLabelSmallBold'
-    | 'span';
-  className?: string;
-  tag?: string;
-  children?: React.ReactNode;
-  limitLine?: number;
-  whiteSpace?: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap';
-  wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word';
-  textAlign?: 'left' | 'center' | 'right' | string | undefined;
-  color?: string;
-  textDecoration?: 'none' | 'underline' | 'line-through' | 'overline';
-  alignContent?: 'start' | 'center' | 'end' | 'baseline' | string;
-  justifyContent?: 'start' | 'center' | 'end' | 'baseline' | string;
-  alignItems?: 'start' | 'center' | 'end' | 'baseline' | string;
-  width?: string | number;
-  height?: string | number;
-  flex?: number;
+	id?: string;
+	variant?:
+		| 'h2'
+		| 'h4'
+		| 'h6'
+		| 'paragraphMedium'
+		| 'paragraphSmall'
+		| 'paragraphSmallTable'
+		| 'paragraphXSmall'
+		| 'labelMedium'
+		| 'labelSmall'
+		| 'labelSmallBold'
+		| 'labelXSmall'
+		| 'labelXSmallBold'
+		| 'valueSmall'
+		| 'buttonMedium'
+		| 'buttonBig'
+		| 'pageTitle'
+		| 'allCap'
+		| 'allCapSmall'
+		| 'mobileH4'
+		| 'mobileLabelSmallBold'
+		| 'span';
+	className?: string;
+	tag?: string;
+	children?: React.ReactNode;
+	limitLine?: number;
+	whiteSpace?: 'normal' | 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap';
+	wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word';
+	textAlign?: 'left' | 'center' | 'right' | string | undefined;
+	color?: string;
+	textDecoration?: 'none' | 'underline' | 'line-through' | 'overline';
+	alignContent?: 'start' | 'center' | 'end' | 'baseline' | string;
+	justifyContent?: 'start' | 'center' | 'end' | 'baseline' | string;
+	alignItems?: 'start' | 'center' | 'end' | 'baseline' | string;
+	width?: string | number;
+	height?: string | number;
+	flex?: number;
 }

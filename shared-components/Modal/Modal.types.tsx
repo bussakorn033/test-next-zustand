@@ -17,11 +17,16 @@
  */
 
 export interface ModalProps extends React.HTMLAttributes<HTMLHeadingElement> {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  width?: number;
-  height?: number;
-  title?: string;
-  className?: string;
+	isOpen: boolean;
+	onClose: () => void;
+	children: React.ReactNode;
+	title?: string;
+	className?: string;
+	m?: string | number;
+	width?: string | number;
+	minWidth?: string | number;
+	maxWidth?: string | number;
+	height?: string | number;
+	minHeight?: string | number;
+	maxHeight?: string | number;
 }

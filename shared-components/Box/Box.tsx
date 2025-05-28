@@ -4,55 +4,55 @@ import * as S from './Box.styled';
 import { BoxProps } from './Box.types';
 
 export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
-  (
-    {
-      tag = 'div',
-      display = 'flex',
-      direction = 'none',
-      fullWidth,
-      fullHeight,
-      boxShadow = 'none',
-      border = 'all',
-      borderWidth = 0,
-      borderRadius = 'none',
-      hover,
-      className,
-      children,
-      ...rest
-    }: BoxProps,
-    ref
-  ) => {
-    const classnames = classNames(className, 'ds-ui-box');
-    const { bgColor, color, borderColor } = rest;
+	(
+		{
+			isFullWidth,
+			isFullHeight,
+			isHover,
+			className,
+			children,
+			tag = 'div',
+			display = 'flex',
+			direction = 'none',
+			boxShadow = 'none',
+			border = 'all',
+			borderWidth = 0,
+			borderRadius = 'none',
+			...rest
+		}: BoxProps,
+		ref
+	) => {
+		const classnames = classNames(className, 'ds-ui-box');
+		const { bgColor, color, borderColor } = rest;
 
-    return (
-      <S.Box
-        className={classnames}
-        as={tag}
-        display={display}
-        direction={direction}
-        fullWidth={fullWidth}
-        fullHeight={fullHeight}
-        boxShadow={boxShadow}
-        border={border}
-        borderWidth={borderWidth}
-        borderRadius={borderRadius}
-        hover={hover}
-        ref={ref}
-        {...rest}
-        style={
-          {
-            ...rest.style,
-            '--text-bg-color': bgColor && `var(${bgColor})`,
-            '--text-color': color && `var(${color})`,
-            '--text-border-color': borderColor && `var(${borderColor})`
-          } as React.CSSProperties
-        }
-      >
-        {children}
-      </S.Box>
-    );
-  }
+		return (
+			<S.Box
+				className={classnames}
+				as={tag}
+				display={display}
+				direction={direction}
+				isFullWidth={isFullWidth}
+				isFullHeight={isFullHeight}
+				boxShadow={boxShadow}
+				border={border}
+				borderWidth={borderWidth}
+				borderRadius={borderRadius}
+				isHover={isHover}
+				ref={ref}
+				{...rest}
+				style={
+					{
+						...rest.style,
+						'--text-bg-color': bgColor && `var(${bgColor})`,
+						'--text-color': color && `var(${color})`,
+						'--text-border-color': borderColor && `var(${borderColor})`
+					} as React.CSSProperties
+				}
+			>
+				{children}
+			</S.Box>
+		);
+	}
 );
 
 Box.displayName = 'Box';

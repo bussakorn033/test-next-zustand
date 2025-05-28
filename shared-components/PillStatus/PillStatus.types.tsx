@@ -5,16 +5,16 @@
  */
 
 export interface PillStatusProps {
-  variant?:
-    | 'default'
-    | 'purple'
-    | 'danger'
-    | 'warning'
-    | 'light-orange'
-    | 'disabled'
-    | 'information'
-    | 'success'
-    | 'primary';
-  children?: string;
-  isCircle?: boolean;
+	variant?:
+		| 'default'
+		| 'purple'
+		| 'danger'
+		| 'warning'
+		| 'light-orange'
+		| 'disabled'
+		| 'information'
+		| 'success'
+		| 'primary';
+	children?: string;
+	isCircle?: boolean;
 }

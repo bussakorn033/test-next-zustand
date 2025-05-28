@@ -7,14 +7,14 @@
  */
 
 export interface PopoverProps
-  extends React.HTMLAttributes<HTMLButtonElement | HTMLBaseElement | HTMLElement | undefined> {
-  isOpen: boolean;
-  anchorRef: React.RefObject<HTMLElement | null>;
-  children: React.ReactNode;
-  width?: number;
-  onClose?: () => void;
-  backgroundColor?: string;
-  borderColor?: string;
-  padding?: string | number;
-  borderRadius?: string | number;
+	extends React.HTMLAttributes<HTMLButtonElement | HTMLBaseElement | HTMLElement | undefined> {
+	isOpen: boolean;
+	anchorRef: React.RefObject<HTMLElement | null>;
+	children: React.ReactNode;
+	width?: number;
+	onClose?: () => void;
+	backgroundColor?: string;
+	borderColor?: string;
+	padding?: string | number;
+	borderRadius?: string | number;
 }

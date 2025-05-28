@@ -5,7 +5,7 @@
  */
 
 export interface ToastProps {
-  variant?: 'error' | 'success' | 'warning' | 'info';
-  message: string;
-  duration?: number;
+	variant?: 'error' | 'success' | 'warning' | 'info';
+	message: string;
+	duration?: number;
 }

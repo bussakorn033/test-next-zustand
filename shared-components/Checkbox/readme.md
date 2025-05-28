@@ -25,9 +25,9 @@ label?: string;
 
 labelVariant?: string;
 
-checked?: boolean;
+isChecked?: boolean;
 
-disabled?: boolean;
+isDisabled?: boolean;
 
 size?: number;
 

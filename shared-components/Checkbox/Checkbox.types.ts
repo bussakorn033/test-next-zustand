@@ -11,14 +11,15 @@ import { TextStyleProps } from '../TextStyle';
  */
 
 export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  labelVariant?: TextStyleProps['variant'];
-  labelColor?: TextStyleProps['color'];
-  checkColor?: TextStyleProps['color'];
-  className?: string;
-  gap?: number;
-  name?: string;
-  checked?: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  size?: number;
+	label?: string;
+	labelVariant?: TextStyleProps['variant'];
+	labelColor?: TextStyleProps['color'];
+	checkColor?: TextStyleProps['color'];
+	className?: string;
+	gap?: number;
+	name?: string;
+	isChecked?: boolean;
+	isDisabled?: boolean;
+	onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
+	size?: number;
 }

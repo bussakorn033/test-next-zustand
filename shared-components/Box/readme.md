@@ -70,7 +70,7 @@ maxHeight?: string | number;;
 
 boxShadow?: "none" | "top" | "bottom";
 
-hover?: boolean;
+isHover?: boolean;
 
 textAlign?: "left" | "center" | "right";
 alignItems?: "start" | "center" | "end" | "baseline" | string;

@@ -6,9 +6,9 @@ import {TextField} from "@/shared-components/TextField";
 <TextField
   placeholder={"Text shown inside the input when empty."}
   type="text"
-  minWidth={50}
-  maxWidth={160}
-  isClearable
+  $minWidth={50}
+  $maxWidth={160}
+  $isClearable
   name="key_input"
   value={"The current value of the input field."}
   label={"Displays a text label above the field."}
@@ -39,20 +39,20 @@ value*: string
 
 onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 
-isClearable?: boolean
+$isClearable?: boolean
 
 disabled?: boolean
 
 width?: number | string
 
-minWidth?: number | string
+$minWidth?: number | string
 
-maxWidth?: number | string
+$maxWidth?: number | string
 
 className?: string
 
 errorMessage?: string;
 
-isError?: boolean;
+$isError?: boolean;
 
 ```

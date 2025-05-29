@@ -18,7 +18,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 			variant,
 			suffix,
 			error,
-			isDisabled,
+			$isDisabled,
 			helpingText,
 			helpingTextRight,
 			errorMessage,
@@ -29,7 +29,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 			className,
 			iconTyping,
 			onChange,
-			isClearable,
+			$isClearable,
 			rows = 5,
 			...rest
 		}: TextAreaProps,
@@ -110,38 +110,36 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 		return (
 			<S.TextAreaWrapper
 				className={classnames}
-				disabled={isDisabled}
+				disabled={$isDisabled}
 				value={value}
-				isClearable={isClearable}
+				$isClearable={$isClearable}
 				{...rest}
 			>
 				{(label || labelHelping) && (
 					<>
-						<Box direction='row' alignItems='center' gap={6}>
+						<Box direction='row' $alignItems='center' gap={6}>
 							<TextStyle variant='labelXSmall' color='--color-secondary'>
 								{label}
 							</TextStyle>
 							{labelHelping && (
-								<TextStyle variant='labelXSmall' color='--color-secondary' alignContent='center'>
-									<Tooltip content={labelHelping}>
-										<Icon icon='help_circle_fill' width={12} height={12} color='--color-secondary' />
-									</Tooltip>
-								</TextStyle>
+								<Tooltip content={labelHelping}>
+									<Icon icon='help_circle_fill' width={12} height={12} color='--color-secondary' />
+								</Tooltip>
 							)}
 						</Box>
 					</>
 				)}
 
-				<S.InputWrapper isError={error}>
+				<S.InputWrapper $isError={error}>
 					{iconLeft && <S.Icon>{iconLeft}</S.Icon>}
-					<TextStyle variant='labelSmall' color='--color-primary' alignContent='center' flex={1}>
+					<TextStyle variant='labelSmall' color='--color-primary' $alignContent='center' flex={1}>
 						<S.InputTextArea
 							{...rest}
 							id={id}
-							disabled={isDisabled}
+							disabled={$isDisabled}
 							value={value}
 							rows={rows}
-							isClearable={isClearable}
+							$isClearable={$isClearable}
 							onChange={onchangeHandler}
 							onFocus={onFocusHandler}
 							onBlur={onBlurHandler}
@@ -150,7 +148,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 							onMouseUp={onMouseUpHandler}
 						/>
 					</TextStyle>
-					{isClearable && value && !isDisabled && (
+					{$isClearable && value && !$isDisabled && (
 						<S.ClearButton
 							type='button'
 							name={rest.name}
@@ -172,7 +170,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 					{iconRight && <S.Icon>{iconRight}</S.Icon>}
 				</S.InputWrapper>
 				{helpingText && (
-					<S.HelpingText isError={error}>
+					<S.HelpingText $isError={error}>
 						<TextStyle variant='labelXSmall'>{helpingText}</TextStyle>
 					</S.HelpingText>
 				)}

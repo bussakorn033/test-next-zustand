@@ -25,9 +25,9 @@ label?: string;
 
 labelVariant?: string;
 
-isChecked?: boolean;
+$isChecked?: boolean;
 
-isDisabled?: boolean;
+$isDisabled?: boolean;
 
 size?: number;
 

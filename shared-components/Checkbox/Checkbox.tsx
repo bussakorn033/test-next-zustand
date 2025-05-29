@@ -9,12 +9,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 		{
 			className,
 			name,
-			isChecked,
-			isDisabled,
+			$isChecked,
+			$isDisabled,
 			onChange,
 			label,
 			gap = 12,
-			checkColor = '--color-primary',
+			$checkColor = '--color-primary',
 			labelVariant = 'paragraphSmall',
 			labelColor = '--color-primary',
 			size = 16,
@@ -28,28 +28,28 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 			<S.CheckboxContainer
 				className={classnames}
 				direction='row'
-				alignItems='center'
+				$alignItems='center'
 				gap={gap}
 				position='relative'
 			>
 				<S.HiddenCheckbox
 					name={name}
-					checkColor={checkColor}
-					isChecked={isChecked}
-					isDisabled={isDisabled}
-					disabled={isDisabled}
-					onChange={(e) => (isDisabled ? e.preventDefault() : onChange?.(e))}
+					$checkColor={$checkColor}
+					$isChecked={$isChecked}
+					$isDisabled={$isDisabled}
+					disabled={$isDisabled}
+					onChange={(e) => ($isDisabled ? e.preventDefault() : onChange?.(e))}
 					ref={ref}
 					size={size}
 					{...props}
 				/>
 				<S.StyledCheckbox
 					name={name}
-					checkColor={checkColor}
-					isChecked={isChecked}
-					isDisabled={isDisabled}
-					disabled={isDisabled}
-					onChange={(e) => (isDisabled ? e.preventDefault() : onChange?.(e))}
+					$checkColor={$checkColor}
+					$isChecked={$isChecked}
+					$isDisabled={$isDisabled}
+					disabled={$isDisabled}
+					onChange={(e) => ($isDisabled ? e.preventDefault() : onChange?.(e))}
 					ref={ref}
 					size={size}
 					{...props}

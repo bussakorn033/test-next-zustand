@@ -11,16 +11,16 @@ export const Item = styled.div`
 	font-weight: normal;
 `;
 
-export const SubItem = styled.div<{ active?: boolean }>`
+export const SubItem = styled.div<{ $active?: boolean }>`
 	padding: 8px 16px;
-	border-radius: ${({ active }) => (active ? '0px' : '8px')};
+	border-radius: ${({ $active }) => ($active ? '0px' : '8px')};
 	cursor: pointer;
-	background-color: ${({ active }) =>
-		active ? 'var(--component-background-accent-primary-soft)' : '#fff'};
-	font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+	background-color: ${({ $active }) =>
+		$active ? 'var(--component-background-accent-primary-soft)' : '#fff'};
+	font-weight: ${({ $active }) => ($active ? 'bold' : 'normal')};
 	&,
 	> * {
-		color: var(--${({ active }) => (active ? 'color-accent' : 'color-primary')}) !important;
+		color: var(--${({ $active }) => ($active ? 'color-accent' : 'color-primary')}) !important;
 	}
 
 	&:hover {

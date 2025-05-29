@@ -6,10 +6,10 @@ import {TextArea} from "@/shared-components/TextArea";
 <TextArea
   placeholder={"Text shown inside the input when empty."}
   type="text"
-  minWidth={50}
-  maxWidth={160}
+  $minWidth={50}
+  $maxWidth={160}
   rows={6}
-  isClearable
+  $isClearable
   name="key_input"
   value={"The current value of the input field."}
   label={"Displays a text label above the field."}
@@ -42,20 +42,20 @@ rows?: number
 
 onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 
-isClearable?: boolean
+$isClearable?: boolean
 
 disabled?: boolean
 
 width?: number | string
 
-minWidth?: number | string
+$minWidth?: number | string
 
-maxWidth?: number | string
+$maxWidth?: number | string
 
 className?: string
 
 errorMessage?: string;
 
-isError?: boolean;
+$isError?: boolean;
 
 ```

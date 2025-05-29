@@ -8,11 +8,11 @@ export const TabContainer = styled.div`
 	color: var(--color-neutral-grey-light);
 `;
 
-export const TabButton = styled.button<{ active: boolean }>`
+export const TabButton = styled.button<{ $active: boolean }>`
 	padding: 12px 20px;
 	font-size: 14px;
 	font-weight: bold;
-	color: ${(props) => (props.active ? 'var(--color-accent)' : 'var(--color-primary)')};
+	color: ${(props) => (props.$active ? 'var(--color-accent)' : 'var(--color-primary)')};
 	background: none;
 	border: none;
 	cursor: pointer;

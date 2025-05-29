@@ -13,8 +13,8 @@
  * @param helpingText - Primary helper text displayed below the input.
  * @param errorMessage - Error message shown when validation fails.
  * @param suffix - Additional text or element rendered at the end of the input.
- * @param isError - Flag indicating whether the TextField is in an error state.
- * @param isDisabled - Flag to disable the TextField.
+ * @param $isError - Flag indicating whether the TextField is in an error state.
+ * @param $isDisabled - Flag to disable the TextField.
  * @param max - Maximum allowed value (if applicable).
  * @param maxLength - Maximum allowed length of the input.
  * @param min - Minimum allowed value (if applicable).
@@ -27,10 +27,10 @@
  * @param iconRight - React node rendered as the right icon.
  * @param format - Format string to customize the displayed value.
  * @param options - @deprecated Deprecated property for additional options.
- * @param zIndex - CSS z-index value for stacking context.
+ * @param $zIndex - CSS z-index value for stacking context.
  * @param width - The width of the TextField.
- * @param marginBottom - The bottom margin of the TextField.
- * @param isClearable - Flag to display a clear button for the input.
+ * @param $marginBottom - The bottom margin of the TextField.
+ * @param $isClearable - Flag to display a clear button for the input.
  * @param [key: string] - Additional custom properties.
  */
 
@@ -45,8 +45,8 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
 	helpingText?: string;
 	errorMessage?: string;
 	suffix?: string;
-	isError?: boolean;
-	isDisabled?: boolean;
+	$isError?: boolean;
+	$isDisabled?: boolean;
 	max?: number | string | undefined;
 	maxLength?: number | undefined;
 	min?: number | string | undefined;
@@ -59,9 +59,9 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
 	iconRight?: React.ReactNode;
 	format?: string;
 	options?: string;
-	zIndex?: number;
+	$zIndex?: number;
 	width?: string | number;
-	marginBottom?: string | number;
-	isClearable?: boolean;
+	$marginBottom?: string | number;
+	$isClearable?: boolean;
 	[key: string]: any;
 }

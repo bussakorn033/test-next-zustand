@@ -12,7 +12,7 @@
  *   - isSort: Indicates whether the column is sortable.
  *   - onClick: Callback invoked when the header is clicked (e.g., to trigger sorting).
  *   - flex: Flex value to control the width of the column.
- *   - minWidth, maxWidth: Minimum and maximum widths for the column.
+ *   - $minWidth, $maxWidth: Minimum and maximum widths for the column.
  *   - icon: Optional icon to display in the header.
  *
  * @param values - A 2D array of TableColumn objects representing the table rows and cells.
@@ -20,7 +20,7 @@
  * @param className - Custom CSS class name(s) applied to the table container.
  *
  * @param minHeightTable - Minimum height of the table (e.g., "100px", "auto").
- * @param maxHeightTable - Maximum height of the table (e.g., "350px", "100%").
+ * @param $maxHeightTable - Maximum height of the table (e.g., "350px", "100%").
  *
  * @param paginationOptions - Array of pagination options; each option must include:
  *   - id: A unique identifier for the option.
@@ -68,8 +68,8 @@ export interface TableColumn {
 	isSort?: boolean;
 	onClick?: (params: OnClickCellParams) => void | null;
 	flex?: number | string;
-	minWidth?: number | string;
-	maxWidth?: number | string;
+	$minWidth?: number | string;
+	$maxWidth?: number | string;
 	icon?: string;
 	[key: string]: any | (() => void | null);
 }
@@ -79,7 +79,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement | undefined
 	values?: TableColumn[][];
 	className?: string;
 	minHeightTable?: number | string;
-	maxHeightTable?: number | string;
+	$maxHeightTable?: number | string;
 	paginationOptions?: PaginationOptions[];
 	page?: number;
 	limit?: number;

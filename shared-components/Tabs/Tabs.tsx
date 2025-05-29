@@ -31,7 +31,7 @@ const Tabs: React.FC<TabsProps> = ({ tabsName, activeTab, menu, onChange }) => {
 							ref={(el) => {
 								tabRefs.current[tab.value] = el;
 							}}
-							active={tab.value === activeTab}
+							$active={tab.value === activeTab}
 							onClick={() => onChange?.(tab.value)}
 						>
 							<TextStyle variant='h6'>{tab.label}</TextStyle>

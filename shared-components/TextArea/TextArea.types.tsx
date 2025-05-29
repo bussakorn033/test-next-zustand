@@ -15,8 +15,8 @@
  * @param helpingText - Primary helper text shown below the TextArea.
  * @param errorMessage - An error message displayed when validation fails.
  * @param suffix - Text or element rendered at the end of the input field.
- * @param isError - Flag indicating whether the TextArea is in an error state.
- * @param isDisabled - Flag to disable user interaction with the TextArea.
+ * @param $isError - Flag indicating whether the TextArea is in an error state.
+ * @param $isDisabled - Flag to disable user interaction with the TextArea.
  * @param maxLength - The maximum number of characters allowed.
  * @param onChange - Callback function to handle input changes.
  * @param variant - The styling variant applied to the TextArea.
@@ -27,10 +27,10 @@
  * @param iconRight - React node to display as the right icon.
  * @param format - A format string for customizing the input value.
  * @param options - @deprecated Deprecated property for options.
- * @param zIndex - CSS z-index value to control stacking order.
+ * @param $zIndex - CSS z-index value to control stacking order.
  * @param width - The width of the TextArea.
- * @param marginBottom - The bottom margin of the TextArea.
- * @param isClearable - Flag used to show a clear button.
+ * @param $marginBottom - The bottom margin of the TextArea.
+ * @param $isClearable - Flag used to show a clear button.
  * @param rows - The number of visible text lines in the TextArea (determines its height).
  * @param [key: string] - Additional custom properties.
  */
@@ -46,8 +46,8 @@ export interface TextAreaProps extends React.InputHTMLAttributes<HTMLInputElemen
 	helpingText?: string;
 	errorMessage?: string;
 	suffix?: string;
-	isError?: boolean;
-	isDisabled?: boolean;
+	$isError?: boolean;
+	$isDisabled?: boolean;
 	maxLength?: number;
 	onChange?: React.ChangeEventHandler<HTMLInputElement>;
 	variant?: 'amount' | 'amount-transaction' | 'search';
@@ -57,10 +57,10 @@ export interface TextAreaProps extends React.InputHTMLAttributes<HTMLInputElemen
 	iconRight?: React.ReactNode;
 	format?: string;
 	options?: string;
-	zIndex?: number;
+	$zIndex?: number;
 	width?: string | number;
-	marginBottom?: string | number;
-	isClearable?: boolean;
+	$marginBottom?: string | number;
+	$isClearable?: boolean;
 	rows?: number;
 	[key: string]: any;
 }

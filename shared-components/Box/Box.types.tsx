@@ -8,22 +8,22 @@
  * @param bottom - Bottom offset
  * @param left - Left offset
  * @param right - Right offset
- * @param zIndex - Stacking order
- * @param isFullWidth - Sets width to 100%
- * @param isFullHeight - Sets height to 100dvh
+ * @param $zIndex - Stacking order
+ * @param $isFullWidth - Sets width to 100%
+ * @param $isFullHeight - Sets height to 100dvh
  * @param width - Width of the component
  * @param height - Height of the component
- * @param minWidth - Minimum width
- * @param maxWidth - Maximum width
+ * @param $minWidth - Minimum width
+ * @param $maxWidth - Maximum width
  * @param minHeight - Minimum height
- * @param maxHeight - Maximum height
+ * @param $maxHeight - Maximum height
  *
  * === Flex/Grid ===
  * @param flex - Flex property value
  * @param column - Column count (for grid)
  * @param direction - Flex direction
- * @param alignItems - Align items on cross axis
- * @param justifyContent - Align items on main axis
+ * @param $alignItems - Align items on cross axis
+ * @param $justifyContent - Align items on main axis
  * @param gap - Gap between items
  * @param gapRow - Row gap
  * @param gapColumn - Column gap
@@ -46,24 +46,24 @@
  *
  * === Overflow ===
  * @param overflow - Overflow value
- * @param overflowX - Horizontal overflow
- * @param overflowY - Vertical overflow
+ * @param $overflowX - Horizontal overflow
+ * @param $overflowY - Vertical overflow
  *
  * === Text & Background ===
- * @param textAlign - Text alignment
- * @param bgColor - Background color
+ * @param $textAlign - Text alignment
+ * @param $bgColor - Background color
  * @param color - Text color
  *
  * === Border ===
  * @param border - Border side(s)
- * @param borderWidth - Border width
- * @param borderColor - Border color
- * @param borderRadius - Border radius
- * @param boxShadow - Shadow type
+ * @param $borderWidth - Border width
+ * @param $borderColor - Border color
+ * @param $borderRadius - Border radius
+ * @param $boxShadow - Shadow type
  *
  * === Behavior ===
  * @param disabled - Disable the element
- * @param isHover - Apply isHover effect
+ * @param $isHover - Apply $isHover effect
  * @param limit - Custom limit value
  *
  * === HTML Attributes ===
@@ -77,34 +77,35 @@
  */
 
 export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
+	ref?: React.Ref<HTMLElement>;
 	id?: string;
 	as?: any;
 	htmlFor?: string;
 	tag?: string;
 	children?: React.ReactNode;
 
-	isDisabled?: boolean;
+	$isDisabled?: boolean;
 	onClick?: React.MouseEventHandler<HTMLElement>;
-	isHover?: boolean;
+	$isHover?: boolean;
 
-	isFullWidth?: boolean;
-	isFullHeight?: boolean;
+	$isFullWidth?: boolean;
+	$isFullHeight?: boolean;
 	width?: string | number;
 	height?: string | number;
-	minWidth?: string | number;
-	maxWidth?: string | number;
+	$minWidth?: string | number;
+	$maxWidth?: string | number;
 	minHeight?: string | number;
-	maxHeight?: string | number;
+	$maxHeight?: string | number;
 
 	position?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky' | string;
-	zIndex?: string | number;
+	$zIndex?: string | number;
 	top?: string | number;
 	bottom?: string | number;
 	left?: string | number;
 	right?: string | number;
 
 	flex?: string | number;
-	flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string;
+	$flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse' | string;
 	column?: number;
 	direction?: 'none' | 'row' | 'row-reverse' | 'row-wrap' | 'column' | 'column-reverse' | string;
 
@@ -123,13 +124,13 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 	boxSizing?: 'border-box' | 'content-box' | string;
 
 	overflow?: 'auto' | 'scroll' | 'hidden' | 'visible';
-	overflowX?: 'auto' | 'scroll' | 'hidden' | 'visible';
-	overflowY?: 'auto' | 'scroll' | 'hidden' | 'visible';
+	$overflowX?: 'auto' | 'scroll' | 'hidden' | 'visible';
+	$overflowY?: 'auto' | 'scroll' | 'hidden' | 'visible';
 
-	textAlign?: 'left' | 'center' | 'right';
-	alignItems?: 'start' | 'center' | 'end' | 'baseline' | string;
-	alignContent?: 'start' | 'center' | 'end' | 'baseline' | string;
-	justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | string;
+	$textAlign?: 'left' | 'center' | 'right';
+	$alignItems?: 'start' | 'center' | 'end' | 'baseline' | string;
+	$alignContent?: 'start' | 'center' | 'end' | 'baseline' | string;
+	$justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | string;
 
 	p?: string | number;
 	px?: string | number;
@@ -151,13 +152,13 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 	gapColumn?: string | number;
 
 	className?: string;
-	bgColor?: '--color-error' | '#f00' | 'red' | string;
+	$bgColor?: '--color-error' | '#f00' | 'red' | string;
 	color?: '--color-error' | '#f00' | 'red' | string;
 	border?: 'all' | 'top' | 'bottom';
-	borderWidth?: 0 | 1 | 2;
-	borderColor?: '--color-error' | '#f00' | 'red' | string;
-	borderRadius?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'circle' | string;
-	boxShadow?: 'none' | 'top' | 'bottom';
+	$borderWidth?: 0 | 1 | 2;
+	$borderColor?: '--color-error' | '#f00' | 'red' | string;
+	$borderRadius?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'circle' | string;
+	$boxShadow?: 'none' | 'top' | 'bottom';
 
 	limit?: number;
 	pointerEvents?: 'none' | 'auto' | 'all' | string;

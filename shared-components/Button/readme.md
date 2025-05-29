@@ -31,12 +31,12 @@ variant?:
     | "ghost-icon-secondary-no-padding"
     | "ghost-icon-negative-no-padding";
 
-borderRadius?: "normal" | "round" | "none";
+$borderRadius?: "normal" | "round" | "none";
 
 width?: "normal" | "full";
 
 sizeIcon?: string | number | null;
 
-isDisabled?: boolean;
+$isDisabled?: boolean;
 
 ```

@@ -4,9 +4,9 @@ import styled from 'styled-components';
 export const Popover = styled.div<{
 	width?: number;
 	backgroundColor?: string;
-	borderColor?: string;
+	$borderColor?: string;
 	padding?: string | number;
-	borderRadius?: string | number;
+	$borderRadius?: string | number;
 }>`
 	position: absolute;
 	background: var(
@@ -15,11 +15,11 @@ export const Popover = styled.div<{
 	);
 	border: 1px solid
 		var(
-			${({ borderColor = '--button-color-disabled-ghost-icon' }) => borderColor},
+			${({ $borderColor = '--button-color-disabled-ghost-icon' }) => $borderColor},
 			--button-color-disabled-ghost-icon
 		);
 	padding: ${({ padding = 12 }) => `${toPx(padding)}`};
-	border-radius: ${({ borderRadius = 12 }) => `${toPx(borderRadius)}`};
+	border-radius: ${({ $borderRadius = 12 }) => `${toPx($borderRadius)}`};
 	z-index: 1000;
 	width: ${({ width }) => (width ? `${toPx(width)}` : 'auto')};
 	box-shadow:

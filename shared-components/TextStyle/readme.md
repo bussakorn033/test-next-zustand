@@ -10,9 +10,9 @@ import {TextStyle} from "@/shared-components/TextStyle";
   text
 </TextStyle>;
 
-color?: string; // --color-error || #f00
+color?: '--color-error' | '#f00' | 'red' | string;
 
-limitLine?: number;
+$limitLine?: number;
 
 variant?: // Desktop Headings
   | "h2" // 32px bold, 44px
@@ -47,11 +47,11 @@ variant?: // Desktop Headings
   | "mobileLabelSmallBold" // 14px bold, 24px
   | "span"; // 14px bold, 24px
 
-whiteSpace?: "normal" | "nowrap" | "pre" | "pre-line" | "pre-wrap";
+$whiteSpace?: "normal" | "nowrap" | "pre" | "pre-line" | "pre-wrap";
 
-wordBreak?: "normal" | "break-all" | "keep-all" | "break-word";
+$wordBreak?: "normal" | "break-all" | "keep-all" | "break-word";
 
-textAlign?: "left" | "center" | "right";
+$textAlign?: "left" | "center" | "right";
 
 textDecoration?: "none" | "underline" | "line-through" | "overline";
 ```

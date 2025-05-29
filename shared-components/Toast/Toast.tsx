@@ -7,7 +7,7 @@ import { ToastProps } from './Toast.types';
 import * as S from './Toast.styled';
 
 const Toast: React.FC<ToastProps> = ({ variant = 'info', message, duration = 5000 }) => {
-	const [isVisible, setIsVisible] = useState(false);
+	const [$isVisible, setIsVisible] = useState(false);
 	const [shouldRender, setShouldRender] = useState(true);
 
 	useEffect(() => {
@@ -22,13 +22,13 @@ const Toast: React.FC<ToastProps> = ({ variant = 'info', message, duration = 500
 
 	// Wait for transition to complete before unmounting
 	useEffect(() => {
-		if (!isVisible) {
+		if (!$isVisible) {
 			const timeout = setTimeout(() => {
 				setShouldRender(false);
 			}, 400);
 			return () => clearTimeout(timeout);
 		}
-	}, [isVisible]);
+	}, [$isVisible]);
 
 	if (!shouldRender) return null;
 
@@ -47,17 +47,17 @@ const Toast: React.FC<ToastProps> = ({ variant = 'info', message, duration = 500
 
 	return (
 		<S.ToastWrapper
-			isVisible={isVisible}
+			$isVisible={$isVisible}
 			p={16}
 			direction='row'
-			justifyContent='space-between'
-			isFullWidth
+			$justifyContent='space-between'
+			$isFullWidth
 			width={480}
-			bgColor={`--color-toast-bg-${variant}`}
+			$bgColor={`--color-toast-bg-${variant}`}
 			border='all'
-			borderRadius='xsm'
-			borderWidth={1}
-			borderColor={`--color-toast-${variant}`}
+			$borderRadius='xsm'
+			$borderWidth={1}
+			$borderColor={`--color-toast-${variant}`}
 			mb={8}
 		>
 			<Box direction='row' gap={16}>
@@ -67,11 +67,11 @@ const Toast: React.FC<ToastProps> = ({ variant = 'info', message, duration = 500
 				</TextStyle>
 			</Box>
 
-			<TextStyle variant='labelMedium' color='--color-accent'>
-				<Box isHover pr={24} onClick={() => setIsVisible(false)}>
+			<Box $isHover pr={24} onClick={() => setIsVisible(false)}>
+				<TextStyle variant='labelMedium' color='--color-accent'>
 					ปิด
-				</Box>
-			</TextStyle>
+				</TextStyle>
+			</Box>
 		</S.ToastWrapper>
 	);
 };

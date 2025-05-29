@@ -14,7 +14,7 @@ export interface PopoverProps
 	width?: number;
 	onClose?: () => void;
 	backgroundColor?: string;
-	borderColor?: string;
+	$borderColor?: string;
 	padding?: string | number;
-	borderRadius?: string | number;
+	$borderRadius?: string | number;
 }

@@ -8,15 +8,15 @@ import {Box} from "@/shared-components/Box";
   direction="column"
   gap={8}
   padding={16}
-  bgColor="--color-neutral-light"
-  borderColor="--color-primary"
+  $bgColor="--color-neutral-light"
+  $borderColor="--color-primary"
   color="--color-primary"
   border="all"
-  borderRadius="md"
-  borderWidth={1}
+  $borderRadius="md"
+  $borderWidth={1}
   width="full"
-  justifyContent="center"
-  alignItems="center"
+  $justifyContent="center"
+  $alignItems="center"
 >
   Box Component
 </Box>;
@@ -44,13 +44,13 @@ mb?: string | number;
 mr?: string | number;
 ml?: string | number;
 
-bgColor?: string; // --color-error || #f00
+$bgColor?: string; // --color-error || #f00
 color?: string; // --color-error || #f00
-borderColor?: string; // --color-error || #f00
+$borderColor?: string; // --color-error || #f00
 
 border?: "all" | "top" | "bottom" ;
 
-borderRadius?:
+$borderRadius?:
   | "none"
   | "xs"
   | "sm"
@@ -59,26 +59,26 @@ borderRadius?:
   | "xl"
   | "circle";
 
-borderWidth?: 0 | 1 | 2;
+$borderWidth?: 0 | 1 | 2;
 
 width?: string | number;;
 height?: string | number;;
-minWidth?: string | number;;
-maxWidth?: string | number;;
+$minWidth?: string | number;;
+$maxWidth?: string | number;;
 minHeight?: string | number;;
-maxHeight?: string | number;;
+$maxHeight?: string | number;;
 
-boxShadow?: "none" | "top" | "bottom";
+$boxShadow?: "none" | "top" | "bottom";
 
-isHover?: boolean;
+$isHover?: boolean;
 
-textAlign?: "left" | "center" | "right";
-alignItems?: "start" | "center" | "end" | "baseline" | string;
-alignContent?: "start" | "center" | "end" | "baseline" | string;
-justifyContent?: "start" | "center" | "end" | "space-between" | "space-around" | string;
+$textAlign?: "left" | "center" | "right";
+$alignItems?: "start" | "center" | "end" | "baseline" | string;
+$alignContent?: "start" | "center" | "end" | "baseline" | string;
+$justifyContent?: "start" | "center" | "end" | "space-between" | "space-around" | string;
 
 position?: "static" | "relative" | "absolute" | "fixed" | "sticky" | string;
-zIndex?: string | number;
+$zIndex?: string | number;
 top?: string | number;
 bottom?: string | number;
 left?: string | number;

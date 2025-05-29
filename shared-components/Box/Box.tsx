@@ -6,24 +6,24 @@ import { BoxProps } from './Box.types';
 export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
 	(
 		{
-			isFullWidth,
-			isFullHeight,
-			isHover,
+			$isFullWidth,
+			$isFullHeight,
+			$isHover,
 			className,
 			children,
 			tag = 'div',
 			display = 'flex',
 			direction = 'none',
-			boxShadow = 'none',
+			$boxShadow = 'none',
 			border = 'all',
-			borderWidth = 0,
-			borderRadius = 'none',
+			$borderWidth = 0,
+			$borderRadius = 'none',
 			...rest
 		}: BoxProps,
 		ref
 	) => {
 		const classnames = classNames(className, 'ds-ui-box');
-		const { bgColor, color, borderColor } = rest;
+		const { $bgColor, color, $borderColor } = rest;
 
 		return (
 			<S.Box
@@ -31,21 +31,21 @@ export const Box = forwardRef<HTMLElement | undefined, BoxProps>(
 				as={tag}
 				display={display}
 				direction={direction}
-				isFullWidth={isFullWidth}
-				isFullHeight={isFullHeight}
-				boxShadow={boxShadow}
+				$isFullWidth={$isFullWidth}
+				$isFullHeight={$isFullHeight}
+				$boxShadow={$boxShadow}
 				border={border}
-				borderWidth={borderWidth}
-				borderRadius={borderRadius}
-				isHover={isHover}
+				$borderWidth={$borderWidth}
+				$borderRadius={$borderRadius}
+				$isHover={$isHover}
 				ref={ref}
 				{...rest}
 				style={
 					{
 						...rest.style,
-						'--text-bg-color': bgColor && `var(${bgColor})`,
+						'--text-bg-color': $bgColor && `var(${$bgColor})`,
 						'--text-color': color && `var(${color})`,
-						'--text-border-color': borderColor && `var(${borderColor})`
+						'--text-border-color': $borderColor && `var(${$borderColor})`
 					} as React.CSSProperties
 				}
 			>

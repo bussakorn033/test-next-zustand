@@ -27,7 +27,7 @@ export interface InputDropdownProps {
 	height?: string | number;
 	width?: string | number;
 	minHeight?: string | number;
-	minWidth?: string | number;
-	maxHeight?: string | number;
-	maxWidth?: string | number;
+	$minWidth?: string | number;
+	$maxHeight?: string | number;
+	$maxWidth?: string | number;
 }

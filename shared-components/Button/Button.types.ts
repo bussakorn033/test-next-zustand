@@ -8,7 +8,7 @@ import React from 'react';
  * @param label - Button label
  * @param size - Optional size
  * @param width - Optional width
- * @param borderRadius - Optional border radius
+ * @param $borderRadius - Optional border radius
  * @param iconLeft - Optional icon on the left
  * @param iconRight - Optional icon on the right
  * @param disabled - Button disabled state
@@ -23,15 +23,19 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 		| 'negative'
 		| 'secondary'
 		| 'secondary-negative'
+		| 'ghost-main'
 		| 'ghost-primary'
 		| 'ghost-secondary'
 		| 'ghost-negative'
+		| 'ghost-main-no-padding'
 		| 'ghost-primary-no-padding'
 		| 'ghost-secondary-no-padding'
 		| 'ghost-negative-no-padding'
+		| 'ghost-icon-main'
 		| 'ghost-icon-primary'
 		| 'ghost-icon-secondary'
 		| 'ghost-icon-negative'
+		| 'ghost-icon-main-no-padding'
 		| 'ghost-icon-primary-no-padding'
 		| 'ghost-icon-secondary-no-padding'
 		| 'ghost-icon-negative-no-padding'
@@ -40,12 +44,12 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 	sizeIcon?: string | number | null;
 	colorIcon?: '--color-neutral-light' | '#f00' | 'red' | string | null;
 	flex?: string | number | null;
-	flexWrap?: string | null;
+	$flexWrap?: string | null;
 	width?: 'normal' | 'full';
-	borderRadius?: 'normal' | 'round' | 'none' | 'small' | string;
+	$borderRadius?: 'normal' | 'round' | 'none' | 'small' | string;
 	iconLeft?: string;
 	iconRight?: string;
-	isDisabled?: boolean;
+	$isDisabled?: boolean;
 	children?: React.ReactNode;
 	p?: string | number;
 	px?: string | number;

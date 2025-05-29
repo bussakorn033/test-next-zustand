@@ -4,13 +4,13 @@
 import {Icon} from "@/shared-components/Icon";
 
 <Icon
-  icon="arrow_down"
+  icon="arrow_down_bold"
   color="--color-error"
   width={24}
   height={24}
 />;
 
-icon?: string; // arrow_down
+icon?: string | 'arrow_down_bold';
 
-color?: string; // --color-error || #f00
+color?: '--color-error' | '#f00' | 'red' | string;
 ```

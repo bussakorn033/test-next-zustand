@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Regular */
 @font-face {
   font-family: 'Ekachon';
@@ -165,6 +161,7 @@
 
   /* primary */
   --button-primary: var(--color-accent);
+  --button-color-primary: var(--color-neutral-light);
   --button-hover-primary: #3272f3;
   --button-active-primary: #0040c0;
   --button-disabled-primary: var(--color-disable);
@@ -172,6 +169,7 @@
 
   /* negative */
   --button-negative: var(--color-error);
+  --button-color-secondary: var(--color-neutral-light);
   --button-hover-negative: #e14d3f;
   --button-active-negative: #e56357;
   --button-disabled-negative: var(--color-disable);
@@ -196,6 +194,14 @@
   --button-focus-secondary-negative: #f7d2cf;
   --button-disabled-secondary-negative: var(--color-disable);
   --button-color-disabled-secondary-negative: var(--color-neutral-grey-lighter);
+
+  /* ghost-main */
+  --button-ghost-main: transparent;
+  --button-color-ghost-main: var(--color-primary);
+  --button-hover-ghost-main: #ccdcfc;
+  --button-active-ghost-main: #99b9f9;
+  --button-disabled-ghost-main: transparent;
+  --button-color-disabled-ghost-main: var(--color-neutral-grey-lighter);
 
   /* ghost-primary */
   --button-ghost-primary: transparent;
@@ -359,9 +365,13 @@
 }
 
 /* Apply font family globally */
+
 html,
 body {
-  font-family: var(--font-family-primary);
+  &,
+  * {
+    font-family: var(--font-family-primary);
+  }
   background-color: var(--color-bg-primary);
   margin: 0;
   padding: 0;
@@ -382,4 +392,9 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
   -webkit-background-clip: text;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

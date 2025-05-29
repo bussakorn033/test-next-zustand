@@ -14,12 +14,12 @@ export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElemen
 	label?: string;
 	labelVariant?: TextStyleProps['variant'];
 	labelColor?: TextStyleProps['color'];
-	checkColor?: TextStyleProps['color'];
+	$checkColor?: TextStyleProps['color'];
 	className?: string;
 	gap?: number;
 	name?: string;
-	isChecked?: boolean;
-	isDisabled?: boolean;
+	$isChecked?: boolean;
+	$isDisabled?: boolean;
 	onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 	size?: number;
 }

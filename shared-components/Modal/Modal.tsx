@@ -4,6 +4,7 @@ import { Icon } from '@/shared-components/Icon';
 import { TextStyle } from '@/shared-components/TextStyle';
 import { ModalProps } from './Modal.types';
 import * as S from './Modal.styled';
+import { Button } from '../Button';
 
 const Modal: React.FC<ModalProps> = ({
 	isOpen,
@@ -34,23 +35,28 @@ const Modal: React.FC<ModalProps> = ({
 
 	return (
 		<S.Overlay onClick={onClose}>
-			<S.Modal
-				className={className}
-				width={width}
-				height={height}
-				onClick={(e) => e.stopPropagation()}
-				{...rest}
-			>
-				<Box direction='row' alignItems='center' justifyContent='space-between' pb={16}>
-					<TextStyle variant='h4' color='--color-primary'>
-						{title}
-					</TextStyle>
-					<S.CloseButton onClick={onClose}>
-						<Icon icon='close' />
-					</S.CloseButton>
-				</Box>
-				{children}
-			</S.Modal>
+			<Box mx={24} width={'fit-content'} $minWidth={'calc(100% - 48px)'}>
+				<S.Modal
+					className={className}
+					width={width}
+					height={height}
+					onClick={(e) => e.stopPropagation()}
+					{...rest}
+				>
+					<Box direction='row' $alignItems='center' $justifyContent='space-between' pb={16}>
+						<TextStyle variant='h4' color='--color-primary'>
+							{title}
+						</TextStyle>
+						<Button
+							variant={'ghost-icon-main-no-padding'}
+							iconLeft='close'
+							$borderRadius='round'
+							onClick={onClose}
+						/>
+					</Box>
+					{children}
+				</S.Modal>
+			</Box>
 		</S.Overlay>
 	);
 };

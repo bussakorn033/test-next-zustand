@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Box } from '@/shared-components/Box';
 
-export const ToastWrapper = styled(Box)<{ isVisible: boolean }>`
+export const ToastWrapper = styled(Box)<{ $isVisible: boolean }>`
 	position: relative;
-	transform: translateX(-50%) translateY(${(props) => (props.isVisible ? '0' : '20px')});
-	opacity: ${(props) => (props.isVisible ? 1 : 0)};
+	transform: translateX(-50%) translateY(${(props) => (props.$isVisible ? '0' : '20px')});
+	opacity: ${(props) => (props.$isVisible ? 1 : 0)};
 	transition:
 		opacity 0.4s ease,
 		transform 0.4s ease;

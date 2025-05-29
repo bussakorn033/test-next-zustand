@@ -1,25 +1,50 @@
 {
-  "dashboard_title": "สวัสดีครับ คุณชานนท์",
-  "dashboard_sub_title": "ยินดีต้อนรับเข้าสู่ ttb e-contract portal",
-  "dashboard_title_table": "รายการสัญญา",
-  "dashboard_btn_refresh": "รีเฟรช",
-  "dashboard_btn_create_contract": "สร้างสัญญา",
+	"dashboard_title": "สวัสดีครับ คุณชานนท์",
+	"dashboard_sub_title": "ยินดีต้อนรับเข้าสู่ ttb e-contract portal",
+	"dashboard_title_table": "รายการสัญญา",
+	"dashboard_btn_refresh": "รีเฟรช",
+	"dashboard_btn_create_contract": "สร้างสัญญา",
 
-  "dashboard_filter_by_user": "ค้นหาลูกค้า",
-  "dashboard_filter_by_user_name": "ชื่อ",
-  "dashboard_filter_by_last_name": "นามสกุล",
-  "dashboard_filter_by_type_doc": "ประเภทเอกสาร",
-  "dashboard_filter_by_status": "สถานะ",
-  "dashboard_filter_btn_reset": "รีเซ็ต",
+	"dashboard_filter_by_user": "ค้นหาลูกค้า",
+	"dashboard_filter_by_user_name": "ชื่อ",
+	"dashboard_filter_by_last_name": "นามสกุล",
+	"dashboard_filter_by_type_doc": "ประเภทเอกสาร",
+	"dashboard_filter_by_status": "สถานะ",
+	"dashboard_filter_btn_reset": "รีเซ็ต",
 
-  "dashboard_contract_table_header_row1": "เลขที่",
-  "dashboard_contract_table_header_row2": "เลขบัตรประชาชน/เลขพาสปอร์ต",
-  "dashboard_contract_table_header_row3": "ชื่อ - นามสกุล",
-  "dashboard_contract_table_header_row4": "ประเภทเอกสาร",
-  "dashboard_contract_table_header_row5": "สถานะ",
-  "dashboard_contract_table_header_row6": "อัปเดตล่าสุด",
-  "dashboard_contract_table_header_row7": "สร้างโดย",
+	"dashboard_contract_table_header_row1": "เลขที่",
+	"dashboard_contract_table_header_row2": "เลขบัตรประชาชน/เลขพาสปอร์ต",
+	"dashboard_contract_table_header_row3": "ชื่อ - นามสกุล",
+	"dashboard_contract_table_header_row4": "ประเภทเอกสาร",
+	"dashboard_contract_table_header_row5": "สถานะ",
+	"dashboard_contract_table_header_row6": "อัปเดตล่าสุด",
+	"dashboard_contract_table_header_row7": "สร้างโดย",
 
-  "dashboard_contract_table_footer_limit": "จำนวนแถว",
-  "dashboard_contract_table_footer_to": "จาก"
+	"dashboard_contract_table_footer_limit": "จำนวนแถว",
+	"dashboard_contract_table_footer_to": "จาก",
+
+	"dashboard_contract_table_body_no_data": "Not Found",
+
+	"dashboard_modal_title": "สร้างสัญญา",
+	"dashboard_modal_tab_detail": "ค้นหา",
+
+	"dashboard_modal_tab_1": "RM No.",
+	"dashboard_modal_tab_2": "เลขบัตรประชาชน",
+	"dashboard_modal_tab_3": "เลขพาสปอร์ต",
+	"dashboard_modal_tab_4": "ชื่อ - นามสกุล",
+
+	"dashboard_modal_btn_search": "ค้นหา",
+	"dashboard_modal_input_name_search": "ชื่อ",
+	"dashboard_modal_input_last_name_search": "นามสกุล",
+
+	"dashboard_modal_table_header_row1": "RM No.",
+	"dashboard_modal_table_header_row2": "เลขบัตรประชาชน/พาสปอร์ต",
+	"dashboard_modal_table_header_row3": "ชื่อ - นามสกุล",
+	"dashboard_modal_table_header_row4": "สถานะทีทีบี ทัช",
+
+	"dashboard_modal_status1": "ปกติ",
+	"dashboard_modal_status2": "ไม่มี ทีทีบี ทัช",
+	"dashboard_modal_status3": "เวอร์ชันไม่รองรับ",
+	"dashboard_modal_status4": "ไม่พร้อมใช้งาน",
+	"dashboard_modal_table_body_select": "เลือก"
 }

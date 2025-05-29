@@ -6,15 +6,15 @@ import { TextStyleProps } from './TextStyle.types';
 export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
 	(
 		{
+			children,
+			color = undefined,
 			variant = 'paragraphMedium',
-			color,
 			className = '',
 			tag = '',
-			children,
-			limitLine = 0,
-			whiteSpace = 'pre-line',
-			wordBreak = 'normal',
-			textAlign = 'left',
+			$limitLine = 0,
+			$whiteSpace = 'pre-line',
+			$wordBreak = 'normal',
+			$textAlign = 'left',
 			textDecoration = 'none',
 			...rest
 		}: TextStyleProps,
@@ -88,13 +88,14 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
 
 		return (
 			<S.TextStyle
+				// as={customTag == 'p' && tag ? 'label' : tag || customTag || 'p'}
 				as={tag || customTag || 'p'}
 				variant={variant}
 				className={classnames}
-				limitLine={limitLine}
-				whiteSpace={whiteSpace}
-				wordBreak={wordBreak}
-				textAlign={textAlign}
+				$limitLine={$limitLine}
+				$whiteSpace={$whiteSpace}
+				$wordBreak={$wordBreak}
+				$textAlign={$textAlign}
 				textDecoration={textDecoration}
 				{...rest}
 				style={

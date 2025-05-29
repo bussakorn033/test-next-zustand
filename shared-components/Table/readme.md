@@ -8,7 +8,7 @@ import {Table} from "@/shared-components/Table";
   values={values}
   mode="light"
   size="md"
-  maxHeightTable={"200px"}
+  $maxHeightTable={"200px"}
   headers={headers}
   values={values}
   paginationOptions={paginationOptions}
@@ -47,8 +47,8 @@ const {paginationOptions, pagination, setPagination, headers, values} =
         label: t("dashboard_contract_table_header_row1"),
         isSort: true,
         sortBy: undefined,
-        minWidth: "96px",
-        maxWidth: "calc(96px * 1.25)",
+        $minWidth: "96px",
+        $maxWidth: "calc(96px * 1.25)",
         flex: 1,
         align: "left",
       },
@@ -57,8 +57,8 @@ const {paginationOptions, pagination, setPagination, headers, values} =
         label: t("dashboard_contract_table_header_row2"),
         isSort: true,
         sortBy: undefined,
-        minWidth: "144px",
-        maxWidth: "calc(144px * 1.5)",
+        $minWidth: "144px",
+        $maxWidth: "calc(144px * 1.5)",
         flex: 1,
         align: "left",
       },
@@ -73,8 +73,8 @@ const {paginationOptions, pagination, setPagination, headers, values} =
         sortBy: item.sortBy,
         icon: item.icon,
         onClick: onClickHeader,
-        minWidth: item.minWidth || "100px",
-        maxWidth: item.maxWidth,
+        $minWidth: item.$minWidth || "100px",
+        $maxWidth: item.$maxWidth,
         flex: item.flex || 1,
         alignHeader: (item.alignHeader || "left") as
           | "left"
@@ -116,7 +116,7 @@ const {paginationOptions, pagination, setPagination, headers, values} =
           key: header.key,
           value: row[header.key as keyof typeof row],
           onClick: onClickValue,
-          minWidth: header.minWidth || "100px",
+          $minWidth: header.$minWidth || "100px",
           flex: header.flex || 1,
           align: header.align || "left",
         })),

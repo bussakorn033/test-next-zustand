@@ -9,23 +9,25 @@ const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, o
 	useEffect(() => {
 		if (isOpen && anchorRef.current && popoverRef.current) {
 			const anchorRect = anchorRef.current.getBoundingClientRect();
+			const popoverRect = popoverRef.current.getBoundingClientRect();
 			const popoverWidth = popoverRef.current.offsetWidth;
 			const popoverHeight = popoverRef.current.offsetHeight;
 			const screenWidth = window.innerWidth;
+			const screenHeight = window.innerHeight;
 			let left = anchorRect.left + window.scrollX;
+			let top = 0;
 
 			if (left + popoverWidth > screenWidth) {
-				left = screenWidth - popoverWidth - 16;
-			}
-			if (left < 16) {
-				left = 16;
+				left -= popoverRect.width - anchorRect.width;
 			}
 
-			const offset = 4;
+			const offset = 16;
 			const availableSpaceAbove = anchorRect.top;
-			let top: number;
 
-			if (availableSpaceAbove > popoverHeight + offset) {
+			if (
+				(availableSpaceAbove > popoverHeight + offset && anchorRect.height > popoverRect.height) ||
+				anchorRect.top + popoverRect.height > screenHeight
+			) {
 				top = anchorRect.top + window.scrollY - popoverHeight - offset;
 			} else {
 				top = anchorRect.bottom + window.scrollY + offset;
@@ -48,8 +50,15 @@ const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, o
 			document.removeEventListener('mousedown', handleClickOutside);
 		}
 
+		const handleEventListener = () => {
+			onClose && onClose();
+		};
+
+		window.addEventListener('resize', handleEventListener, true);
+
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
+			window.removeEventListener('resize', handleEventListener, true);
 		};
 	}, [isOpen, onClose]);
 
@@ -57,6 +66,7 @@ const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, o
 
 	return (
 		<S.Popover
+			className='ds-ui-popover'
 			ref={popoverRef}
 			width={width}
 			{...rest}

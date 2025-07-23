@@ -27,6 +27,6 @@ export interface ModalProps extends React.HTMLAttributes<HTMLHeadingElement> {
 	$minWidth?: string | number;
 	$maxWidth?: string | number;
 	height?: string | number;
-	minHeight?: string | number;
+	$minHeight?: string | number;
 	$maxHeight?: string | number;
 }

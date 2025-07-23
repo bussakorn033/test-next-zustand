@@ -26,7 +26,6 @@
  * @param iconLeft - React node rendered as the left icon.
  * @param iconRight - React node rendered as the right icon.
  * @param format - Format string to customize the displayed value.
- * @param options - @deprecated Deprecated property for additional options.
  * @param $zIndex - CSS z-index value for stacking context.
  * @param width - The width of the TextField.
  * @param $marginBottom - The bottom margin of the TextField.
@@ -58,7 +57,6 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
 	iconLeft?: React.ReactNode;
 	iconRight?: React.ReactNode;
 	format?: string;
-	options?: string;
 	$zIndex?: number;
 	width?: string | number;
 	$marginBottom?: string | number;

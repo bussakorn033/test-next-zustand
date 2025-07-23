@@ -39,40 +39,53 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 	) => {
 		const classnames = classNames(className, 'ds-text-field');
 
-		const onchangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-			if (onChange) {
-				onChange(event);
+		const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+			let newValue = event.target.value;
+			if (maxLength && newValue.length > Number(maxLength)) {
+				newValue = newValue.slice(0, maxLength);
+				event.target.value = newValue;
+			}
+			let pattern: any = rest?.pattern;
+			if (type === 'number' && !pattern) {
+				pattern = /^\d*$/;
+			}
+
+			const patternRegex = pattern && new RegExp(pattern);
+			if (!pattern || (patternRegex && patternRegex.test(newValue))) {
+				if (onChange) {
+					onChange(event);
+				}
 			}
 		};
 
 		const onKeyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-			if (event.key === 'Enter') {
+			if (event.key === 'Enter' || event.keyCode === 13) {
 				event.preventDefault();
 				if (onChange) {
 					onChange({
-						target: { name: rest.name, value: event.currentTarget.value }
+						target: { name: rest?.name, value: event.currentTarget.value }
 					} as React.ChangeEvent<HTMLInputElement>);
 				}
 			}
 		};
 
 		const onKeyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-			if (event.key === 'Enter') {
+			if (event.key === 'Enter' || event.keyCode === 13) {
 				event.preventDefault();
 				if (onChange) {
 					onChange({
-						target: { name: rest.name, value: event.currentTarget.value }
+						target: { name: rest?.name, value: event.currentTarget.value }
 					} as React.ChangeEvent<HTMLInputElement>);
 				}
 			}
 		};
 
 		const onKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-			if (event.key === 'Enter') {
+			if (event.key === 'Enter' || event.keyCode === 13) {
 				event.preventDefault();
 				if (onChange) {
 					onChange({
-						target: { name: rest.name, value: event.currentTarget.value }
+						target: { name: rest?.name, value: event.currentTarget.value }
 					} as React.ChangeEvent<HTMLInputElement>);
 				}
 			}
@@ -84,7 +97,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 			}
 			if (onChange) {
 				onChange({
-					target: { name: rest.name, value: event.currentTarget.value }
+					target: { name: rest?.name, value: event.currentTarget.value }
 				} as React.ChangeEvent<HTMLInputElement>);
 			}
 		};
@@ -92,7 +105,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 		const onBlurHandler = (event: React.FocusEvent<HTMLInputElement>) => {
 			if (onChange) {
 				onChange({
-					target: { name: rest.name, value: event.currentTarget.value }
+					target: { name: rest?.name, value: event.currentTarget.value.trim() }
 				} as React.ChangeEvent<HTMLInputElement>);
 			}
 		};
@@ -100,7 +113,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 		const onClickHandler = (event: React.MouseEvent<HTMLInputElement>) => {
 			if (onChange) {
 				onChange({
-					target: { name: rest.name, value: event.currentTarget.value }
+					target: { name: rest?.name, value: event.currentTarget.value }
 				} as React.ChangeEvent<HTMLInputElement>);
 			}
 		};
@@ -111,7 +124,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 			}
 			if (onChange) {
 				onChange({
-					target: { name: rest.name, value: event.currentTarget.value }
+					target: { name: rest?.name, value: event.currentTarget.value }
 				} as React.ChangeEvent<HTMLInputElement>);
 			}
 		};
@@ -122,7 +135,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 			}
 			if (onChange) {
 				onChange({
-					target: { name: rest.name, value: event.currentTarget.value }
+					target: { name: rest?.name, value: event.currentTarget.value }
 				} as React.ChangeEvent<HTMLInputElement>);
 			}
 		};
@@ -167,19 +180,21 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 
 				<S.InputWrapper $isError={error}>
 					{iconLeft && <S.Icon>{iconLeft}</S.Icon>}
-					<TextStyle variant='labelSmall' color='--color-primary' $alignContent='center' flex={1}>
+					<TextStyle variant='valueSmall' color='--text-primary-dark' $alignContent='center' flex={1}>
 						<S.Input
 							{...rest}
 							id={id}
+							data-testid={id}
 							disabled={$isDisabled}
 							value={value}
-							type={type}
+							type={type === 'number' ? 'text' : type}
+							pattern={rest?.pattern}
 							$isClearable={$isClearable}
 							max={max}
 							maxLength={maxLength}
 							min={min}
 							minLength={minLength}
-							onChange={onchangeHandler}
+							onChange={onChangeHandler}
 							onKeyDown={onKeyDownHandler}
 							onKeyUp={onKeyUpHandler}
 							onKeyPress={onKeyPressHandler}
@@ -193,27 +208,23 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 					{$isClearable && value && !$isDisabled && (
 						<S.ClearButton
 							type='button'
-							name={rest.name}
+							name={rest?.name}
 							onClick={() => {
-								onChange &&
+								if (onChange) {
 									onChange({
-										target: { name: rest.name, value: '' }
+										target: { name: rest?.name, value: '' }
 									} as React.ChangeEvent<HTMLInputElement>);
+								}
 							}}
 						>
-							<Icon
-								icon='cancel_circle_fill'
-								width={20}
-								height={20}
-								color='--color-neutral-grey-lighter'
-							/>
+							<Icon icon='cancel_circle_fill' width={20} height={20} color='--color-neutral-dark' />
 						</S.ClearButton>
 					)}
 					{iconRight && <S.Icon>{iconRight}</S.Icon>}
 				</S.InputWrapper>
 				{helpingText && (
 					<S.HelpingText $isError={error}>
-						<TextStyle variant='labelXSmall'>{helpingText}</TextStyle>
+						<TextStyle variant='paragraphSmall'>{helpingText}</TextStyle>
 					</S.HelpingText>
 				)}
 			</S.TextFieldWrapper>

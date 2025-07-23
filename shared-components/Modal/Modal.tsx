@@ -34,7 +34,7 @@ const Modal: React.FC<ModalProps> = ({
 	if (!isOpen) return null;
 
 	return (
-		<S.Overlay onClick={onClose}>
+		<S.Overlay className='ds-ui-modal' onClick={onClose}>
 			<Box mx={24} width={'fit-content'} $minWidth={'calc(100% - 48px)'}>
 				<S.Modal
 					className={className}

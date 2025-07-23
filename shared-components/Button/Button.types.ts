@@ -16,6 +16,7 @@ import React from 'react';
  */
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	ref?: React.Ref<HTMLElement>;
 	id?: string;
 	className?: string;
 	variant?:
@@ -46,7 +47,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 	flex?: string | number | null;
 	$flexWrap?: string | null;
 	width?: 'normal' | 'full';
-	$borderRadius?: 'normal' | 'round' | 'none' | 'small' | string;
+	$borderRadius?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'round' | 'circle' | string;
 	iconLeft?: string;
 	iconRight?: string;
 	$isDisabled?: boolean;

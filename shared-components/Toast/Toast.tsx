@@ -20,7 +20,7 @@ const Toast: React.FC<ToastProps> = ({ variant = 'info', message, duration = 500
 		};
 	}, [duration]);
 
-	// Wait for transition to complete before unmounting
+	/* NOTE: Wait for transition to complete before unmounting */
 	useEffect(() => {
 		if (!$isVisible) {
 			const timeout = setTimeout(() => {
@@ -47,6 +47,7 @@ const Toast: React.FC<ToastProps> = ({ variant = 'info', message, duration = 500
 
 	return (
 		<S.ToastWrapper
+			className='ds-ui-toast-wrapper'
 			$isVisible={$isVisible}
 			p={16}
 			direction='row'

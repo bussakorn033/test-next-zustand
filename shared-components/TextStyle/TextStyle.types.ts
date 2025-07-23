@@ -18,6 +18,7 @@ export interface TextStyleProps extends React.HTMLAttributes<HTMLHeadingElement>
 	variant?:
 		| 'h2'
 		| 'h4'
+		| 'h5'
 		| 'h6'
 		| 'paragraphMedium'
 		| 'paragraphSmall'

@@ -53,7 +53,7 @@ const {paginationOptions, pagination, setPagination, headers, values} =
         align: "left",
       },
       {
-        key: "id_card",
+        key: "id_no",
         label: t("dashboard_contract_table_header_row2"),
         isSort: true,
         sortBy: undefined,
@@ -93,7 +93,7 @@ const {paginationOptions, pagination, setPagination, headers, values} =
           case "contract_no":
             row[header.key] = `CN-${rowIndex + 1}`;
             break;
-          case "id_card":
+          case "id_no":
             row[header.key] = `123456789012${rowIndex % 10}`;
             break;
           default:

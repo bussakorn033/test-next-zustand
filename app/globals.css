@@ -116,6 +116,8 @@
 
   /* Brand Colors */
   --color-primary: #002d63; /* Primary brand color */
+  --color-primary-light: #e5edfd; /* Primary light brand color */
+  --color-primary-hover-light: #f3f7f8; /* Primary hover light brand color */
   --color-secondary: #5b6a83; /* Secondary brand color */
   --color-accent: #0050f0; /* Accent color */
   --color-disable: #f5f6f7; /* Accent color */
@@ -152,6 +154,15 @@
   --color-pill-text-information: #0050f0;
   --color-pill-text-success: #388e3c;
   --color-pill-text-primary: #0050f0;
+  --color-pill-text-: #ffffff;
+
+  --component-light-background-on-press: #f5f6f7;
+  --other-background-skeleton: linear-gradient(
+    90deg,
+    #f5f6f7 0%,
+    rgba(223, 230, 236, 0.6) 50%,
+    #f5f6f7 100%
+  );
 
   /* Button Colors */
   --button-padding-none: 0px;
@@ -198,32 +209,32 @@
   /* ghost-main */
   --button-ghost-main: transparent;
   --button-color-ghost-main: var(--color-primary);
-  --button-hover-ghost-main: #ccdcfc;
-  --button-active-ghost-main: #99b9f9;
+  --button-hover-ghost-main: #325682;
+  --button-active-ghost-main: #00244f;
   --button-disabled-ghost-main: transparent;
   --button-color-disabled-ghost-main: var(--color-neutral-grey-lighter);
 
   /* ghost-primary */
   --button-ghost-primary: transparent;
   --button-color-ghost-primary: var(--color-accent);
-  --button-hover-ghost-primary: #ccdcfc;
-  --button-active-ghost-primary: #99b9f9;
+  --button-hover-ghost-primary: #3272f3;
+  --button-active-ghost-primary: #0050f0;
   --button-disabled-ghost-primary: transparent;
   --button-color-disabled-ghost-primary: var(--color-neutral-grey-lighter);
 
   /* ghost-secondary */
   --button-ghost-secondary: transparent;
   --button-color-ghost-secondary: var(--color-neutral-grey);
-  --button-hover-ghost-secondary: #ccd5e0;
-  --button-active-ghost-secondary: #99abc1;
+  --button-hover-ghost-secondary: #325682;
+  --button-active-ghost-secondary: #00244f;
   --button-disabled-ghost-secondary: transparent;
   --button-color-disabled-ghost-secondary: var(--color-neutral-grey-lighter);
 
   /* ghost-negative */
   --button-ghost-negative: transparent;
   --button-color-ghost-negative: var(--color-error);
-  --button-hover-ghost-negative: #fbe8e7;
-  --button-active-ghost-negative: #f7d2cf;
+  --button-hover-ghost-negative: #ff645c;
+  --button-active-ghost-negative: #d01e12;
   --button-disabled-ghost-negative: transparent;
   --button-color-disabled-ghost-negative: var(--color-neutral-grey-lighter);
 
@@ -266,10 +277,13 @@
   --color-pill-bg-information: #eff7fc;
   --color-pill-bg-success: #e8f8ed;
   --color-pill-bg-primary: #e5edfd;
+  --color-pill-bg-: #b0bccb;
+
   --color-toast-bg-error: #fbe8e7;
   --color-toast-bg-success: #e8f8ed;
   --color-toast-bg-warning: #fef6e5;
   --color-toast-bg-info: #eff7fc;
+  --color-box-bg-light: var(--color-neutral-light);
 
   /* Font Weights */
   --font-weight-extra-light: 200;
@@ -356,8 +370,12 @@
   /* Border Radius */
   --radius-none: 0px;
   --radius-normal: 10px;
-  --radius-small: 12px;
   --radius-round: 999999px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-circle: 100%;
 
   /* Font Family */
@@ -365,7 +383,6 @@
 }
 
 /* Apply font family globally */
-
 html,
 body {
   &,

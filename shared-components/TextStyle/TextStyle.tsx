@@ -22,74 +22,76 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
 	) => {
 		const classnames = classNames(className, 'ds-ui-text-style');
 
-		let customTag = 'p';
+		let customTag = tag === 'p' ? tag : 'label';
 		switch (variant) {
-			// Desktop Headings
-			case 'h2': // 32px bold, 44px
+			/* Desktop Headings */
+			case 'h2' /* 32px bold, 44px */:
 				customTag = 'h2';
 				break;
-			case 'h4': // 24px bold, 34px
+			case 'h4' /* 24px bold, 34px */:
 				customTag = 'h4';
 				break;
-			case 'h6': // 16px bold, 24px
+			case 'h5' /* 20px bold, 30px */:
+				customTag = 'h5';
+				break;
+			case 'h6' /* 16px bold, 24px */:
 				customTag = 'h6';
 				break;
 
-			// Paragraphs - all use p tag
-			case 'paragraphMedium': // 16px regular, 24px
-			case 'paragraphSmall': // 14px regular, 20px
-			case 'paragraphXSmall': // 12px regular, 16px
-				customTag = 'p';
-				break;
-
-			// Labels
-			case 'labelMedium': // 16px regular, 24px
-			case 'labelSmall': // 14px regular, 20px
-			case 'labelSmallBold': // 14px bold, 20px
-			case 'labelXSmall': // 12px regular, 16px
-			case 'labelXSmallBold': // 12px bold, 16px
+			/* Paragraphs - all use p tag */
+			case 'paragraphMedium': /* 16px regular, 24px */
+			case 'paragraphSmall': /* 14px regular, 20px */
+			case 'paragraphXSmall' /* 12px regular, 16px */:
 				customTag = 'label';
 				break;
 
-			// Values - all use p tag
-			case 'valueSmall': // 14px regular, 20px
-				customTag = 'p';
+			/* Labels */
+			case 'labelMedium': /* 16px regular, 24px */
+			case 'labelSmall': /* 14px regular, 20px */
+			case 'labelSmallBold': /* 14px bold, 20px */
+			case 'labelXSmall': /* 12px regular, 16px */
+			case 'labelXSmallBold' /* 12px bold, 16px */:
+				customTag = 'label';
 				break;
 
-			// Special Cases
-			case 'pageTitle': // 20px bold, 24px
+			/* Values - all use p tag */
+			case 'valueSmall' /* 14px regular, 20px */:
+				customTag = 'label';
+				break;
+
+			/* Special Cases */
+			case 'pageTitle' /* 20px bold, 24px */:
 				customTag = 'h1';
 				break;
-			case 'allCap': // 12px regular, 16px, uppercase
+			case 'allCap' /* 12px regular, 16px, uppercase */:
 				customTag = 'span';
 				break;
-			case 'allCapSmall': // 12px regular, 16px, uppercase
+			case 'allCapSmall' /* 12px regular, 16px, uppercase */:
 				customTag = 'span';
 				break;
 
-			// Mobile Specific
-			case 'mobileH4': // 14px bold, 20px
+			/* Mobile Specific */
+			case 'mobileH4' /* 14px bold, 20px */:
 				customTag = 'h4';
 				break;
-			case 'mobileLabelSmallBold': // 14px bold, 24px
+			case 'mobileLabelSmallBold' /* 14px bold, 24px */:
 				customTag = 'label';
 				break;
 
-			// Inline Elements
+			/* Inline Elements */
 			case 'span':
 				customTag = 'span';
 				break;
 
-			// Default case
+			/* Default case */
 			default:
-				customTag = 'p';
+				customTag = 'label';
 				break;
 		}
 
 		return (
 			<S.TextStyle
-				// as={customTag == 'p' && tag ? 'label' : tag || customTag || 'p'}
-				as={tag || customTag || 'p'}
+				as={customTag}
 				variant={variant}
 				className={classnames}
 				$limitLine={$limitLine}

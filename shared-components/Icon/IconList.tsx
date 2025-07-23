@@ -32,6 +32,8 @@ import SortingSVG from './file/SortingSVG';
 import TrashSVG from './file/TrashSVG';
 import UserCircleSVG from './file/UserCircleSVG';
 import ViewDocumentSVG from './file/ViewDocumentSVG';
+import EmptySearchSVG from './file/EmptySearchSVG.svg';
+import EmptyBoxSVG from './file/EmptyBoxSVG.svg';
 /* SVG/FILE */
 
 /* Image SVG Components */
@@ -122,6 +124,10 @@ export const IconComponent = ({ ...rest }: any) => {
 			return <ImageProfileCircleSVG {...rest} />;
 		case 'img_ttb_logo':
 			return <ImageTTBLogoSVG {...rest} />;
+		case 'empty_search':
+			return <img src={EmptySearchSVG} />;
+		case 'empty_box':
+			return <img src={EmptyBoxSVG} />;
 		/* Img */
 		default:
 			return null;

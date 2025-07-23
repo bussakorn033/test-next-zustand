@@ -4,7 +4,7 @@ import { TextStyle } from '@/shared-components/TextStyle';
 import { TabsProps } from './Tabs.types';
 import * as S from './Tabs.styled';
 
-const Tabs: React.FC<TabsProps> = ({ tabsName, activeTab, menu, onChange }) => {
+const Tabs: React.FC<TabsProps> = ({ tabsName, activeTab, menu, onChange, variant = 'default' }) => {
 	const [underline, setUnderline] = useState({ left: 0, width: 0 });
 	const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
@@ -20,13 +20,14 @@ const Tabs: React.FC<TabsProps> = ({ tabsName, activeTab, menu, onChange }) => {
 
 	const activeContent = menu.find((tab) => tab.value === activeTab);
 
-	return (
-		<Box>
+	return variant === 'default' ? (
+		<Box className='ds-ui-tabs'>
 			<S.TabContainer>
 				{tabsName && <TextStyle variant='paragraphSmall'>{tabsName}</TextStyle>}
 				<Box>
 					{menu.map((tab) => (
 						<S.TabButton
+							data-testid={tab.id}
 							key={tab.value}
 							ref={(el) => {
 								tabRefs.current[tab.value] = el;
@@ -40,6 +41,31 @@ const Tabs: React.FC<TabsProps> = ({ tabsName, activeTab, menu, onChange }) => {
 				</Box>
 				<S.Underline left={underline.left} width={underline.width} />
 			</S.TabContainer>
+
+			{activeContent && <S.TabPanel key={activeContent.value}>{activeContent.content}</S.TabPanel>}
+		</Box>
+	) : (
+		<Box width='100%'>
+			<S.TabContainerSpaceBetween>
+				{tabsName && <TextStyle variant='paragraphSmall'>{tabsName}</TextStyle>}
+				<Box display='flex' direction='row' $alignItems='center' flex={1}>
+					{menu.map((tab) => (
+						<S.TabButtonSpaceBetween
+							key={tab.value}
+							ref={(el) => {
+								tabRefs.current[tab.value] = el;
+							}}
+							$active={tab.value === activeTab}
+							onClick={() => onChange?.(tab.value)}
+						>
+							<TextStyle variant='h6' $textAlign='center'>
+								{tab.label}
+							</TextStyle>
+						</S.TabButtonSpaceBetween>
+					))}
+				</Box>
+				<S.Underline left={underline.left} width={underline.width} />
+			</S.TabContainerSpaceBetween>
 
 			{activeContent && <S.TabPanel key={activeContent.value}>{activeContent.content}</S.TabPanel>}
 		</Box>

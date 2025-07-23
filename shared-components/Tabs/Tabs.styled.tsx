@@ -8,6 +8,14 @@ export const TabContainer = styled.div`
 	color: var(--color-neutral-grey-light);
 `;
 
+export const TabContainerSpaceBetween = styled.div`
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: var(--color-neutral-grey-light);
+	width: 100%;
+`;
+
 export const TabButton = styled.button<{ $active: boolean }>`
 	padding: 12px 20px;
 	font-size: 14px;
@@ -17,6 +25,22 @@ export const TabButton = styled.button<{ $active: boolean }>`
 	border: none;
 	cursor: pointer;
 	transition: all 0.2s;
+
+	&:hover {
+		color: var(--color-accent);
+	}
+`;
+
+export const TabButtonSpaceBetween = styled.button<{ $active: boolean }>`
+	padding: 12px 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: ${(props) => (props.$active ? 'var(--color-accent)' : 'var(--color-primary)')};
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s;
+	flex: 1;
 
 	&:hover {
 		color: var(--color-accent);

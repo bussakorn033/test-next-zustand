@@ -6,6 +6,7 @@
  * @property content - The content to display when the tab is active.
  */
 export interface TabItemProps {
+	id?: string;
 	label: string;
 	value: string;
 	content: React.ReactNode;
@@ -20,8 +21,10 @@ export interface TabItemProps {
  * @param onChange - Callback triggered when a different tab is selected. Receives the new tab's value.
  */
 export interface TabsProps {
+	id?: string;
 	tabsName?: string;
 	activeTab: string;
 	menu: TabItemProps[];
 	onChange: (value: string) => void;
+	variant?: 'default' | 'space-between';
 }

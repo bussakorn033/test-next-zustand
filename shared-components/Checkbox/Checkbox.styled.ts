@@ -25,6 +25,7 @@ export const StyledCheckbox = styled(Box)<CheckboxProps>`
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
+	aspect-ratio: 1 / 1;
 	width: ${({ size }) => (size ? `${toPx(size)}` : '16px')};
 	height: ${({ size }) => (size ? `${toPx(size)}` : '16px')};
 	background-color: ${({ $isChecked, $checkColor }) =>
@@ -60,6 +61,13 @@ export const StyledCheckbox = styled(Box)<CheckboxProps>`
 		`}
 `;
 
-export const CheckboxContainer = styled(Box)`
+interface CheckboxContainerProps {
+	$alignItems?: string;
+}
+
+export const CheckboxContainer = styled(Box)<CheckboxContainerProps>`
 	cursor: default;
+	position: relative;
+	display: flex;
+	align-items: ${({ $alignItems }) => $alignItems || 'center'};
 `;

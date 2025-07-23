@@ -14,7 +14,8 @@ export interface PillStatusProps {
 		| 'disabled'
 		| 'information'
 		| 'success'
-		| 'primary';
+		| 'primary'
+		| string;
 	children?: string;
 	isCircle?: boolean;
 }

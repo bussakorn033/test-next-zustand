@@ -5,6 +5,7 @@
  */
 
 export interface TooltipProps {
-	content: string;
-	children: React.ReactNode;
+  content: string | React.ReactNode;
+  children: React.ReactNode;
+  isShow: boolean;
 }

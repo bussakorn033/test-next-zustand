@@ -15,7 +15,7 @@
  * @param height - Height of the component
  * @param $minWidth - Minimum width
  * @param $maxWidth - Maximum width
- * @param minHeight - Minimum height
+ * @param $minHeight - Minimum height
  * @param $maxHeight - Maximum height
  *
  * === Flex/Grid ===
@@ -94,7 +94,7 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 	height?: string | number;
 	$minWidth?: string | number;
 	$maxWidth?: string | number;
-	minHeight?: string | number;
+	$minHeight?: string | number;
 	$maxHeight?: string | number;
 
 	position?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky' | string;
@@ -121,7 +121,7 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 		| 'contents'
 		| 'none'
 		| string;
-	boxSizing?: 'border-box' | 'content-box' | string;
+	$boxSizing?: 'border-box' | 'content-box' | string;
 
 	overflow?: 'auto' | 'scroll' | 'hidden' | 'visible';
 	$overflowX?: 'auto' | 'scroll' | 'hidden' | 'visible';
@@ -154,10 +154,10 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 	className?: string;
 	$bgColor?: '--color-error' | '#f00' | 'red' | string;
 	color?: '--color-error' | '#f00' | 'red' | string;
-	border?: 'all' | 'top' | 'bottom';
+	border?: 'all' | 'top' | 'bottom' | 'top-dropdown' | 'down-dropdown' | 'all-radius-down';
 	$borderWidth?: 0 | 1 | 2;
 	$borderColor?: '--color-error' | '#f00' | 'red' | string;
-	$borderRadius?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'circle' | string;
+	$borderRadius?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'round' | 'circle' | string;
 	$boxShadow?: 'none' | 'top' | 'bottom';
 
 	limit?: number;

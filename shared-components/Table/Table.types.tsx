@@ -19,7 +19,7 @@
  *
  * @param className - Custom CSS class name(s) applied to the table container.
  *
- * @param minHeightTable - Minimum height of the table (e.g., "100px", "auto").
+ * @param $minHeightTable - Minimum height of the table (e.g., "100px", "auto").
  * @param $maxHeightTable - Maximum height of the table (e.g., "350px", "100%").
  *
  * @param paginationOptions - Array of pagination options; each option must include:
@@ -36,6 +36,8 @@
  * @param isPaginationDisabled - Disables pagination controls when set to true.
  * @param mode - Visual mode of the table (e.g., 'dark' or 'light').
  * @param size - Size variant of the table ('md', 'lg', etc.).
+ * @param children - React children
+ * @param isTableError - Flag indicating if the table is in an error fetch.
  */
 export type SortDirection = 'asc' | 'desc' | 'sorting' | string | undefined;
 export type Align = 'left' | 'center' | 'right' | string | undefined;
@@ -66,6 +68,7 @@ export interface TableColumn {
 	align?: Align;
 	sortBy?: SortDirection;
 	isSort?: boolean;
+	isHover?: boolean;
 	onClick?: (params: OnClickCellParams) => void | null;
 	flex?: number | string;
 	$minWidth?: number | string;
@@ -78,7 +81,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement | undefined
 	headers?: TableColumn[];
 	values?: TableColumn[][];
 	className?: string;
-	minHeightTable?: number | string;
+	$minHeightTable?: number | string;
 	$maxHeightTable?: number | string;
 	paginationOptions?: PaginationOptions[];
 	page?: number;
@@ -86,7 +89,11 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement | undefined
 	count?: number;
 	onPageChange?: (newPage: number) => void | null;
 	onLimitChange?: (newLimit: number) => void | null;
+	onRefresh?: () => void | null;
 	isPaginationDisabled?: boolean;
 	mode?: 'dark' | 'light' | string;
 	size?: 'md' | 'lg' | string;
+	childrenNotFound?: React.ReactNode;
+	isTableError?: boolean;
+	isTableLoading?: boolean;
 }

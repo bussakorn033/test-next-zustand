@@ -14,6 +14,8 @@ import { TextArea } from '@/shared-components/TextArea';
 import Checkbox from '@/shared-components/Checkbox/Checkbox';
 import { InputDropdown } from '../shared-components/InputDropdown';
 import ModalCreateContract from '../src/components/modalCreateContract';
+import { PillStatus } from '@/shared-components/PillStatus';
+import { Tooltip } from '@/shared-components/Tooltip';
 
 export default function Home() {
   // Access Zustand store
@@ -85,182 +87,18 @@ export default function Home() {
 
   */
 
+  const tooltipContent =
+  <>
+    'This is a very long text that will be limited to 2 lines. It demonstrates text truncation with ellipsis when content overflows the specified number of lines.';
+  </>
+
   return (
     <>
-      <Box $bgColor='--color-bg-primary' display='block' $isFullHeight $isFullWidth $overflowY='auto'>
-        <>
-          <Box direction='column' p={32} width={'fit-content'} $minWidth={'calc(100% - 64px)'}>
-            <>
-              <Box direction='column' width={'fit-content'} $minWidth={'100%'} flex={1}>
-                <>
-                  <Box direction='column' gap={24}>
-                    <Box direction='row' $justifyContent='space-between' gap={24} $flexWrap='wrap'>
-                      <TextStyle variant='h4' color='--color-primary'>
-                        {t('dashboard_title_table')}
-                      </TextStyle>
-                      <Box direction='row' $alignItems='center' gap={8}>
-                        <Button variant='ghost-primary' iconLeft='refresh'>
-                          {t('dashboard_btn_refresh')}
-                        </Button>
-                        <Button
-                          variant='primary'
-                          iconLeft='plus'
-                          onClick={() => setIsShowModalCreateContract(true)}
-                        >
-                          {t('dashboard_btn_create_contract')}
-                        </Button>
-                      </Box>
-                    </Box>
-
-                    {/* Filter */}
-                    <Box direction='row' $justifyContent='space-between' gap={12} $flexWrap='wrap'>
-                      <Box direction='column' $justifyContent='center' gap={8}>
-                        <Box direction='row' $alignItems='center' gap={12}>
-                          <Box direction='row' $alignItems='center' gap={4} height={'100%'}>
-                            <InputDropdown
-                              label={
-                                <Box pointerEvents='none'>
-                                  <TextStyle variant='labelXSmall' color='--color-secondary'>
-                                    {t('dashboard_filter_by_user')}
-                                  </TextStyle>
-                                </Box>
-                              }
-                              variant='secondary'
-                              menuItems={filterByUserOptions}
-                              activeMenu={filterByUserOptionsActive}
-                              onSelect={(item) => {
-                                /* TODO: Add filter by user name logic */
-                                setFilterByUserOptionsActive(item.id);
-                              }}
-                              $minWidth={100}
-                              $maxWidth={240}
-                            />
-                          </Box>
-                          <Box direction='row' $alignItems='center' gap={12}>
-                            <TextField
-                              placeholder={t('dashboard_filter_by_user_name')}
-                              type='text'
-                              $minWidth={50}
-                              $maxWidth={160}
-                              $is$isClearable
-                              name='userName'
-                              value={filters.userName}
-                              onChange={handleFilterChange}
-                            />
-                            <TextField
-                              placeholder={t('dashboard_filter_by_last_name')}
-                              type='text'
-                              $minWidth={50}
-                              $maxWidth={160}
-                              $is$isClearable
-                              name='lastName'
-                              value={filters.lastName}
-                              onChange={handleFilterChange}
-                            />
-                            <Box direction='row' $alignItems='center' gap={8}>
-                              <Button
-                                variant={'ghost-icon-main-no-padding'}
-                                iconLeft='search'
-                                $borderRadius='round'
-                                onClick={handleFilterBtnSearch}
-                              />
-
-                              {(filters.userName || filters.lastName) && (
-                                <Button
-                                  variant='ghost-primary-no-padding'
-                                  iconLeft='close'
-                                  $flexWrap='wrap'
-                                  onClick={handleFilterBtnReset}
-                                >
-                                  {t('dashboard_filter_btn_reset')}
-                                </Button>
-                              )}
-                            </Box>
-                          </Box>
-                        </Box>
-                      </Box>
-                      <Box direction='row' $alignItems='center' gap={8}>
-                        <Box direction='row' $alignItems='center' gap={8} height={'100%'}>
-                          <InputDropdown
-                            label={
-                              <Box pointerEvents='none'>
-                                <TextStyle variant='labelSmallBold' color='--color-primary'>
-                                  {t('dashboard_filter_by_type_doc')}
-                                </TextStyle>
-                              </Box>
-                            }
-                            variant='primary'
-                            menuItems={filterByTypeDocOptions}
-                            activeMenu={filterByTypeDocOptionsActive}
-                            onSelect={(item) => {
-                              /* TODO: Add filter by type doc logic */
-                              setFilterByTypeDocOptionsActive(item.id);
-                            }}
-                            $minWidth={100}
-                            $maxWidth={360}
-                          />
-                        </Box>
-                        <Box direction='row' $alignItems='center' gap={8} height={'100%'}>
-                          <InputDropdown
-                            label={
-                              <Box pointerEvents='none'>
-                                <TextStyle variant='labelSmallBold' color='--color-primary'>
-                                  {t('dashboard_filter_by_status')}
-                                </TextStyle>
-                              </Box>
-                            }
-                            variant='primary'
-                            menuItems={filterByStatusDocOptions}
-                            activeMenu={filterByStatusDocOptionsActive}
-                            onSelect={(item) => {
-                              /* TODO: Add filter by status logic */
-                              setFilterByStatusDocOptionsActive(item.id);
-                            }}
-                            $minWidth={100}
-                            $maxWidth={240}
-                          />
-                        </Box>
-                      </Box>
-                    </Box>
-                    {/* Filter */}
-
-                    {/* Table */}
-                    <Table
-                      headers={headers}
-                      values={values}
-                      $maxHeightTable={'calc(100dvh - 300px)'}
-                      paginationOptions={paginationOptions}
-                      page={pagination.page}
-                      limit={pagination.limit}
-                      count={pagination.count}
-                      onPageChange={(newPage) => setPagination((prev) => ({ ...prev, page: newPage }))}
-                      onLimitChange={(newLimit) => {
-                        setPagination((prev) => ({
-                          ...prev,
-                          limit: newLimit,
-                          page: 1
-                        }));
-                      }}
-                    />
-                    {/* Table */}
-                  </Box>
-                </>
-              </Box>
-            </>
-          </Box>
-        </>
-
-        <ModalCreateContract
-          isShowModal={isShowModalCreateContract}
-          setIsShowModal={setIsShowModalCreateContract}
-        />
-      </Box>
-
       {/* Note */}
       <>
         <Box direction='column' p={32}>
           {/* Common  Box */}
-          <Box direction='column' gap={50} mt={500}>
+          <Box direction='column' gap={50}>
             {/* Common Checkbox  */}
             <TextStyle variant='h2'>Checkbox</TextStyle>
             <>
@@ -319,42 +157,60 @@ export default function Home() {
             {/* Common Table  */}
             <TextStyle variant='h2'>Table</TextStyle>
             <>
-              <Table
-                headers={headers}
-                values={values}
-                paginationOptions={paginationOptions}
-                page={pagination.page}
-                limit={pagination.limit}
-                count={pagination.count}
-                onPageChange={(newPage) => setPagination((prev) => ({ ...prev, page: newPage }))}
-                onLimitChange={(newLimit) =>
-                  setPagination((prev) => ({
-                    ...prev,
-                    limit: newLimit,
-                    page: 1
-                  }))
-                }
-              />
-              <Table
-                mode='light'
-                size='md'
-                $maxHeightTable={'200px'}
-                headers={headers}
-                values={values}
-                paginationOptions={paginationOptions}
-                page={pagination.page}
-                limit={pagination.limit}
-                count={pagination.count}
-                onPageChange={(newPage) => setPagination((prev) => ({ ...prev, page: newPage }))}
-                onLimitChange={(newLimit) =>
-                  setPagination((prev) => ({
-                    ...prev,
-                    limit: newLimit,
-                    page: 1
-                  }))
-                }
-                isPaginationDisabled
-              />
+              <Box
+                $bgColor='--color-bg-primary'
+                border='all' // all | top | bottom
+                $borderRadius='xl' // none | xs | sm | md | lg | xl | circle
+                $borderWidth={1} // 0 | 1 | 2
+                $boxShadow='top' // none | top | bottom
+                direction='none' // none | row | row-reverse | row-wrap | column | column-reverse
+                $isHover={true}
+                gap={10}
+                width={'max-content'}
+                $minWidth={'calc(100% - 64px)'}
+              >
+                <Box direction='column' $minWidth={'calc(100% - 64px)'} px={24} py={24}>
+                  <Box direction='column' width={'fit-content'} $minWidth={'100%'} flex={1} gap={24}>
+                    <Table
+                      headers={headers}
+                      values={values}
+                      $maxHeightTable={'calc(100dvh - 300px)'}
+                      paginationOptions={paginationOptions}
+                      page={pagination.page}
+                      limit={pagination.limit}
+                      count={pagination.count}
+                      onPageChange={(newPage) => setPagination((prev) => ({ ...prev, page: newPage }))}
+                      onLimitChange={(newLimit) => {
+                        setPagination((prev) => ({
+                          ...prev,
+                          limit: newLimit,
+                          page: 1
+                        }));
+                      }}
+                    />
+                    <Table
+                      mode='light'
+                      size='md'
+                      $maxHeightTable={'200px'}
+                      headers={headers}
+                      values={values}
+                      paginationOptions={paginationOptions}
+                      page={pagination.page}
+                      limit={pagination.limit}
+                      count={pagination.count}
+                      onPageChange={(newPage) => setPagination((prev) => ({ ...prev, page: newPage }))}
+                      onLimitChange={(newLimit) =>
+                        setPagination((prev) => ({
+                          ...prev,
+                          limit: newLimit,
+                          page: 1
+                        }))
+                      }
+                      isPaginationDisabled
+                    />
+                  </Box>
+                </Box>
+              </Box>
             </>
             {/* Common Table  */}
 
@@ -1297,6 +1153,85 @@ export default function Home() {
               </Box>
             </>
             {/* Common IconComponent */}
+
+            {/* Common PillComponent */}
+            <TextStyle variant='h2'>PillComponent</TextStyle>
+            <>
+              <Box
+                color='#f00'
+                $bgColor='--color-neutral-light'
+                border='all' // all | top | bottom
+                $borderRadius='xl' // none | xs | sm | md | lg | xl | circle
+                $borderWidth={1} // 0 | 1 | 2
+                $boxShadow='top' // none | top | bottom
+                $textAlign='right' // left | center | right
+                direction='row-wrap' // none | row | row-reverse | row-wrap | column | column-reverse
+                $isHover={true}
+                gap={10}
+                px={24}
+                py={24}
+              >
+                <>
+                  {[
+                    'default',
+                    'purple',
+                    'danger',
+                    'warning',
+                    'light-orange',
+                    'disabled',
+                    'information',
+                    'success',
+                    'primary'
+                  ].map((variant) => (
+                    <Box key={variant} direction='column' gap={4} $alignItems='center'>
+                      <PillStatus variant={variant}>{variant}</PillStatus>
+                    </Box>
+                  ))}
+                </>
+              </Box>
+            </>
+            {/* Common PillComponent */}
+
+            {/* Common TooltipComponent */}
+            <TextStyle variant='h2'>TooltipComponent</TextStyle>
+            <>
+              <Box
+                color='#f00'
+                $bgColor='--color-neutral-light'
+                border='all' // all | top | bottom
+                $borderRadius='xl' // none | xs | sm | md | lg | xl | circle
+                $borderWidth={1} // 0 | 1 | 2
+                $boxShadow='top' // none | top | bottom
+                $textAlign='right' // left | center | right
+                direction='row-wrap' // none | row | row-reverse | row-wrap | column | column-reverse
+                $isHover={true}
+                gap={10}
+                px={24}
+                py={24}
+              >
+                <>
+                  <Box position='relative' direction='column' gap={16}>
+                    <Box position='relative'>
+                      <Tooltip content={tooltipContent}>
+                        <TextStyle $limitLine={1}>
+                          This is a very long text that will be limited to 2 lines. It demonstrates text
+                          truncation with ellipsis when content overflows the specified number of lines.
+                        </TextStyle>
+                      </Tooltip>
+                    </Box>
+                    <Box position='relative'>
+                      <Tooltip content={tooltipContent} isShow={true}>
+                        <TextStyle $limitLine={1}>
+                          This is a very long text that will be limited to 2 lines. It demonstrates text
+                          truncation with ellipsis when content overflows the specified number of lines.
+                        </TextStyle>
+                      </Tooltip>
+                    </Box>
+                  </Box>
+                </>
+              </Box>
+            </>
+            {/* Common TooltipComponent */}
 
             {/* Common  Box */}
             <TextStyle variant='h2'>Box</TextStyle>

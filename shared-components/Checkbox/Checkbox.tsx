@@ -22,14 +22,14 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 		},
 		ref
 	) => {
-		const classnames = classNames(className, 'ds-ui-button');
+		const classnames = classNames(className, 'ds-ui-checkbox');
 
 		return (
 			<S.CheckboxContainer
 				className={classnames}
+				gap={gap}
 				direction='row'
 				$alignItems='center'
-				gap={gap}
 				position='relative'
 			>
 				<S.HiddenCheckbox

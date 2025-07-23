@@ -44,9 +44,9 @@ mb?: string | number;
 mr?: string | number;
 ml?: string | number;
 
-$bgColor?: string; // --color-error || #f00
-color?: string; // --color-error || #f00
-$borderColor?: string; // --color-error || #f00
+$bgColor?: string;            /* --color-error || #f00 */
+color?: string;               /* --color-error || #f00 */
+$borderColor?: string;        /* --color-error || #f00 */
 
 border?: "all" | "top" | "bottom" ;
 
@@ -65,7 +65,7 @@ width?: string | number;;
 height?: string | number;;
 $minWidth?: string | number;;
 $maxWidth?: string | number;;
-minHeight?: string | number;;
+$minHeight?: string | number;;
 $maxHeight?: string | number;;
 
 $boxShadow?: "none" | "top" | "bottom";

@@ -1,3 +1,6 @@
+import { MasterDetail } from '@/dto/DashboardDTO';
+import React, { ReactElement, ReactNode } from 'react';
+
 /**
  * Formats a string value into Thai currency format with 2 decimal places.
  *
@@ -219,18 +222,238 @@ export const transformFlexProperties = (prop: string | undefined): string | unde
  * formatDate(1747785600000);          // "21/05/2025"
  * ```
  */
-export const formatDate = (date: string | number | Date): string => {
+export const formatDate = (date: number | string | Date | null | undefined) => {
+  if (!date) return '';
   let d: Date;
-
   if (typeof date === 'number') {
-    d = new Date(date < 1e12 ? date * 1000 : date); // handle seconds or ms
+    d = new Date(date < 1e12 ? date * 1000 : date);
   } else {
     d = new Date(date);
   }
-
   const day = String(d.getDate()).padStart(2, '0');
   const month = String(d.getMonth() + 1).padStart(2, '0');
   const year = d.getFullYear();
-
   return `${day}/${month}/${year}`;
 };
+
+/**
+ * Recursively extracts text content from a ReactNode.
+ *
+ * NOTE: This function supports strings, numbers, arrays, and valid React elements.
+ * If you encounter a TypeScript error regarding "node.props" being of type unknown,
+ * we explicitly assert the node as a ReactElement (which has a known structure) so that
+ * TypeScript can safely access its props and children.
+ *
+ * @param node - The React node from which to extract text.
+ * @returns A concatenated string of text content.
+ */
+
+export function nodeToText(node: ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') {
+    return node.toString();
+  }
+  if (Array.isArray(node)) {
+    return node.map((child) => nodeToText(child)).join('');
+  }
+  if (React.isValidElement(node)) {
+    // Assert node as ReactElement to access its props.children
+    const element = node as ReactElement<{ children?: ReactNode }>;
+    return nodeToText(element.props.children);
+  }
+  return '';
+}
+
+/**
+ * Checks if any value in the given object is a non-empty string.
+ *
+ * Iterates through all the object's values and returns true if at least one value
+ * is a string with non-whitespace content.
+ *
+ * @param obj - An object to check for non-empty string values.
+ * @returns true if at least one non-empty string exists, false otherwise.
+ *
+ * @example
+ * hasNonEmptyString({ name: 'Alice', age: 30 }); // true
+ * hasNonEmptyString({ name: '   ', age: 30 });     // false
+ * hasNonEmptyString({});                           // false
+ */
+
+export function hasNonEmptyString(obj: Record<string, unknown>): boolean {
+  return Object.values(obj).some((val) => typeof val === 'string' && val.trim() !== '');
+}
+
+/**
+ * Converts a sort direction string into a numeric flag.
+ *
+ * @param sortDirection - A string indicating sort direction ("ASC" or "DESC").
+ * @returns 1 if sortDirection is "ASC", -1 if "DESC", and 0 for any other value.
+ *
+ * @example
+ * getSortNumeric("ASC");   // returns 1
+ * getSortNumeric("DESC");  // returns -1
+ * getSortNumeric("XYZ");   // returns -1
+ */
+export function getSortNumeric(sortDirection: string): number {
+  switch (sortDirection.toUpperCase()) {
+    case 'ASC':
+      return 1;
+    case 'DESC':
+      return -1;
+    default:
+      return -1;
+  }
+}
+
+/**
+ * Returns a UI mapping for a given contract status code based on master details.
+ *
+ * NOTE:
+ * - This function uses the provided status code and an array of MasterDetail objects (which include descriptions in both Thai and English)
+ *   to determine the appropriate UI variant and labels.
+ * - The switch-case selects a variant (such as 'primary', 'info', 'danger', etc.) based on the status code.
+ * - If a master detail matching the provided code is not found, default empty strings are returned.
+ * - This mapping is designed to be used, for example, in rendering UI components like PillStatus, to provide visual cues.
+ *
+ * @param code - The contract status code to evaluate.
+ * @param details - An array of MasterDetail objects containing status information.
+ * @returns An object with properties: code, variant, description_th, and description_en.
+ *
+ * @example
+ * const masterDetails: MasterDetail[] = [
+ *   { code: 'CAN_NOT_EDIT', description_th: 'ไม่สามารถแก้ไขเอกสารได้', description_en: 'CAN NOT EDIT' },
+ *   { code: 'APPROVE', description_th: 'อนุมัติ', description_en: 'APPROVE' }
+ * ];
+ * const statusDisplay = getMasterDetailsStatus('CAN_NOT_EDIT', masterDetails);
+ * statusDisplay => { code: 'CAN_NOT_EDIT', variant: 'warning', description_th: 'ไม่สามารถแก้ไขเอกสารได้', description_en: 'CAN NOT EDIT' }
+ */
+
+export function getMasterDetailsStatus(
+  code: string | undefined,
+  details: MasterDetail[] | undefined
+): { code: string; variant: string; description_th: string; description_en: string } {
+  const detail = details?.find((d) => d?.code === code || d?.contract_status_code === code);
+  let variant = '';
+
+  switch (code) {
+    case 'DRAFT':
+      variant = 'default';
+      break;
+    case 'purple':
+      variant = 'purple';
+      break;
+    case 'danger':
+    case 'STAFT_REJECT':
+    case 'CUST_REJECT':
+    case 'DOC_REJECT':
+      variant = 'danger';
+      break;
+    case 'warning':
+      variant = 'warning';
+      break;
+    case 'light-orange':
+      variant = 'light-orange';
+      break;
+    case 'disabled':
+    case 'EXPIRE':
+      variant = 'disabled';
+      break;
+    case 'information':
+    case 'SUBMIT':
+    case 'WAIT_CUST_APP':
+    case 'WAIT_CONFIRM':
+    case 'CONFIRM_SUBMISSION':
+      variant = 'information';
+      break;
+    case 'success':
+    case 'CREATED':
+    case 'SEND_DOC_SUCCESS':
+      variant = 'success';
+      break;
+    case 'primary':
+      variant = 'primary';
+      break;
+    default:
+      variant = '';
+      break;
+  }
+
+  return {
+    code: detail?.code || '',
+    variant: variant || '',
+    description_th:
+      detail?.description_th ||
+      detail?.contract_status_description_th ||
+      detail?.contract_type_description_th ||
+      '',
+    description_en:
+      detail?.description_en ||
+      detail?.contract_status_description_en ||
+      detail?.contract_type_description_en ||
+      ''
+  };
+}
+
+/**
+ * Returns the master details for a given contract type code.
+ * Similar to getMasterDetails but specifically for contract document types.
+ *
+ * @param code - The contract type code to look up (e.g., 'CT_AL001' or 'CT_AL002')
+ * @param details - An array of MasterDetail objects containing contract type information
+ * @returns Object with the contract type details including code and descriptions
+ *
+ * @example
+ * const details = getMasterDetailsDoc('CT_AL001', masterDetails);
+ * returns {
+ *   code: 'CT_AL001',
+ *   description_th: 'แก้ไขรายการข้อมูลในสัญญาเช่าซื้อ (ทั่วไป)',
+ *   description_en: 'Editing data items in the hire purchase contract (general)'
+ * }
+ */
+
+export function getMasterDetailsDoc(
+  code: string | undefined,
+  details: MasterDetail[] | undefined
+): {
+  code: string;
+  description_th: string;
+  description_en: string;
+} {
+  const detail = details?.find((d) => d?.code === code);
+
+  return {
+    code: detail?.code || '',
+    description_th: detail?.description_th || detail?.contract_type_description_th || '',
+    description_en: detail?.description_en || detail?.contract_type_description_en || ''
+  };
+}
+
+/**
+ * Transforms an array of (string | number | undefined) into an array of strings.
+ *
+ * @param input - The input array containing strings, numbers, or undefined.
+ * @returns An array of strings with no undefined values.
+ *
+ * @example
+ * const result = toStringArray([1, 'hello', undefined, 42]);
+ * // result: ['1', 'hello', '42']
+ */
+export function toStringArray(input: Array<string | number | undefined>): string[] {
+  return input
+    ?.filter((item): item is string | number => item !== undefined)
+    ?.map((item) => item?.toString());
+}
+
+/**
+ * Measure the pixel width of a string using a given font.
+ * @param text The text to measure.
+ * @param font The CSS font string, e.g. "14px Arial".
+ * @returns The width in pixels.
+ */
+export function measureTextWidth(text: string, font: string = '20px Arial'): number {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  if (!context) return 0;
+  context.font = font;
+  const metrics = context.measureText(text);
+  return Math.floor(metrics.width);
+}

@@ -457,3 +457,43 @@ export function measureTextWidth(text: string, font: string = '20px Arial'): num
   const metrics = context.measureText(text);
   return Math.floor(metrics.width);
 }
+
+/**
+ * Downloads a PDF file from a base64 string.
+ *
+ * @param input - The base64 encoded PDF string.
+ * @param pdfFileName - Optional name for the downloaded PDF file (without .pdf extension).
+ * If not provided, defaults to 'download.pdf'.
+ */
+export const downloadPdfFile = async (input: string, pdfFileName?: string) => {
+  if (!input) return;
+
+  const linkSource = `data:application/pdf;base64,${input}`;
+  const downloadLink = document.createElement('a');
+  const pdfFile = pdfFileName?.trim();
+  const fileName = pdfFile?.includes('.pdf') ? pdfFile : `${pdfFile}.pdf`;
+  downloadLink.href = linkSource;
+  downloadLink.download = fileName;
+  downloadLink.click();
+};
+
+/**
+ * Prints a PDF file from a base64 string.
+ *
+ * @param input - The base64 encoded PDF string.
+ * This function decodes the base64 string, creates a Blob object,
+ * and opens it in a new window for printing.
+ */
+export const printPdfFile = async (input: string) => {
+  if (!input) return;
+
+  var byteCharacters = atob(input);
+  var byteNumbers = new Array(byteCharacters.length);
+  for (var i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+  var byteArray = new Uint8Array(byteNumbers);
+  var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+  var fileURL = URL.createObjectURL(file);
+  window.open(fileURL);
+};

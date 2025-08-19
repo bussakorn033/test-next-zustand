@@ -26,7 +26,6 @@ const [active, setActive] = useState<string | undefined>();
 	activeMenu={active}
 	onSelect={(id) => {
 		setActive(id);
-		console.log('Selected:', id);
 	}}
 />;
 
@@ -42,7 +41,6 @@ const [active, setActive] = useState<string | undefined>();
 	activeMenu={active}
 	onSelect={(id) => {
 		setActive(id);
-		console.log('Selected:', id);
 	}}
 />;
 

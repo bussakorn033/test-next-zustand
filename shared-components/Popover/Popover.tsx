@@ -2,7 +2,15 @@ import React, { useRef, useEffect, useState } from 'react';
 import { PopoverProps } from './Popover.types';
 import * as S from './Popover.styled';
 
-const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, onClose, ...rest }) => {
+const Popover: React.FC<PopoverProps> = ({
+	isOpen,
+	anchorRef,
+	children,
+	width,
+	onClose,
+	$isAllowDisplayTop = true,
+	...rest
+}) => {
 	const [position, setPosition] = useState({ top: 0, left: 0 });
 	const popoverRef = useRef<HTMLDivElement | null>(null);
 
@@ -10,6 +18,9 @@ const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, o
 		if (isOpen && anchorRef.current && popoverRef.current) {
 			const anchorRect = anchorRef.current.getBoundingClientRect();
 			const popoverRect = popoverRef.current.getBoundingClientRect();
+			
+			if (!anchorRect || !popoverRect) return;
+
 			const popoverWidth = popoverRef.current.offsetWidth;
 			const popoverHeight = popoverRef.current.offsetHeight;
 			const screenWidth = window.innerWidth;
@@ -25,8 +36,9 @@ const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, o
 			const availableSpaceAbove = anchorRect.top;
 
 			if (
-				(availableSpaceAbove > popoverHeight + offset && anchorRect.height > popoverRect.height) ||
-				anchorRect.top + popoverRect.height > screenHeight
+				$isAllowDisplayTop &&
+				((availableSpaceAbove > popoverHeight + offset && anchorRect.height > popoverRect.height) ||
+					anchorRect.top + popoverRect.height > screenHeight)
 			) {
 				top = anchorRect.top + window.scrollY - popoverHeight - offset;
 			} else {
@@ -37,28 +49,17 @@ const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, o
 		}
 	}, [isOpen, anchorRef]);
 
-	const handleClickOutside = (event: MouseEvent) => {
-		if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
-			onClose && onClose();
-		}
-	};
-
 	useEffect(() => {
-		if (isOpen) {
-			document.addEventListener('mousedown', handleClickOutside);
-		} else {
-			document.removeEventListener('mousedown', handleClickOutside);
-		}
-
 		const handleEventListener = () => {
-			onClose && onClose();
+			if (onClose) {
+				onClose();
+			}
 		};
 
-		window.addEventListener('resize', handleEventListener, true);
+		window.addEventListener('resize', handleEventListener);
 
 		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-			window.removeEventListener('resize', handleEventListener, true);
+			window.removeEventListener('resize', handleEventListener);
 		};
 	}, [isOpen, onClose]);
 
@@ -66,12 +67,14 @@ const Popover: React.FC<PopoverProps> = ({ isOpen, anchorRef, children, width, o
 
 	return (
 		<S.Popover
+			data-testid='SHARED_COMPONENTS_POPOVER'
 			className='ds-ui-popover'
 			ref={popoverRef}
 			width={width}
 			{...rest}
 			style={
 				{
+					visibility: position.top && position.left ? 'visible' : 'hidden',
 					top: position.top,
 					left: position.left,
 					...rest.style

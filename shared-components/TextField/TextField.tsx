@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { TextFieldProps } from './TextField.types';
 import { forwardRef, useEffect } from 'react';
 import classNames from 'classnames';
@@ -7,47 +8,42 @@ import Icon from '../Icon/Icon';
 import { Box } from '../Box';
 import { Tooltip } from '../Tooltip';
 
-export const TextField = forwardRef<undefined | any, TextFieldProps>(
-	(
-		{
-			id,
-			label,
-			labelHelping,
-			value,
-			type,
-			variant,
-			suffix,
-			error,
-			$isDisabled,
-			helpingText,
-			helpingTextRight,
-			errorMessage,
-			half,
-			iconLeft,
-			iconRight,
-			keyboard,
-			className,
-			onChange,
-			max,
-			maxLength,
-			min,
-			minLength,
-			$isClearable,
-			...rest
-		}: TextFieldProps,
-		ref
-	) => {
+export const TextField = forwardRef<undefined, TextFieldProps>(
+	({
+		id,
+		label,
+		labelHelping,
+		value,
+		type,
+		error,
+		$isDisabled,
+		helpingText,
+		iconLeft,
+		iconRight,
+		className,
+		onChange,
+		max,
+		maxLength,
+		min,
+		minLength,
+		$isClearable,
+		...rest
+	}: TextFieldProps) => {
 		const classnames = classNames(className, 'ds-text-field');
+		const [onFocus, setOnFocus] = useState(false);
 
 		const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 			let newValue = event.target.value;
 			if (maxLength && newValue.length > Number(maxLength)) {
-				newValue = newValue.slice(0, maxLength);
+				newValue = newValue.slice(0, Number(maxLength));
 				event.target.value = newValue;
 			}
-			let pattern: any = rest?.pattern;
+			let pattern: string | RegExp | undefined = rest?.pattern;
 			if (type === 'number' && !pattern) {
 				pattern = /^\d*$/;
+			}
+			if (type === 'numberWithDash' && !pattern) {
+				pattern = /^[\d-]*$/;
 			}
 
 			const patternRegex = pattern && new RegExp(pattern);
@@ -103,6 +99,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 		};
 
 		const onBlurHandler = (event: React.FocusEvent<HTMLInputElement>) => {
+			setOnFocus(false);
 			if (onChange) {
 				onChange({
 					target: { name: rest?.name, value: event.currentTarget.value.trim() }
@@ -121,6 +118,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 		const onMouseDownHandler = (event: React.MouseEvent<HTMLInputElement>) => {
 			if (event.currentTarget) {
 				event.currentTarget.select();
+				setOnFocus(true);
 			}
 			if (onChange) {
 				onChange({
@@ -144,8 +142,8 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 			/*  Fix bug in Chrome mobile: ensure blur on "Done" keyboard press */
 			const inputElement = document.querySelector(`[id="${id}"]`);
 			if (inputElement) {
-				const handleBlur = (event: any) => {
-					event.target.blur();
+				const handleBlur = (event: Event) => {
+					(event.target as HTMLInputElement).blur();
 				};
 				inputElement.addEventListener('blur', handleBlur);
 
@@ -170,15 +168,17 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 								{label}
 							</TextStyle>
 							{labelHelping && (
-								<Tooltip content={labelHelping}>
-									<Icon icon='help_circle_fill' width={12} height={12} color='--color-secondary' />
-								</Tooltip>
+								<Box position='relative'>
+									<Tooltip content={labelHelping}>
+										<Icon icon='help_circle_fill' width={12} height={12} color='--color-secondary' />
+									</Tooltip>
+								</Box>
 							)}
 						</Box>
 					</>
 				)}
 
-				<S.InputWrapper $isError={error}>
+				<S.InputWrapper $isError={Boolean(error)}>
 					{iconLeft && <S.Icon>{iconLeft}</S.Icon>}
 					<TextStyle variant='valueSmall' color='--text-primary-dark' $alignContent='center' flex={1}>
 						<S.Input
@@ -190,6 +190,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 							type={type === 'number' ? 'text' : type}
 							pattern={rest?.pattern}
 							$isClearable={$isClearable}
+							placeholder={rest.readOnly || !onFocus ? rest.placeholder : ''}
 							max={max}
 							maxLength={maxLength}
 							min={min}
@@ -223,7 +224,7 @@ export const TextField = forwardRef<undefined | any, TextFieldProps>(
 					{iconRight && <S.Icon>{iconRight}</S.Icon>}
 				</S.InputWrapper>
 				{helpingText && (
-					<S.HelpingText $isError={error}>
+					<S.HelpingText $isError={Boolean(error)}>
 						<TextStyle variant='paragraphSmall'>{helpingText}</TextStyle>
 					</S.HelpingText>
 				)}

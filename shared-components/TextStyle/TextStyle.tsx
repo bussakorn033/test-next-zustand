@@ -4,22 +4,19 @@ import * as S from './TextStyle.styled';
 import { TextStyleProps } from './TextStyle.types';
 
 export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
-	(
-		{
-			children,
-			color = undefined,
-			variant = 'paragraphMedium',
-			className = '',
-			tag = '',
-			$limitLine = 0,
-			$whiteSpace = 'pre-line',
-			$wordBreak = 'normal',
-			$textAlign = 'left',
-			textDecoration = 'none',
-			...rest
-		}: TextStyleProps,
-		ref
-	) => {
+	({
+		children,
+		color = undefined,
+		variant = 'paragraphMedium',
+		className = '',
+		tag = '',
+		$limitLine = 0,
+		$whiteSpace = 'pre-line',
+		$wordBreak = 'normal',
+		$textAlign = 'left',
+		textDecoration = 'none',
+		...rest
+	}: TextStyleProps) => {
 		const classnames = classNames(className, 'ds-ui-text-style');
 
 		let customTag = tag === 'p' ? tag : 'label';
@@ -27,6 +24,9 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
 			/* Desktop Headings */
 			case 'h2' /* 32px bold, 44px */:
 				customTag = 'h2';
+				break;
+			case 'h3' /* 16px bold, 24px */:
+				customTag = 'h3';
 				break;
 			case 'h4' /* 24px bold, 34px */:
 				customTag = 'h4';
@@ -62,6 +62,9 @@ export const TextStyle = forwardRef<HTMLElement | undefined, TextStyleProps>(
 			/* Special Cases */
 			case 'pageTitle' /* 20px bold, 24px */:
 				customTag = 'h1';
+				break;
+			case 'timeDevice' /* 7.5px regular, 100% */:
+				customTag = 'label';
 				break;
 			case 'allCap' /* 12px regular, 16px, uppercase */:
 				customTag = 'span';

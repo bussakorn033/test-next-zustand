@@ -3,7 +3,7 @@ import { StyledSvg } from './SVG.styled';
 import { IconProps } from './SVG.types';
 
 export const ImageTTBLogoSVG: React.FC<IconProps> = ({ color = '', ...rest }) => (
-	<StyledSvg viewBox='0 0 64 32' xmlns='http://www.w3.org/2000/svg' fill='none' {...rest}>
+	<StyledSvg viewBox='0 0 64 32' xmlns='http://www.w3.org/2000/svg' fill='none' color={color} {...rest}>
 		<svg width='64' height='32' viewBox='0 0 64 32' fill='none' xmlns='http://www.w3.org/2000/svg'>
 			<g clip-path='url(#clip0_1394_104241)'>
 				<path

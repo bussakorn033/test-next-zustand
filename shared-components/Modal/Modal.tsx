@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Box } from '@/shared-components/Box';
-import { Icon } from '@/shared-components/Icon';
 import { TextStyle } from '@/shared-components/TextStyle';
 import { ModalProps } from './Modal.types';
 import * as S from './Modal.styled';
@@ -14,45 +13,55 @@ const Modal: React.FC<ModalProps> = ({
 	height,
 	title,
 	className,
+	isShowIconClose = true,
+	$isOverflow = false,
 	...rest
 }) => {
 	useEffect(() => {
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') onClose();
-		};
 		if (isOpen) {
-			window.addEventListener('keydown', handleKeyDown);
+			document.body.style.overflow = 'hidden';
 		} else {
-			window.removeEventListener('keydown', handleKeyDown);
+			document.body.style.overflow = 'auto';
 		}
 
 		return () => {
-			window.removeEventListener('keydown', handleKeyDown);
+			document.body.style.overflow = 'auto';
 		};
-	}, [isOpen, onClose]);
+	}, [isOpen]);
 
 	if (!isOpen) return null;
 
 	return (
-		<S.Overlay className='ds-ui-modal' onClick={onClose}>
+		<S.Overlay className='ds-ui-modal'>
 			<Box mx={24} width={'fit-content'} $minWidth={'calc(100% - 48px)'}>
 				<S.Modal
 					className={className}
 					width={width}
 					height={height}
 					onClick={(e) => e.stopPropagation()}
+					$isOverflow={$isOverflow}
 					{...rest}
 				>
-					<Box direction='row' $alignItems='center' $justifyContent='space-between' pb={16}>
+					<Box
+						direction='row'
+						$alignItems='center'
+						$justifyContent='space-between'
+						pt={24}
+						pb={16}
+						px={24}
+					>
 						<TextStyle variant='h4' color='--color-primary'>
 							{title}
 						</TextStyle>
-						<Button
-							variant={'ghost-icon-main-no-padding'}
-							iconLeft='close'
-							$borderRadius='round'
-							onClick={onClose}
-						/>
+						{isShowIconClose && (
+							<Button
+								data-testid='ICON_BTN_CLOSE_MODAL'
+								variant={'ghost-icon-main-no-padding'}
+								iconLeft='close'
+								$borderRadius='round'
+								onClick={onClose}
+							/>
+						)}
 					</Box>
 					{children}
 				</S.Modal>

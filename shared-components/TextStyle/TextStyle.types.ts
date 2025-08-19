@@ -17,6 +17,7 @@ export interface TextStyleProps extends React.HTMLAttributes<HTMLHeadingElement>
 	id?: string;
 	variant?:
 		| 'h2'
+		| 'h3'
 		| 'h4'
 		| 'h5'
 		| 'h6'
@@ -33,6 +34,7 @@ export interface TextStyleProps extends React.HTMLAttributes<HTMLHeadingElement>
 		| 'buttonMedium'
 		| 'buttonBig'
 		| 'pageTitle'
+		| 'timeDevice'
 		| 'allCap'
 		| 'allCapSmall'
 		| 'mobileH4'

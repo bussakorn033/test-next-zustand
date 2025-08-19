@@ -1,0 +1,1 @@
+export const STATUS_CODE_DATA_NOT_FOUND = ['031200', '031204', '031205', '031215'];

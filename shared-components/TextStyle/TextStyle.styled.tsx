@@ -33,6 +33,14 @@ export const TextStyle = styled.p<TextStyleProps>`
 					'--letter-spacing-wide'
 				);
 
+			case 'h3':
+				return textStyleMixin(
+					'--font-size-16',
+					'--font-weight-bold',
+					'--line-height-24',
+					'--letter-spacing-wide'
+				);
+
 			case 'h4':
 				return textStyleMixin(
 					'--font-size-24',
@@ -61,7 +69,7 @@ export const TextStyle = styled.p<TextStyleProps>`
 			case 'paragraphMedium':
 				return textStyleMixin(
 					'--font-size-16',
-					'--font-weight-regular',
+					'--font-weight-light',
 					'--line-height-24',
 					'--letter-spacing-normal'
 				);
@@ -144,7 +152,7 @@ export const TextStyle = styled.p<TextStyleProps>`
 			case 'buttonMedium':
 				return textStyleMixin(
 					'--font-size-16',
-					'--font-weight-bold',
+					'--font-weight-regular',
 					'--line-height-24',
 					'--letter-spacing-wide'
 				);
@@ -152,7 +160,7 @@ export const TextStyle = styled.p<TextStyleProps>`
 			case 'buttonBig':
 				return textStyleMixin(
 					'--font-size-20',
-					'--font-weight-bold',
+					'--font-weight-regular',
 					'--line-height-32',
 					'--letter-spacing-wide'
 				);
@@ -163,6 +171,14 @@ export const TextStyle = styled.p<TextStyleProps>`
 					'--font-size-20',
 					'--font-weight-bold',
 					'--line-height-24',
+					'--letter-spacing-wide'
+				);
+
+			case 'timeDevice':
+				return textStyleMixin(
+					'--font-size-14',
+					'--font-weight-regular',
+					'--line-height-100per',
 					'--letter-spacing-wide'
 				);
 

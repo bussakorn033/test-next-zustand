@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
-import { ButtonProps } from './Button.types';
-import { Box } from '../Box';
 import { toPx } from '@/utils/Utility';
-import { b } from 'vitest/dist/chunks/suite.d.FvehnV49';
+import { Box } from '../Box';
+import { ButtonProps } from './Button.types';
 
 interface StyledButtonProps extends ButtonProps {
 	$isIconOnly?: boolean;
@@ -21,6 +20,7 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
 	&:disabled,
 	&:disabled > * {
 		cursor: default !important;
+		pointer-events: none !important;
 	}
 
 	/* Variants */
@@ -43,6 +43,25 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
 					&:disabled {
 						background: var(--button-disabled-negative);
 						color: var(--button-color-disabled-negative) !important;
+					}
+				`;
+			case 'tertiary':
+				return css`
+					background: var(--button-tertiary);
+					&,
+					* {
+						color: var(--text-primary-light);
+					}
+					&:hover {
+						background: var(--button-hover-tertiary);
+					}
+					&:active {
+						background: var(--button-active-tertiary);
+					}
+					&:disabled *,
+					&:disabled {
+						background: var(--button-disabled-tertiary);
+						color: var(--button-color-disabled-tertiary) !important;
 					}
 				`;
 			case 'secondary':
@@ -106,18 +125,22 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
 			case 'ghost-main':
 			case 'ghost-primary':
 			case 'ghost-secondary':
+			case 'ghost-tertiary':
 			case 'ghost-negative':
 			case 'ghost-main-no-padding':
 			case 'ghost-primary-no-padding':
 			case 'ghost-secondary-no-padding':
+			case 'ghost-tertiary-no-padding':
 			case 'ghost-negative-no-padding':
 			case 'ghost-icon-main':
 			case 'ghost-icon-primary':
 			case 'ghost-icon-secondary':
+			case 'ghost-icon-tertiary':
 			case 'ghost-icon-negative':
 			case 'ghost-icon-main-no-padding':
 			case 'ghost-icon-primary-no-padding':
 			case 'ghost-icon-secondary-no-padding':
+			case 'ghost-icon-tertiary-no-padding':
 			case 'ghost-icon-negative-no-padding':
 				return css`
 					overflow: hidden;
@@ -166,6 +189,28 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
 						}
 					}
 				`;
+			case 'primary-no-padding':
+				return css`
+					padding: ${variant?.includes('-no-padding') ? 'var(--button-padding-none)' : ''} !important;
+					box-sizing: border-box;
+					background: var(--button-${variant?.replace('-no-padding', '')}, --button-primary);
+					&,
+					* {
+						color: var(--button-color-${variant?.replace('-no-padding', '')}, --color-neutral-light);
+					}
+
+					&:hover {
+						background: var(--button-hover-primary);
+					}
+					&:active {
+						background: var(--button-active-primary);
+					}
+					&:disabled *,
+					&:disabled {
+						background: var(--button-disabled-primary);
+						color: var(--button-color-disabled-primary) !important;
+					}
+				`;
 			default: /* primary */
 				return css`
 					padding: ${variant?.includes('-no-padding') ? 'var(--button-padding-none)' : ''} !important;
@@ -190,6 +235,12 @@ export const StyledButton = styled(Box)<StyledButtonProps>`
 				`;
 		}
 	}}
+
+	${({ color }) =>
+		color &&
+		css`
+			background-color: ${color};
+		`}
 
 	${({ size, $isIconOnly }) => {
 		switch (size) {

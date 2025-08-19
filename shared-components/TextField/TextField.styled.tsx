@@ -46,7 +46,7 @@ export const InputWrapper = styled.div<{ $isError?: boolean }>`
 	background-color: var(--color-neutral-light);
 
 	&:focus-within {
-		border-color: var(--color-primary);
+		border-color: ${({ $isError }) => ($isError ? 'var(--color-danger)' : 'var(--color-accent)')};
 	}
 `;
 
@@ -62,12 +62,14 @@ export const Input = styled.input<TextFieldProps & { disabled?: boolean }>`
 	line-height: var(--line-height-20);
 	letter-spacing: var(--letter-spacing-normal);
 
-	::placeholder {
-		color: var(--text-quaternary);
+	* {
+		::placeholder {
+			color: var(--color-neutral-grey-light);
+		}
 	}
 
 	${({ disabled }) =>
-		disabled !== undefined &&
+		disabled &&
 		css`
 			color: var(--color-disabled);
 			cursor: not-allowed;
@@ -84,7 +86,7 @@ export const Icon = styled.div`
 `;
 
 export const HelpingText = styled.span<{ $isError?: boolean }>`
-	width: inherit;
+	width: auto;
 	color: ${({ $isError }) => ($isError ? 'var(--color-danger)' : 'var(--color-neutral-dark)')};
 `;
 

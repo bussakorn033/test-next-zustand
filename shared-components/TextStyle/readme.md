@@ -35,11 +35,12 @@ variant?: // Desktop Headings
   | "valueSmall" // 14px regular, 20px
 
   // Buttons
-  | "buttonMedium" // 16px bold, 24px
-  | "buttonBig" // 20px bold, 32px
+  | "buttonMedium" // 16px regular, 24px
+  | "buttonBig" // 20px regular, 32px
 
   // Special Cases
   | "pageTitle" // 20px bold, 24px
+  | "timeDevice" // 7.5px regular, 100%
   | "allCapSmall" // 12px regular, 16px, uppercase
 
   // Mobile Specific

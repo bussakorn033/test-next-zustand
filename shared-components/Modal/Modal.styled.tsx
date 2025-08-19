@@ -10,13 +10,13 @@ export const Modal = styled.div<{
 	height?: string | number;
 	$minHeight?: string | number;
 	$maxHeight?: string | number;
+	$isOverflow?: boolean;
 }>`
 	display: flex;
 	flex-direction: column;
 	margin: auto;
 	background: #fff;
 	box-sizing: border-box;
-	padding: 24px;
 	border-radius: 8px;
 	position: relative;
 	box-shadow:
@@ -25,6 +25,14 @@ export const Modal = styled.div<{
 		0px 4px 8px 0px #4c57651a,
 		0px 2px 4px 0px #4c57651f,
 		0px 0px 2px 0px #4c576524;
+
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox, Safari 18.2+, Chromium 121+ */
+	overflow: ${({ $isOverflow }) => ($isOverflow ? 'visible' : 'hidden')};
+
+	*::-webkit-scrollbar {
+		display: none; /* Older Safari and Chromium */
+	}
 
 	${({ m }) =>
 		m !== undefined &&

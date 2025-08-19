@@ -9,6 +9,7 @@ export const Popover = styled.div<{
 	$borderRadius?: string | number;
 }>`
 	position: absolute;
+	z-index: 1000;
 	background: var(
 		${({ backgroundColor = '--color-neutral-light' }) => backgroundColor},
 		--color-neutral-light

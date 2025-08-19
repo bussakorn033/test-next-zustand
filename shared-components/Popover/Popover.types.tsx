@@ -17,4 +17,5 @@ export interface PopoverProps
 	$borderColor?: string;
 	padding?: string | number;
 	$borderRadius?: string | number;
+	$isAllowDisplayTop?: boolean;
 }

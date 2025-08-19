@@ -79,7 +79,7 @@
 export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 	ref?: React.Ref<HTMLElement>;
 	id?: string;
-	as?: any;
+	as?: React.ElementType;
 	htmlFor?: string;
 	tag?: string;
 	children?: React.ReactNode;
@@ -154,8 +154,15 @@ export interface BoxProps extends React.HTMLAttributes<HTMLElement> {
 	className?: string;
 	$bgColor?: '--color-error' | '#f00' | 'red' | string;
 	color?: '--color-error' | '#f00' | 'red' | string;
-	border?: 'all' | 'top' | 'bottom' | 'top-dropdown' | 'down-dropdown' | 'all-radius-down';
-	$borderWidth?: 0 | 1 | 2;
+	border?:
+		| 'all'
+		| 'top'
+		| 'bottom'
+		| 'top-dropdown'
+		| 'down-dropdown'
+		| 'center-dropdown'
+		| 'all-radius-down';
+	$borderWidth?: 0 | 0.5 | 1 | 2;
 	$borderColor?: '--color-error' | '#f00' | 'red' | string;
 	$borderRadius?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'round' | 'circle' | string;
 	$boxShadow?: 'none' | 'top' | 'bottom';

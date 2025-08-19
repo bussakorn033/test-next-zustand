@@ -1,43 +1,46 @@
-import { Button } from '@/shared-components/Button';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Button } from '@/shared-components/Button';
 import { Box } from '../../shared-components/Box';
 import { TextStyle } from '../../shared-components/TextStyle';
 
 interface ZoomElement {
 	className?: string;
+	minHeight?: string;
+	maxHeight?: string;
 	isZoomable?: boolean;
 	onRefresh?: () => void;
 	children?: React.ReactNode;
 }
 
-const ZoomElement = ({ className, children, isZoomable = true }: ZoomElement) => {
+const ZoomElement = ({
+	className,
+	children,
+	isZoomable = true,
+	minHeight = '100vh',
+	maxHeight = '100vh'
+}: ZoomElement) => {
 	const classnames = classNames(className, 'components-zoom-element');
 	const intiailZoomSize = 100;
 	const contentRef = useRef<HTMLDivElement>(null);
 	const [zoomSize, setZoomSize] = useState<number>(intiailZoomSize);
-	const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-	const zoomList = [25, 33, 50, 67, 75, 80, 90, 100, 110, 125, 150];
+	const zoomList = [50, 100, 150, 200, 250]; // Max can zoom size 250
 
 	useEffect(() => {
-		const updateDimensions = () => {
-			if (contentRef.current) {
-				const { width, height } = contentRef.current.getBoundingClientRect();
-				setDimensions({ width, height });
-			}
-		};
-		if (isZoomable) {
-			updateDimensions();
-			window.addEventListener('resize', updateDimensions);
-		} else {
+		if (!isZoomable) {
 			setZoomSize(intiailZoomSize); // Reset to default zoom size if not zoomable
 		}
 		return () => {
-			window.removeEventListener('resize', updateDimensions);
 			setZoomSize(intiailZoomSize);
 		};
 	}, [isZoomable]);
+
+	useEffect(() => {
+		setZoomSize(intiailZoomSize);
+		return () => {
+			setZoomSize(intiailZoomSize);
+		};
+	}, [classnames]);
 
 	const handleZoom = ({ inCrement = true }: { inCrement?: boolean }) => {
 		setZoomSize((prevSize) => {
@@ -79,51 +82,45 @@ const ZoomElement = ({ className, children, isZoomable = true }: ZoomElement) =>
 				$borderWidth={1}
 				$borderColor='--transparent'
 				overflow='hidden'
-				// style={{ border: '1px solid blue' }}
 			>
 				<Button
+					data-testid='ZOOM_ELEMENT_MINUS_BUTTON'
 					variant={'ghost-icon-main-no-padding'}
 					iconLeft='minus'
 					$borderRadius='round'
 					sizeIcon={24}
 					onClick={() => handleZoom({ inCrement: false })}
+					disabled={zoomList[zoomList.indexOf(zoomSize)] === zoomList[0]}
 				/>
-				<Button variant={'ghost-main-no-padding'} onClick={() => setZoomSize(intiailZoomSize)}>
-					<TextStyle variant='mobileH4' color='--color-primary'>
-						{`${zoomSize}%`}
-					</TextStyle>
-				</Button>
+				<TextStyle
+					data-testid='ZOOM_ELEMENT_CURRENT_SIZE'
+					variant='mobileH4'
+					color='--color-primary'
+					style={{ userSelect: 'none' }}
+				>
+					{`${zoomSize}%`}
+				</TextStyle>
 				<Button
+					data-testid='ZOOM_ELEMENT_PLUS_BUTTON'
 					variant={'ghost-icon-main-no-padding'}
 					iconLeft='plus'
 					$borderRadius='round'
 					sizeIcon={24}
 					onClick={() => handleZoom({ inCrement: true })}
+					disabled={zoomList[zoomList.indexOf(zoomSize)] === zoomList[zoomList.length - 1]}
 				/>
 			</Box>
 			{/* Zoom */}
 
 			{/* Children */}
 			<Box
-				// position='absolute'
-				top={0}
-				// position='relative'
-				// height='inherit'
-				// $minHeight='inherit'
-				// $maxHeight='inherit'
+				data-testid='ZOOM_ELEMENT_CHILDREN'
 				width={'100%'}
-				// height={'100%'}
-				// $overflowY='auto'
+				$minHeight={minHeight}
+				$maxHeight={maxHeight}
 				$overflowY='scroll'
-				$minHeight='calc(100vh - 220px)'
-				$maxHeight='calc(100vh - 220px)'
 				$justifyContent='center'
 				$zIndex={500}
-				style={
-					{
-						// border: '1px solid green'
-					}
-				}
 			>
 				<Box
 					ref={contentRef}
@@ -131,17 +128,11 @@ const ZoomElement = ({ className, children, isZoomable = true }: ZoomElement) =>
 					$justifyContent='center'
 					$zIndex={500}
 					style={{
-						// border: '1px solid red',
 						transformOrigin: 'center top',
-						// width: dimensions.width > 0 ? `${100 / (zoomSize / 100)}%` : '100%',
-						// height: dimensions.height > 0 ? `${100 / (zoomSize / 100)}%` : '100%',
 						width: '100%',
 						height: '100%',
 						transition: 'transform 0.1s ease-out',
-						// transform: `scale(${Number(zoomSize) / 100})`,
 						zoom: `${zoomSize}%`
-						// minHeight: '100vh'
-						// maxHeight: 'inherit'
 					}}
 				>
 					{children}

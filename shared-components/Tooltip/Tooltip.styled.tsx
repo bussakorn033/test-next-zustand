@@ -12,7 +12,7 @@ export const TooltipWrapperBox = styled.div<{ $isVisible: boolean }>`
 	display: ${(props) => (props.$isVisible ? 'flex' : 'none')};
 `;
 
-export const TooltipBox = styled(Box)<{ $isVisible: boolean }>`
+export const TooltipBox = styled(Box)<{ $isVisible?: boolean }>`
 	position: absolute;
 	z-index: 1000;
 	opacity: ${(props) => (props.$isVisible ? 1 : 0)};
@@ -36,5 +36,10 @@ export const TooltipBox = styled(Box)<{ $isVisible: boolean }>`
 		$maxWidth !== undefined &&
 		css`
 			max-width: ${toPx($maxWidth)};
+		`}
+	${({ $borderRadius }) =>
+		$borderRadius &&
+		css`
+			border-radius: var(--radius-${$borderRadius});
 		`}
 `;

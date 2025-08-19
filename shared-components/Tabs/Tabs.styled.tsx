@@ -16,14 +16,14 @@ export const TabContainerSpaceBetween = styled.div`
 	width: 100%;
 `;
 
-export const TabButton = styled.button<{ $active: boolean }>`
+export const TabButton = styled.button<{ $active: boolean; $cursor?: string }>`
 	padding: 12px 20px;
 	font-size: 14px;
 	font-weight: bold;
 	color: ${(props) => (props.$active ? 'var(--color-accent)' : 'var(--color-primary)')};
 	background: none;
 	border: none;
-	cursor: pointer;
+	cursor: ${(props) => (props.$cursor ? props.$cursor : 'pointer')};
 	transition: all 0.2s;
 
 	&:hover {
@@ -31,14 +31,14 @@ export const TabButton = styled.button<{ $active: boolean }>`
 	}
 `;
 
-export const TabButtonSpaceBetween = styled.button<{ $active: boolean }>`
+export const TabButtonSpaceBetween = styled.button<{ $active: boolean; $cursor?: string }>`
 	padding: 12px 20px;
 	font-size: 14px;
 	font-weight: bold;
 	color: ${(props) => (props.$active ? 'var(--color-accent)' : 'var(--color-primary)')};
 	background: none;
 	border: none;
-	cursor: pointer;
+	cursor: ${(props) => (props.$cursor ? props.$cursor : 'pointer')};
 	transition: all 0.2s;
 	flex: 1;
 

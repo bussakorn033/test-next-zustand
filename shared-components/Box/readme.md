@@ -59,7 +59,7 @@ $borderRadius?:
   | "xl"
   | "circle";
 
-$borderWidth?: 0 | 1 | 2;
+$borderWidth?: 0 | 0.5 | 1 | 2;
 
 width?: string | number;;
 height?: string | number;;

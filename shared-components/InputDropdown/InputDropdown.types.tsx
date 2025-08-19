@@ -42,4 +42,5 @@ export interface InputDropdownProps {
 	$minWidth?: string | number;
 	$maxHeight?: string | number;
 	$maxWidth?: string | number;
+	$isAllowDisplayTop?: boolean;
 }

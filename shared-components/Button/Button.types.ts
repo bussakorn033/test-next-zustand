@@ -21,28 +21,35 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 	className?: string;
 	variant?:
 		| 'primary'
+		| 'primary-no-padding'
 		| 'negative'
 		| 'secondary'
+		| 'tertiary'
 		| 'secondary-negative'
 		| 'ghost-main'
 		| 'ghost-primary'
 		| 'ghost-secondary'
+		| 'ghost-tertiary'
 		| 'ghost-negative'
 		| 'ghost-main-no-padding'
 		| 'ghost-primary-no-padding'
 		| 'ghost-secondary-no-padding'
+		| 'ghost-tertiary-no-padding'
 		| 'ghost-negative-no-padding'
 		| 'ghost-icon-main'
 		| 'ghost-icon-primary'
 		| 'ghost-icon-secondary'
+		| 'ghost-icon-tertiary'
 		| 'ghost-icon-negative'
 		| 'ghost-icon-main-no-padding'
 		| 'ghost-icon-primary-no-padding'
 		| 'ghost-icon-secondary-no-padding'
+		| 'ghost-icon-tertiary-no-padding'
 		| 'ghost-icon-negative-no-padding'
 		| undefined;
 	size?: 'medium' | 'large';
 	sizeIcon?: string | number | null;
+	color?: string;
 	colorIcon?: '--color-neutral-light' | '#f00' | 'red' | string | null;
 	flex?: string | number | null;
 	$flexWrap?: string | null;

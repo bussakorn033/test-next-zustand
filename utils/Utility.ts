@@ -1,5 +1,11 @@
-import { MasterDetail } from '@/dto/DashboardDTO';
+import { MasterDetail } from '../src/dto/DashboardDTO';
+import { MasterDetailsDoc, MasterDetailsStatus } from '../src/dto/ContractDTO';
+import * as STATUS from '../src/constants/STATUS';
 import React, { ReactElement, ReactNode } from 'react';
+
+// import { MasterDetail } from '@/dto/DashboardDTO';
+// import * as STATUS from '@/constants/STATUS';
+// import React, { ReactElement, ReactNode } from 'react';
 
 /**
  * Formats a string value into Thai currency format with 2 decimal places.
@@ -126,12 +132,26 @@ export function removeComma(str: string): string {
  * // Only "World" will be logged after 300ms if called in quick succession.
  * ```
  */
-export const debounce = <F extends (...args: Parameters<F>) => ReturnType<F>>(func: F, wait: number) => {
+
+interface DebouncedFunction<F extends (...args: any[]) => any> {
+  (...args: Parameters<F>): void;
+  cancel: () => void;
+}
+
+export const debounce = <F extends (...args: Parameters<F>) => ReturnType<F>>(
+  func: F,
+  wait: number
+): DebouncedFunction<F> => {
   let timeout: NodeJS.Timeout;
 
   const debounced = (...args: Parameters<F>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
+  };
+
+  // Add cancel method to the debounced function
+  debounced.cancel = () => {
+    clearTimeout(timeout);
   };
 
   return debounced;
@@ -154,9 +174,9 @@ export const debounce = <F extends (...args: Parameters<F>) => ReturnType<F>>(fu
  * throttledLog("World"); // Ignored if called within 2 seconds of the previous call
  * ```
  */
-export function throttle(func: (...args: any[]) => void, limit: number) {
+export function throttle(func: (...args: unknown[]) => void, limit: number) {
   let lastCall = 0;
-  return (...args: any[]) => {
+  return (...args: unknown[]) => {
     const now = Date.now();
     if (now - lastCall >= limit) {
       lastCall = now;
@@ -237,6 +257,33 @@ export const formatDate = (date: number | string | Date | null | undefined) => {
 };
 
 /**
+ * Formats a date string or Date object to 'DD/MM/YYYY HH:mm' format.
+ *
+ * @param date - The input date as a string (ISO), Unix timestamp (in seconds or milliseconds), or Date object.
+ * @returns The formatted date string in 'DD/MM/YYYY HH:mm' format.
+ *
+ * @example
+ * formatDateTime("2023-06-01T08:05:00Z") // "01/06/2023 08:05"
+ * formatDateTime(new Date(2023, 5, 1, 8, 5)) // "01/06/2023 08:05"
+ * formatDateTime(1685606700) // "01/06/2023 08:05"
+ */
+export const formatDateTime = (date: number | string | Date | null | undefined) => {
+  if (!date) return '';
+  let d: Date;
+  if (typeof date === 'number') {
+    d = new Date(date < 1e12 ? date * 1000 : date);
+  } else {
+    d = new Date(date);
+  }
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  const hours = String(d.getHours()).padStart(2, '0');
+  const minutes = String(d.getMinutes()).padStart(2, '0');
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
+};
+
+/**
  * Recursively extracts text content from a ReactNode.
  *
  * NOTE: This function supports strings, numbers, arrays, and valid React elements.
@@ -293,14 +340,14 @@ export function hasNonEmptyString(obj: Record<string, unknown>): boolean {
  * getSortNumeric("DESC");  // returns -1
  * getSortNumeric("XYZ");   // returns -1
  */
-export function getSortNumeric(sortDirection: string): number {
-  switch (sortDirection.toUpperCase()) {
+export function getSortNumeric(sortDirection: string): string {
+  switch (sortDirection?.toUpperCase()) {
     case 'ASC':
-      return 1;
+      return String(1);
     case 'DESC':
-      return -1;
+      return String(-1);
     default:
-      return -1;
+      return String(-1);
   }
 }
 
@@ -330,47 +377,31 @@ export function getSortNumeric(sortDirection: string): number {
 export function getMasterDetailsStatus(
   code: string | undefined,
   details: MasterDetail[] | undefined
-): { code: string; variant: string; description_th: string; description_en: string } {
+): MasterDetailsStatus {
   const detail = details?.find((d) => d?.code === code || d?.contract_status_code === code);
   let variant = '';
 
-  switch (code) {
-    case 'DRAFT':
+  switch (code?.toUpperCase()) {
+    case STATUS.DRAFT:
       variant = 'default';
       break;
-    case 'purple':
-      variant = 'purple';
-      break;
-    case 'danger':
-    case 'STAFT_REJECT':
-    case 'CUST_REJECT':
-    case 'DOC_REJECT':
+    case STATUS.STAFF_REJECT:
+    case STATUS.CUST_REJECT:
+    case STATUS.DOC_REJECT:
       variant = 'danger';
       break;
-    case 'warning':
-      variant = 'warning';
-      break;
-    case 'light-orange':
-      variant = 'light-orange';
-      break;
-    case 'disabled':
-    case 'EXPIRE':
+    case STATUS.EXPIRE:
       variant = 'disabled';
       break;
-    case 'information':
-    case 'SUBMIT':
-    case 'WAIT_CUST_APP':
-    case 'WAIT_CONFIRM':
-    case 'CONFIRM_SUBMISSION':
+    case STATUS.SUBMIT:
+    case STATUS.WAIT_CUST_APP:
+    case STATUS.WAIT_CONFIRM:
+    case STATUS.CONFIRM_SUBMISSION:
       variant = 'information';
       break;
-    case 'success':
-    case 'CREATED':
-    case 'SEND_DOC_SUCCESS':
+    case STATUS.CREATED:
+    case STATUS.SEND_DOC_SUCCESS:
       variant = 'success';
-      break;
-    case 'primary':
-      variant = 'primary';
       break;
     default:
       variant = '';
@@ -389,7 +420,9 @@ export function getMasterDetailsStatus(
       detail?.description_en ||
       detail?.contract_status_description_en ||
       detail?.contract_type_description_en ||
-      ''
+      '',
+    history_description_th: detail?.history_description_th || '',
+    history_description_en: detail?.history_description_en || ''
   };
 }
 
@@ -413,11 +446,7 @@ export function getMasterDetailsStatus(
 export function getMasterDetailsDoc(
   code: string | undefined,
   details: MasterDetail[] | undefined
-): {
-  code: string;
-  description_th: string;
-  description_en: string;
-} {
+): MasterDetailsDoc {
   const detail = details?.find((d) => d?.code === code);
 
   return {
@@ -447,53 +476,183 @@ export function toStringArray(input: Array<string | number | undefined>): string
  * Measure the pixel width of a string using a given font.
  * @param text The text to measure.
  * @param font The CSS font string, e.g. "14px Arial".
+ * @param padding Optional padding in pixels to add to the measured width.
  * @returns The width in pixels.
  */
-export function measureTextWidth(text: string, font: string = '20px Arial'): number {
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  if (!context) return 0;
-  context.font = font;
-  const metrics = context.measureText(text);
-  return Math.floor(metrics.width);
+export function measureTextWidth(
+  text: string,
+  font: string = "20px 'Ekachon', system-ui, sans-serif, 'Segoe UI', Tahoma, Verdana",
+  padding: number = 0
+): number {
+  try {
+    const canvas = document?.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (!context) return 0;
+    context.font = font;
+    const metrics = context.measureText(text);
+    return Math.floor(metrics.width + padding);
+  } catch (error) {
+    console.log(`error:`, error);
+    return 0;
+  }
 }
 
 /**
- * Downloads a PDF file from a base64 string.
+ * Checks if a given string potentially contains malicious injection content,
+ * such as <script> tags, iframes, or PHP references.
  *
- * @param input - The base64 encoded PDF string.
- * @param pdfFileName - Optional name for the downloaded PDF file (without .pdf extension).
- * If not provided, defaults to 'download.pdf'.
+ * This function sanitizes angle brackets to HTML entities (e.g., < → &lt;) before testing,
+ * and looks for common injection patterns like script tags, iframe tags, or PHP code references.
+ *
+ * @param str - The input string to check for potential injection content.
+ * @returns A boolean indicating whether the string contains suspicious/injection content.
+ *
+ * @example
+ * isContainInjectionScript('<script>alert("xss")</script>'); // true
+ * isContainInjectionScript('<iframe src="evil.com"></iframe>'); // true
+ * isContainInjectionScript('This is just normal text.'); // false
  */
-export const downloadPdfFile = async (input: string, pdfFileName?: string) => {
-  if (!input) return;
+export const isContainInjectionScript = (str: string) => {
+  const regex = /&lt;[^&]*script[^&]*&gt;/i;
+  const sanitizedString = str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  const linkSource = `data:application/pdf;base64,${input}`;
-  const downloadLink = document.createElement('a');
-  const pdfFile = pdfFileName?.trim();
-  const fileName = pdfFile?.includes('.pdf') ? pdfFile : `${pdfFile}.pdf`;
-  downloadLink.href = linkSource;
-  downloadLink.download = fileName;
-  downloadLink.click();
+  return (
+    regex.test(sanitizedString) ||
+    ['iframe', 'php'].some((invalidString) => str.toLocaleLowerCase().includes(invalidString))
+  );
 };
 
 /**
- * Prints a PDF file from a base64 string.
- *
- * @param input - The base64 encoded PDF string.
- * This function decodes the base64 string, creates a Blob object,
- * and opens it in a new window for printing.
+ * Interface representing a metadata item with optional reference code and name.
+ * Used for generating messages with dynamic content.
  */
-export const printPdfFile = async (input: string) => {
-  if (!input) return;
-
-  var byteCharacters = atob(input);
-  var byteNumbers = new Array(byteCharacters.length);
-  for (var i = 0; i < byteCharacters.length; i++) {
-    byteNumbers[i] = byteCharacters.charCodeAt(i);
-  }
-  var byteArray = new Uint8Array(byteNumbers);
-  var file = new Blob([byteArray], { type: 'application/pdf;base64' });
-  var fileURL = URL.createObjectURL(file);
-  window.open(fileURL);
+type MetaDataGenerateMessage = {
+  ref_code?: string;
+  ref_name?: string;
+  value?: string;
 };
+
+/**
+ * Generates a message by replacing placeholders in the context message with values from metadata.
+ *
+ * @param meta_data - An array of metadata items containing reference codes and values.
+ * @param context_message_th - The template message with placeholders to be replaced.
+ * @returns A formatted message with placeholders replaced by actual values.
+ *
+ * @example
+ * const metaData = [
+ *   { ref_code: 'date', value: '30/11/2024' },
+ *   { ref_code: 'contract_number', value: '36-36608687' },
+ *   { ref_name: 'old_msg', value: '...' },
+ *   { ref_name: 'new_msg', value: '...' }
+ * ];
+ * const contextMessage = 'โปรดยืนยันเอกสารก่อนวันที่ {date} หลังจากได้รับข้อความนี้ เรื่องแก้ไขรายการข้อมูล';
+ * const message = generateMessage(metaData, contextMessage);
+ */
+export function generateMessage(
+  meta_data: MetaDataGenerateMessage[] = [],
+  context_message_th: string = ''
+): string {
+  // แยกข้อมูลที่ใช้แทนค่า {key}
+  const replaceData = meta_data
+    .filter((item) => item.ref_code || item.ref_name)
+    .map((item) => {
+      return {
+        ref_code: item.ref_code || item.ref_name,
+        ref_name: item.ref_name || item.ref_code,
+        value: item.value || ''
+      };
+    });
+
+  // ใช้ map + reduce แทนที่ {key} ใน context_message_th
+  const updatedMessage = replaceData
+    .map((item) => ({
+      pattern: `{${item.ref_code}}`,
+      replacement: item.value
+    }))
+    .reduce((text, { pattern, replacement }) => {
+      if (replacement === '') return text.replace(pattern, pattern);
+      return text.replace(pattern, replacement);
+    }, context_message_th);
+
+  return updatedMessage;
+}
+
+/**
+ * Converts a Unix timestamp (in milliseconds) to a Thai date and time string.
+ * Example output: "20 มิถุนายน 2568 00.00"
+ *
+ * @param timestamp - The Unix timestamp in milliseconds (e.g., 1747785600000).
+ * @param option - The option to format the date and time string. Default is 'dateWithTime'.
+ * @returns The formatted Thai date and time string.
+ */
+
+// TODO: refactor to constant
+export function convertTimestampToThaiDateTime(timestamp: number, option: string = 'dateWithTime') {
+  const date = new Date(timestamp < 1e12 ? timestamp * 1000 : timestamp);
+
+  const thaiMonths = [
+    'มกราคม',
+    'กุมภาพันธ์',
+    'มีนาคม',
+    'เมษายน',
+    'พฤษภาคม',
+    'มิถุนายน',
+    'กรกฎาคม',
+    'สิงหาคม',
+    'กันยายน',
+    'ตุลาคม',
+    'พฤศจิกายน',
+    'ธันวาคม'
+  ];
+
+  const day = date.getDate();
+  const month = thaiMonths[date.getMonth()];
+  const yearBE = date.getFullYear() + 543;
+
+  if (option !== 'dateWithTime') {
+    return `${day} ${month} ${yearBE}`;
+  }
+  const padZero = (num: number) => num.toString().padStart(2, '0');
+  const hours = padZero(date.getHours());
+  const minutes = padZero(date.getMinutes());
+
+  return `${day} ${month} ${yearBE} ${hours}.${minutes}`;
+}
+
+export function getObjActivityDescriptionPrintDownload(
+  contractId: string,
+  customerName: string,
+  rmId: string,
+  contractType: string
+) {
+  return [
+    {
+      flex: 'Contract No.',
+      value: contractId
+    },
+    {
+      flex: 'Customer Name/Surname',
+      value: customerName
+    },
+    {
+      flex: 'RM ID',
+      value: rmId
+    },
+    {
+      flex: 'Contract',
+      value: contractType
+    }
+  ];
+}
+
+/**
+ * Checks if a value is empty (null, undefined, or empty string or whitespace).
+ *
+ * @param value - The value to check.
+ * @returns True if the value is empty, false otherwise.
+ */
+
+export function isValueEmpty(value: any): boolean {
+  return value === null || value === undefined || value?.length === 0;
+}

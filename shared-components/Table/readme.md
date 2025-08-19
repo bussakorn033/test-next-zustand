@@ -18,6 +18,8 @@ import {Table} from "@/shared-components/Table";
   onPageChange={()=>null}
   onLimitChange={()=>null}
   isPaginationDisabled
+  isTableError={false}
+  isTableLoading={!isShowModal}
 />;
 
 
@@ -62,6 +64,7 @@ const {paginationOptions, pagination, setPagination, headers, values} =
         flex: 1,
         align: "left",
       },
+    ]
   );
 
   const headers = useMemo(

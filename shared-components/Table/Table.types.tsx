@@ -43,9 +43,10 @@ export type SortDirection = 'asc' | 'desc' | 'sorting' | string | undefined;
 export type Align = 'left' | 'center' | 'right' | string | undefined;
 
 export interface Pagination {
-	page: number;
-	limit: number;
-	count: number;
+	page?: number;
+	limit?: number;
+	count?: number;
+	updateDate?: number;
 }
 
 export interface OnClickCellParams {
@@ -53,7 +54,6 @@ export interface OnClickCellParams {
 	row?: number;
 	col?: number;
 	sortBy?: SortDirection;
-	[key: string]: any;
 }
 
 export interface PaginationOptions {
@@ -71,10 +71,10 @@ export interface TableColumn {
 	isHover?: boolean;
 	onClick?: (params: OnClickCellParams) => void | null;
 	flex?: number | string;
+	width?: number | string;
 	$minWidth?: number | string;
 	$maxWidth?: number | string;
 	icon?: string;
-	[key: string]: any | (() => void | null);
 }
 
 export interface TableProps extends React.HTMLAttributes<HTMLElement | undefined> {
@@ -96,4 +96,5 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement | undefined
 	childrenNotFound?: React.ReactNode;
 	isTableError?: boolean;
 	isTableLoading?: boolean;
+	moduleName?: string;
 }

@@ -3,7 +3,7 @@ import { StyledSvg } from './SVG.styled';
 import { IconProps } from './SVG.types';
 
 export const ImageNodataSVG: React.FC<IconProps> = ({ color = '', ...rest }) => (
-	<StyledSvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56' fill='none' {...rest}>
+	<StyledSvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56' fill='none' color={color} {...rest}>
 		<line
 			x1='27.7216'
 			y1='1.96602'

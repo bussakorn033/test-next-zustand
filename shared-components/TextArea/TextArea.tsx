@@ -7,34 +7,24 @@ import Icon from '../Icon/Icon';
 import { Box } from '../Box';
 import { Tooltip } from '../Tooltip';
 
-export const TextArea = forwardRef<undefined | any, TextAreaProps>(
-	(
-		{
-			id,
-			label,
-			labelHelping,
-			value,
-			type,
-			variant,
-			suffix,
-			error,
-			$isDisabled,
-			helpingText,
-			helpingTextRight,
-			errorMessage,
-			half,
-			iconLeft,
-			iconRight,
-			keyboard,
-			className,
-			iconTyping,
-			onChange,
-			$isClearable,
-			rows = 5,
-			...rest
-		}: TextAreaProps,
-		ref
-	) => {
+export const TextArea = forwardRef<undefined, TextAreaProps>(
+	({
+		id,
+		label,
+		labelHelping,
+		value,
+		error,
+		$isDisabled,
+		helpingText,
+		iconLeft,
+		iconRight,
+		className,
+		onChange,
+		$isClearable,
+		rows = 5,
+		maxLength,
+		...rest
+	}: TextAreaProps) => {
 		const classnames = classNames(className, 'ds-text-area');
 
 		const onchangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +47,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 		const onBlurHandler = (event: React.FocusEvent<HTMLInputElement>) => {
 			if (onChange) {
 				onChange({
-					target: { name: rest.name, value: event.currentTarget.value }
+					target: { name: rest.name, value: event.currentTarget.value.trim() }
 				} as React.ChangeEvent<HTMLInputElement>);
 			}
 		};
@@ -96,8 +86,8 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 			/*  Fix bug in Chrome mobile: ensure blur on "Done" keyboard press */
 			const inputElement = document.querySelector(`[id="${id}"]`);
 			if (inputElement) {
-				const handleBlur = (event: any) => {
-					event.target.blur();
+				const handleBlur = (event: Event) => {
+					(event.target as HTMLInputElement).blur();
 				};
 				inputElement.addEventListener('blur', handleBlur);
 
@@ -122,9 +112,11 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 								{label}
 							</TextStyle>
 							{labelHelping && (
-								<Tooltip content={labelHelping}>
-									<Icon icon='help_circle_fill' width={12} height={12} color='--color-secondary' />
-								</Tooltip>
+								<Box position='relative'>
+									<Tooltip content={labelHelping}>
+										<Icon icon='help_circle_fill' width={12} height={12} color='--color-secondary' />
+									</Tooltip>
+								</Box>
 							)}
 						</Box>
 					</>
@@ -139,6 +131,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 							disabled={$isDisabled}
 							value={value}
 							rows={rows}
+							maxLength={maxLength}
 							$isClearable={$isClearable}
 							onChange={onchangeHandler}
 							onFocus={onFocusHandler}
@@ -153,10 +146,11 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 							type='button'
 							name={rest.name}
 							onClick={() => {
-								onChange &&
+								if (onChange) {
 									onChange({
 										target: { name: rest.name, value: '' }
 									} as React.ChangeEvent<HTMLInputElement>);
+								}
 							}}
 						>
 							<Icon
@@ -171,7 +165,7 @@ export const TextArea = forwardRef<undefined | any, TextAreaProps>(
 				</S.InputWrapper>
 				{helpingText && (
 					<S.HelpingText $isError={error}>
-						<TextStyle variant='labelXSmall'>{helpingText}</TextStyle>
+						<TextStyle variant='paragraphSmall'>{helpingText}</TextStyle>
 					</S.HelpingText>
 				)}
 			</S.TextAreaWrapper>

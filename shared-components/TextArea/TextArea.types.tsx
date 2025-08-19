@@ -32,7 +32,6 @@
  * @param $marginBottom - The bottom margin of the TextArea.
  * @param $isClearable - Flag used to show a clear button.
  * @param rows - The number of visible text lines in the TextArea (determines its height).
- * @param [key: string] - Additional custom properties.
  */
 
 export interface TextAreaProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -46,9 +45,11 @@ export interface TextAreaProps extends React.InputHTMLAttributes<HTMLInputElemen
 	helpingText?: string;
 	errorMessage?: string;
 	suffix?: string;
+	error?: boolean;
 	$isError?: boolean;
 	$isDisabled?: boolean;
-	maxLength?: number;
+	minLength?: number | undefined;
+	maxLength?: number | undefined;
 	onChange?: React.ChangeEventHandler<HTMLInputElement>;
 	variant?: 'amount' | 'amount-transaction' | 'search';
 	className?: string;
@@ -59,8 +60,10 @@ export interface TextAreaProps extends React.InputHTMLAttributes<HTMLInputElemen
 	options?: string;
 	$zIndex?: number;
 	width?: string | number;
+	$minWidth?: string | number;
+	$maxWidth?: string | number;
 	$marginBottom?: string | number;
 	$isClearable?: boolean;
 	rows?: number;
-	[key: string]: any;
+	flex?: number;
 }

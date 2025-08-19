@@ -1,0 +1,11 @@
+export const DRAFT = 'DRAFT';
+export const STAFF_REJECT = 'STAFF_REJECT';
+export const CUST_REJECT = 'CUST_REJECT';
+export const DOC_REJECT = 'DOC_REJECT';
+export const EXPIRE = 'EXPIRE';
+export const SUBMIT = 'SUBMIT';
+export const WAIT_CUST_APP = 'WAIT_CUST_APP';
+export const WAIT_CONFIRM = 'WAIT_CONFIRM';
+export const CONFIRM_SUBMISSION = 'CONFIRM_SUBMISSION';
+export const CREATED = 'CREATED';
+export const SEND_DOC_SUCCESS = 'SEND_DOC_SUCCESS';

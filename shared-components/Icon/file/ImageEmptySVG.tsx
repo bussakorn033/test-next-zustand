@@ -3,7 +3,7 @@ import { StyledSvg } from './SVG.styled';
 import { IconProps } from './SVG.types';
 
 export const ImageEmptySVG: React.FC<IconProps> = ({ color = '', ...rest }) => (
-	<StyledSvg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg' fill='none' {...rest}>
+	<StyledSvg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg' fill='none' color={color} {...rest}>
 		<rect x='14.2527' y='6' width='31.4417' height='40.9868' rx='4' fill='#7D8899' />
 		<rect x='11' y='8.21582' width='32.5259' height='40.9868' rx='4' fill='#DFE6EC' />
 		<ellipse cx='34.3101' cy='22.061' rx='1.62629' ry='1.66163' fill='#7D8899' />

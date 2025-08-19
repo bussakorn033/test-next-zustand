@@ -19,6 +19,7 @@
 export interface ModalProps extends React.HTMLAttributes<HTMLHeadingElement> {
 	isOpen: boolean;
 	onClose: () => void;
+	isShowIconClose?: boolean;
 	children: React.ReactNode;
 	title?: string;
 	className?: string;
@@ -29,4 +30,5 @@ export interface ModalProps extends React.HTMLAttributes<HTMLHeadingElement> {
 	height?: string | number;
 	$minHeight?: string | number;
 	$maxHeight?: string | number;
+	$isOverflow?: boolean;
 }

@@ -34,6 +34,7 @@ import UserCircleSVG from './file/UserCircleSVG';
 import ViewDocumentSVG from './file/ViewDocumentSVG';
 import EmptySearchSVG from './file/EmptySearchSVG.svg';
 import EmptyBoxSVG from './file/EmptyBoxSVG.svg';
+import MobileBarSvg from './file/MobileBarSVG.svg';
 /* SVG/FILE */
 
 /* Image SVG Components */
@@ -41,95 +42,101 @@ import ImageEmptySVG from './file/ImageEmptySVG';
 import ImageNodataSVG from './file/ImageNodataSVG';
 import ImageProfileCircleSVG from './file/ImageProfileCircleSVG';
 import ImageTTBLogoSVG from './file/ImageTTBLogoSVG';
+import ImageMobileBarSvg from './file/ImageMobileBarSVG';
+import { IconProps } from './file/SVG.types';
 /* Image SVG Components */
 
-export const IconComponent = ({ ...rest }: any) => {
-	const { icon } = rest;
-	switch (icon) {
-		/* Svg */
-		case 'alert_circle_bold':
-			return <AlertCircleBoldSVG {...rest} />;
-		case 'alert_circle':
-			return <AlertCircleSVG {...rest} />;
-		case 'arrow_down_bold':
-			return <ArrowDownBoldSVG {...rest} />;
-		case 'arrow_down':
-			return <ArrowDownSVG {...rest} />;
-		case 'arrow_left':
-			return <ArrowLeftSVG {...rest} />;
-		case 'arrow_right':
-			return <ArrowRightSVG {...rest} />;
-		case 'arrow_up_bold':
-			return <ArrowUpBoldSVG {...rest} />;
-		case 'arrow_up':
-			return <ArrowUpSVG {...rest} />;
-		case 'calendar':
-			return <CalendarSVG {...rest} />;
-		case 'cancel_circle_fill':
-			return <CancelCircleFillSVG {...rest} />;
-		case 'check_circle':
-			return <CheckCircleSVG {...rest} />;
-		case 'check':
-			return <CheckSVG {...rest} />;
-		case 'close':
-			return <CloseSVG {...rest} />;
-		case 'download':
-			return <DownloadSVG {...rest} />;
-		case 'edit':
-			return <EditSVG {...rest} />;
-		case 'help_circle_fill':
-			return <HelpCircleFillSVG {...rest} />;
-		case 'history':
-			return <HistorySVG {...rest} />;
-		case 'home':
-			return <HomeSVG {...rest} />;
-		case 'info_circle':
-			return <InfoCircleSVG {...rest} />;
-		case 'logout':
-			return <LogoutSVG {...rest} />;
-		case 'minus':
-			return <MinusSVG {...rest} />;
-		case 'plus':
-			return <PlusSVG {...rest} />;
-		case 'printer':
-			return <PrinterSVG {...rest} />;
-		case 'refresh':
-			return <RefreshSVG {...rest} />;
-		case 'save':
-			return <SaveSVG {...rest} />;
-		case 'search':
-			return <SearchSVG {...rest} />;
-		case 'share':
-			return <ShareSVG {...rest} />;
-		case 'sort_ascending':
-			return <SortAscendingSVG {...rest} />;
-		case 'sort_descending':
-			return <SortDescendingSVG {...rest} />;
-		case 'sorting':
-			return <SortingSVG {...rest} />;
-		case 'trash':
-			return <TrashSVG {...rest} />;
-		case 'user_circle':
-			return <UserCircleSVG {...rest} />;
-		case 'view_document':
-			return <ViewDocumentSVG {...rest} />;
-		/* Svg */
+export const IconComponent = ({ ...rest }: IconProps) => {
+  const { icon } = rest;
+  switch (icon) {
+    /* Svg */
+    case 'alert_circle_bold':
+      return <AlertCircleBoldSVG {...rest} />;
+    case 'alert_circle':
+      return <AlertCircleSVG {...rest} />;
+    case 'arrow_down_bold':
+      return <ArrowDownBoldSVG {...rest} />;
+    case 'arrow_down':
+      return <ArrowDownSVG {...rest} />;
+    case 'arrow_left':
+      return <ArrowLeftSVG {...rest} />;
+    case 'arrow_right':
+      return <ArrowRightSVG {...rest} />;
+    case 'arrow_up_bold':
+      return <ArrowUpBoldSVG {...rest} />;
+    case 'arrow_up':
+      return <ArrowUpSVG {...rest} />;
+    case 'calendar':
+      return <CalendarSVG {...rest} />;
+    case 'cancel_circle_fill':
+      return <CancelCircleFillSVG {...rest} />;
+    case 'check_circle':
+      return <CheckCircleSVG {...rest} />;
+    case 'check':
+      return <CheckSVG {...rest} />;
+    case 'close':
+      return <CloseSVG {...rest} />;
+    case 'download':
+      return <DownloadSVG {...rest} />;
+    case 'edit':
+      return <EditSVG {...rest} />;
+    case 'help_circle_fill':
+      return <HelpCircleFillSVG {...rest} />;
+    case 'history':
+      return <HistorySVG {...rest} />;
+    case 'home':
+      return <HomeSVG {...rest} />;
+    case 'info_circle':
+      return <InfoCircleSVG {...rest} />;
+    case 'logout':
+      return <LogoutSVG {...rest} />;
+    case 'minus':
+      return <MinusSVG {...rest} />;
+    case 'plus':
+      return <PlusSVG {...rest} />;
+    case 'printer':
+      return <PrinterSVG {...rest} />;
+    case 'refresh':
+      return <RefreshSVG {...rest} />;
+    case 'save':
+      return <SaveSVG {...rest} />;
+    case 'search':
+      return <SearchSVG {...rest} />;
+    case 'share':
+      return <ShareSVG {...rest} />;
+    case 'sort_ascending':
+      return <SortAscendingSVG {...rest} />;
+    case 'sort_descending':
+      return <SortDescendingSVG {...rest} />;
+    case 'sorting':
+      return <SortingSVG {...rest} />;
+    case 'trash':
+      return <TrashSVG {...rest} />;
+    case 'user_circle':
+      return <UserCircleSVG {...rest} />;
+    case 'view_document':
+      return <ViewDocumentSVG {...rest} />;
+    /* Svg */
 
-		/* Img */
-		case 'img_empty_svg':
-			return <ImageEmptySVG {...rest} />;
-		case 'img_nodata_svg':
-			return <ImageNodataSVG {...rest} />;
-		case 'img_profile_circle':
-			return <ImageProfileCircleSVG {...rest} />;
-		case 'img_ttb_logo':
-			return <ImageTTBLogoSVG {...rest} />;
-		case 'empty_search':
-			return <img src={EmptySearchSVG} />;
-		case 'empty_box':
-			return <img src={EmptyBoxSVG} />;
-		/* Img */
-		default:
-			return null;
-	}
+    /* Img */
+    case 'img_empty_svg':
+      return <ImageEmptySVG {...rest} />;
+    case 'img_nodata_svg':
+      return <ImageNodataSVG {...rest} />;
+    case 'img_mobile_bar':
+      return <ImageMobileBarSvg {...rest} />;
+    case 'img_profile_circle':
+      return <ImageProfileCircleSVG {...rest} />;
+    case 'img_ttb_logo':
+      return <ImageTTBLogoSVG {...rest} />;
+    case 'empty_search':
+      return <img src={EmptySearchSVG} {...rest} />;
+    case 'empty_box':
+      return <img src={EmptyBoxSVG} {...rest} />;
+    case 'img_mobile_bar_svg':
+      return <img src={MobileBarSvg} {...rest} />;
+    /* Img */
+    default:
+      return null;
+  }
 };

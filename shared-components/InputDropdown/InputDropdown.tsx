@@ -21,27 +21,31 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 	$maxHeight,
 	$maxWidth,
 	variant = 'primary',
-	type = 'normal'
+	type = 'normal',
+	$isAllowDisplayTop = true
 }) => {
 	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
 	const wrapperRef = useRef<HTMLDivElement | null>(null);
 	const buttonRef = useRef<HTMLButtonElement | null>(null);
-	const [checkboxList, setCheckboxList] = useState<Array<string | number | undefined>>([]);
+	const [checkboxList, setCheckboxList] = useState<Array<string | number | undefined> | null>(null);
 	const [checkboxSelectLogList, setCheckboxSelectLogList] = useState<Array<string | number | undefined>>(
 		[]
 	);
 
 	useEffect(() => {
-		onSelect(checkboxList);
-		setCheckboxSelectLogList(checkboxList);
+		if (checkboxList) {
+			onSelect(checkboxList);
+			setCheckboxSelectLogList(checkboxList);
+		}
 
 		const handleClickOutside = (e: MouseEvent) => {
 			if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
 				setIsOpen(false);
-				setCheckboxSelectLogList(checkboxList);
+				setCheckboxSelectLogList(checkboxList || []);
 			}
 		};
+
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
@@ -49,8 +53,32 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 		};
 	}, [checkboxList]);
 
+	useEffect(() => {
+		if (activeMenu && (Array.isArray(activeMenu) && activeMenu.length > 0)) {
+			if (Array.isArray(activeMenu)) {
+				setCheckboxList(activeMenu);
+				setCheckboxSelectLogList(activeMenu);
+			} else {
+				setCheckboxList([activeMenu]);
+				setCheckboxSelectLogList([activeMenu]);
+			}
+		} else {
+			setCheckboxList(null);
+			setCheckboxSelectLogList([]);
+		}
+		return () => {
+			setCheckboxList(null);
+			setCheckboxSelectLogList([]);
+		};
+	}, [Array.isArray(activeMenu) ? activeMenu.length : activeMenu]);
+
 	return (
-		<Box className='ds-ui-input-dropdown' ref={wrapperRef} height={'100%'}>
+		<Box
+			data-testid='SHARED_COMPONENTS_INPUT_DROPDOWN'
+			className='ds-ui-input-dropdown'
+			ref={wrapperRef}
+			height={'100%'}
+		>
 			<S.WrapperDropdown
 				direction='row'
 				gap={4}
@@ -71,7 +99,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 					<Button
 						variant={'ghost-main-no-padding'}
 						$borderRadius='md'
-						iconRight={isOpen ? 'arrow_down_bold' : 'arrow_up_bold'}
+						iconRight={!isOpen ? 'arrow_down_bold' : 'arrow_up_bold'}
 						sizeIcon={16}
 						colorIcon='--color-primary'
 						style={{ height: '100%', alignSelf: 'center', padding: '4px !important' }}
@@ -86,7 +114,13 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 					</Button>
 				</Box>
 			</S.WrapperDropdown>
-			<Popover isOpen={isOpen} anchorRef={buttonRef} padding={0} onClose={() => setIsOpen(false)}>
+			<Popover
+				isOpen={isOpen}
+				anchorRef={buttonRef}
+				padding={0}
+				onClose={() => setIsOpen(false)}
+				$isAllowDisplayTop={$isAllowDisplayTop}
+			>
 				<Box
 					direction='column'
 					py={8}
@@ -121,22 +155,23 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 													<S.SubItem
 														key={sub.id}
 														$active={sub.id === activeMenu}
-														onClick={() => selectMenu(sub)}
+														onClick={() => {
+															if (type !== 'checkbox') {
+																selectMenu(sub);
+															} else {
+																setCheckboxSelectLogList((prev) => {
+																	if (prev.includes(sub.id)) {
+																		return prev.filter((id) => id !== sub.id);
+																	} else {
+																		return [...prev, sub.id];
+																	}
+																});
+															}
+														}}
 													>
 														{type === 'checkbox' && (
 															<Box style={{ minHeight: 'var(--line-height-22)' }}>
-																<Checkbox
-																	$isChecked={isChecked}
-																	onChange={() => {
-																		setCheckboxSelectLogList((prev) => {
-																			if (prev.includes(sub.id)) {
-																				return prev.filter((id) => id !== sub.id);
-																			} else {
-																				return [...prev, sub.id];
-																			}
-																		});
-																	}}
-																/>
+																<Checkbox $isChecked={isChecked} />
 															</Box>
 														)}
 														<TextStyle variant='paragraphSmall'>{sub.label}</TextStyle>
@@ -148,22 +183,23 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 											<>
 												<S.SubItem
 													$active={item.id === activeMenu || Number(item.label) === Number(activeMenu)}
-													onClick={() => selectMenu(item)}
+													onClick={() => {
+														if (type !== 'checkbox') {
+															selectMenu(item);
+														} else {
+															setCheckboxSelectLogList((prev) => {
+																if (prev.includes(item.id)) {
+																	return prev.filter((id) => id !== item.id);
+																} else {
+																	return [...prev, item.id];
+																}
+															});
+														}
+													}}
 												>
 													{type === 'checkbox' && (
 														<Box style={{ minHeight: 'var(--line-height-22)' }}>
-															<Checkbox
-																$isChecked={isChecked}
-																onChange={() => {
-																	setCheckboxSelectLogList((prev) => {
-																		if (prev.includes(item.id)) {
-																			return prev.filter((id) => id !== item.id);
-																		} else {
-																			return [...prev, item.id];
-																		}
-																	});
-																}}
-															/>
+															<Checkbox $isChecked={isChecked} />
 														</Box>
 													)}
 													<TextStyle variant='paragraphSmall'>{item.label}</TextStyle>
@@ -182,6 +218,18 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 											>
 												<Button
 													fontWeight='--font-weight-regular'
+													variant='secondary'
+													onClick={() => {
+														setCheckboxSelectLogList([]);
+														setCheckboxList(null);
+														setIsOpen(false);
+														onSelect([]);
+													}}
+												>
+													{t('dashboard_dropdown_btn_reset')}
+												</Button>
+												<Button
+													fontWeight='--font-weight-regular'
 													variant='primary'
 													onClick={() => {
 														const res = [...checkboxSelectLogList]
@@ -194,18 +242,6 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 												>
 													{t('dashboard_dropdown_btn_filter')}
 												</Button>
-												<Button
-													fontWeight='--font-weight-regular'
-													variant='secondary'
-													onClick={() => {
-														setCheckboxSelectLogList([]);
-														setCheckboxList([]);
-														setIsOpen(false);
-														onSelect([]);
-													}}
-												>
-													{t('dashboard_dropdown_btn_reset')}
-												</Button>
 											</Box>
 										)}
 									</Box>
@@ -216,7 +252,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 						<Box direction='column'>
 							<Box>
 								<S.Item>
-									<TextStyle variant='labelSmall' color='color-neutral-grey-light'>
+									<TextStyle variant='paragraphSmall' color='--color-neutral-grey-lighter'>
 										{t('dashboard_dropdown_empty_list')}
 									</TextStyle>
 								</S.Item>

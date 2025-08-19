@@ -7,20 +7,23 @@
  */
 export interface TabItemProps {
 	id?: string;
-	label: string;
-	value: string;
-	content: React.ReactNode;
+	label?: string;
+	value?: string;
+	content?: React.ReactNode;
 }
 
 /**
  * Props for the TabsComponent.
  *
+ * @param className - Custom className
  * @param tabsName - Optional name of tab to show before tabs menu.
  * @param activeTab - The current active tab value. Determines which tab is shown.
  * @param menu - An array of tab definitions containing label, value, and content.
  * @param onChange - Callback triggered when a different tab is selected. Receives the new tab's value.
  */
+
 export interface TabsProps {
+	className?: string;
 	id?: string;
 	tabsName?: string;
 	activeTab: string;

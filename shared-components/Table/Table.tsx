@@ -1,10 +1,10 @@
-import { measureTextWidth } from '@/utils/Utility';
-import classNames from 'classnames';
 import { forwardRef, useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import { isValueEmpty, measureTextWidth, debounce } from '@/utils/Utility';
+import ErrorDisplay from '../../components/ErrorDisplay';
 import { Box } from '../Box';
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 import { InputDropdown } from '../InputDropdown';
 import { Skeleton } from '../Skeleton';
 import { TextStyle } from '../TextStyle';
@@ -13,35 +13,40 @@ import * as S from './Table.styled';
 import { TableProps } from './Table.types';
 
 export const Table = forwardRef<HTMLElement | undefined, TableProps>(
-	(
-		{
-			className,
-			headers = [],
-			values = [],
-			$minHeightTable = 'unset',
-			$maxHeightTable = 350,
-			paginationOptions = [],
-			page = 1,
-			limit = 50,
-			count = 1,
-			onPageChange,
-			onLimitChange,
-			onRefresh = () => null,
-			isPaginationDisabled = false,
-			mode = 'dark',
-			size = 'lg',
-			childrenNotFound,
-			isTableError = false,
-			isTableLoading = false,
-			...rest
-		}: TableProps,
-		ref
-	) => {
+	({
+		className,
+		headers = [],
+		values = [],
+		$minHeightTable = 'unset',
+		$maxHeightTable = 350,
+		paginationOptions = [],
+		page = 1,
+		limit = 50,
+		count = 1,
+		onPageChange,
+		onLimitChange,
+		onRefresh = () => null,
+		isPaginationDisabled = false,
+		mode = 'dark',
+		size = 'lg',
+		childrenNotFound,
+		isTableError = false,
+		isTableLoading = false,
+		moduleName = 'Dashboard',
+		...rest
+	}: TableProps) => {
 		const classnames = classNames(className, 'ds-ui-table');
 		const { t } = useTranslation();
-		// const navigate = useNavigate();
-		const bodyRef = useRef<HTMLDivElement>(null);
-		const [key, setKey] = useState<string | undefined>('');
+		const tableRef = useRef<HTMLDivElement | null>(null);
+		const bodyRef = useRef<HTMLDivElement | null>(null);
+		const colHeaderRef = useRef<(HTMLDivElement | null)[]>([]);
+		const colBodyRef = useRef<(HTMLDivElement | null)[]>([]);
+		const colBodyTextRef = useRef<(HTMLDivElement | null)[]>([]);
+		const [isTableLoad, setIsTableLoad] = useState(true);
+		const [isUpdateTimeTable, setIsUpdateTimeTable] = useState(new Date().getTime());
+		const prevHeadersLength = useRef(headers.length);
+		const prevValuesLength = useRef(values.length);
+
 		const [isScroll, setIsScroll] = useState<number>(0);
 		const [sortColumnIndex, setSortColumnIndex] = useState<number>(-1);
 		const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | 'sorting' | undefined>(
@@ -60,6 +65,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 			}
 		};
 
+		const handleUpdateTable = () => {
+			const now = new Date().getTime();
+			setIsUpdateTimeTable(now);
+		};
+
 		/* Initial sort setup based on headers.sortBy */
 		useEffect(() => {
 			if (!headers || headers.length === 0) return;
@@ -67,31 +77,24 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 			const firstSortableIndex = headers.findIndex((col) => col?.isSort && col?.sortBy);
 
 			if (firstSortableIndex !== -1) {
-				const initialKey = headers[firstSortableIndex].key as string;
 				const initialSortBy = headers[firstSortableIndex].sortBy as
 					| 'asc'
 					| 'desc'
 					| 'sorting'
 					| undefined;
 
-				setKey(initialKey);
 				setSortColumnIndex(firstSortableIndex);
 				setSortDirection(initialSortBy);
-
-				headers[firstSortableIndex].onClick?.({
-					key: initialKey,
-					row: 0,
-					col: firstSortableIndex,
-					sortBy: initialSortBy,
-					...headers[firstSortableIndex]
-				});
 			}
 			return () => {
-				setKey('');
 				setSortColumnIndex(-1);
 				setSortDirection(undefined);
 			};
-		}, []);
+		}, [headers]);
+
+		useEffect(() => {
+			handleUpdateTable();
+		}, [values, headers, isTableLoading]);
 
 		useEffect(() => {
 			const checkScroll = () => {
@@ -129,9 +132,63 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 			};
 		}, [bodyRef]);
 
+		useEffect(() => {
+			try {
+				if (typeof window === 'undefined') return;
+
+				let lastZoom = window.devicePixelRatio;
+
+				const handleViewportChange = debounce(() => {
+					setIsTableLoad((prev) => !prev);
+				}, 150);
+
+				const checkZoom = () => {
+					if (window.devicePixelRatio !== lastZoom) {
+						lastZoom = window.devicePixelRatio;
+						handleViewportChange();
+					}
+				};
+
+				const onResize = () => {
+					handleViewportChange();
+					checkZoom();
+				};
+
+				window.addEventListener('resize', onResize);
+				const zoomInterval = setInterval(checkZoom, 200);
+
+				return () => {
+					handleViewportChange.cancel();
+					window.removeEventListener('resize', onResize);
+
+					colHeaderRef.current = [];
+					colBodyRef.current = [];
+					colBodyTextRef.current = [];
+					setIsTableLoad(true);
+					clearInterval(zoomInterval);
+				};
+			} catch (error) {
+				console.log(`error:`, error);
+			}
+		}, []);
+
+		useEffect(() => {
+			const shouldUpdateTable =
+				(headers.length > 0 || values.length > 0) &&
+				(headers.length !== prevHeadersLength.current || values.length !== prevValuesLength.current);
+
+			if (shouldUpdateTable) {
+				setIsTableLoad((prev) => !prev);
+
+				prevHeadersLength.current = headers.length;
+				prevValuesLength.current = values.length;
+			}
+		}, [isUpdateTimeTable, values.length, headers.length]);
+
 		return (
 			<S.Table
-				key={`table-${isTableLoading}`} /* NOTE: Force re-render when isTableLoading changes */
+				key={`table-${className}-${isTableLoading}-${isTableLoad}`} /* NOTE: Force re-render when isTableLoading changes */
+				ref={tableRef}
 				className={classnames}
 				width={'100%'}
 				$minWidth={'100%'}
@@ -150,9 +207,10 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 					overflow='hidden'
 				>
 					<Box direction='column'>
-						<Box direction='column'>
+						<Box direction='column' $overflowY='auto' $overflowX='hidden'>
 							{/* Header */}
 							<Box
+								data-testid={'TABLE_HEADER'}
 								className={mode !== 'dark' && isScroll ? 'scrollShadow' : undefined}
 								direction='row'
 								position='sticky'
@@ -161,7 +219,11 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 							>
 								{headers.map((col, index) => (
 									<Box
-										key={index}
+										data-testid={`TABLE_HEADER_INSIDE`}
+										key={`${className}-headers-${index}`}
+										ref={(el) => {
+											colHeaderRef.current[index] = el as HTMLDivElement | null;
+										}}
 										direction='row'
 										$alignItems='center'
 										$alignContent='center'
@@ -188,13 +250,17 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 									>
 										<Box position='relative' width={col?.isSort ? 'fit-content' : '100%'}>
 											{(() => {
-												const metrics = measureTextWidth(col.value as string);
+												const metrics = measureTextWidth(
+													String(col?.value || ''),
+													`${mode === 'dark' ? '20' : '12'}px 'Ekachon', system-ui, sans-serif, 'Segoe UI', Tahoma, Verdana`
+												);
 												return (
 													<>
 														<Tooltip
 															content={
-																col?.width &&
-																(metrics as number) > Number(String(col?.width.replace('px', '')))
+																colHeaderRef.current[index]?.offsetWidth &&
+																(metrics as number) >
+																	Number(colHeaderRef.current[index]?.offsetWidth ?? 0)
 																	? col?.value
 																	: ''
 															}
@@ -220,6 +286,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 
 										{col?.isSort && (
 											<Button
+												data-testid={`ICON_SORT${col.sortBy || 'SORTING'}`.toLocaleUpperCase()}
 												onClick={(e) => {
 													e.stopPropagation();
 
@@ -231,7 +298,6 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 														nextDirection = sortDirection === 'asc' ? 'desc' : 'asc';
 													}
 
-													setKey(col?.key);
 													setSortColumnIndex(index);
 													setSortDirection(nextDirection);
 
@@ -265,26 +331,27 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 							{/* Header */}
 
 							{/* Body */}
-							<Box display='inline-table' width='100%'>
+							<Box data-testid={`TABLE_BODY`} display='inline-table' width='100%'>
 								<Box
 									direction='column'
 									$minHeight={$minHeightTable}
 									$maxHeight={$maxHeightTable}
 									$isFullWidth
-									$overflowY='auto'
-									$overflowX='hidden'
 									ref={bodyRef}
 								>
-									{!!values.length ? (
-										<Box direction='column'>
+									{values.length ? (
+										<Box data-testid={`TABLE_BODY_INSIDE`} direction='column'>
 											{values.map((item, rowIndex) => (
-												<Box key={rowIndex} direction='row' height='100%' m={0}>
+												<Box key={`${className}-values-${rowIndex}`} direction='row' height='100%' m={0}>
 													{item.map((col, colIndex) => {
 														const cell = col || { value: '' };
 
 														return (
 															<Box
-																$isHover={!!cell?.onClick}
+																key={`${className}-item-${colIndex}`}
+																ref={(el) => {
+																	colBodyRef.current[colIndex] = el as HTMLDivElement | null;
+																}}
 																onClick={() => {
 																	if (cell?.onClick) {
 																		cell.onClick({
@@ -295,56 +362,86 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 																		});
 																	}
 																}}
-																key={colIndex}
 																$borderWidth={1}
 																border={mode === 'dark' ? 'top' : 'bottom'}
 																$alignContent='center'
 																$justifyContent={cell.align}
 																p={
-																	size === 'lg'
-																		? colIndex === 0
-																			? '8px 8px 8px 16px'
-																			: headers.length === colIndex + 1
-																				? '8px 16px 8px 8px'
-																				: '8px'
-																		: '8px'
+																	isTableLoading
+																		? size === 'lg'
+																			? colIndex === 0
+																				? '8px 8px 8px 16px'
+																				: headers.length === colIndex + 1
+																					? '8px 16px 8px 8px'
+																					: '8px'
+																			: '8px'
+																		: '0px'
 																}
 																width={headers[colIndex]?.width}
 																$minWidth={headers[colIndex]?.$minWidth}
 																$maxWidth={headers[colIndex]?.$maxWidth}
 																flex={headers[colIndex]?.flex}
+																$isHover={Boolean(cell?.onClick !== undefined)}
 																$boxSizing='border-box'
 															>
 																{isTableLoading ? (
 																	<Skeleton />
 																) : (
-																	<Box position='relative'>
+																	<Box position='relative' $boxSizing='border-box'>
 																		{(() => {
-																			const metrics = measureTextWidth(cell.value as string);
+																			const metrics = measureTextWidth(
+																				String(cell?.value || ''),
+																				"14px 'Ekachon', system-ui, sans-serif, 'Segoe UI', Tahoma, Verdana",
+																				17
+																			);
 																			return (
 																				<>
-																					<Tooltip
-																						content={
-																							cell?.width &&
-																							(metrics as number) >
-																								Number(String(cell?.width.replace('px', '')))
-																								? cell?.value
-																								: ''
+																					<Box
+																						ref={(el) => {
+																							colBodyTextRef.current[colIndex] =
+																								el as HTMLDivElement | null;
+																						}}
+																						$boxSizing='border-box'
+																						p={
+																							size === 'lg'
+																								? colIndex === 0
+																									? '8px 8px 8px 16px'
+																									: headers.length === colIndex + 1
+																										? '8px 16px 8px 8px'
+																										: '8px'
+																								: '8px'
 																						}
 																					>
-																						<TextStyle
-																							variant='paragraphSmallTable'
-																							color='--color-primary'
-																							$textAlign={cell.align || 'left'}
-																							$limitLine={1}
-																							height='100%'
-																							$alignContent='center'
-																							$justifyContent={cell.align}
-																							$alignItems={cell.align}
+																						<Tooltip
+																							position={
+																								rowIndex + 1 === values.length ? 'top' : 'bottom'
+																							}
+																							content={
+																								Number(colBodyRef.current[colIndex]?.offsetWidth) >=
+																									Number(
+																										colBodyTextRef.current[colIndex]?.offsetWidth
+																									) &&
+																								(metrics as number) >
+																									Number(colBodyRef.current[colIndex]?.offsetWidth ?? 0)
+																									? col?.value
+																									: ''
+																							}
 																						>
-																							{cell?.value}
-																						</TextStyle>
-																					</Tooltip>
+																							<TextStyle
+																								variant='paragraphSmallTable'
+																								color='--color-primary'
+																								$textAlign={cell.align || 'left'}
+																								$limitLine={1}
+																								height='100%'
+																								$alignContent='center'
+																								$justifyContent={cell.align}
+																								$alignItems={cell.align}
+																								$wordBreak='break-all'
+																							>
+																								{cell?.value}
+																							</TextStyle>
+																						</Tooltip>
+																					</Box>
 																				</>
 																			);
 																		})()}
@@ -364,28 +461,8 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 											$isFullWidth
 											$minHeight={294}
 										>
-											{isTableError == true ? (
-												<Box direction='column' gap={16} $alignItems='center'>
-													<Icon
-														icon={'alert_circle'}
-														color={`--color-toast-error`}
-														width={45}
-														height={45}
-													/>
-													<Box direction='column' gap={8} $alignItems='center'>
-														<TextStyle variant='h5' color='--color-primary' $textAlign='center'>
-															{t('dashboard_contract_table_title_error')}
-														</TextStyle>
-														<TextStyle variant='paragraphMedium' color='--color-neutral-grey-light'>
-															{t('dashboard_contract_table_sub_title_error')}
-														</TextStyle>
-													</Box>
-													{typeof onRefresh === 'function' && (
-														<Button variant='ghost-primary' onClick={() => onRefresh()}>
-															{t('dashboard_contract_table_action_error')}
-														</Button>
-													)}
-												</Box>
+											{isTableError === true ? (
+												<ErrorDisplay onRefresh={onRefresh} moduleName={moduleName} />
 											) : (
 												<Box direction='column' gap={16} $alignItems='center'>
 													{childrenNotFound}
@@ -402,6 +479,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 					{/* Footer */}
 					{!isPaginationDisabled && (
 						<Box
+							data-testid={`TABLE_PAGINATION_FOOTER`}
 							direction='row'
 							$alignItems='center'
 							$justifyContent='end'
@@ -450,14 +528,17 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 									$alignContent='center'
 								>
 									{`${
-										count === 0 ? 0 : `${(page - 1) * limit + 1}-${Math.min(page * limit, count)}`
-									} ${t('dashboard_contract_table_footer_to')} ${count}`}
+										isValueEmpty(count)
+											? 0
+											: `${(page - 1) * limit + 1}-${Math.min(page * limit, count)}`
+									} ${t('dashboard_contract_table_footer_to')} ${count || 0}`}
 								</TextStyle>
 							</Box>
 
 							{/* Pagination Buttons */}
 							<Box direction='row' $alignItems='center' gap={8}>
 								<Button
+									data-testid={`ICON_PAGINATION_ARROW_LEFT`}
 									onClick={() => {
 										const newPage = page - 1;
 										if (!isPaginationDisabled && newPage >= 1) {
@@ -477,6 +558,7 @@ export const Table = forwardRef<HTMLElement | undefined, TableProps>(
 								/>
 
 								<Button
+									data-testid={`ICON_PAGINATION_ARROW_RIGHT`}
 									onClick={() => {
 										const maxPage = Math.ceil(count / limit);
 										const newPage = page + 1;

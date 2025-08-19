@@ -47,10 +47,19 @@ const calPadding = (padding: string | number = 0, $borderWidth: string | number 
 };
 
 export const Box = styled.div<Omit<BoxProps, 'as'>>`
-	&[role='button'] {
-		cursor: pointer;
-		* {
+	${({ $isHover }) =>
+		($isHover === true || ($isHover !== undefined && $isHover !== false)) &&
+		css`
 			cursor: pointer;
+			* {
+				cursor: pointer;
+			}
+		`}
+
+	&[role='button'] {
+		cursor: ${({ $isHover }) => ($isHover == true || $isHover !== false ? 'pointer' : 'default')};
+		* {
+			cursor: ${({ $isHover }) => ($isHover == true || $isHover !== false ? 'pointer' : 'default')};
 		}
 	}
 
@@ -62,7 +71,6 @@ export const Box = styled.div<Omit<BoxProps, 'as'>>`
 			cursor: default;
 		}
 	}
-
 	${({ direction, display, gap, gapRow, gapColumn }) => {
 		if (direction !== 'none' && display !== 'block') {
 			return css`
@@ -87,59 +95,59 @@ export const Box = styled.div<Omit<BoxProps, 'as'>>`
 		css`
 			overflow: ${overflow};
 		`}
-  ${({ $overflowX }) =>
+  	${({ $overflowX }) =>
 		$overflowX !== undefined &&
 		css`
 			overflow-x: ${$overflowX};
 		`}
-  ${({ $overflowY }) =>
+  	${({ $overflowY }) =>
 		$overflowY !== undefined &&
 		css`
 			overflow-y: ${$overflowY};
 		`}
-  ${({ $isFullWidth }) =>
+  	${({ $isFullWidth }) =>
 		$isFullWidth !== undefined &&
 		css`
 			width: 100%;
 		`}
-  ${({ $isFullHeight }) =>
+  	${({ $isFullHeight }) =>
 		$isFullHeight !== undefined &&
 		css`
 			height: 100dvh;
 		`}
 
-  ${({ width }) =>
+  	${({ width }) =>
 		width !== undefined &&
 		css`
 			width: ${toPx(width)};
 		`}
-  ${({ height }) =>
+  	${({ height }) =>
 		height !== undefined &&
 		css`
 			height: ${toPx(height)};
 		`}
-  ${({ $minWidth }) =>
+  	${({ $minWidth }) =>
 		$minWidth !== undefined &&
 		css`
 			min-width: ${toPx($minWidth)};
 		`}
-  ${({ $minHeight }) =>
+  	${({ $minHeight }) =>
 		$minHeight !== undefined &&
 		css`
 			min-height: ${toPx($minHeight)};
 		`}
-  ${({ $maxWidth }) =>
+  	${({ $maxWidth }) =>
 		$maxWidth !== undefined &&
 		css`
 			max-width: ${toPx($maxWidth)};
 		`}
-  ${({ $maxHeight }) =>
+  	${({ $maxHeight }) =>
 		$maxHeight !== undefined &&
 		css`
 			max-height: ${toPx($maxHeight)};
 		`}
 
-  ${({ direction, gap }) =>
+  	${({ direction, gap }) =>
 		direction !== undefined &&
 		css`
 			flex-direction: ${direction.replace('-wrap', '')};
@@ -152,100 +160,92 @@ export const Box = styled.div<Omit<BoxProps, 'as'>>`
 				gap: ${gap}px;
 			`}
 		`}
-  ${({ flex }) =>
+  	${({ flex }) =>
 		flex !== undefined &&
 		css`
 			flex: ${flex};
 		`}
-  ${({ $flexWrap }) =>
+  	${({ $flexWrap }) =>
 		$flexWrap !== undefined &&
 		css`
 			flex-wrap: ${$flexWrap};
 		`}
 
 
-  ${({ direction, $alignItems }) =>
+  	${({ direction, $alignItems }) =>
 		direction &&
 		$alignItems !== undefined &&
 		css`
 			align-items: ${transformFlexProperties($alignItems)};
 		`}
 
-  ${({ direction, $alignContent }) =>
+  	${({ direction, $alignContent }) =>
 		direction &&
 		$alignContent !== undefined &&
 		css`
 			align-content: ${transformFlexProperties($alignContent)};
 		`}
 
-  ${({ direction, $justifyContent }) =>
+  	${({ direction, $justifyContent }) =>
 		direction &&
 		$justifyContent !== undefined &&
 		css`
 			justify-content: ${transformFlexProperties($justifyContent)};
 		`}
 
-  ${({ column, $justifyContent }) =>
+  	${({ column, $justifyContent }) =>
 		column &&
 		$justifyContent !== undefined &&
 		css`
 			justify-items: ${transformFlexProperties($justifyContent)};
 		`}
 
-  ${({ $isHover }) =>
-		$isHover !== undefined &&
-		css`
-			cursor: pointer;
-			* {
-				cursor: pointer;
-			}
-		`}
 
-  ${({ m }) =>
+  	${({ m }) =>
 		m !== undefined &&
 		css`
 			margin: ${toPx(m)};
 		`}
-  ${({ mx }) =>
+  	${({ mx }) =>
 		mx !== undefined &&
 		css`
 			margin-left: ${toPx(mx)};
 			margin-right: ${toPx(mx)};
 		`}
-  ${({ my }) =>
+  	${({ my }) =>
 		my !== undefined &&
 		css`
 			margin-top: ${toPx(my)};
 			margin-bottom: ${toPx(my)};
 		`}
-  ${({ mt }) =>
+  	${({ mt }) =>
 		mt !== undefined &&
 		css`
 			margin-top: ${toPx(mt)};
 		`}
-  ${({ mb }) =>
+  	${({ mb }) =>
 		mb !== undefined &&
 		css`
 			margin-bottom: ${toPx(mb)};
 		`}
-  ${({ mr }) =>
+  	${({ mr }) =>
 		mr !== undefined &&
 		css`
 			margin-right: ${toPx(mr)};
 		`}
-  ${({ ml }) =>
+  	${({ ml }) =>
 		ml !== undefined &&
 		css`
 			margin-left: ${toPx(ml)};
 		`}
 
-  ${({ $bgColor }) =>
+  	${({ $bgColor }) =>
 		$bgColor !== undefined &&
 		css`
 			background-color: var(--text-bg-color, currentColor);
 		`}
 
-  ${({ $borderWidth, border }) =>
+  	${({ $borderWidth, border }) =>
 		$borderWidth &&
 		$borderWidth > 0 &&
 		css`
@@ -268,13 +268,20 @@ export const Box = styled.div<Omit<BoxProps, 'as'>>`
 								border-left-width: ${$borderWidth}px;
 								border-down-width: ${$borderWidth}px;
 							`
-						: css`
+						: border === 'center-dropdown'
+							? css`
+									border-width: 0;
+									border-right-width: ${$borderWidth}px;
+									border-left-width: ${$borderWidth}px;
+									border-top-width: ${$borderWidth}px;
+								`
+							: css`
 							border-width: 0;
 							border-${border}-width: ${$borderWidth}px;
 						`}
 		`}
 
-  ${({ $boxShadow }) =>
+  	${({ $boxShadow }) =>
 		$boxShadow !== 'none' &&
 		css`
 			box-shadow: ${$boxShadow === 'top'
@@ -282,76 +289,74 @@ export const Box = styled.div<Omit<BoxProps, 'as'>>`
 				: '0px 2px 0px rgba(0, 0, 0, 0.04), 0px 4px 0px rgba(76, 87, 101, 0.06)'};
 		`}
 
-  ${({ $borderColor }) =>
+  	${({ $borderColor }) =>
 		$borderColor !== undefined &&
 		css`
 			border-color: var(--text-border-color, currentColor);
 		`}
 
-    ${({ $borderRadius, border }) =>
+  	${({ $borderRadius, border }) =>
 		$borderRadius !== undefined &&
 		css`
 			${border === 'all'
 				? css`
 						border-radius: ${getRadius($borderRadius)};
 					`
-				: 
-				border === 'top-dropdown'
+				: border === 'top-dropdown'
 					? css`
-						border-top-left-radius: ${getRadius($borderRadius)};
-						border-top-right-radius: ${getRadius($borderRadius)};
-					`
-					: 
-					border === 'down-dropdown' || border === 'all-radius-down'
-						? css`
-							border-bottom-left-radius: ${getRadius($borderRadius)};
-							border-bottom-right-radius: ${getRadius($borderRadius)};
+							border-top-left-radius: ${getRadius($borderRadius)};
+							border-top-right-radius: ${getRadius($borderRadius)};
 						`
+					: border === 'down-dropdown' || border === 'all-radius-down'
+						? css`
+								border-bottom-left-radius: ${getRadius($borderRadius)};
+								border-bottom-right-radius: ${getRadius($borderRadius)};
+							`
 						: css`
 							border-${border}-left-radius: ${getRadius($borderRadius)};
 							border-${border}-right-radius: ${getRadius($borderRadius)};
 						`}
 		`}
 
-  ${({ p, $borderWidth }) =>
+  	${({ p, $borderWidth }) =>
 		p !== undefined &&
 		css`
 			padding: ${calPadding(p, $borderWidth)};
 		`}
-  ${({ px, $borderWidth }) =>
+  	${({ px, $borderWidth }) =>
 		px !== undefined &&
 		css`
 			padding-left: ${calPadding(px, $borderWidth)};
 			padding-right: ${calPadding(px, $borderWidth)};
 		`}
-  ${({ py, $borderWidth }) =>
+  	${({ py, $borderWidth }) =>
 		py !== undefined &&
 		css`
 			padding-top: ${calPadding(py, $borderWidth)};
 			padding-bottom: ${calPadding(py, $borderWidth)};
 		`}
-  ${({ pt, $borderWidth }) =>
+  	${({ pt, $borderWidth }) =>
 		pt !== undefined &&
 		css`
 			padding-top: ${calPadding(pt, $borderWidth)};
 		`}
-  ${({ pb, $borderWidth }) =>
+  	${({ pb, $borderWidth }) =>
 		pb !== undefined &&
 		css`
 			padding-bottom: ${calPadding(pb, $borderWidth)};
 		`}
-  ${({ pr, $borderWidth }) =>
+  	${({ pr, $borderWidth }) =>
 		pr !== undefined &&
 		css`
 			padding-right: ${calPadding(pr, $borderWidth)};
 		`}
-  ${({ pl, $borderWidth }) =>
+  	${({ pl, $borderWidth }) =>
 		pl !== undefined &&
 		css`
 			padding-left: ${calPadding(pl, $borderWidth)};
 		`}
 
-  ${({ column }) =>
+  	${({ column }) =>
 		column !== undefined &&
 		css`
 			display: grid;
@@ -360,7 +365,7 @@ export const Box = styled.div<Omit<BoxProps, 'as'>>`
 			word-break: break-word;
 		`}
 
-  ${({ limit }) =>
+  	${({ limit }) =>
 		limit !== undefined &&
 		css`
 			> *:nth-child(n + ${limit + 1}) {
@@ -368,53 +373,53 @@ export const Box = styled.div<Omit<BoxProps, 'as'>>`
 			}
 		`}
 
-  ${({ $textAlign }) =>
+  	${({ $textAlign }) =>
 		$textAlign !== undefined &&
 		css`
 			text-align: ${$textAlign};
 		`}
-  ${({ color }) =>
+  	${({ color }) =>
 		color !== undefined &&
 		css`
 			color: var(--text-color, currentColor);
 		`}
-  ${({ $boxSizing }) =>
+  	${({ $boxSizing }) =>
 		$boxSizing !== undefined &&
 		css`
 			box-sizing: ${$boxSizing};
 		`}
     
-  ${({ position }) =>
+  	${({ position }) =>
 		position !== undefined &&
 		css`
 			position: ${position};
 		`}
-  ${({ $zIndex }) =>
+  	${({ $zIndex }) =>
 		$zIndex !== undefined &&
 		css`
 			z-index: ${$zIndex};
 		`}
-  ${({ top }) =>
+  	${({ top }) =>
 		top !== undefined &&
 		css`
 			top: ${top};
 		`}
-  ${({ bottom }) =>
+  	${({ bottom }) =>
 		bottom !== undefined &&
 		css`
 			bottom: ${bottom};
 		`}
-  ${({ left }) =>
+  	${({ left }) =>
 		left !== undefined &&
 		css`
 			left: ${left};
 		`}
-  ${({ right }) =>
+  	${({ right }) =>
 		right !== undefined &&
 		css`
 			right: ${right};
 		`}
-  ${({ pointerEvents }) =>
+  	${({ pointerEvents }) =>
 		pointerEvents !== undefined &&
 		css`
 			pointer-events: ${pointerEvents};

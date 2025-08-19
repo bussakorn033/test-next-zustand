@@ -11,8 +11,6 @@ const [accepted, setAccepted] = useState(false);
     name="checkbox-gender"
     checked={accepted}
     onChange={(e) => {
-      console.log(e.target.name);
-      console.log(e.target.checked);
       setAccepted(e.target.checked);
     }}
     size={16}

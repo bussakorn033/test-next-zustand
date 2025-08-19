@@ -1,7 +1,9 @@
 export interface IconProps extends React.HTMLAttributes<HTMLElement> {
-	icon?: string;
-	color?: string;
-	width?: string;
-	height?: string;
+	id?: string;
+	className?: string;
+	icon: string | undefined;
+	color?: string | undefined;
+	width?: string | number;
+	height?: string | number;
 	disabled?: boolean | null;
 }

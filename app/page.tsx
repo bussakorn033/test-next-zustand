@@ -53,28 +53,6 @@ export default function Home() {
     { label: 'Item Two', value: '2', content: <div>Item Two</div> },
     { label: 'Item Three', value: '3', content: <div>Item Three</div> }
   ];
-  const {
-    paginationOptions,
-    pagination,
-    setPagination,
-    headers,
-    values,
-    filters,
-    handleFilterChange,
-    handleFilterBtnSearch,
-    handleFilterBtnReset,
-    filterByUserOptions,
-    filterByUserOptionsActive,
-    setFilterByUserOptionsActive,
-    filterByTypeDocOptions,
-    filterByTypeDocOptionsActive,
-    setFilterByTypeDocOptionsActive,
-    filterByStatusDocOptions,
-    filterByStatusDocOptionsActive,
-    setFilterByStatusDocOptionsActive,
-    isShowModalCreateContract,
-    setIsShowModalCreateContract
-  } = useDashboard();
 
   const tooltipContent = (
     <>
@@ -82,6 +60,8 @@ export default function Home() {
       ellipsis when content overflows the specified number of lines.';
     </>
   );
+
+  const { paginationOptions, pagination, setPagination, headers, values } = useDashboard();
 
   return (
     <>
